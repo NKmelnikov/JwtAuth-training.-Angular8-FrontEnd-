@@ -4,13 +4,15 @@ import {RegisterComponent} from './auth/register/register.component';
 import {LoginComponent} from './auth/login/login.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {HomeComponent} from './home/home.component';
-
+import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-  {path: '', component: WelcomeComponent}
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
