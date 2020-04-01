@@ -1,0 +1,27 @@
+<header>
+  <nav class="logo"><a href="#"><img src="assets/img/AEGIS_logo_white_en.png" alt=""></a></nav>
+  <nav class="item item1 item-main"><a href="">Главная</a></nav>
+  <nav class="item item2 item-products"><a href="">Продукция</a></nav>
+  <nav class="item item3 item-catalogs"><a href="">Каталоги</a></nav>
+  <nav class="item item4 item-news"><a href="">Новости</a></nav>
+  <nav class="item item5 item-about"><a href="">О нас</a></nav>
+  <nav class="item item6 item-contacts" (click)="toggleActive()">
+    <div class="line-container">
+      <span class="line line-top"></span>
+      <span class="line line-mid"></span>
+      <span class="line line-bot"></span>
+    </div>
+  </nav>
+  <section class="side-bar" [ngClass]="active ? 'active': ''">
+    <div class="cross-box" (click)="toggleActive()">
+      <div class="cross-square">
+        <span class="line line-crossed-left"></span>
+        <span class="line line-crossed-right"></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <h3>Quick contact info</h3>
+      <p>Introducing a truly professional WordPress theme built to last! We developed Wilmër for all construction & architecture sites.</p>
+    </div>
+  </section>
+</header>

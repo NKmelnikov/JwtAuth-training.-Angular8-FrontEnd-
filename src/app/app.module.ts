@@ -10,6 +10,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
+import { HeaderComponent } from './layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {JwtInterceptor, ErrorInterceptor} from './_helpers';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
