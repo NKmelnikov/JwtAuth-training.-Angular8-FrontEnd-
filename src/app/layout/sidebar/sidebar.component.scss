@@ -1,0 +1,134 @@
+@import "../../app.global";
+@import "../../../assets/libs/scss/fontawesome.scss";
+@import "../../../assets/libs/scss/brands.scss";
+
+section {
+
+  .cross-box {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: .2s ease-out;
+
+    &:hover {
+      .cross-square {
+        .line {
+          &.line-crossed-left {
+            animation: spin1 .3s linear;
+          }
+
+          &.line-crossed-right {
+            animation: spin2 .3s linear;
+          }
+        }
+      }
+    }
+
+    .cross-square {
+      width: 80px;
+      height: 80px;
+      background: $main-color1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transition: .2s ease-out;
+
+      .line {
+        width: 1rem;
+        border: 2px solid white;
+        border-radius: 5px;
+        position: absolute;
+
+        &.line-crossed-left {
+          transform: rotate(45deg);
+        }
+
+        &.line-crossed-right {
+          transform: rotate(135deg);
+        }
+      }
+    }
+
+
+  }
+
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 50px;
+    color: #9ca5af;
+    width: 280px;
+
+    &__head {
+      color: white;
+    }
+
+    &__description {
+      font-size: 16px;
+      padding-bottom: 20px;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+
+    &__small-img {
+      padding-right: 20px;
+    }
+
+    &__social {
+      border: 1px solid #1d263f;
+      width: 280px;
+      height: 70px;
+      margin-top: 20px;
+      display: flex;
+
+
+      .social-network {
+        width: 70px;
+        height: 70px;
+        border-right: 1px solid #1d263f;
+        cursor: pointer;
+        transition: .2s ease-in-out;
+
+        a {
+          width: 100%;
+          height: 100%;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+        }
+
+        &:hover {
+          background: $main-color1;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin1 {
+  100% {
+    transform: rotate(225deg);
+  }
+}
+
+@keyframes spin2 {
+  100% {
+    transform: rotate(315deg);
+  }
+}

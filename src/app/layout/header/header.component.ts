@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +10,15 @@ export class HeaderComponent implements OnInit {
   constructor() {
   }
 
-  active = false;
+  // active = false;
+  @Input() active: boolean;
+  @Output() activeEvent = new EventEmitter<boolean>();
 
   ngOnInit() {
   }
 
   toggleActive() {
-    this.active = !this.active;
+    this.activeEvent.emit(this.active = !this.active);
+    console.log(this.active);
   }
 }

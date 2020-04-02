@@ -1,5 +1,25 @@
 @import "../app.global";
 
+app-sidebar{
+  height: 100vh;
+  position: fixed;
+  width: 400px;
+  background: #0a1229;
+  right: 0;
+  top: 0;
+  transform: translate3d(400px, 0, 0);
+  transition: .4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .home-wrapper{
   background: $main-color2;
   height: 100vh;

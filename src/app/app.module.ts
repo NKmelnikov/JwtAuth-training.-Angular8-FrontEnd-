@@ -11,6 +11,7 @@ import {HomeComponent} from './home/home.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import { HeaderComponent } from './layout/header/header.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { HeaderComponent } from './layout/header/header.component';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
