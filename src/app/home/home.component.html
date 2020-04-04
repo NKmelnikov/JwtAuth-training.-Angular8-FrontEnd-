@@ -1,6 +1,23 @@
 <app-header (activeEvent)="receiveActiveHeader($event)" [active]="active"></app-header>
 <app-sidebar (activeEvent2)="receiveActiveSideBar($event)" [active]="active" [ngClass]="active ? 'active': ''"></app-sidebar>
-<section class="home-wrapper">
-<button (click)="logout()">logout</button>
-</section>
+<main class="home-wrapper">
+  <section class="first-section">
+    <div class="first-section-left-sector"></div>
+    <div class="first-section-right-sector"></div>
+    <div class="first-section-sq-sector">
+      <img class="first-section-sq-sector__left sq-sector-item" src="assets/img/sq-left.png" alt="">
+      <img class="first-section-sq-sector__right sq-sector-item" src="assets/img/sq-right.png" alt="">
+    </div>
+    <div class="first-section-goToProduct-sector">
+      <div class="first-section-goToProduct-sector__left goToProduct-sector-item">
+        <div class="title-box title-box-left">Продажа <br>металлорежущего инструмента и оснастки</div>
+        <a class="goToProduct-btn goToProduct-btn-left" href="">Перейти в раздел</a>
+      </div>
+      <div class="first-section-goToProduct-sector__right goToProduct-sector-item">
+        <div class="title-box title-box-right">Продажа <br> высококачественных смазочных материалов</div>
+        <a class="goToProduct-btn goToProduct-btn-right" href="">Перейти в раздел</a>
+      </div>
+    </div>
+  </section>
+</main>
 <app-footer></app-footer>

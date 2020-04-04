@@ -1,6 +1,6 @@
 @import "../app.global";
 
-app-sidebar{
+app-sidebar {
   height: 100vh;
   position: fixed;
   width: 400px;
@@ -20,7 +20,121 @@ app-sidebar{
   }
 }
 
-.home-wrapper{
+.home-wrapper {
   background: $main-color2;
-  height: 100vh;
+
+  .first-section {
+    height: calc(100vh - 80px);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+    &-left-sector, &-right-sector {
+      filter: brightness(1.15) contrast(0.75);
+    }
+
+    &-left-sector {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: url("/assets/img/back-left.png") no-repeat;
+      transition: .3s ease-in-out;
+    }
+
+    &-right-sector {
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: url("/assets/img/back-right.png") no-repeat;
+    }
+
+    &-sq-sector {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .sq-sector-item {
+        width: 308px;
+        height: 615px;
+      }
+
+      &__left {
+        position: absolute;
+        left: 0;
+        z-index: 3;
+      }
+
+      &__right {
+        position: absolute;
+        right: 0;
+        z-index: 3;
+      }
+    }
+
+    &-goToProduct-sector {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 4;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .goToProduct-sector-item {
+        width: 470px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .title-box {
+          border: 1px solid $main-color4;
+          color: white;
+          background: rgba(0, 35, 89, 0.7);
+          font-size: 30px;
+          font-weight: bolder;
+          text-transform: uppercase;
+          padding: 15px 20px;
+        }
+
+        .title-box-right {
+          text-align: right;
+        }
+
+        .goToProduct-btn {
+          text-decoration: none;
+          padding: 15px 20px;
+          background: $main-color1;
+          color: white;
+          border-radius: 3px;
+          font-weight: bolder;
+          font-size: 18px;
+
+          &:hover {
+            background: $main-color2;
+          }
+        }
+      }
+
+      &__left {
+        //margin-right: 100px;
+        align-items: flex-end !important;
+      }
+
+      &__right {
+        align-items: flex-start !important;
+      }
+    }
+  }
 }
