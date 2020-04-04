@@ -24,7 +24,7 @@ app-sidebar {
   background: $main-color2;
 
   .first-section {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 140px);
     display: flex;
     position: relative;
     overflow: hidden;
@@ -128,12 +128,128 @@ app-sidebar {
       }
 
       &__left {
-        //margin-right: 100px;
         align-items: flex-end !important;
       }
 
       &__right {
         align-items: flex-start !important;
+      }
+    }
+  }
+
+  .second-section {
+    margin: 30px 0;
+    border-top: 10px solid $main-color1;
+    border-bottom: 10px solid $main-color1;
+    background: $main-color2;
+
+    &__advantages {
+      margin-top: 150px;
+      margin-bottom: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      &-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 150px;
+
+        .title {
+          color: white;
+          font-size: 96px;
+          line-height: 90px;
+          font-weight: bolder;
+          text-transform: uppercase;
+          margin-bottom: 30px;
+        }
+
+        .line {
+          width: 50px;
+          border-top: 7px solid $main-color1;
+          margin-bottom: 30px;
+        }
+
+        .text {
+          text-transform: uppercase;
+          text-align: center;
+          color: white;
+        }
+
+        &.text-item {
+          width: 350px;
+          align-items: flex-start;
+
+          .title {
+            color: white;
+            font-size: 36px;
+            line-height: 45px;
+
+          }
+
+          .line {
+            width: 100px;
+          }
+
+          .text {
+            text-align: left;
+          }
+        }
+      }
+    }
+
+    &__partner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 423px;
+      margin-bottom: 150px;
+
+      &-info {
+        width: 46%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title {
+          color: white;
+          font-size: 32px;
+          font-weight: bolder;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        }
+
+        .line {
+          border-top: 7px solid $main-color1;
+          width: 80px;
+          margin-bottom: 20px;
+        }
+
+        .text {
+          color: white;
+          font-size: 16px;
+          line-height: 25px;
+          margin-bottom: 20px;
+        }
+
+        .btn{
+          text-decoration: none;
+          background: $main-color1;
+          color: white;
+          font-weight: bolder;
+          font-size: 16px;
+          padding: 15px 25px;
+          border-radius: 3px;
+          cursor: pointer;
+
+          &:hover{
+            background: $main-color3;
+          }
+        }
       }
     }
   }
