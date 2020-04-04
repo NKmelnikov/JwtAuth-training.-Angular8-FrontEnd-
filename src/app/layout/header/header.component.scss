@@ -33,11 +33,14 @@ header {
 
     &.logo {
       background: $main-color1;
-      width: 180rem;
+
+      a {
+        width: 300px;
+      }
     }
 
     &.item-contacts {
-      width: 40rem;
+      width: 35rem;
       background: $main-color1;
       display: flex;
       justify-content: center;

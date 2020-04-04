@@ -12,6 +12,7 @@ import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import { HeaderComponent } from './layout/header/header.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
     HomeComponent,
     WelcomeComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

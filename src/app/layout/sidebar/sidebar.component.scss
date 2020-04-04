@@ -61,7 +61,7 @@ section {
     justify-content: center;
     align-items: flex-start;
     padding-left: 50px;
-    color: #9ca5af;
+    color: $main-color5;
     width: 280px;
 
     &__head {
@@ -85,7 +85,7 @@ section {
     }
 
     &__social {
-      border: 1px solid #1d263f;
+      border: 1px solid $main-color4;
       width: 280px;
       height: 70px;
       margin-top: 20px;
@@ -95,7 +95,7 @@ section {
       .social-network {
         width: 70px;
         height: 70px;
-        border-right: 1px solid #1d263f;
+        border-right: 1px solid $main-color4;
         cursor: pointer;
         transition: .2s ease-in-out;
 

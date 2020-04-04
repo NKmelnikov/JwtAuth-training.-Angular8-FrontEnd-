@@ -1,0 +1,142 @@
+@import "../../app.global";
+@import "../../../assets/libs/scss/fontawesome.scss";
+@import "../../../assets/libs/scss/brands.scss";
+
+footer {
+  padding-top: 50px;
+  background: $main-color3;
+
+  .footer-up {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 50px;
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin-right: 30px;
+
+      .title {
+        color: white;
+        margin: 0 0 30px 0;
+      }
+
+      .text {
+        color: $main-color5;
+
+        &.text1 {
+          margin-bottom: 20px;
+        }
+      }
+
+      &.services {
+        a {
+          text-decoration: none;
+          margin-bottom: 20px;
+
+          &:hover {
+            color: $main-color1;
+          }
+        }
+      }
+
+      &_info-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom: 20px;
+      }
+
+      &_small-img {
+        padding-right: 20px;
+      }
+    }
+  }
+
+  .fronter-down-wrapper {
+    border-top: 1px solid $main-color4;
+  }
+
+  .footer-down {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+      height: 100%;
+      background: $main-color1;
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        img {
+          width: 200px;
+        }
+      }
+    }
+
+    &__copyright {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-size: 12px;
+        color: $main-color5;
+
+        a{
+          color: white;
+
+          &:hover{
+            color:$main-color1;
+          }
+        }
+      }
+    }
+
+    &__social {
+      width: 280px;
+      height: 100%;
+      display: flex;
+      border-right: 1px solid $main-color4;
+      border-left: 1px solid $main-color4;
+
+      .social-network {
+        width: 70px;
+        height: 100%;
+        border-right: 1px solid $main-color4;
+        cursor: pointer;
+        transition: .2s ease-in-out;
+
+        a {
+          width: 100%;
+          height: 100%;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+        }
+
+        &:hover {
+          background: $main-color1;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
