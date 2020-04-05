@@ -258,17 +258,140 @@ app-sidebar {
       }
     }
   }
+
+  .third-section {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 150px;
+
+
+    .third-section__1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 150px;
+
+      &_item {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 260px;
+
+        .img-container {
+          margin-bottom: 40px;
+          height: 70px
+        }
+
+        .line {
+          border-top: 7px solid $main-color1;
+          width: 75px;
+          margin-bottom: 30px;
+        }
+
+        .small-title, .medium-title {
+          text-transform: uppercase;
+          font-size: 16px;
+          color: #525253;
+          margin-bottom: 10px;
+        }
+
+        .big-title {
+          color: $main-color2;
+          font-size: 22px;
+          font-weight: bolder;
+          text-transform: uppercase;
+          margin-bottom: 10px;
+        }
+
+        .medium-title {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .text {
+          text-align: center;
+          color: #525253;
+        }
+      }
+    }
+
+    .third-section__2 {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 150px;
+
+
+      &_info {
+        width: 48%;
+        padding-right: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title {
+          font-size: 50px;
+          color: $main-color2;
+          font-weight: bolder;
+          text-transform: uppercase;
+        }
+
+        .line {
+          width: 72px;
+          border-top: 7px solid $main-color1;
+        }
+
+        .text {
+          color: #525253;
+          line-height: 25px;
+          font-size: 16px;
+        }
+
+        .btn {
+          text-decoration: none;
+          background: $main-color1;
+          color: white;
+          font-weight: bolder;
+          font-size: 16px;
+          padding: 15px 25px;
+          border-radius: 3px;
+          cursor: pointer;
+
+          &:hover {
+            background: $main-color2;
+          }
+        }
+      }
+
+      &_img {
+        width: 48%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img{
+          border: 5px solid $main-color1;
+          width: 250px;
+        }
+      }
+
+    }
+
+  }
 }
 
 @keyframes sq-from-left {
   100% {
-    transform: translate3d(308px,0,0);
+    transform: translate3d(308px, 0, 0);
   }
 }
 
 @keyframes sq-from-right {
 
   100% {
-    transform: translate3d(-308px,0,0);
+    transform: translate3d(-308px, 0, 0);
   }
 }
