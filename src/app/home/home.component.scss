@@ -64,18 +64,23 @@ app-sidebar {
       .sq-sector-item {
         width: 308px;
         height: 615px;
+        transition: .7s ease-in-out;
+        animation-delay: 1.2s;
+
       }
 
       &__left {
         position: absolute;
-        left: 0;
+        left: -308px;
         z-index: 3;
+        animation: sq-from-left .8s forwards;
       }
 
       &__right {
         position: absolute;
-        right: 0;
+        right: -308px;
         z-index: 3;
+        animation: sq-from-right .8s forwards;
       }
     }
 
@@ -236,7 +241,7 @@ app-sidebar {
           margin-bottom: 20px;
         }
 
-        .btn{
+        .btn {
           text-decoration: none;
           background: $main-color1;
           color: white;
@@ -246,11 +251,24 @@ app-sidebar {
           border-radius: 3px;
           cursor: pointer;
 
-          &:hover{
+          &:hover {
             background: $main-color3;
           }
         }
       }
     }
+  }
+}
+
+@keyframes sq-from-left {
+  100% {
+    transform: translate3d(308px,0,0);
+  }
+}
+
+@keyframes sq-from-right {
+
+  100% {
+    transform: translate3d(-308px,0,0);
   }
 }
