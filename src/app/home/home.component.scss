@@ -263,7 +263,7 @@ app-sidebar {
     background: white;
     display: flex;
     flex-direction: column;
-    padding-top: 150px;
+    padding-top: 200px;
 
 
     .third-section__1 {
@@ -321,7 +321,7 @@ app-sidebar {
     .third-section__2 {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 150px;
+      margin-bottom: 200px;
 
 
       &_info {
@@ -380,6 +380,84 @@ app-sidebar {
 
     }
 
+  }
+
+  .fourth-section {
+    height: 200px;
+    margin: 10px 0;
+    border-top: 10px solid $main-color1;
+    border-bottom: 10px solid $main-color1;
+    position: relative;
+
+    .outer-title {
+      position: absolute;
+      color: #002359;
+      font-size: 60px;
+      font-weight: bolder;
+      top: -80px;
+      text-transform: uppercase;
+    }
+  }
+
+  .fifth-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .news-wrapper {
+      color: white;
+      margin: 100px 0;
+      width: 370px;
+
+      img {
+        margin-bottom: 20px;
+      }
+
+      .line {
+        border-top: 7px solid $main-color1;
+        width: 75px;
+        margin-bottom: 20px;
+      }
+
+      .date {
+        color: $main-color5;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bolder;
+        margin-bottom: 20px;
+      }
+
+      .short-text {
+        margin-bottom: 20px;
+      }
+
+      .lower-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .btn {
+          text-decoration: none;
+          text-transform: uppercase;
+          background: $main-color1;
+          color: white;
+          font-weight: bolder;
+          font-size: 16px;
+          padding: 15px 25px;
+          border-radius: 3px;
+          cursor: pointer;
+          border: none;
+
+          &:hover {
+            background: $main-color3;
+          }
+        }
+      }
+
+    }
   }
 
   .sixth-section {

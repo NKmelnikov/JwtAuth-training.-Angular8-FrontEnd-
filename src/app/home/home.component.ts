@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   active = false;
 
   ngOnInit() {
-    this.http.get(environment.serverURL + 'home').subscribe((data) => console.log(data));
+    // this.http.get(environment.serverURL + 'home').subscribe((data) => console.log(data));
   }
 
   logout() {
