@@ -372,7 +372,7 @@ app-sidebar {
         justify-content: space-between;
         align-items: center;
 
-        img{
+        img {
           border: 5px solid $main-color1;
           width: 250px;
         }
@@ -380,6 +380,125 @@ app-sidebar {
 
     }
 
+  }
+
+  .sixth-section {
+    height: 600px;
+    width: 100%;
+    background: url("/assets/img/back1.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      height: 566px;
+      border-top: 7px solid $main-color1;
+      border-bottom: 7px solid $main-color1;
+      z-index: 1;
+
+    }
+
+    .sixth-section-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sixth-section__left {
+      height: 100%;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      .title {
+        font-size: 36px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+      }
+
+      .line {
+        border-top: 7px solid $main-color1;
+        width: 75px;
+        margin-bottom: 25px;
+      }
+
+      .text1 {
+        margin-bottom: 25px;
+        line-height: 30px;
+        font-size: 16px;
+        font-weight: bolder;
+      }
+
+      .text2 {
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+
+      .form6s {
+        z-index: 2;
+
+        .input-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 30px;
+
+          input {
+            width: 220px;
+            height: 35px;
+            padding-left: 15px;
+            outline: none;
+            border: 2px solid transparent;
+
+            &:focus {
+              border: 2px solid $main-color1;
+            }
+
+
+            &::placeholder {
+              color: $main-color3;
+            }
+
+            &:first-child {
+              margin-right: 20px;
+            }
+          }
+        }
+
+        button {
+          text-decoration: none;
+          background: $main-color1;
+          color: white;
+          font-weight: bolder;
+          font-size: 16px;
+          padding: 15px 25px;
+          border-radius: 3px;
+          cursor: pointer;
+          border: none;
+
+          &:hover {
+            background: $main-color3;
+          }
+        }
+      }
+    }
+
+    .sixth-section__right {
+
+    }
   }
 }
 
