@@ -10,10 +10,10 @@ import {LoginComponent} from './auth/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
-import { HeaderComponent } from './layout/header/header.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { AdminComponent } from './admin/admin.component';
+import {HeaderComponent} from './layout/header/header.component';
+import {SidebarComponent} from './layout/sidebar/sidebar.component';
+import {FooterComponent} from './layout/footer/footer.component';
+import {AdminComponent} from './admin/admin.component';
 
 @NgModule({
   declarations: [

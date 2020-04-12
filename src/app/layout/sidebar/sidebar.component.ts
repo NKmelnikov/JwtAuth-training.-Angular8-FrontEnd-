@@ -18,6 +18,5 @@ export class SidebarComponent implements OnInit {
 
   toggleActive() {
     this.activeEvent2.emit(this.active = !this.active);
-    console.log(this.active);
   }
 }
