@@ -10,13 +10,10 @@ import {LoginComponent} from './auth/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
-import {HeaderComponent} from './layout/header/header.component';
-import {SidebarComponent} from './layout/sidebar/sidebar.component';
-import {FooterComponent} from './layout/footer/footer.component';
-import {AdminComponent} from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {LayoutModule} from './layout/layout.module';
+import {AdminModule} from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -25,10 +22,6 @@ import {LayoutModule} from './layout/layout.module';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
-    // HeaderComponent,
-    // SidebarComponent,
-    // FooterComponent,
-    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +31,7 @@ import {LayoutModule} from './layout/layout.module';
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
-    LayoutModule
+    AdminModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

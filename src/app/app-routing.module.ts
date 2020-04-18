@@ -6,13 +6,21 @@ import {WelcomeComponent} from './auth/welcome/welcome.component';
 import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from './_helpers';
+import {DashboardComponent} from './admin/dashboard/dashboard.component';
+import {AppComponent} from './app.component';
+import {NewsComponent} from './admin/news/news.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {
+    path: '', component: AppComponent, children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+    ]
+  },
 
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: [
+      {path: 'news', component: NewsComponent},
+    ]},
   // otherwise redirect to home
   {path: '**', redirectTo: ''}
 ];

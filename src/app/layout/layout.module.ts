@@ -10,7 +10,9 @@ import {HeaderComponent} from './header/header.component';
     FooterComponent,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent
   ],
   imports: []
 })
