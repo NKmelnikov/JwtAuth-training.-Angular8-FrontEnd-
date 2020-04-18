@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {LayoutModule} from './layout/layout.module';
 import {AdminModule} from './admin/admin.module';
+import { MainComponent } from './home/main/main.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {AdminModule} from './admin/admin.module';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
