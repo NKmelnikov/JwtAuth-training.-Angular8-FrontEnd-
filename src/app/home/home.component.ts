@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpHeaders} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {AuthService} from '../_services';
 import {Router} from '@angular/router';
 import {interval} from 'rxjs';
@@ -12,9 +10,8 @@ import {take} from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
 
-  active = false;
   private clients = 1;
   private yearsOrMarket = 1;
   private developers = 1;
@@ -30,40 +27,24 @@ export class HomeComponent implements OnInit {
   ) {
   }
 
-
   ngAfterViewInit() {
+    window.addEventListener('scroll', this.scrollEvent, true);
+  }
+
+  scrollEvent = (event: any): void => {
     const advSection = document.querySelector('.adv-section_js');
     const proofsSection = document.querySelector('.proofs-section_js');
     const qualitySection = document.querySelector('.quality-section_js');
-    window.addEventListener('scroll', (e) => {
-      if (this.isInViewport(advSection) && !this.advCountTriggered) {
-        this.startAdvantageCount();
-      }
-      if (this.isInViewport(proofsSection) && !this.proofsTriggered) {
-        this.proofsAnimation();
-      }
-      if (this.isInViewport(qualitySection) && !this.qualityTriggered) {
-        this.qualityAnimation();
-      }
-    });
+    if (this.isInViewport(advSection) && !this.advCountTriggered) {
+      this.startAdvantageCount();
+    }
+    if (this.isInViewport(proofsSection) && !this.proofsTriggered) {
+      this.proofsAnimation();
+    }
+    if (this.isInViewport(qualitySection) && !this.qualityTriggered) {
+      this.qualityAnimation();
+    }
   }
-
-  ngOnInit() {
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
-
-  receiveActiveHeader($event) {
-    this.active = $event;
-  }
-
-  receiveActiveSideBar($event) {
-    this.active = $event;
-  }
-
   advantageCounter(time, val, item) {
     interval(time)
       .pipe(take(val))
@@ -110,4 +91,10 @@ export class HomeComponent implements OnInit {
     return (bounds.bottom >= viewport.top && bounds.bottom <= viewport.bottom)
       || (bounds.top <= viewport.bottom && bounds.top >= viewport.top);
   }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
 }

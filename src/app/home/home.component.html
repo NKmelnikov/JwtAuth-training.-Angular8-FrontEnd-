@@ -1,5 +1,3 @@
-<app-header (activeEvent)="receiveActiveHeader($event)" [active]="active"></app-header>
-<app-sidebar (activeEvent2)="receiveActiveSideBar($event)" [active]="active" [ngClass]="active ? 'active': ''"></app-sidebar>
 <main class="home-wrapper">
   <section id="s1" class="first-section">
     <div class="first-section-left-sector"></div>
@@ -208,7 +206,7 @@
             <input type="text" placeholder="Ваш номер телефона">
             <input type="text" placeholder="Ваш Email:">
           </div>
-          <button type="submit">Оставить заявку</button>
+          <button mat-button type="submit">Оставить заявку</button>
         </form>
       </div>
       <div class="sixth-section__right">
@@ -219,6 +217,5 @@
   <section id="s7" class="seventh-section map-section">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.835436129192!2d30.333499816161872!3d53.899128840861906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d051e58a920a35%3A0x5da13ca5548d1345!2sPozharnyy%20Pereulok%208%2C%20Mahilio%C5%AD%2C%20Belarus!5e0!3m2!1sen!2sru!4v1586619252985!5m2!1sen!2sru" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
   </section>
-  <button (click)="logout()"></button>
+<!--  <button (click)="logout()"></button>-->
 </main>
-<app-footer></app-footer>

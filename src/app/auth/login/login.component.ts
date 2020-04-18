@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     if (this.authService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/admin']);
     }
   }
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/admin';
   }
 
   login() {

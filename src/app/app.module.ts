@@ -14,6 +14,9 @@ import {HeaderComponent} from './layout/header/header.component';
 import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {AdminComponent} from './admin/admin.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './material/material.module';
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,9 @@ import {AdminComponent} from './admin/admin.component';
     LoginComponent,
     HomeComponent,
     WelcomeComponent,
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
+    // HeaderComponent,
+    // SidebarComponent,
+    // FooterComponent,
     AdminComponent
   ],
   imports: [
@@ -32,6 +35,10 @@ import {AdminComponent} from './admin/admin.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    LayoutModule,
+    LayoutModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
