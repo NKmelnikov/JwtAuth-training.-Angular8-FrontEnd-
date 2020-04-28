@@ -1,6 +1,9 @@
 import {AfterViewInit, Component} from '@angular/core';
 import {interval} from 'rxjs';
 import {take} from 'rxjs/operators';
+import {AuthService} from '../../_services';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +20,11 @@ export class MainComponent implements AfterViewInit {
   private proofsTriggered = false;
   private qualityTriggered = false;
 
-  constructor() {
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router,
+  ) {
   }
 
   ngAfterViewInit() {
@@ -86,4 +93,8 @@ export class MainComponent implements AfterViewInit {
       || (bounds.top <= viewport.bottom && bounds.top >= viewport.top);
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

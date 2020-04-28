@@ -15,9 +15,6 @@ export class HomeComponent implements OnInit {
   active = false;
 
   constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router,
   ) {
   }
 
@@ -30,11 +27,6 @@ export class HomeComponent implements OnInit {
 
   receiveActiveSideBar($event) {
     this.active = $event;
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
   }
 
 }
