@@ -15,7 +15,7 @@ import clonedeep from 'lodash.clonedeep';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit, AfterViewInit {
+export class NewsComponent implements OnInit {
 
 
   constructor(
@@ -25,6 +25,14 @@ export class NewsComponent implements OnInit, AfterViewInit {
   }
 
   public news;
+  public preloadData = [{_id: {$oid: 'preload'},
+                          createdAt: {$date: 1588186193417},
+                          position: 1,
+                          active: 0,
+                          postImgPath: '/preload',
+                          postTitle: 'preload',
+                          postShortText: 'preload',
+                          postArticle: 'preload'}];
   public dataSource;
   public displayedColumns: string[] = [
     'select', 'position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt'
@@ -36,12 +44,8 @@ export class NewsComponent implements OnInit, AfterViewInit {
   @ViewChild('table', {static: true}) table: MatTable<NewsInterface>;
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
-  }
-
-  ngAfterViewInit() {
-    this.refreshTable();
-
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -61,6 +65,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.changeDetectorRefs.detectChanges();
+        console.log(data);
       });
   }
 

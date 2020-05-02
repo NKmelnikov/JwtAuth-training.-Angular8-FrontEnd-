@@ -12,7 +12,6 @@
     class="mat-elevation-z8"
     cdkDropList
     matSort
-    matSortActive="position" matSortDirection="asc"
     #table
     [dataSource]="dataSource"
     [cdkDropListData]="dataSource.data"
@@ -76,7 +75,7 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="createdAt">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.createdAt.$date | date:'dd/MM/yyyy'}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
