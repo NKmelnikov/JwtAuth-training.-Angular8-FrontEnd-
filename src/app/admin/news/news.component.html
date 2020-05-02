@@ -1,71 +1,88 @@
-<mat-form-field>
-  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Поиск">
-</mat-form-field>
-<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+<!--<div class="spinner" *ngIf="!dataSource; else elseBlock">-->
+<!--  &lt;!&ndash;  <mat-spinner></mat-spinner>&ndash;&gt;-->
+<!--  &lt;!&ndash;  Загрзука новостей...&ndash;&gt;-->
+<!--</div>-->
+  <mat-toolbar color="primary">
+    <mat-form-field>
+      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Поиск">
+    </mat-form-field>
+  </mat-toolbar>
 
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()"
-                    [aria-label]="checkboxLabel()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)"
-                    [aria-label]="checkboxLabel(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
+  <mat-table
+    class="mat-elevation-z8"
+    cdkDropList
+    matSort
+    matSortActive="position" matSortDirection="asc"
+    #table
+    [dataSource]="dataSource"
+    [cdkDropListData]="dataSource.data"
+    (cdkDropListDropped)="drop($event)"
+  >
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="active">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> active </th>
-    <td mat-cell *matCellDef="let element"> {{element.active}} </td>
-  </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="postImgPath">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> postImgPath </th>
-    <td mat-cell *matCellDef="let element"> {{element.postImgPath}} </td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="active">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Активная?</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="postTitle">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> postTitle </th>
-    <td mat-cell *matCellDef="let element"> {{element.postTitle}} </td>
-  </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="postImgPath">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.postImgPath}} </mat-cell>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="postShortText">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> postShortText </th>
-    <td mat-cell *matCellDef="let element"> {{element.postShortText}} </td>
-  </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="postTitle">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Заголовок</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.postTitle}} </mat-cell>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="postArticle">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> postArticle </th>
-    <td mat-cell *matCellDef="let element"> {{element.postArticle}} </td>
-  </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="postShortText">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.postShortText}} </mat-cell>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="createdAt">
-    <th mat-header-cell mat-sort-header *matHeaderCellDef> createdAt </th>
-    <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
-  </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="postArticle">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.postArticle}} </mat-cell>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="selection.toggle(row)">
-  </tr>
-</table>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             cdkDrag
+             (click)="selection.toggle(row)">
+    </mat-row>
+  </mat-table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

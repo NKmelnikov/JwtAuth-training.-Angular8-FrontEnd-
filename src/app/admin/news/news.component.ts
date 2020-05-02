@@ -1,11 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
+import {MatTableDataSource, MatSort, MatPaginator, MatTable} from '@angular/material';
+import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
 import {SelectionModel} from '@angular/cdk/collections';
 import {NewsInterface} from './news.interface';
 import {PostService} from '../../_services';
 import {Observable, from} from 'rxjs';
 import {Post} from '../../_models';
 import {map} from 'rxjs/operators';
+import clonedeep from 'lodash.clonedeep';
 
 
 @Component({
@@ -13,30 +15,54 @@ import {map} from 'rxjs/operators';
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, AfterViewInit {
+
 
   constructor(
     private postService: PostService,
+    private changeDetectorRefs: ChangeDetectorRef
   ) {
   }
 
   public news;
   public dataSource;
-  public displayedColumns: string[] = ['position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt'];
+  public displayedColumns: string[] = [
+    'select', 'position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt'
+  ];
   public selection = new SelectionModel(true, []);
 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild('table', {static: true}) table: MatTable<NewsInterface>;
+
   ngOnInit() {
+    this.refreshTable();
+  }
+
+  ngAfterViewInit() {
+    this.refreshTable();
+
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    this.dataSource.data = clonedeep(this.dataSource.data);
+    this.postService.updatePostPosition(this.dataSource.data)
+      .subscribe(res => {
+        this.refreshTable();
+      });
+
+  }
+
+  refreshTable() {
     this.news = this.postService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.changeDetectorRefs.detectChanges();
       });
   }
-
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
@@ -45,7 +71,10 @@ export class NewsComponent implements OnInit {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = (this.dataSource !== undefined) ? this.dataSource.data.length : 0;
+    if (numSelected > numRows) {
+      return true;
+    }
     return numSelected === numRows;
   }
 

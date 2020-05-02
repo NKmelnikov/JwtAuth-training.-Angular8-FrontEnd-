@@ -4,7 +4,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewsComponent} from './news/news.component';
 import {MaterialModule} from '../material/material.module';
 import {RouterModule} from '@angular/router';
-
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import {RouterModule} from '@angular/router';
   imports: [
     MaterialModule,
     RouterModule,
+    CommonModule,
   ],
   exports: [
     AdminComponent,
