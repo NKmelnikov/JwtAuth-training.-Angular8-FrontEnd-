@@ -42,40 +42,49 @@
       <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- active Column -->
     <ng-container matColumnDef="active">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Активная?</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- picture Column -->
     <ng-container matColumnDef="postImgPath">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.postImgPath}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- title Column -->
     <ng-container matColumnDef="postTitle">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Заголовок</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.postTitle}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- short text Column -->
     <ng-container matColumnDef="postShortText">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.postShortText}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- full text Column -->
     <ng-container matColumnDef="postArticle">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.postArticle}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- date Column -->
     <ng-container matColumnDef="createdAt">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.createdAt.$date | date:'dd/MM/yyyy'}} </mat-cell>
+    </ng-container>
+
+     <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="action-link">
+        <a (click)="openDialog('Update',element)"><span class="table-row-action edit material-icons"> edit </span></a>
+        <a (click)="openDialog('Delete',element)"><span class="table-row-action delete material-icons"> delete </span></a>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

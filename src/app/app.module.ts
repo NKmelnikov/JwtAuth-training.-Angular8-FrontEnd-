@@ -16,6 +16,7 @@ import {LayoutModule} from './layout/layout.module';
 import {AdminModule} from './admin/admin.module';
 import { MainComponent } from './home/main/main.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import { MainComponent } from './home/main/main.component';
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

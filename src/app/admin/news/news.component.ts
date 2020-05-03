@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator, MatTable} from '@angular/material';
+import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
 import {SelectionModel} from '@angular/cdk/collections';
 import {NewsInterface} from './news.interface';
@@ -8,6 +8,7 @@ import {Observable, from} from 'rxjs';
 import {Post} from '../../_models';
 import {map} from 'rxjs/operators';
 import clonedeep from 'lodash.clonedeep';
+import {NewsDialogComponent} from './news-dialog/news-dialog.component';
 
 
 @Component({
@@ -20,22 +21,25 @@ export class NewsComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private changeDetectorRefs: ChangeDetectorRef
+    private changeDetectorRefs: ChangeDetectorRef,
+    private dialog: MatDialog
   ) {
   }
 
   public news;
-  public preloadData = [{_id: {$oid: 'preload'},
-                          createdAt: {$date: 1588186193417},
-                          position: 1,
-                          active: 0,
-                          postImgPath: '/preload',
-                          postTitle: 'preload',
-                          postShortText: 'preload',
-                          postArticle: 'preload'}];
+  public preloadData = [{
+    _id: {$oid: 'preload'},
+    createdAt: {$date: 111111111111111},
+    position: 1,
+    active: 0,
+    postImgPath: '/preload',
+    postTitle: 'preload',
+    postShortText: 'preload',
+    postArticle: 'preload'
+  }];
   public dataSource;
   public displayedColumns: string[] = [
-    'select', 'position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt'
+    'select', 'position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt', 'action'
   ];
   public selection = new SelectionModel(true, []);
 
@@ -58,6 +62,50 @@ export class NewsComponent implements OnInit {
 
   }
 
+  openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(NewsDialogComponent, {
+      width: '800px',
+      data: obj,
+      panelClass : 'formFieldWidth752'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event === 'Add') {
+        this.addRowData(result.data);
+      } else if (result.event === 'Update') {
+        this.updateRowData(result.data);
+      } else if (result.event === 'Delete') {
+        this.deleteRowData(result.data);
+      }
+    });
+  }
+
+  addRowData(rowObj) {
+    const d = new Date();
+    this.dataSource.push({
+      id: d.getTime(),
+      name: rowObj.name
+    });
+    this.table.renderRows();
+
+  }
+
+  updateRowData(rowObj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      if (value.id == rowObj.id) {
+        value.name = rowObj.name;
+      }
+      return true;
+    });
+  }
+
+  deleteRowData(rowObj) {
+    this.dataSource = this.dataSource.filter((value, key) => {
+      return value.id != rowObj.id;
+    });
+  }
+
   refreshTable() {
     this.news = this.postService.getAll()
       .subscribe(data => {
@@ -65,7 +113,6 @@ export class NewsComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.changeDetectorRefs.detectChanges();
-        console.log(data);
       });
   }
 

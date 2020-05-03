@@ -4,8 +4,6 @@ import {environment} from '../../environments/environment';
 import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-
-
 import {NewsInterface} from '../admin/news/news.interface';
 import {Post} from '../_models';
 
