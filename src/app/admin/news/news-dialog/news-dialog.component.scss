@@ -42,3 +42,7 @@
     pointer-events: none;
     cursor: not-allowed!important;
 }
+
+//:host ::ng-deep .ck-editor__editable_inline {
+//    min-height: 500px !important;
+//}

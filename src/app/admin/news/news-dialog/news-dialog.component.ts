@@ -1,7 +1,8 @@
-import {Component, Inject, Optional} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NewsInterface} from '../news.interface';
 import {UploadHelper} from '../../../_helpers';
+import {environment} from '../../../../environments/environment';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
@@ -11,13 +12,14 @@ import * as _ from 'lodash';
   templateUrl: './news-dialog.component.html',
   styleUrls: ['./news-dialog.component.scss']
 })
-export class NewsDialogComponent {
+export class NewsDialogComponent implements OnInit {
 
   action: string;
   localData: any;
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
+  public ckEditorConfig;
   public Editor = ClassicEditor;
 
   constructor(
@@ -27,6 +29,14 @@ export class NewsDialogComponent {
   ) {
     this.localData = {...data};
     this.action = this.localData.action;
+  }
+
+  ngOnInit(): void {
+    this.ckEditorConfig = {
+      ckfinder: {
+        uploadUrl: `${environment.serverURL}ck-upload`
+      }
+    };
   }
 
   doAction() {

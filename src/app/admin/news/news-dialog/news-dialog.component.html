@@ -14,11 +14,11 @@
       </mat-form-field>
     </p>
     <p>
-      <ckeditor [editor]="Editor" [(ngModel)]="localData.postArticle"></ckeditor>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.postArticle"></ckeditor>
       <mat-hint>Статья целиком</mat-hint>
     </p>
     <p>
-        <mat-slide-toggle [(ngModel)]="localData.active">Активная</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="localData.active">Активная новость</mat-slide-toggle>
     </p>
           <form>
         <div class="form-group">
