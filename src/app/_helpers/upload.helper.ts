@@ -9,7 +9,8 @@ export class UploadHelper {
   constructor(private http: HttpClient) {
   }
 
-  uploadFile(b64): Observable<any> {
-    return this.http.post<any>(`${environment.serverURL}upload-file`, {b64});
+  uploadFile(data): Observable<any> {
+    console.log(data);
+    return this.http.post<any>(`${environment.serverURL}upload-file`, data);
   }
 }

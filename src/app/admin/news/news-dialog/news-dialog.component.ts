@@ -80,11 +80,14 @@ export class NewsDialogComponent implements OnInit {
           }
           this.cardImageBase64 = e.target.result;
           this.isImageSaved = true;
-          console.log(this.cardImageBase64);
-          this.uploadHelper.uploadFile(this.cardImageBase64)
-            .subscribe(data => console.log(data));
-          // this.b64toFile(this.cardImageBase64, `assets/img/uploaded/${fileInput.target.files[0].name}`, fileInput.target.files[0].type);
-          // this.previewImagePath = imgBase64Path;
+
+          const sendData = {
+            name: fileInput.target.files[0].name,
+            b64: this.cardImageBase64
+          };
+
+          this.uploadHelper.uploadFile(sendData)
+            .subscribe(data => this.localData.postImgPath = data.path);
         };
       };
 
@@ -96,26 +99,4 @@ export class NewsDialogComponent implements OnInit {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
   }
-
-  b64toFile(b64Data, filename, contentType) {
-    b64Data = b64Data.replace(/^data:image\/\w+;base64,/, '');
-    const sliceSize = 512;
-    const byteCharacters = atob(b64Data);
-    const byteArrays = [];
-
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      const slice = byteCharacters.slice(offset, offset + sliceSize);
-      const byteNumbers = new Array(slice.length);
-
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
-    const file = new File(byteArrays, filename, {type: contentType});
-    console.log(file);
-    return file;
-  }
-
 }

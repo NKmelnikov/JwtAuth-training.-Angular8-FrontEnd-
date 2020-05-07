@@ -39,3 +39,21 @@ table {
     }
   }
 }
+
+.mat-fab {
+  outline: none;
+  border: none;
+}
+
+.option-mat-toolbar{
+  font-size: 14px;
+
+  nav {
+    margin-right: 20px;
+  }
+}
+
+.title-mat-toolbar{
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.55);
+  position: relative;
+}

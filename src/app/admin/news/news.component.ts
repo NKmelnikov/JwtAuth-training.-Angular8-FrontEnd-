@@ -27,6 +27,7 @@ export class NewsComponent implements OnInit {
   }
 
   public news;
+  public bulkAction;
   public preloadData = [{
     _id: {$oid: 'preload'},
     createdAt: {$date: 111111111111111},
@@ -59,51 +60,55 @@ export class NewsComponent implements OnInit {
       .subscribe(res => {
         this.refreshTable();
       });
-
   }
 
-  openDialog(action, obj) {
+  onBulkActionChange($event) {
+    console.log(this.selection.selected);
+  }
+
+  openDialog(action, obj?) {
+    obj = obj || {};
     obj.action = action;
     const dialogRef = this.dialog.open(NewsDialogComponent, {
       width: '800px',
       data: obj,
-      panelClass : 'formFieldWidth752'
+      panelClass: 'formFieldWidth752'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
+      if (result.event === 'Create') {
+        this.createPost(result.data);
       } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
+        this.updatePost(result.data);
       } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
+        this.deletePost(result.data);
       }
     });
   }
 
-  addRowData(rowObj) {
-    const d = new Date();
-    this.dataSource.push({
-      id: d.getTime(),
-      name: rowObj.name
-    });
-    this.table.renderRows();
-
+  createPost(rowObj) {
+    this.postService.createPost(rowObj)
+      .subscribe(res => {
+        console.log(res);
+        this.refreshTable();
+      });
   }
 
-  updateRowData(rowObj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      if (value.id == rowObj.id) {
-        value.name = rowObj.name;
-      }
-      return true;
-    });
+  updatePost(rowObj) {
+    this.postService.updatePost(rowObj)
+      .subscribe(res => {
+        console.log(rowObj);
+        console.log(res);
+        this.refreshTable();
+      });
   }
 
-  deleteRowData(rowObj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      return value.id != rowObj.id;
-    });
+  deletePost(rowObj) {
+    this.postService.deletePost(rowObj)
+      .subscribe(res => {
+        console.log(res);
+        this.refreshTable();
+      });
   }
 
   refreshTable() {
