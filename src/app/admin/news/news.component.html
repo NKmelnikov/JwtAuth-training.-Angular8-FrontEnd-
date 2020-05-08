@@ -11,9 +11,9 @@
       <mat-label>Массовые функции</mat-label>
       <mat-select [(value)]="bulkAction" (selectionChange)="onBulkActionChange($event)">
         <mat-option>нет</mat-option>
-        <mat-option value="option1">Активировать</mat-option>
-        <mat-option value="option2">Деактивировать</mat-option>
-        <mat-option value="option3">Удалить</mat-option>
+        <mat-option value="activate">Активировать</mat-option>
+        <mat-option value="deactivate">Деактивировать</mat-option>
+        <mat-option value="delete">Удалить</mat-option>
       </mat-select>
     </mat-form-field>
   </nav>

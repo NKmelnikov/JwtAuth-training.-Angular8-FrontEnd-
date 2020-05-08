@@ -36,4 +36,16 @@ export class PostService {
     //   catchError(ErrorHandler.handleError('updatePostPosition', data))
     // );
   }
+
+  bulkActivate(data: NewsInterface[]) {
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-activate`, data);
+  }
+
+  bulkDeactivate(data: NewsInterface[]) {
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-deactivate`, data);
+  }
+
+  bulkDelete(data: NewsInterface[]) {
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-delete`, data);
+  }
 }

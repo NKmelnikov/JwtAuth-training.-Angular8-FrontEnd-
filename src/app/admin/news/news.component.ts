@@ -63,7 +63,25 @@ export class NewsComponent implements OnInit {
   }
 
   onBulkActionChange($event) {
-    console.log(this.selection.selected);
+    const selectedRows = this.selection.selected;
+    console.log(selectedRows);
+    switch ($event.value) {
+      case 'activate':
+        this.postService.bulkActivate(selectedRows).subscribe(res => {
+          this.refreshTable();
+        });
+        break;
+      case 'deactivate':
+        this.postService.bulkDeactivate(selectedRows).subscribe(res => {
+          this.refreshTable();
+        });
+        break;
+      case 'delete':
+        this.postService.bulkDelete(selectedRows).subscribe(res => {
+          this.refreshTable();
+        });
+        break;
+    }
   }
 
   openDialog(action, obj?) {
@@ -87,28 +105,21 @@ export class NewsComponent implements OnInit {
   }
 
   createPost(rowObj) {
-    this.postService.createPost(rowObj)
-      .subscribe(res => {
-        console.log(res);
-        this.refreshTable();
-      });
+    this.postService.createPost(rowObj).subscribe(res => {
+      this.refreshTable();
+    });
   }
 
   updatePost(rowObj) {
-    this.postService.updatePost(rowObj)
-      .subscribe(res => {
-        console.log(rowObj);
-        console.log(res);
-        this.refreshTable();
-      });
+    this.postService.updatePost(rowObj).subscribe(res => {
+      this.refreshTable();
+    });
   }
 
   deletePost(rowObj) {
-    this.postService.deletePost(rowObj)
-      .subscribe(res => {
-        console.log(res);
-        this.refreshTable();
-      });
+    this.postService.deletePost(rowObj).subscribe(res => {
+      this.refreshTable();
+    });
   }
 
   refreshTable() {
@@ -117,6 +128,8 @@ export class NewsComponent implements OnInit {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.bulkAction = null;
+        this.selection.clear();
         this.changeDetectorRefs.detectChanges();
       });
   }
@@ -125,24 +138,18 @@ export class NewsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = (this.dataSource !== undefined) ? this.dataSource.data.length : 0;
-    if (numSelected > numRows) {
-      return true;
-    }
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: NewsInterface): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
