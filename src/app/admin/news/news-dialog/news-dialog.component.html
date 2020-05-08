@@ -14,8 +14,8 @@
       </mat-form-field>
     </p>
     <p>
+      <mat-label>Статья целиком</mat-label>
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.postArticle"></ckeditor>
-      <mat-hint>Статья целиком</mat-hint>
     </p>
     <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активная новость</mat-slide-toggle>
@@ -48,7 +48,7 @@
     Уверен в удалении <b>{{localData.postTitle}}</b>?
   </ng-template>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions align="end">
   <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
   <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
 </div>
