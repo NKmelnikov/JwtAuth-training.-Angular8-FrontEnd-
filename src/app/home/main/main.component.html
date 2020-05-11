@@ -165,20 +165,13 @@
 
   </section>
   <section id="s5" class="fifth-section">
-    <div class="news-wrapper container">
-      <img src="assets/img/news-temp-back.png" alt="">
-      <div class="date">11 апреля 2020</div>
-      <div class="title">Мы побывали на выставке</div>
+    <div class="news-wrapper container" *ngFor="let post of news">
+      <img [src]="post.postImgPath" alt="">
+      <div class="date">{{post.createdAt | date:'dd/MM/yyyy'}}</div>
+      <div class="title">{{ post.postTitle }}</div>
       <div class="line line1"></div>
       <div class="short-text">
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit
-        esse cillum dolore eu fugiat nulla pariatur. Excepteur
-        sint occaecat cupidatat non proident, sunt in culpa
-        qui officia deserunt mollit anim id est laborum."
+        {{ post.postShortText }}
       </div>
       <div class="lower-box">
         <div class="line line2"></div>

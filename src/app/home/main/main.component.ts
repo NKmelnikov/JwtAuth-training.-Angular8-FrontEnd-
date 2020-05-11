@@ -1,16 +1,19 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {interval} from 'rxjs';
-import {take} from 'rxjs/operators';
-import {AuthService} from '../../_services';
+import {map, take, mergeMap} from 'rxjs/operators';
+import {AuthService, PostService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {NewsInterface} from '../../admin/news/news.interface';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements AfterViewInit {
+export class MainComponent implements AfterViewInit, OnInit {
 
   private clients = 1;
   private yearsOrMarket = 1;
@@ -19,12 +22,34 @@ export class MainComponent implements AfterViewInit {
   private advCountTriggered = false;
   private proofsTriggered = false;
   private qualityTriggered = false;
+  private news = [];
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
     private router: Router,
+    private postService: PostService,
   ) {
+  }
+
+  ngOnInit() {
+    this.postService.getAll()
+      .pipe(
+        map(posts => posts.map(post => ({
+          ...post,
+          _id: post._id['$oid'],
+          createdAt: post.createdAt['$date'],
+          postImgPath: `${environment.serverURL}${post.postImgPath}`
+        }))))
+      .subscribe(data => {
+        this.news = data;
+        console.log(this.news[0]);
+        console.log();
+      });
+
+    // for (let post of this.news) {
+    //   console.log(post);
+    // }
   }
 
   ngAfterViewInit() {

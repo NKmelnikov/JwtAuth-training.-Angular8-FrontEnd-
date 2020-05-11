@@ -385,7 +385,7 @@
   .fifth-section {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     .news-wrapper {
       color: white;
@@ -394,6 +394,8 @@
 
       img {
         margin-bottom: 20px;
+        width: 100%;
+        height: auto;
       }
 
       .line {
