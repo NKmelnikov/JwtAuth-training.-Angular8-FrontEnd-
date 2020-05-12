@@ -56,15 +56,11 @@ export class NewsComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
-    this.postService.updatePostPosition(this.dataSource.data)
-      .subscribe(res => {
-        this.refreshTable();
-      });
+    this.updatePostPosition(this.dataSource.data);
   }
 
   onBulkActionChange($event) {
     const selectedRows = this.selection.selected;
-    console.log(selectedRows);
     switch ($event.value) {
       case 'activate':
         this.postService.bulkActivate(selectedRows).subscribe(res => {
@@ -120,6 +116,13 @@ export class NewsComponent implements OnInit {
     this.postService.deletePost(rowObj).subscribe(res => {
       this.refreshTable();
     });
+  }
+
+  updatePostPosition(dataSource) {
+    this.postService.updatePostPosition(dataSource)
+      .subscribe(res => {
+        this.refreshTable();
+      });
   }
 
   refreshTable() {

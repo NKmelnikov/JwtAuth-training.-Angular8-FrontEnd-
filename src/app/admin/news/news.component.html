@@ -77,19 +77,19 @@
   <!-- title Column -->
   <ng-container matColumnDef="postTitle">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Заголовок</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postTitle}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.postTitle | slice:0: 15}} {{element.postTitle.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- short text Column -->
   <ng-container matColumnDef="postShortText">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postShortText}} </mat-cell>
+    <mat-cell class="short-text" *matCellDef="let element"> {{element.postShortText  | slice:0: 10}} {{element.postShortText.length > 10 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- full text Column -->
   <ng-container matColumnDef="postArticle">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postArticle}} </mat-cell>
+    <mat-cell class="post-article" *matCellDef="let element"> {{element.postArticle | slice:0:10 }} {{element.postArticle.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->
