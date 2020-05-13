@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {interval} from 'rxjs';
-import {map, take, mergeMap} from 'rxjs/operators';
+import {map, take, mergeMap, filter} from 'rxjs/operators';
 import {AuthService, PostService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
@@ -16,15 +16,15 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
 })
 export class MainComponent implements AfterViewInit, OnInit {
 
-  private clients = 1;
-  private yearsOrMarket = 1;
-  private developers = 1;
-  private countries = 1;
-  private advCountTriggered = false;
-  private proofsTriggered = false;
-  private qualityTriggered = false;
-  private news = [];
-  private carouselOptions = {
+  public clients = 1;
+  public yearsOrMarket = 1;
+  public developers = 1;
+  public countries = 1;
+  public advCountTriggered = false;
+  public proofsTriggered = false;
+  public qualityTriggered = false;
+  public news = [];
+  public carouselOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -43,7 +43,7 @@ export class MainComponent implements AfterViewInit, OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 3
       }
     },
     nav: true
@@ -65,7 +65,9 @@ export class MainComponent implements AfterViewInit, OnInit {
           _id: post._id['$oid'],
           createdAt: post.createdAt['$date'],
           postImgPath: `${environment.serverURL}${post.postImgPath}`
-        }))))
+        }))),
+        map(posts => posts.filter(post => (post.active > 0)))
+      )
       .subscribe(data => {
         this.news = data;
         console.log(this.news[0]);

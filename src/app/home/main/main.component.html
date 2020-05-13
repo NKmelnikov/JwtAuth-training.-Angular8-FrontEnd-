@@ -165,19 +165,23 @@
 
   </section>
   <section id="s5" class="fifth-section">
-    <div class="news-wrapper container" *ngFor="let post of news">
-      <img [src]="post.postImgPath" alt="">
-      <div class="date">{{post.createdAt | date:'dd/MM/yyyy'}}</div>
-      <div class="title">{{ post.postTitle }}</div>
-      <div class="line line1"></div>
-      <div class="short-text">
-        {{ post.postShortText }}
-      </div>
-      <div class="lower-box">
-        <div class="line line2"></div>
-        <button class="btn">читать далее</button>
-      </div>
-    </div>
+    <owl-carousel-o class="container" [options]="carouselOptions">
+      <ng-template *ngFor="let post of news" carouselSlide [id]="post.id">
+        <div class="news-wrapper">
+          <img [src]="post.postImgPath" alt="">
+          <div class="date">{{post.createdAt | date:'dd/MM/yyyy'}}</div>
+          <div class="title">{{ post.postTitle }}</div>
+          <div class="line line1"></div>
+          <div class="short-text">
+            {{ post.postShortText }}
+          </div>
+          <div class="lower-box">
+            <div class="line line2"></div>
+            <button class="btn">читать далее</button>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
   </section>
   <section id="s6" class="sixth-section">
     <div class="sixth-section-wrapper container">
@@ -210,5 +214,5 @@
   <section id="s7" class="seventh-section map-section">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2350.835436129192!2d30.333499816161872!3d53.899128840861906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46d051e58a920a35%3A0x5da13ca5548d1345!2sPozharnyy%20Pereulok%208%2C%20Mahilio%C5%AD%2C%20Belarus!5e0!3m2!1sen!2sru!4v1586619252985!5m2!1sen!2sru" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
   </section>
-<!--  <button (click)="logout()"></button>-->
+  <!--  <button (click)="logout()"></button>-->
 </main>
