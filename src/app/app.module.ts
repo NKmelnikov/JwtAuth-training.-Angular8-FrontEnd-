@@ -15,6 +15,7 @@ import {MaterialModule} from './material/material.module';
 import {LayoutModule} from './layout/layout.module';
 import {AdminModule} from './admin/admin.module';
 import { MainComponent } from './home/main/main.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MainComponent } from './home/main/main.component';
     MaterialModule,
     LayoutModule,
     AdminModule,
+    CarouselModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

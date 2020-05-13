@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {NewsInterface} from '../../admin/news/news.interface';
 import {environment} from '../../../environments/environment';
+import {OwlOptions} from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -23,6 +24,30 @@ export class MainComponent implements AfterViewInit, OnInit {
   private proofsTriggered = false;
   private qualityTriggered = false;
   private news = [];
+  private carouselOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  };
 
   constructor(
     private http: HttpClient,
