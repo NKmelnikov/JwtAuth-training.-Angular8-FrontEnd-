@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="title-mat-toolbar">
-  <h1>Новости</h1>
+  <h1>Партнёры</h1>
 </mat-toolbar>
 <mat-toolbar class="option-mat-toolbar">
   <nav>
@@ -65,27 +65,15 @@
   </ng-container>
 
   <!-- picture Column -->
-  <ng-container matColumnDef="postImgPath">
+  <ng-container matColumnDef="brandImgPath">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postImgPath}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.brandImgPath}} </mat-cell>
   </ng-container>
 
   <!-- title Column -->
-  <ng-container matColumnDef="postTitle">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Заголовок</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postTitle | slice:0: 15}} {{element.postTitle.length > 15 ? ' ...' : ''}}</mat-cell>
-  </ng-container>
-
-  <!-- short text Column -->
-  <ng-container matColumnDef="postShortText">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
-    <mat-cell class="short-text" *matCellDef="let element"> {{element.postShortText  | slice:0: 10}} {{element.postShortText.length > 10 ? ' ...' : ''}}</mat-cell>
-  </ng-container>
-
-  <!-- full text Column -->
-  <ng-container matColumnDef="postArticle">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
-    <mat-cell class="post-article" *matCellDef="let element"> {{element.postArticle | slice:0:10 }} {{element.postArticle.length > 15 ? ' ...' : ''}}</mat-cell>
+  <ng-container matColumnDef="brandName">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.brandName | slice:0: 15}} {{element.brandName.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

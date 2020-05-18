@@ -38,14 +38,14 @@ export class PostService {
   }
 
   bulkActivate(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-activate`, data);
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-activate-posts`, data);
   }
 
   bulkDeactivate(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-deactivate`, data);
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-deactivate-posts`, data);
   }
 
   bulkDelete(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-delete`, data);
+    return this.http.post<Post[]>(`${environment.serverURL}bulk-delete-posts`, data);
   }
 }

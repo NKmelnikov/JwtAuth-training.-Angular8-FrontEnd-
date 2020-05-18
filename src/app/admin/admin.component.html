@@ -2,12 +2,23 @@
   <mat-sidenav mode="side" opened class="admin-sidenav">
     <mat-nav-list>
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin">
-        <span class="material-icons">account_box</span>
-        <span class="list-title">Админка</span>
+        <div class="link-container">
+          <span class="material-icons">account_box</span>&nbsp;
+          <span class="list-title">Админка</span>
+        </div>
       </a>
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/news">
-        <span class="material-icons">cast</span>
-        <span class="list-title">Новости</span>
+        <div class="link-container">
+          <span class="material-icons">cast</span>&nbsp;
+          <span class="list-title">Новости</span>
+        </div>
+
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/brands">
+        <div class="link-container">
+          <span class="material-icons">transfer_within_a_station</span>&nbsp;
+          <span class="list-title">Партнёры</span>
+        </div>
       </a>
     </mat-nav-list>
   </mat-sidenav>

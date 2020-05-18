@@ -4,9 +4,6 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@ang
 import {SelectionModel} from '@angular/cdk/collections';
 import {NewsInterface} from './news.interface';
 import {PostService} from '../../_services';
-import {Observable, from} from 'rxjs';
-import {Post} from '../../_models';
-import {map} from 'rxjs/operators';
 import clonedeep from 'lodash.clonedeep';
 import {NewsDialogComponent} from './news-dialog/news-dialog.component';
 

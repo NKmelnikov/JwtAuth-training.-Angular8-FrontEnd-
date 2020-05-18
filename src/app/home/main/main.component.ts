@@ -70,13 +70,7 @@ export class MainComponent implements AfterViewInit, OnInit {
       )
       .subscribe(data => {
         this.news = data;
-        console.log(this.news[0]);
-        console.log();
       });
-
-    // for (let post of this.news) {
-    //   console.log(post);
-    // }
   }
 
   ngAfterViewInit() {

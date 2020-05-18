@@ -9,6 +9,7 @@ import {DashboardComponent} from './admin/dashboard/dashboard.component';
 import {AppComponent} from './app.component';
 import {NewsComponent} from './admin/news/news.component';
 import {MainComponent} from './home/main/main.component';
+import {BrandsComponent} from './admin/brands/brands.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: [
       {path: '', component: DashboardComponent},
       {path: 'news', component: NewsComponent},
+      {path: 'brands', component: BrandsComponent},
     ]
   },
   // otherwise redirect to home

@@ -394,11 +394,17 @@
       margin: 100px 0;
       width: 325px;
 
-      img {
-        margin-bottom: 20px;
-        width: 100%;
-        height: auto;
+      .img-container {
+
+        height: 200px;
+
+        img {
+          margin-bottom: 20px;
+          width: 100%;
+          height: auto;
+        }
       }
+
 
       .line {
         border-top: 7px solid $main-color1;
@@ -415,10 +421,12 @@
         font-size: 24px;
         font-weight: bolder;
         margin-bottom: 20px;
+        height: 36px;
       }
 
       .short-text {
         margin-bottom: 20px;
+        height: 390px;
       }
 
       .lower-box {

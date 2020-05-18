@@ -5,5 +5,15 @@
 
   .admin-sidenav{
     width: 250px;
+
+    .link-container{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+
+      .list-title{
+        height: 20px;
+      }
+    }
   }
 }

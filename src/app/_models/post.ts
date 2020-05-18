@@ -6,5 +6,5 @@ export class Post {
   postTitle: string;
   postShortText: string;
   postArticle: string;
-  createdAt: string;
+  createdAt: object;
 }
