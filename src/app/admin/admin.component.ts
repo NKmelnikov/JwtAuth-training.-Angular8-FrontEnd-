@@ -6,14 +6,14 @@ import {FlatTreeControl} from '@angular/cdk/tree';
  * Food data with nested structure.
  * Each node has a name and an optional list of children.
  */
-interface CategoryNode {
+interface Node {
   url: string;
   name: string;
   icon: string;
-  children?: CategoryNode[];
+  children?: Node[];
 }
 
-const TREE_DATA: CategoryNode[] = [
+const TREE_DATA_CATEGORY: Node[] = [
   {
     name: 'Категории',
     url: '/url',
@@ -21,6 +21,18 @@ const TREE_DATA: CategoryNode[] = [
     children: [
       {name: 'Масла и Смазки', url: '/admin/categoriesOil', icon: 'waves'},
       {name: 'Металлорежущие', url: '/admin/categoriesDrill', icon: 'toys'},
+    ]
+  }
+];
+
+const TREE_DATA_PRODUCT: Node[] = [
+  {
+    name: 'Продукты',
+    url: '/url',
+    icon: 'icon',
+    children: [
+      {name: 'Масла и Смазки', url: '/admin/productsOil', icon: 'waves'},
+      {name: 'Металлорежущие', url: '/admin/productsDrill', icon: 'toys'},
     ]
   }
 ];
@@ -39,7 +51,7 @@ interface ExampleFlatNode {
 })
 export class AdminComponent implements OnInit {
 
-  private _transformer = (node: CategoryNode, level: number) => {
+  private transformerCategory = (node: Node, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
@@ -49,16 +61,34 @@ export class AdminComponent implements OnInit {
     };
   }
 
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
+  private transformerProduct = (node: Node, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      url: node.url,
+      icon: node.icon,
+      level,
+    };
+  }
+
+  treeControlCategory = new FlatTreeControl<ExampleFlatNode>(
     node => node.level, node => node.expandable);
 
-  treeFlattener = new MatTreeFlattener(
-    this._transformer, node => node.level, node => node.expandable, node => node.children);
+  treeFlattenerCategory = new MatTreeFlattener(
+    this.transformerCategory, node => node.level, node => node.expandable, node => node.children);
 
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  treeControlProduct = new FlatTreeControl<ExampleFlatNode>(
+    node => node.level, node => node.expandable);
+
+  treeFlattenerProduct = new MatTreeFlattener(
+    this.transformerProduct, node => node.level, node => node.expandable, node => node.children);
+
+  dataSourceCategory = new MatTreeFlatDataSource(this.treeControlCategory, this.treeFlattenerCategory);
+  dataSourceProduct = new MatTreeFlatDataSource(this.treeControlProduct, this.treeFlattenerProduct);
 
   constructor() {
-    this.dataSource.data = TREE_DATA;
+    this.dataSourceCategory.data = TREE_DATA_CATEGORY;
+    this.dataSourceProduct.data = TREE_DATA_PRODUCT;
   }
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;

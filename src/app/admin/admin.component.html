@@ -26,7 +26,7 @@
           <span class="list-title">Кататалоги</span>
         </div>
       </a>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <mat-tree [dataSource]="dataSourceCategory" [treeControl]="treeControlCategory">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
           <a mat-list-item routerLinkActive="list-item-active" routerLink="{{node.url}}">
             <div class="link-container">
@@ -39,10 +39,29 @@
           <button mat-icon-button matTreeNodeToggle
                   [attr.aria-label]="'toggle ' + node.name">
             <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              {{treeControlCategory.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          {{node.name}}
+          <span class="tree-name">{{node.name}}</span>
+        </mat-tree-node>
+      </mat-tree>
+      <mat-tree [dataSource]="dataSourceProduct" [treeControl]="treeControlProduct">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="{{node.url}}">
+            <div class="link-container">
+              <span class="material-icons">{{node.icon}}</span>&nbsp;
+              <span class="list-title">{{node.name}}</span>
+            </div>
+          </a>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControlProduct.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <span class="tree-name">{{node.name}}</span>
         </mat-tree-node>
       </mat-tree>
     </mat-nav-list>
@@ -51,5 +70,3 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
