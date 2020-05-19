@@ -20,6 +20,31 @@
           <span class="list-title">Партнёры</span>
         </div>
       </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/catalogs">
+        <div class="link-container">
+          <span class="material-icons">book</span>&nbsp;
+          <span class="list-title">Кататалоги</span>
+        </div>
+      </a>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <a mat-list-item routerLinkActive="list-item-active" routerLink="{{node.url}}">
+            <div class="link-container">
+              <span class="material-icons">{{node.icon}}</span>&nbsp;
+              <span class="list-title">{{node.name}}</span>
+            </div>
+          </a>
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="admin-sidenav-content">

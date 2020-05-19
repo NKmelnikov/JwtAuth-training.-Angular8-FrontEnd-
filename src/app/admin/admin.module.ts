@@ -10,7 +10,6 @@ import {FormsModule} from '@angular/forms';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {BrandsComponent} from './brands/brands.component';
 import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.component';
-
 @NgModule({
   declarations: [
     AdminComponent,
