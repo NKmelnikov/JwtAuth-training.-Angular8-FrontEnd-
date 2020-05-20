@@ -31,7 +31,7 @@ export class BrandsComponent implements OnInit {
   }];
   public dataSource;
   public displayedColumns: string[] = [
-    'select', 'position', 'active', 'brandImgPath', 'createdAt', 'action'
+    'select', 'position', 'active', 'brandName', 'brandImgPath', 'createdAt', 'action'
   ];
   public selection = new SelectionModel(true, []);
 

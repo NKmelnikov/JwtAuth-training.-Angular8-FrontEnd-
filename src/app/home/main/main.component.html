@@ -157,12 +157,12 @@
       <div class="outer-title">
         Наши партнеры
       </div>
-      <div class="logo-container">
-        <img src="" alt="">
+      <div class="brands-wrapper">
+        <div *ngFor="let brand of brands" class="logo-container">
+          <img [src]="brand.brandImgPath">
+        </div>
       </div>
     </div>
-
-
   </section>
   <section id="s5" class="fifth-section">
     <owl-carousel-o class="container" [options]="carouselOptions">

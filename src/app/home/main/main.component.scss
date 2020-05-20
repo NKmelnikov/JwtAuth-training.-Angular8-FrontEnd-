@@ -368,19 +368,44 @@
   }
 
   .fourth-section {
-    height: 200px;
-    margin: 10px 0;
+    min-height: 200px;
     border-top: 10px solid $main-color1;
     border-bottom: 10px solid $main-color1;
     position: relative;
+    background: white;
 
-    .outer-title {
-      position: absolute;
-      color: #002359;
-      font-size: 60px;
-      font-weight: bolder;
-      top: -80px;
-      text-transform: uppercase;
+    &-wrapper {
+
+      height: 100%;
+      overflow: hidden;
+      padding-bottom: 20px;
+
+      .brands-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .outer-title {
+        position: absolute;
+        color: #002359;
+        font-size: 60px;
+        font-weight: bolder;
+        top: -85px;
+        text-transform: uppercase;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 277.5px;
+
+        img {
+          max-width: 100%;
+        }
+      }
     }
   }
 
@@ -634,3 +659,4 @@
     transform: translate3d(0, 0, 0);
   }
 }
+

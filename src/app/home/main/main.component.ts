@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {interval} from 'rxjs';
 import {map, take, mergeMap, filter} from 'rxjs/operators';
-import {AuthService, PostService} from '../../_services';
+import {AuthService, PostService, BrandService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {NewsInterface} from '../../admin/news/news.interface';
@@ -24,6 +24,7 @@ export class MainComponent implements AfterViewInit, OnInit {
   public proofsTriggered = false;
   public qualityTriggered = false;
   public news = [];
+  public brands = [];
   public carouselOptions = {
     loop: true,
     mouseDrag: false,
@@ -54,10 +55,36 @@ export class MainComponent implements AfterViewInit, OnInit {
     private authService: AuthService,
     private router: Router,
     private postService: PostService,
+    private brandService: BrandService,
   ) {
   }
 
   ngOnInit() {
+    this.getNews();
+    this.getBrands();
+  }
+
+  ngAfterViewInit() {
+    window.addEventListener('scroll', this.scrollEvent, true);
+  }
+
+  getBrands() {
+    this.brandService.getAll()
+      .pipe(
+        map(brands => brands.map(brand => ({
+          ...brand,
+          _id: brand._id['$oid'],
+          createdAt: brand.createdAt['$date'],
+          brandImgPath: `${environment.serverURL}${brand.brandImgPath}`
+        }))),
+        map(brands => brands.filter(brand => (brand.active > 0)))
+      )
+      .subscribe(data => {
+        this.brands = data;
+      });
+  }
+
+  getNews() {
     this.postService.getAll()
       .pipe(
         map(posts => posts.map(post => ({
@@ -71,10 +98,6 @@ export class MainComponent implements AfterViewInit, OnInit {
       .subscribe(data => {
         this.news = data;
       });
-  }
-
-  ngAfterViewInit() {
-    window.addEventListener('scroll', this.scrollEvent, true);
   }
 
   scrollEvent = (event: any): void => {
