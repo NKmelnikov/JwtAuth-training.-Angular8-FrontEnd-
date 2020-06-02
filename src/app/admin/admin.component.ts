@@ -20,7 +20,7 @@ const TREE_DATA_CATEGORY: Node[] = [
     icon: 'icon',
     children: [
       {name: 'Масла и Смазки', url: '/admin/categoriesOil', icon: 'waves'},
-      {name: 'Металлорежущие', url: '/admin/categoriesDrill', icon: 'toys'},
+      {name: 'Металлорежущие', url: '/admin/categoriesDrill', icon: 'brightness_high'},
     ]
   }
 ];
@@ -32,7 +32,7 @@ const TREE_DATA_PRODUCT: Node[] = [
     icon: 'icon',
     children: [
       {name: 'Масла и Смазки', url: '/admin/productsOil', icon: 'waves'},
-      {name: 'Металлорежущие', url: '/admin/productsDrill', icon: 'toys'},
+      {name: 'Металлорежущие', url: '/admin/productsDrill', icon: 'brightness_high'},
     ]
   }
 ];

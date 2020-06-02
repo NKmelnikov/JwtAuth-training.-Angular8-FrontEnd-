@@ -9,8 +9,12 @@ export class UploadHelper {
   constructor(private http: HttpClient) {
   }
 
-  uploadFile(data): Observable<any> {
+  uploadImgFromB64(data): Observable<any> {
+    return this.http.post<any>(`${environment.serverURL}upload-img-from-b64`, data);
+  }
+
+  uploadPdf(data): Observable<any> {
     console.log(data);
-    return this.http.post<any>(`${environment.serverURL}upload-file`, data);
+    return this.http.post<any>(`${environment.serverURL}upload-pdf`, data);
   }
 }

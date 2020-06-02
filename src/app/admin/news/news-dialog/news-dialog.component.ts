@@ -98,7 +98,7 @@ export class NewsDialogComponent implements OnInit {
                         b64: this.cardImageBase64
                     };
 
-                    this.uploadHelper.uploadFile(sendData)
+                    this.uploadHelper.uploadImgFromB64(sendData)
                         .subscribe(data => this.localData.postImgPath = data.path);
                 };
             };

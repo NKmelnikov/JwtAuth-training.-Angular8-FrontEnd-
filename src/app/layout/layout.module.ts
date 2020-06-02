@@ -2,6 +2,11 @@ import {NgModule} from '@angular/core';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
+import {MaterialModule} from '../material/material.module';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -12,9 +17,14 @@ import {HeaderComponent} from './header/header.component';
   exports: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: []
+  imports: [
+    MaterialModule,
+    FormsModule,
+    RouterModule,
+    CommonModule
+  ]
 })
 export class LayoutModule {
 }

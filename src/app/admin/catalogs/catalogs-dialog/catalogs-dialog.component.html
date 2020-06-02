@@ -1,0 +1,28 @@
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>Заголовок</mat-label>
+        <input matInput [(ngModel)]="localData.catalogName" width="100%" placeholder="например, Мы побывали на выставке">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
+    </p>
+    <p>
+      <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event)" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.catalogPdfName" placeholder="Загрузить .pdf">
+      <button mat-mini-fab color="primary" (click)="pdfInput.click()">
+        <span class="material-icons">attach_file</span>
+      </button>
+    </p>
+  </div>
+  <ng-template #elseTemplate>
+    Уверен в удалении <b>{{localData.catalogName}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+</div>

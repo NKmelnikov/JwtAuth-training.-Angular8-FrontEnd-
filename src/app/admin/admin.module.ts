@@ -10,6 +10,8 @@ import {FormsModule} from '@angular/forms';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {BrandsComponent} from './brands/brands.component';
 import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.component';
+import { CatalogsComponent } from './catalogs/catalogs.component';
+import { CatalogsDialogComponent } from './catalogs/catalogs-dialog/catalogs-dialog.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -17,7 +19,9 @@ import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.compon
     NewsComponent,
     NewsDialogComponent,
     BrandsComponent,
-    BrandsDialogComponent
+    BrandsDialogComponent,
+    CatalogsComponent,
+    CatalogsDialogComponent
   ],
   imports: [
     MaterialModule,
@@ -32,7 +36,9 @@ import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.compon
     NewsComponent
   ],
   entryComponents: [
-    NewsDialogComponent
+    NewsDialogComponent,
+    BrandsDialogComponent,
+    CatalogsDialogComponent
   ]
 })
 export class AdminModule {

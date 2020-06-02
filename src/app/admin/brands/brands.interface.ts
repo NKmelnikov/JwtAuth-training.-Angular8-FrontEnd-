@@ -1,5 +1,5 @@
 export interface BrandsInterface {
-  brandId: object;
+  _id: object;
   active: number;
   position: number;
   brandImgPath: string;

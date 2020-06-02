@@ -1,51 +1,53 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
-import {BrandService} from '../../_services';
+import {CatalogService} from '../../_services';
 import clonedeep from 'lodash.clonedeep';
-import {BrandsDialogComponent} from './brands-dialog/brands-dialog.component';
+import {CatalogsDialogComponent} from './catalogs-dialog/catalogs-dialog.component';
 import {SelectionModel} from '@angular/cdk/collections';
+import {CatalogsInterface} from '../catalogs/catalogs.interface';
 import {BrandsInterface} from '../brands/brands.interface';
-import {NewsInterface} from '../news/news.interface';
-
+import {BrandsDialogComponent} from "../brands/brands-dialog/brands-dialog.component";
 
 @Component({
-  selector: 'app-brands',
-  templateUrl: './brands.component.html',
-  styleUrls: ['./brands.component.scss']
+  selector: 'app-catalogs',
+  templateUrl: './catalogs.component.html',
+  styleUrls: ['./catalogs.component.scss']
 })
-export class BrandsComponent implements OnInit {
+export class CatalogsComponent implements OnInit {
 
   constructor(
-    private brandService: BrandService,
+    private catalogService: CatalogService,
     private changeDetectorRefs: ChangeDetectorRef,
     private dialog: MatDialog
-  ) {
-  }
+  ) { }
 
-  public brands;
+  public catalogs;
   public bulkAction;
   public preloadData = [{
     _id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
-    position: 1, active: 0, brandImgPath: '/noData', brandName: 'noData',
+    position: 1, active: 0, brandId: 'noData',
+    catalogPdfPath: '/noData', catalogName: 'noData',
   }];
   public dataSource;
   public displayedColumns: string[] = [
-    'select', 'position', 'active', 'brandName', 'brandImgPath', 'createdAt', 'action'
+    'select', 'position', 'active',
+    'brandId', 'catalogName', 'catalogPdfPath',
+    'createdAt', 'action'
   ];
   public selection = new SelectionModel(true, []);
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild('table', {static: true}) table: MatTable<BrandsInterface>;
+  @ViewChild('table', {static: true}) table: MatTable<CatalogsInterface>;
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
   }
 
-  refreshTable() {
-    this.brands = this.brandService.getAll()
+    refreshTable() {
+    this.catalogs = this.catalogService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -56,10 +58,10 @@ export class BrandsComponent implements OnInit {
       });
   }
 
-  openDialog(action, obj?) {
+    openDialog(action, obj?) {
     obj = obj || {};
     obj.action = action;
-    const dialogRef = this.dialog.open(BrandsDialogComponent, {
+    const dialogRef = this.dialog.open(CatalogsDialogComponent, {
       width: '800px',
       data: obj,
       panelClass: 'formFieldWidth752'
@@ -76,26 +78,26 @@ export class BrandsComponent implements OnInit {
     });
   }
 
-  createBrand(rowObj) {
-    this.brandService.createBrand(rowObj).subscribe(res => {
+    createBrand(rowObj) {
+    this.catalogService.createCatalog(rowObj).subscribe(res => {
       this.refreshTable();
     });
   }
 
   updateBrand(rowObj) {
-    this.brandService.updateBrand(rowObj).subscribe(res => {
+    this.catalogService.updateCatalog(rowObj).subscribe(res => {
       this.refreshTable();
     });
   }
 
   deleteBrand(rowObj) {
-    this.brandService.deleteBrand(rowObj).subscribe(res => {
+    this.catalogService.deleteCatalog(rowObj).subscribe(res => {
       this.refreshTable();
     });
   }
 
   updateBrandPosition(dataSource) {
-    this.brandService.updateBrandPosition(dataSource)
+    this.catalogService.updateCatalogPosition(dataSource)
       .subscribe(res => {
         this.refreshTable();
       });
@@ -111,17 +113,17 @@ export class BrandsComponent implements OnInit {
     const selectedRows = this.selection.selected;
     switch ($event.value) {
       case 'activate':
-        this.brandService.bulkActivate(selectedRows).subscribe(res => {
+        this.catalogService.bulkActivate(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
       case 'deactivate':
-        this.brandService.bulkDeactivate(selectedRows).subscribe(res => {
+        this.catalogService.bulkDeactivate(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
       case 'delete':
-        this.brandService.bulkDelete(selectedRows).subscribe(res => {
+        this.catalogService.bulkDelete(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
@@ -144,7 +146,7 @@ export class BrandsComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  checkboxLabel(row?: BrandsInterface): string {
+  checkboxLabel(row?: CatalogsInterface): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
