@@ -2,7 +2,7 @@ export interface CatalogsInterface {
   _id: object;
   active: number;
   position: number;
-  brandId: string;
+  brand: object;
   catalogPdfPath: string;
   catalogName: string;
   createdAt: object;

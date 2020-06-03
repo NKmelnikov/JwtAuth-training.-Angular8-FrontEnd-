@@ -8,6 +8,13 @@
       </mat-form-field>
     </p>
     <p>
+      <mat-select placeholder="Брэнд" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
+        <mat-option *ngFor="let brand of localData.brands" [value]="brand">
+          {{ brand.brandName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
     </p>
     <p>

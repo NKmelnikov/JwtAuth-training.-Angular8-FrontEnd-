@@ -4,7 +4,7 @@ import {CatalogsInterface} from '../catalogs.interface';
 import {UploadHelper} from '../../../_helpers';
 import {environment} from '../../../../environments/environment';
 import * as _ from 'lodash';
-import {BrandsInterface} from '../../brands/brands.interface';
+
 
 @Component({
   selector: 'app-catalogs-dialog',
@@ -16,8 +16,7 @@ export class CatalogsDialogComponent implements OnInit {
   action: string;
   localData: any;
   imageError: string;
-  isImageSaved: boolean;
-  cardImageBase64: string;
+  selectedValue: string;
 
   constructor(
     public dialogRef: MatDialogRef<CatalogsDialogComponent>,
@@ -50,6 +49,10 @@ export class CatalogsDialogComponent implements OnInit {
     this.dialogRef.close({event: 'Cancel'});
   }
 
+  brandSelectChange(brand) {
+    this.localData.brand = brand;
+  }
+
   pdfInputChange(fileInput: any) {
     const pdf = fileInput.target.files[0];
     const maxSize = 100000000; // 100mb TODO put into config file
@@ -57,13 +60,13 @@ export class CatalogsDialogComponent implements OnInit {
 
     if (pdf.size > maxSize) {
       this.imageError = `Максимальный размер ${maxSize / 1000} Mb`;
-      console.log(this.imageError);
+      console.error(this.imageError);
       return false;
     }
 
     if (!_.includes(allowedTypes, pdf.type)) {
       this.imageError = 'Загруженный файл не является .pdf';
-      console.log(this.imageError);
+      console.error(this.imageError);
       return false;
     }
     const formData: FormData = new FormData();
