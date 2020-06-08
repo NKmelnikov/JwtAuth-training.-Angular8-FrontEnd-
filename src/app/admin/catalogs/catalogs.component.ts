@@ -6,7 +6,6 @@ import clonedeep from 'lodash.clonedeep';
 import {CatalogsDialogComponent} from './catalogs-dialog/catalogs-dialog.component';
 import {SelectionModel} from '@angular/cdk/collections';
 import {CatalogsInterface} from './catalogs.interface';
-import {BrandsInterface} from '../brands/brands.interface';
 
 @Component({
   selector: 'app-catalogs',
@@ -24,7 +23,7 @@ export class CatalogsComponent implements OnInit {
   }
 
   public catalogs;
-  public brands;
+  public brandList;
   public bulkAction;
   public preloadData = [{
     _id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
@@ -49,7 +48,6 @@ export class CatalogsComponent implements OnInit {
   }
 
   refreshTable() {
-    this.brandService.getAll().subscribe(brands => this.brands = {brands});
     this.catalogs = this.catalogService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
@@ -58,6 +56,12 @@ export class CatalogsComponent implements OnInit {
         this.bulkAction = null;
         this.selection.clear();
         this.changeDetectorRefs.detectChanges();
+        this.brandService.getAll().subscribe(brandList => {
+          this.brandList = {brandList};
+          this.dataSource.data.forEach((el) => {
+            el.brandList = brandList;
+          });
+        });
       });
   }
 
@@ -83,7 +87,6 @@ export class CatalogsComponent implements OnInit {
   }
 
   createCatalog(rowObj) {
-    console.log(rowObj);
     this.catalogService.createCatalog(rowObj).subscribe(res => {
       this.refreshTable();
     });

@@ -9,7 +9,7 @@
     </p>
     <p>
       <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
-        <mat-option *ngFor="let brand of localData.brands" [value]="brand">
+        <mat-option *ngFor="let brand of localData.brandList" [value]="brand">
           {{ brand.brandName }}
         </mat-option>
       </mat-select>

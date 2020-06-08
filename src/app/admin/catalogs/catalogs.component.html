@@ -19,7 +19,7 @@
     </mat-form-field>
   </nav>
   <nav>
-    <button (click)="openDialog('Create', this.brands)" mat-mini-fab color="warn">
+    <button (click)="openDialog('Create', this.brandList)" mat-mini-fab color="warn">
       <span class="material-icons">add</span>
     </button>
   </nav>
@@ -55,7 +55,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    <mat-cell *matCellDef="let element">{{element.position}} </mat-cell>
   </ng-container>
 
   <!-- active Column -->
@@ -67,13 +67,17 @@
   <!-- brand name Column -->
   <ng-container matColumnDef="brandName">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Брэнд </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{ element.brand.brandName }} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngFor="let brand of element.brands">{{ brand.brandName }}</span>
+    </mat-cell>
   </ng-container>
 
   <!-- name Column -->
   <ng-container matColumnDef="catalogName">
+
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.catalogName | slice:0: 15}} {{element.catalogName.length > 15 ? ' ...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.catalogName | slice:0: 15}} {{element.catalogName.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
     <!-- pdf Column -->
