@@ -11,11 +11,13 @@ import {NewsComponent} from './admin/news/news.component';
 import {MainComponent} from './home/main/main.component';
 import {BrandsComponent} from './admin/brands/brands.component';
 import {CatalogsComponent} from './admin/catalogs/catalogs.component';
+import {CatalogsHomeComponent} from './home/catalogs/catalogs.component';
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent, children: [
       {path: '', component: MainComponent},
+      {path: 'catalogs', component: CatalogsHomeComponent},
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
     ]

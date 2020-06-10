@@ -86,30 +86,30 @@ $font-black: 'ProximaNovaBlack', sans-serif;
   }
 }
 
-.fc {
+%fc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.fcc {
+%fcc {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+%fsb {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.fsb {
+%fsbc {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-}
-
-.fsbc {
-  display: flex;
+  align-items: center;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .aegis-btn {

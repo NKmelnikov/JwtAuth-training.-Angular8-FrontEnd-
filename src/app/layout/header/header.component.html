@@ -1,8 +1,12 @@
 <header>
   <nav class="logo"><a href="#"><img src="assets/img/AEGIS_logo_white_en.png" alt=""></a></nav>
-  <nav class="item item1 item-main"><a href="">Главная</a></nav>
+  <nav class="item item1 item-main">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Главная</a>
+  </nav>
   <nav class="item item2 item-products"><a href="">Продукция</a></nav>
-  <nav class="item item3 item-catalogs"><a href="">Каталоги</a></nav>
+  <nav class="item item3 item-catalogs">
+    <a mat-list-item routerLink="/catalogs">Каталоги</a>
+  </nav>
   <nav class="item item4 item-news"><a href="">Новости</a></nav>
   <nav class="item item5 item-about"><a href="">О нас</a></nav>
   <nav class="item item6 item-contacts" (click)="toggleActive()">

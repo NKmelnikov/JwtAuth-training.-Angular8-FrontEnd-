@@ -16,6 +16,7 @@ import {LayoutModule} from './layout/layout.module';
 import {AdminModule} from './admin/admin.module';
 import { MainComponent } from './home/main/main.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CatalogsHomeComponent } from './home/catalogs/catalogs.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     HomeComponent,
     WelcomeComponent,
     MainComponent,
+    CatalogsHomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+<main class="catalog-home-wrapper">
+  <div class="header-container">
+    <div class="header-box container">
+      <div class="header-box__title">Каталоги</div>
+      <div class="header-box__text">
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+      </div>
+    </div>
+  </div>
+  <div class="brand-container">
+    <div class="brand-box container" >
+      <div class="brand-box__keeper" *ngFor="let brand of brandList" (click)="selectBrand(brand._id)">
+        <img class="brand-box__img" [src]="env.serverURL+brand.brandImgPath" [alt]="brand.brandName">
+      </div>
+    </div>
+  </div>
+  <div class="catalogs-container" *ngFor="let catalog of catalogList">
+    <div class="catalogs-home-wrapper__selected" name="fieldName1" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === catalog.brand.$oid">
+      <p>{{env.serverURL + catalog.catalogPdfPath}}</p>
+      <iframe
+        [src]="this.sanitizer.bypassSecurityTrustResourceUrl(env.serverURL+catalog.catalogPdfPath)"
+        frameBorder="0"
+        scrolling="auto"
+        height="40%"
+        width="20%"
+      ></iframe>
+    </div>
+    <div class="catalogs-home-wrapper__all" name="fieldName" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === '' ">
+      <p>{{catalog.catalogName}}</p>
+      <iframe
+        [src]="this.sanitizer.bypassSecurityTrustResourceUrl(env.serverURL+catalog.catalogPdfPath)"
+        frameBorder="0"
+        scrolling="auto"
+        height="40%"
+        width="20%"
+      ></iframe>
+    </div>
+  </div>
+</main>
+

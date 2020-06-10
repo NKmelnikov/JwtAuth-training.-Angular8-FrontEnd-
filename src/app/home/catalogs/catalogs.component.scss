@@ -1,0 +1,63 @@
+@import "../../app.global";
+.catalog-home-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container{
+  height: 400px;
+  background: $main-color2;
+  //opacity: 0.8;
+  border-bottom: 10px solid $main-color1;
+  margin-bottom: 40px;
+
+  .header-box {
+    color: white;
+    @extend %fcc;
+    align-items: flex-start;
+    height: 100%;
+
+    &__title {
+      font-size: 72px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 6px;
+    }
+
+    &__text {
+      font-size: 14px;
+      height: 150px;
+    }
+  }
+}
+
+.brand-container{
+
+  .brand-box {
+    @extend %fsb;
+    flex-wrap: wrap;
+
+    &__keeper {
+      width: 250px;
+      height: 100px;
+      @extend %fc;
+      border: 1px solid lightgrey;
+      margin-bottom: 20px;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid $main-color2;
+      }
+
+      &:hover .brand-box__img {
+        filter: grayscale(0);
+      }
+    }
+
+    &__img {
+      max-width: 200px;
+      max-height: 75px;
+      filter: grayscale(100%);
+    }
+  }
+}
