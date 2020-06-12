@@ -24,6 +24,7 @@
     "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-classic": "^19.0.0",
     "jquery": "^3.5.1",
+    "ng2-pdf-viewer": "^6.3.0",
     "ngx-owl-carousel": "^2.0.7",
     "ngx-owl-carousel-o": "^3.0.0",
     "owl.carousel": "^2.3.4",

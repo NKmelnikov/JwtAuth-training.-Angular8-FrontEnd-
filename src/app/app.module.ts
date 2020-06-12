@@ -14,9 +14,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {LayoutModule} from './layout/layout.module';
 import {AdminModule} from './admin/admin.module';
-import { MainComponent } from './home/main/main.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CatalogsHomeComponent } from './home/catalogs/catalogs.component';
+import {MainComponent} from './home/main/main.component';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {CatalogsHomeComponent} from './home/catalogs/catalogs.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { CatalogsHomeComponent } from './home/catalogs/catalogs.component';
     MaterialModule,
     LayoutModule,
     AdminModule,
-    CarouselModule
+    CarouselModule,
+    PdfViewerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

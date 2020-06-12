@@ -32,10 +32,24 @@
 }
 
 .brand-container{
+  min-height: 240px;
 
   .brand-box {
-    @extend %fsb;
-    flex-wrap: wrap;
+    @extend %fsbc;
+    align-items: flex-start;
+
+    &__title {
+      color: #002359;
+      font-size: 40px;
+      font-weight: bolder;
+      text-transform: uppercase;
+      margin: 50px 0 50px 0;
+    }
+
+    &__brands {
+      @extend %fsb;
+      flex-wrap: wrap;
+    }
 
     &__keeper {
       width: 250px;
@@ -44,13 +58,25 @@
       border: 1px solid lightgrey;
       margin-bottom: 20px;
       cursor: pointer;
+      transition: .2s ease-in-out;
 
       &:hover {
-        border: 1px solid $main-color2;
+        border: 1px solid transparent;
+        border-left: 10px solid $main-color1;
+        //transform: scale(1.1);
       }
 
       &:hover .brand-box__img {
         filter: grayscale(0);
+      }
+
+      &.active {
+        border: 1px solid transparent;
+        background: rgba(255, 94, 21, 0.9);
+
+        .brand-box__img {
+          filter: grayscale(0);
+        }
       }
     }
 
@@ -61,3 +87,35 @@
     }
   }
 }
+
+.catalog-container{
+  @extend %fsb;
+  min-height: 400px;
+
+  .catalog-child{
+
+    &__link {
+      cursor: pointer;
+      @extend %fcc;
+
+    }
+
+    &__img {
+      width: 100px;
+    }
+
+    &__text {
+      color:$main-color2;
+    }
+  }
+}
+
+pdf-viewer {
+  display: block;
+  height: 240px;
+  width: 240px;
+  overflow: hidden;
+}
+
+
+

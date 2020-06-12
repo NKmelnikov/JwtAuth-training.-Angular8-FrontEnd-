@@ -13,33 +13,49 @@
     </div>
   </div>
   <div class="brand-container">
-    <div class="brand-box container" >
-      <div class="brand-box__keeper" *ngFor="let brand of brandList" (click)="selectBrand(brand._id)">
-        <img class="brand-box__img" [src]="env.serverURL+brand.brandImgPath" [alt]="brand.brandName">
+    <div class="brand-box container">
+      <div class="brand-box__title"> Выберите производителя</div>
+      <div class="brand-box__brands">
+        <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand._id, brand)">
+          <img class="brand-box__img" [src]="env.serverURL+brand.brandImgPath" [alt]="brand.brandName">
+        </div>
       </div>
     </div>
   </div>
-  <div class="catalogs-container" *ngFor="let catalog of catalogList">
-    <div class="catalogs-home-wrapper__selected" name="fieldName1" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === catalog.brand.$oid">
-      <p>{{env.serverURL + catalog.catalogPdfPath}}</p>
-      <iframe
-        [src]="this.sanitizer.bypassSecurityTrustResourceUrl(env.serverURL+catalog.catalogPdfPath)"
-        frameBorder="0"
-        scrolling="auto"
-        height="40%"
-        width="20%"
-      ></iframe>
-    </div>
-    <div class="catalogs-home-wrapper__all" name="fieldName" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === '' ">
-      <p>{{catalog.catalogName}}</p>
-      <iframe
-        [src]="this.sanitizer.bypassSecurityTrustResourceUrl(env.serverURL+catalog.catalogPdfPath)"
-        frameBorder="0"
-        scrolling="auto"
-        height="40%"
-        width="20%"
-      ></iframe>
+  <div class="catalog-container container">
+    <div class="catalog-loader" *ngFor="let catalog of catalogList">
+<!--      <div class="catalog-child selected-pdfs" name="fieldName1" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === catalog.brand.$oid">-->
+<!--        <a class="catalog-child__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">-->
+<!--          <img class="catalog-child__img" src="assets/img/pdf-orange.png" alt="">-->
+<!--          <p class="catalog-child__text">{{catalog.catalogName}}</p>-->
+<!--        </a>-->
+<!--      </div>-->
+      <div class="catalog-child all-pdfs" name="fieldName" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === '' ">
+        <a class="catalog-child__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">
+          <img class="catalog-child__img" src="assets/img/pdf-orange.png" alt="">
+          <p class="catalog-child__text">{{catalog.catalogName}}</p>
+        </a>
+<!--                <iframe-->
+<!--                  src="http://docs.google.com/gview?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&embedded=true"-->
+<!--                  frameBorder="0"-->
+<!--                  scrolling="auto"-->
+<!--                  height="100%"-->
+<!--                  width="100%"-->
+<!--                ></iframe>-->
+        <pdf-viewer [src]="env.serverURL + catalog.catalogPdfPath"
+                    [render-text]="false"
+                    [page]="1"
+                    [show-all]="false"
+                    [original-size]="true"
+                    [fit-to-page]="true"
+                    [autoresize]="false"
+                    [show-borders]="false"
+
+        ></pdf-viewer>
+
+      </div>
     </div>
   </div>
 </main>
+
 
