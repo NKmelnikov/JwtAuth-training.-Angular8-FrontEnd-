@@ -16,45 +16,40 @@
     <div class="brand-box container">
       <div class="brand-box__title"> Выберите производителя</div>
       <div class="brand-box__brands">
-        <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand._id, brand)">
+        <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
           <img class="brand-box__img" [src]="env.serverURL+brand.brandImgPath" [alt]="brand.brandName">
         </div>
       </div>
     </div>
   </div>
   <div class="catalog-container container">
-    <div class="catalog-loader" *ngFor="let catalog of catalogList">
-<!--      <div class="catalog-child selected-pdfs" name="fieldName1" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === catalog.brand.$oid">-->
-<!--        <a class="catalog-child__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">-->
-<!--          <img class="catalog-child__img" src="assets/img/pdf-orange.png" alt="">-->
-<!--          <p class="catalog-child__text">{{catalog.catalogName}}</p>-->
-<!--        </a>-->
-<!--      </div>-->
-      <div class="catalog-child all-pdfs" name="fieldName" ngDefaultControl [(ngModel)]="selectedBrand" *ngIf="selectedBrand === '' ">
-        <a class="catalog-child__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">
-          <img class="catalog-child__img" src="assets/img/pdf-orange.png" alt="">
-          <p class="catalog-child__text">{{catalog.catalogName}}</p>
+    <div class="catalog-keeper">
+      <div class="catalog-multiplier" *ngFor="let catalog of finalCatalogList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <a class="catalog-multiplier__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">
+          <pdf-viewer [src]="env.serverURL + catalog.catalogPdfPath"
+                      [render-text]="false"
+                      [page]="1"
+                      [show-all]="false"
+                      [original-size]="false"
+                      [fit-to-page]="false"
+                      [autoresize]="false"
+                      [show-borders]="false"
+          ></pdf-viewer>
+          <div class="bot-title-box">
+            <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
+            <span class="bot-title-box__text">{{catalog.catalogName | slice:0: 15 }}{{catalog.catalogName.length > 15 ? ' ...' : ''}}</span>
+          </div>
         </a>
-<!--                <iframe-->
-<!--                  src="http://docs.google.com/gview?url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf&embedded=true"-->
-<!--                  frameBorder="0"-->
-<!--                  scrolling="auto"-->
-<!--                  height="100%"-->
-<!--                  width="100%"-->
-<!--                ></iframe>-->
-        <pdf-viewer [src]="env.serverURL + catalog.catalogPdfPath"
-                    [render-text]="false"
-                    [page]="1"
-                    [show-all]="false"
-                    [original-size]="true"
-                    [fit-to-page]="true"
-                    [autoresize]="false"
-                    [show-borders]="false"
-
-        ></pdf-viewer>
-
       </div>
     </div>
+    <div class="pagination-block">
+      <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="finalCatalogList.length">
+      </ngb-pagination>
+    </div>
+
   </div>
 </main>
 

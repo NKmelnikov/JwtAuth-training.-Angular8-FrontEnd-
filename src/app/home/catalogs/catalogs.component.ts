@@ -21,33 +21,47 @@ export class CatalogsHomeComponent implements OnInit {
   public selectedBrand = '';
   public activeBrand = false;
   public env = environment;
+  public finalCatalogList = [];
+  public page = 1;
+  public pageSize = 8;
 
   ngOnInit(): void {
     this.catalogService.getAll()
       .subscribe(data => {
         this.catalogList = data;
+        this.finalCatalogList = data;
       });
     this.brandService.getAll()
       .subscribe(data => {
         this.brandList = data;
       });
-
-    // for (let i = 0, len = vc.length; i < len; i++) {
-    //   // vc[i].style['overflow'] = 'hidden';
-    //   console.log(vc[i]);
-    //   console.log(i);
-    // }
   }
 
 
-  selectBrand(brandId, brand) {
+  selectBrand(brand) {
+    const selectedCatalogs = [];
     this.brandList.forEach(el => {
       el.activeBrand = false;
     });
-    this.selectedBrand = (this.selectedBrand !== brandId.$oid) ? brandId.$oid : '';
-    brand.activeBrand = !brand.activeBrand;
-    // if (brand.activeBrand === true) {
-    //   brand.activeBrand = false;
-    // }
+
+    this.catalogList.forEach(el => {
+      if (el.brand.$oid === brand._id.$oid) {
+        selectedCatalogs.push(el);
+      }
+    });
+
+    this.selectedBrand = (this.selectedBrand !== brand._id.$oid) ? brand._id.$oid : '';
+
+    if (this.selectedBrand === '') {
+      this.finalCatalogList = this.catalogList;
+      brand.activeBrand = false;
+    } else {
+      this.finalCatalogList = selectedCatalogs;
+      brand.activeBrand = true;
+    }
+  }
+
+  hasClass(elem, className) {
+    return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
   }
 }

@@ -1,15 +1,16 @@
 @import "../../app.global";
+
 .catalog-home-wrapper{
   display: flex;
   flex-direction: column;
 }
 
 .header-container{
-  height: 400px;
+  height: 370px;
   background: $main-color2;
-  //opacity: 0.8;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
+  background: url("/assets/img/header-catalogs.png") no-repeat;
 
   .header-box {
     color: white;
@@ -33,6 +34,7 @@
 
 .brand-container{
   min-height: 240px;
+  margin-bottom: 100px;
 
   .brand-box {
     @extend %fsbc;
@@ -47,7 +49,8 @@
     }
 
     &__brands {
-      @extend %fsb;
+      @extend %fc;
+      justify-content: flex-start;
       flex-wrap: wrap;
     }
 
@@ -59,11 +62,15 @@
       margin-bottom: 20px;
       cursor: pointer;
       transition: .2s ease-in-out;
+      margin-right: 36px;
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
 
       &:hover {
         border: 1px solid transparent;
         border-left: 10px solid $main-color1;
-        //transform: scale(1.1);
       }
 
       &:hover .brand-box__img {
@@ -72,7 +79,7 @@
 
       &.active {
         border: 1px solid transparent;
-        background: rgba(255, 94, 21, 0.9);
+        background: $main-color1;
 
         .brand-box__img {
           filter: grayscale(0);
@@ -89,33 +96,74 @@
 }
 
 .catalog-container{
-  @extend %fsb;
-  min-height: 400px;
+  @extend %fcc;
+  margin-bottom: 100px;
 
-  .catalog-child{
+  .catalog-keeper{
+    @extend %fc;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 670px;
+    margin-bottom: 40px;
+    width: 100%;
 
-    &__link {
-      cursor: pointer;
-      @extend %fcc;
+    .catalog-multiplier {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      transition: .3s ease-in-out;
+      margin-right: 47px;
+      margin-bottom: 47px;
 
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        box-shadow: 0 0 6px 0px gray;
+        border: 1px solid transparent;
+      }
+
+      &__link {
+        text-decoration: none;
+      }
+
+      pdf-viewer {
+        border-radius: 10px;
+        display: block;
+        height: 240px;
+        width: 240px;
+        overflow: hidden;
+      }
+
+      .bot-title-box {
+        @extend %fc;
+        justify-content: flex-start;
+        padding: 10px 0;
+        width: 240px;
+
+        &__img {
+          width: 25px;
+          margin: 0 10px;
+        }
+
+        &__text {
+          color: $main-color2;
+          font-weight: bold;
+        }
+      }
     }
+  }
 
-    &__img {
-      width: 100px;
-    }
 
-    &__text {
-      color:$main-color2;
-    }
+  .pagination-block{
+    width: 100%;
+    @extend %fc;
+    justify-content: flex-end;
   }
 }
 
-pdf-viewer {
-  display: block;
-  height: 240px;
-  width: 240px;
-  overflow: hidden;
-}
+
 
 
 

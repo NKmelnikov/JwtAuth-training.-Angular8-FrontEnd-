@@ -18,6 +18,7 @@ import {MainComponent} from './home/main/main.component';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {CatalogsHomeComponent} from './home/catalogs/catalogs.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     LayoutModule,
     AdminModule,
     CarouselModule,
-    PdfViewerModule
+    PdfViewerModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

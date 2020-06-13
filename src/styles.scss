@@ -21,5 +21,40 @@ $custom-typography: mat-typography-config(
   $font-family: $font-regular,
 );
 
+.page-item {
+
+  &.disabled {
+    .page-link {
+      color: #dee2e6 !important;
+    }
+  }
+
+  .page-link {
+    color: $main-color3 !important;
+
+    &:hover {
+      color: $main-color3 !important;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.active {
+    .page-link {
+      background: $main-color3 !important;
+      border-color: $main-color3 !important;
+      color: white !important;
+
+      &:hover {
+        color: white !important;
+      }
+    }
+  }
+}
 
 @include mat-core($custom-typography);
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

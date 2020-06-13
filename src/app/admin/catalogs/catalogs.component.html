@@ -83,7 +83,7 @@
     <!-- pdf Column -->
   <ng-container matColumnDef="catalogPdfPath">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Путь к файлу </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.catalogPdfPath | slice:22: 50}} {{element.catalogPdfPath.length > 28 ? ' ...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.catalogPdfPath | slice:22: 42}} {{element.catalogPdfPath.length > 20 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

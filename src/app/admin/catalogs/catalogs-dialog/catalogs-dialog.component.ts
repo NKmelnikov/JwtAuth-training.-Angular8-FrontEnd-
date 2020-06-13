@@ -55,7 +55,7 @@ export class CatalogsDialogComponent implements OnInit {
 
   pdfInputChange(fileInput: any) {
     const pdf = fileInput.target.files[0];
-    const maxSize = 100000000; // 100mb TODO put into config file
+    const maxSize = 200000000; // 200mb TODO put into config file
     const allowedTypes = ['application/pdf'];
 
     if (pdf.size > maxSize) {
