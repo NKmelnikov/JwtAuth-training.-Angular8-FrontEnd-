@@ -19,8 +19,8 @@ const TREE_DATA_CATEGORY: Node[] = [
     url: '/url',
     icon: 'icon',
     children: [
-      {name: 'Масла и Смазки', url: '/admin/categoriesOil', icon: 'waves'},
-      {name: 'Металлорежущие', url: '/admin/categoriesDrill', icon: 'brightness_high'},
+      {name: 'Масла и Смазки', url: '/admin/categories-oil', icon: 'waves'},
+      {name: 'Металлорежущие', url: '/admin/categories-drill', icon: 'brightness_high'},
     ]
   }
 ];
@@ -31,8 +31,8 @@ const TREE_DATA_PRODUCT: Node[] = [
     url: '/url',
     icon: 'icon',
     children: [
-      {name: 'Масла и Смазки', url: '/admin/productsOil', icon: 'waves'},
-      {name: 'Металлорежущие', url: '/admin/productsDrill', icon: 'brightness_high'},
+      {name: 'Масла и Смазки', url: '/admin/products-oil', icon: 'waves'},
+      {name: 'Металлорежущие', url: '/admin/products-drill', icon: 'brightness_high'},
     ]
   }
 ];
