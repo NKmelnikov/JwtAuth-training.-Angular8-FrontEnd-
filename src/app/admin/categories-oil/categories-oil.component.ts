@@ -15,7 +15,6 @@ export class CategoriesOilComponent implements OnInit {
 
   constructor(
     private categoryOilService: CategoryOilService,
-    private brandService: BrandService,
     private changeDetectorRefs: ChangeDetectorRef,
   ) {
   }
@@ -53,12 +52,7 @@ export class CategoriesOilComponent implements OnInit {
         this.bulkAction = null;
         this.selection.clear();
         this.changeDetectorRefs.detectChanges();
-        this.brandService.getAll().subscribe(brandList => {
-          this.brandList = {brandList};
-          this.dataSource.data.forEach((el) => {
-            el.brandList = brandList;
-          });
-        });
+        console.log(this.dataSource.data);
       });
   }
 
@@ -95,12 +89,12 @@ export class CategoriesOilComponent implements OnInit {
   //   });
   // }
   //
-  // deleteCategory(rowObj) {
-  //   this.categoryOilService.deleteCategoryOil(rowObj).subscribe(res => {
-  //     this.refreshTable();
-  //   });
-  // }
-  //
+  deleteCategory(rowObj) {
+    this.categoryOilService.deleteCategoryOil(rowObj).subscribe(res => {
+      this.refreshTable();
+    });
+  }
+
   updateCategoryPosition(dataSource) {
     this.categoryOilService.updateCategoryPositionOil(dataSource)
       .subscribe(res => {

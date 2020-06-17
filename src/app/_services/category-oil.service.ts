@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
@@ -15,6 +15,10 @@ export class CategoryOilService {
 
   getCategoriesOil(): Observable<CategoryOil[]> {
     return this.http.get<CategoryOil[]>(`${environment.serverURL}get-categories-oil`);
+  }
+
+  getCategoryByIdOil(categoryId): Observable<CategoryOil[]> {
+    return this.http.post<CategoryOil[]>(`${environment.serverURL}get-categories-by-id-oil`, categoryId);
   }
 
   createCategoryOil(data: CategoriesOilInterface) {
