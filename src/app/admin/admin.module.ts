@@ -12,12 +12,10 @@ import {BrandsComponent} from './brands/brands.component';
 import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.component';
 import {CatalogsComponent} from './catalogs/catalogs.component';
 import {CatalogsDialogComponent} from './catalogs/catalogs-dialog/catalogs-dialog.component';
-import {CategoriesOilComponent} from './categories-oil/categories-oil.component';
-import {CategoriesDrillComponent} from './categories-drill/categories-drill.component';
+import {CategoriesComponent} from './categories/categories.component';
+import {CategoriesEditComponent} from './categories/categories-edit/categories-edit.component';
 import {ProductsDrillComponent} from './products-drill/products-drill.component';
 import {ProductsOilComponent} from './products-oil/products-oil.component';
-import {CategoriesOilEditComponent} from './categories-oil/categories-oil-edit/categories-oil-edit.component';
-import {CategoriesDrillEditComponent} from './categories-drill/categories-drill-edit/categories-drill-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +27,10 @@ import {CategoriesDrillEditComponent} from './categories-drill/categories-drill-
     BrandsDialogComponent,
     CatalogsComponent,
     CatalogsDialogComponent,
-    CategoriesOilComponent,
-    CategoriesDrillComponent,
+    CategoriesComponent,
     ProductsDrillComponent,
     ProductsOilComponent,
-    CategoriesOilEditComponent,
-    CategoriesDrillEditComponent
+    CategoriesEditComponent,
   ],
   imports: [
     MaterialModule,
@@ -49,12 +45,10 @@ import {CategoriesDrillEditComponent} from './categories-drill/categories-drill-
     NewsComponent,
     BrandsComponent,
     CatalogsComponent,
-    CategoriesOilComponent,
-    CategoriesDrillComponent,
+    CategoriesComponent,
     ProductsDrillComponent,
     ProductsOilComponent,
-    CategoriesOilEditComponent,
-    CategoriesDrillEditComponent
+    CategoriesEditComponent,
   ],
   entryComponents: [
     NewsDialogComponent,

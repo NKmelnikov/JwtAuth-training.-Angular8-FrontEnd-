@@ -1,34 +1,35 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
-import {CategoriesOilInterface} from './categories-oil.interface';
-import {BrandService, CategoryOilService} from '../../_services';
+import {CategoriesInterface} from './categories.interface';
+import {BrandService, CategoryService} from '../../_services';
 import {SelectionModel} from '@angular/cdk/collections';
 import clonedeep from 'lodash.clonedeep';
 
 @Component({
-  selector: 'app-categories-oil',
-  templateUrl: './categories-oil.component.html',
-  styleUrls: ['./categories-oil.component.scss']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss']
 })
-export class CategoriesOilComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
 
   constructor(
-    private categoryOilService: CategoryOilService,
+    private categoryService: CategoryService,
     private changeDetectorRefs: ChangeDetectorRef,
   ) {
   }
 
-  public categoriesOil;
+  public categories;
   public brandList;
   public bulkAction;
   public preloadData = [{
     _id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
-    position: 1, active: 0, categoryName: '/noData', categoryDescription: 'noData',
+    position: 1, active: 0, categoryType: 1,
+    categoryName: '/noData', categoryDescription: 'noData',
   }];
   public dataSource;
   public displayedColumns: string[] = [
-    'select', 'position', 'active',
+    'select', 'position', 'active', 'categoryType',
     'categoryName', 'categoryDescription',
     'createdAt', 'action'
   ];
@@ -36,7 +37,7 @@ export class CategoriesOilComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild('table', {static: true}) table: MatTable<CategoriesOilInterface>;
+  @ViewChild('table', {static: true}) table: MatTable<CategoriesInterface>;
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
@@ -44,7 +45,7 @@ export class CategoriesOilComponent implements OnInit {
   }
 
   refreshTable() {
-    this.categoriesOil = this.categoryOilService.getCategoriesOil()
+    this.categories = this.categoryService.getCategories()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -78,25 +79,25 @@ export class CategoriesOilComponent implements OnInit {
   // }
   //
   // createCategory(rowObj) {
-  //   this.categoryOilService.createCategoryOil(rowObj).subscribe(res => {
+  //   this.categoryService.createCategory(rowObj).subscribe(res => {
   //     this.refreshTable();
   //   });
   // }
   //
   // updateCategory(rowObj) {
-  //   this.categoryOilService.updateCategoryOil(rowObj).subscribe(res => {
+  //   this.categoryService.updateCategory(rowObj).subscribe(res => {
   //     this.refreshTable();
   //   });
   // }
   //
   deleteCategory(rowObj) {
-    this.categoryOilService.deleteCategoryOil(rowObj).subscribe(res => {
+    this.categoryService.deleteCategory(rowObj).subscribe(res => {
       this.refreshTable();
     });
   }
 
   updateCategoryPosition(dataSource) {
-    this.categoryOilService.updateCategoryPositionOil(dataSource)
+    this.categoryService.updateCategoryPosition(dataSource)
       .subscribe(res => {
         this.refreshTable();
       });
@@ -112,17 +113,17 @@ export class CategoriesOilComponent implements OnInit {
     const selectedRows = this.selection.selected;
     switch ($event.value) {
       case 'activate':
-        this.categoryOilService.bulkActivate(selectedRows).subscribe(res => {
+        this.categoryService.bulkActivate(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
       case 'deactivate':
-        this.categoryOilService.bulkDeactivate(selectedRows).subscribe(res => {
+        this.categoryService.bulkDeactivate(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
       case 'delete':
-        this.categoryOilService.bulkDelete(selectedRows).subscribe(res => {
+        this.categoryService.bulkDelete(selectedRows).subscribe(res => {
           this.refreshTable();
         });
         break;
@@ -145,7 +146,7 @@ export class CategoriesOilComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  checkboxLabel(row?: CategoriesOilInterface): string {
+  checkboxLabel(row?: CategoriesInterface): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }

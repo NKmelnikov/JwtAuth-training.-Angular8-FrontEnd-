@@ -1,7 +1,13 @@
 <mat-toolbar color="warn" class="title-mat-toolbar">
-  <h1>Категории [Масла] {{editFlag === false ? 'Сохранить' : 'Обновить'}}</h1>
+  <h1>Категории {{editFlag === false ? 'Создать' : 'Обновить'}}</h1>
 </mat-toolbar>
 <div class="form-container">
+  <div class="form-field">
+    <mat-radio-group [(ngModel)]="category.categoryType" aria-label="Тип">
+      <mat-radio-button value="1">Масла</mat-radio-button>
+      <mat-radio-button value="2">Металлореж.</mat-radio-button>
+    </mat-radio-group>
+  </div>
   <div class="form-field">
     <mat-form-field class="example-full-width">
       <mat-label>Название категории</mat-label>
@@ -15,7 +21,7 @@
     <mat-label>Описание категории</mat-label>
     <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.categoryDescription"></ckeditor>
   </div>
-  <button (click)="createOrEditCategory()" mat-raised-button color="warn">{{editFlag === false? 'Сохранить' : 'Обновить'}}</button>
+  <button (click)="createOrEditCategory()" mat-raised-button color="warn">{{editFlag === false? 'Создать' : 'Обновить'}}</button>
   <button (click)="back()" mat-raised-button color="primary">Назад</button>
 </div>
 

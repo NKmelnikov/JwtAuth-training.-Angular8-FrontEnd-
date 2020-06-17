@@ -16,7 +16,7 @@
       </a>
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/brands">
         <div class="link-container">
-          <span class="material-icons">transfer_within_a_station</span>&nbsp;
+          <span class="material-icons">group_add</span>&nbsp;
           <span class="list-title">Партнёры</span>
         </div>
       </a>
@@ -26,44 +26,24 @@
           <span class="list-title">Кататалоги</span>
         </div>
       </a>
-      <mat-tree [dataSource]="dataSourceCategory" [treeControl]="treeControlCategory">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <a mat-list-item routerLinkActive="list-item-active" routerLink="{{node.url}}">
-            <div class="link-container">
-              <span class="material-icons">{{node.icon}}</span>&nbsp;
-              <span class="list-title">{{node.name}}</span>
-            </div>
-          </a>
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button mat-icon-button matTreeNodeToggle
-                  [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControlCategory.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          <span class="tree-name">{{node.name}}</span>
-        </mat-tree-node>
-      </mat-tree>
-      <mat-tree [dataSource]="dataSourceProduct" [treeControl]="treeControlProduct">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <a mat-list-item routerLinkActive="list-item-active" routerLink="{{node.url}}">
-            <div class="link-container">
-              <span class="material-icons">{{node.icon}}</span>&nbsp;
-              <span class="list-title">{{node.name}}</span>
-            </div>
-          </a>
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button mat-icon-button matTreeNodeToggle
-                  [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControlProduct.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          <span class="tree-name">{{node.name}}</span>
-        </mat-tree-node>
-      </mat-tree>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/categories">
+        <div class="link-container">
+          <span class="material-icons">category</span>&nbsp;
+          <span class="list-title">Категории</span>
+        </div>
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/products-oil">
+        <div class="link-container">
+          <span class="material-icons">waves</span>&nbsp;
+          <span class="list-title">Продукты [Масла]</span>
+        </div>
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/products-drill">
+        <div class="link-container">
+          <span class="material-icons">brightness_7</span>&nbsp;
+          <span class="list-title">Продукты [Металлореж.]</span>
+        </div>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="admin-sidenav-content">
