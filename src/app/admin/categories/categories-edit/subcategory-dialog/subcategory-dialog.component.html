@@ -1,0 +1,26 @@
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>Название</mat-label>
+        <input matInput [(ngModel)]="localData.subCategoryName" width="100%" placeholder="например, Мы побывали на выставке">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
+    </p>
+    <p>
+      <mat-label>Описание</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.subCategoryDescription"></ckeditor>
+    </p>
+
+  </div>
+  <ng-template #elseTemplate>
+    Уверен в удалении <b>{{localData.subCategoryName}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+</div>

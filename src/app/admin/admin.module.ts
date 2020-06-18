@@ -16,6 +16,7 @@ import {CategoriesComponent} from './categories/categories.component';
 import {CategoriesEditComponent} from './categories/categories-edit/categories-edit.component';
 import {ProductsDrillComponent} from './products-drill/products-drill.component';
 import {ProductsOilComponent} from './products-oil/products-oil.component';
+import { SubcategoryDialogComponent } from './categories/categories-edit/subcategory-dialog/subcategory-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {ProductsOilComponent} from './products-oil/products-oil.component';
     ProductsDrillComponent,
     ProductsOilComponent,
     CategoriesEditComponent,
+    SubcategoryDialogComponent,
   ],
   imports: [
     MaterialModule,
