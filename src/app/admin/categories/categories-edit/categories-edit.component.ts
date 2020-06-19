@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {UploadHelper} from '../../../_helpers';
-import {CategoryService} from '../../../_services';
+import {CategoryService, SubCategoryService} from '../../../_services';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
@@ -21,7 +21,18 @@ import {SubcategoryDialogComponent} from './subcategory-dialog/subcategory-dialo
 })
 export class CategoriesEditComponent implements OnInit {
 
+  public categoryById;
   public active;
+  public categoryName;
+  public categoryDescription;
+  public ckEditorConfig;
+  public brand;
+  public categoryId;
+  public editFlag = false;
+  public Editor = ClassicEditor;
+  public categories;
+  public bulkAction;
+
   // @ts-ignore
   public category: CategoriesInterface = {
     _id: {},
@@ -33,19 +44,11 @@ export class CategoriesEditComponent implements OnInit {
     categoryDescription: '',
     subCategories: []
   };
-  public categoryName;
-  public categoryDescription;
-  public ckEditorConfig;
-  public brand;
-  public categoryId?;
-  public editFlag = false;
-  public Editor = ClassicEditor;
-  public categories;
-  public bulkAction;
+
   public preloadData = [{
-    _id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
-    position: 1, active: 0,
-    subCategoryName: '/noData', subCategoryDescription: 'noData',
+    sub_id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
+    position: 1, active: 0, subCategoryName: '/noData',
+    subCategoryDescription: 'noData', subCategories: []
   }];
   public dataSource;
   public displayedColumns: string[] = [
@@ -63,6 +66,7 @@ export class CategoriesEditComponent implements OnInit {
   constructor(
     public uploadHelper: UploadHelper,
     public categoryService: CategoryService,
+    public subcategoryService: SubCategoryService,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -72,6 +76,7 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.preloadData);
     this.ckEditorConfig = {
       ckfinder: {
         uploadUrl: `${environment.serverURL}ck-upload`
@@ -82,24 +87,23 @@ export class CategoriesEditComponent implements OnInit {
       this.editFlag = false;
       if (!_.isEmpty(params)) {
         this.editFlag = true;
-        this.getCategoryById(params);
+        this.categoryId = params;
       }
     });
-    this.dataSource = new MatTableDataSource(this.preloadData);
-    this.refreshTable();
+    this.refreshTable(this.categoryId);
   }
 
-  refreshTable() {
-    this.categories = this.categoryService.getCategories()
-      .subscribe(data => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.bulkAction = null;
-        this.selection.clear();
-        this.changeDetectorRefs.detectChanges();
-        console.log(this.dataSource.data);
-      });
+  refreshTable(categoryId) {
+    this.categoryService.getCategoryById(categoryId).subscribe(data => {
+      // @ts-ignore
+      this.category = data;
+      // @ts-ignore
+      this.dataSource = new MatTableDataSource(data.subCategories);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.bulkAction = null;
+      this.changeDetectorRefs.detectChanges();
+    });
   }
 
   openDialog(action, obj?) {
@@ -113,6 +117,7 @@ export class CategoriesEditComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      result.data._id = this.categoryId.id;
       if (result.event === 'Create') {
         this.createSubCategory(result.data);
       } else if (result.event === 'Update') {
@@ -124,27 +129,27 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   createSubCategory(rowObj) {
-    this.categoryService.createCategory(rowObj).subscribe(res => {
-      this.refreshTable();
+    this.subcategoryService.createSubCategory(rowObj).subscribe(res => {
+      this.refreshTable(this.categoryId);
     });
   }
 
   updateSubCategory(rowObj) {
-    this.categoryService.updateCategory(rowObj).subscribe(res => {
-      this.refreshTable();
+    this.subcategoryService.updateSubCategory(rowObj).subscribe(res => {
+      this.refreshTable(this.categoryId);
     });
   }
 
   deleteSubCategory(rowObj) {
-    this.categoryService.deleteCategory(rowObj).subscribe(res => {
-      this.refreshTable();
+    this.subcategoryService.deleteSubCategory(rowObj).subscribe(res => {
+      this.refreshTable(this.categoryId);
     });
   }
 
   updateSubCategoryPosition(dataSource) {
     this.categoryService.updateCategoryPosition(dataSource)
       .subscribe(res => {
-        this.refreshTable();
+        this.refreshTable(this.categoryId);
       });
   }
 
@@ -159,17 +164,17 @@ export class CategoriesEditComponent implements OnInit {
     switch ($event.value) {
       case 'activate':
         this.categoryService.bulkActivate(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(this.categoryId);
         });
         break;
       case 'deactivate':
         this.categoryService.bulkDeactivate(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(this.categoryId);
         });
         break;
       case 'delete':
         this.categoryService.bulkDelete(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(this.categoryId);
         });
         break;
     }
@@ -196,13 +201,6 @@ export class CategoriesEditComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  }
-
-  getCategoryById(params) {
-    this.categoryService.getCategoryById(params).subscribe(data => {
-      // @ts-ignore
-      this.category = data;
-    });
   }
 
   back() {

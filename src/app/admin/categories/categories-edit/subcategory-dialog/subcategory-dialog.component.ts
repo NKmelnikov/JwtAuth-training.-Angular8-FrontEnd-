@@ -55,9 +55,4 @@ export class SubcategoryDialogComponent implements OnInit {
   closeDialog() {
     this.dialogRef.close({event: 'Cancel'});
   }
-
-  brandSelectChange(brand) {
-    this.localData.brand = brand;
-  }
-
 }
