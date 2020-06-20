@@ -88,9 +88,9 @@ export class CategoriesEditComponent implements OnInit {
       if (!_.isEmpty(params)) {
         this.editFlag = true;
         this.categoryId = params;
+        this.refreshTable(this.categoryId);
       }
     });
-    this.refreshTable(this.categoryId);
   }
 
   refreshTable(categoryId) {
@@ -102,6 +102,7 @@ export class CategoriesEditComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.bulkAction = null;
+      this.selection.clear();
       this.changeDetectorRefs.detectChanges();
     });
   }
@@ -117,7 +118,7 @@ export class CategoriesEditComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      result.data._id = this.categoryId.id;
+      result.data.id = this.categoryId.id;
       if (result.event === 'Create') {
         this.createSubCategory(result.data);
       } else if (result.event === 'Update') {
@@ -147,7 +148,7 @@ export class CategoriesEditComponent implements OnInit {
   }
 
   updateSubCategoryPosition(dataSource) {
-    this.categoryService.updateCategoryPosition(dataSource)
+    this.subcategoryService.updateSubCategoryPosition(dataSource)
       .subscribe(res => {
         this.refreshTable(this.categoryId);
       });
@@ -156,24 +157,26 @@ export class CategoriesEditComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
-    this.updateSubCategoryPosition(this.dataSource.data);
+    const data = {id: this.categoryId.id, subCategories : this.dataSource.data};
+    this.updateSubCategoryPosition(data);
   }
 
   onBulkActionChange($event) {
     const selectedRows = this.selection.selected;
+    selectedRows.push(this.categoryId.id);
     switch ($event.value) {
       case 'activate':
-        this.categoryService.bulkActivate(selectedRows).subscribe(res => {
+        this.subcategoryService.bulkActivate(selectedRows).subscribe(res => {
           this.refreshTable(this.categoryId);
         });
         break;
       case 'deactivate':
-        this.categoryService.bulkDeactivate(selectedRows).subscribe(res => {
+        this.subcategoryService.bulkDeactivate(selectedRows).subscribe(res => {
           this.refreshTable(this.categoryId);
         });
         break;
       case 'delete':
-        this.categoryService.bulkDelete(selectedRows).subscribe(res => {
+        this.subcategoryService.bulkDelete(selectedRows).subscribe(res => {
           this.refreshTable(this.categoryId);
         });
         break;

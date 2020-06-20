@@ -12,15 +12,6 @@ export class SubCategoryService {
   constructor(private http: HttpClient) {
   }
 
-
-  getSubCategories(): Observable<SubCategory[]> {
-    return this.http.get<SubCategory[]>(`${environment.serverURL}get-subcategories`);
-  }
-
-  getSubCategoryById(SubCategoryId): Observable<SubCategory[]> {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}get-subcategories-by-id`, SubCategoryId);
-  }
-
   createSubCategory(data: SubCategoriesInterface) {
     return this.http.post<SubCategory[]>(`${environment.serverURL}create-subcategory`, data);
   }

@@ -18,7 +18,7 @@ export class CategoryService {
   }
 
   getCategoryById(categoryId): Observable<Category[]> {
-    return this.http.post<Category[]>(`${environment.serverURL}get-categories-by-id`, categoryId);
+    return this.http.post<Category[]>(`${environment.serverURL}get-category-by-id`, categoryId);
   }
 
   createCategory(data: CategoriesInterface) {
