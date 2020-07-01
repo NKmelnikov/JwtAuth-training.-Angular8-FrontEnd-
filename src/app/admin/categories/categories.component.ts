@@ -45,7 +45,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   refreshTable() {
-    this.categories = this.categoryService.getCategories()
+    this.categories = this.categoryService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -53,7 +53,6 @@ export class CategoriesComponent implements OnInit {
         this.bulkAction = null;
         this.selection.clear();
         this.changeDetectorRefs.detectChanges();
-        console.log(this.dataSource.data);
       });
   }
 

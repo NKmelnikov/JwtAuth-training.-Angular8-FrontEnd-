@@ -5,7 +5,16 @@ import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {CatalogsInterface} from '../admin/catalogs/catalogs.interface';
-import {Catalog} from '../_models';
+
+export class Catalog {
+  _id: object;
+  active: number;
+  position: number;
+  brandId: string;
+  catalogPdfPath: string;
+  catalogName: string;
+  createdAt: object;
+}
 
 @Injectable({providedIn: 'root'})
 export class CatalogService {

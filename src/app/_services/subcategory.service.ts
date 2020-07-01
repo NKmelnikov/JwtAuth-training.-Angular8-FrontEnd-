@@ -5,7 +5,16 @@ import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {SubCategoriesInterface} from '../admin/categories/categories-edit/subcategories.interface';
-import {SubCategory} from '../_models';
+
+export class SubCategory {
+  // tslint:disable-next-line:variable-name
+  _id: object;
+  createdAt: object;
+  active: number;
+  position: number;
+  subCategoryName: string;
+  subCategoryDescription: string;
+}
 
 @Injectable({providedIn: 'root'})
 export class SubCategoryService {

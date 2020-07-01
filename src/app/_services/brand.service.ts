@@ -5,7 +5,15 @@ import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {BrandsInterface} from '../admin/brands/brands.interface';
-import {Brand} from '../_models';
+
+export class Brand {
+  _id: object;
+  active: number;
+  position: number;
+  brandImgPath: string;
+  brandName: string;
+  createdAt: object;
+}
 
 @Injectable({providedIn: 'root'})
 export class BrandService {

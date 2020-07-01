@@ -16,7 +16,9 @@ import {CategoriesComponent} from './categories/categories.component';
 import {CategoriesEditComponent} from './categories/categories-edit/categories-edit.component';
 import {ProductsDrillComponent} from './products-drill/products-drill.component';
 import {ProductsOilComponent} from './products-oil/products-oil.component';
-import { SubcategoryDialogComponent } from './categories/categories-edit/subcategory-dialog/subcategory-dialog.component';
+import {SubcategoryDialogComponent} from './categories/categories-edit/subcategory-dialog/subcategory-dialog.component';
+import {ProductsOilDialogComponent} from './products-oil/products-oil-dialog/products-oil-dialog.component';
+import {ProductsDrillDialogComponent} from './products-drill/products-drill-dialog/products-drill-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { SubcategoryDialogComponent } from './categories/categories-edit/subcate
     ProductsOilComponent,
     CategoriesEditComponent,
     SubcategoryDialogComponent,
+    ProductsOilDialogComponent,
+    ProductsDrillDialogComponent,
   ],
   imports: [
     MaterialModule,
@@ -55,7 +59,10 @@ import { SubcategoryDialogComponent } from './categories/categories-edit/subcate
   entryComponents: [
     NewsDialogComponent,
     BrandsDialogComponent,
-    CatalogsDialogComponent
+    CatalogsDialogComponent,
+    SubcategoryDialogComponent,
+    ProductsOilDialogComponent,
+    ProductsDrillDialogComponent,
   ]
 })
 export class AdminModule {

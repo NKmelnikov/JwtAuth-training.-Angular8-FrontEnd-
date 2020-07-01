@@ -5,7 +5,18 @@ import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {CategoriesInterface} from '../admin/categories/categories.interface';
-import {Category} from '../_models';
+
+export class Category {
+  // tslint:disable-next-line:variable-name
+  _id: object;
+  createdAt: object;
+  active: number;
+  position: number;
+  categoryType: number;
+  categoryName: string;
+  categoryDescription: string;
+  subCategories: [];
+}
 
 @Injectable({providedIn: 'root'})
 export class CategoryService {
@@ -13,7 +24,7 @@ export class CategoryService {
   }
 
 
-  getCategories(): Observable<Category[]> {
+  getAll(): Observable<Category[]> {
     return this.http.get<Category[]>(`${environment.serverURL}get-categories`);
   }
 

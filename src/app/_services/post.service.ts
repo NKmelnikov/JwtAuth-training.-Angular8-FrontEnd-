@@ -5,7 +5,17 @@ import {ErrorHandler} from '../_helpers/error.handler';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {NewsInterface} from '../admin/news/news.interface';
-import {Post} from '../_models';
+
+export class Post {
+  _id: object;
+  position: number;
+  active: number;
+  postImgPath: string;
+  postTitle: string;
+  postShortText: string;
+  postArticle: string;
+  createdAt: object;
+}
 
 @Injectable({providedIn: 'root'})
 export class PostService {
@@ -17,20 +27,20 @@ export class PostService {
     return this.http.get<Post[]>(`${environment.serverURL}get-posts`);
   }
 
-  createPost(data: NewsInterface) {
+  create(data: NewsInterface) {
     return this.http.post<Post[]>(`${environment.serverURL}create-post`, data);
   }
 
 
-  updatePost(data: NewsInterface) {
+  update(data: NewsInterface) {
     return this.http.post<Post[]>(`${environment.serverURL}update-post`, data);
   }
 
-  deletePost(data: NewsInterface) {
+  delete(data: NewsInterface) {
     return this.http.post<Post[]>(`${environment.serverURL}delete-post`, data);
   }
 
-  updatePostPosition(data: NewsInterface) {
+  updatePosition(data: NewsInterface) {
     return this.http.post<Post[]>(`${environment.serverURL}update-post-position`, data);
     // .pipe(
     //   catchError(ErrorHandler.handleError('updatePostPosition', data))
