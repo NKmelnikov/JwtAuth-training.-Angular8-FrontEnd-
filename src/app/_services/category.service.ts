@@ -1,66 +1,48 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ErrorHandler} from '../_helpers/error.handler';
+import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {CategoriesInterface} from '../admin/categories/categories.interface';
-
-export class Category {
-  // tslint:disable-next-line:variable-name
-  _id: object;
-  createdAt: object;
-  active: number;
-  position: number;
-  categoryType: number;
-  categoryName: string;
-  categoryDescription: string;
-  subCategories: [];
-}
+import {environment} from '../../environments/environment';
+import {Service} from './service';
 
 @Injectable({providedIn: 'root'})
-export class CategoryService {
-  constructor(private http: HttpClient) {
+export class CategoryService extends Service {
+  constructor(private injector: Injector) {
+    super(injector);
   }
 
-
-  getAll(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.serverURL}get-categories`);
+  getAll(): Observable<any[]> {
+    return super.getAll('get-categories');
   }
 
-  getCategoryById(categoryId): Observable<Category[]> {
-    return this.http.post<Category[]>(`${environment.serverURL}get-category-by-id`, categoryId);
+  getCategoryById(categoryId) {
+    return this.http.post<any[]>(`${environment.serverURL}get-category-by-id`, categoryId);
   }
 
-  createCategory(data: CategoriesInterface) {
-    return this.http.post<Category[]>(`${environment.serverURL}create-category`, data);
+  create(data: any) {
+    return super.create(data, 'create-category');
   }
 
-
-  updateCategory(data: CategoriesInterface) {
-    return this.http.post<Category[]>(`${environment.serverURL}update-category`, data);
+  update(data: any) {
+    return super.create(data, 'update-category');
   }
 
-  deleteCategory(data: CategoriesInterface) {
-    return this.http.post<Category[]>(`${environment.serverURL}delete-category`, data);
+  delete(data: CategoriesInterface) {
+    return super.delete(data, 'delete-category');
   }
 
-  updateCategoryPosition(data: CategoriesInterface) {
-    return this.http.post<Category[]>(`${environment.serverURL}update-category-position`, data);
-    // .pipe(
-    //   catchError(ErrorHandler.handleError('updatecategoryPosition', data))
-    // );
+  updatePosition(data: CategoriesInterface) {
+    return super.updatePosition(data, 'update-category-position');
   }
 
   bulkActivate(data: CategoriesInterface[]) {
-    return this.http.post<Category[]>(`${environment.serverURL}bulk-activate-categories`, data);
+    return super.bulkActivate(data, 'bulk-activate-categories');
   }
 
   bulkDeactivate(data: CategoriesInterface[]) {
-    return this.http.post<Category[]>(`${environment.serverURL}bulk-deactivate-categories`, data);
+    return super.bulkDeactivate(data, 'bulk-deactivate-categories');
   }
 
   bulkDelete(data: CategoriesInterface[]) {
-    return this.http.post<Category[]>(`${environment.serverURL}bulk-delete-categories`, data);
+    return super.bulkDelete(data, 'bulk-delete-categories');
   }
 }

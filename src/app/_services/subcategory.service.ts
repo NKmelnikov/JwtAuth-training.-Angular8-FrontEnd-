@@ -1,54 +1,38 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ErrorHandler} from '../_helpers/error.handler';
-import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {Injectable, Injector} from '@angular/core';
 import {SubCategoriesInterface} from '../admin/categories/categories-edit/subcategories.interface';
-
-export class SubCategory {
-  // tslint:disable-next-line:variable-name
-  _id: object;
-  createdAt: object;
-  active: number;
-  position: number;
-  subCategoryName: string;
-  subCategoryDescription: string;
-}
+import {Service} from './service';
 
 @Injectable({providedIn: 'root'})
-export class SubCategoryService {
-  constructor(private http: HttpClient) {
+export class SubCategoryService extends Service {
+  constructor(private injector: Injector) {
+    super(injector);
   }
 
-  createSubCategory(data: SubCategoriesInterface) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}create-subcategory`, data);
+  create(data: SubCategoriesInterface) {
+    return super.create(data, 'create-subcategory');
   }
 
-  updateSubCategory(data: SubCategoriesInterface) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}update-subcategory`, data);
+  update(data: SubCategoriesInterface) {
+    return super.create(data, 'update-subcategory');
   }
 
-  deleteSubCategory(data: SubCategoriesInterface) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}delete-subcategory`, data);
+  delete(data: SubCategoriesInterface) {
+    return super.delete(data, 'delete-subcategory');
   }
 
-  updateSubCategoryPosition(data: SubCategoriesInterface) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}update-subcategory-position`, data);
-    // .pipe(
-    //   catchError(ErrorHandler.handleError('updateSubCategoryPosition', data))
-    // );
+  updatePosition(data: SubCategoriesInterface) {
+    return super.updatePosition(data, 'update-subcategory-position');
   }
 
   bulkActivate(data: SubCategoriesInterface[]) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}bulk-activate-subcategories`, data);
+    return super.bulkActivate(data, 'bulk-activate-subcategories');
   }
 
   bulkDeactivate(data: SubCategoriesInterface[]) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}bulk-deactivate-subcategories`, data);
+    return super.bulkDeactivate(data, 'bulk-deactivate-subcategories');
   }
 
   bulkDelete(data: SubCategoriesInterface[]) {
-    return this.http.post<SubCategory[]>(`${environment.serverURL}bulk-delete-subcategories`, data);
+    return super.bulkDelete(data, 'bulk-delete-subcategories');
   }
 }

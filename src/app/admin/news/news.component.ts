@@ -18,6 +18,7 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   }
 
   public news;
+
   public preloadData = [{
     _id: {$oid: 'preload'},
     createdAt: {$date: 111111111111111},
@@ -28,8 +29,17 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
     postShortText: 'preload',
     postArticle: 'preload'
   }];
+
   public displayedColumns: string[] = [
-    'select', 'position', 'active', 'postImgPath', 'postTitle', 'postShortText', 'postArticle', 'createdAt', 'action'
+    'select',
+    'position',
+    'active',
+    'postImgPath',
+    'postTitle',
+    'postShortText',
+    'postArticle',
+    'createdAt',
+    'action'
   ];
 
   @ViewChild('table', {static: true}) table: MatTable<NewsInterface>;
@@ -42,7 +52,8 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   refreshTable() {
     this.news = this.postService.getAll()
       .subscribe(data => {
-        this.refreshTableRoutine(data);
+        this.refreshTableRoutine();
+        this.dataSource = new MatTableDataSource(data);
       });
   }
 

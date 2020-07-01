@@ -1,59 +1,43 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ErrorHandler} from '../_helpers/error.handler';
+import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {BrandsInterface} from '../admin/brands/brands.interface';
-
-export class Brand {
-  _id: object;
-  active: number;
-  position: number;
-  brandImgPath: string;
-  brandName: string;
-  createdAt: object;
-}
+import {Service} from './service';
 
 @Injectable({providedIn: 'root'})
-export class BrandService {
-  constructor(private http: HttpClient) {
+export class BrandService extends Service {
+  constructor(private injector: Injector) {
+    super(injector);
   }
 
-
-  getAll(): Observable<Brand[]> {
-    return this.http.get<Brand[]>(`${environment.serverURL}get-brands`);
+  getAll(): Observable<any[]> {
+    return super.getAll('get-brands');
   }
 
-  createBrand(data: BrandsInterface) {
-    return this.http.post<Brand[]>(`${environment.serverURL}create-brand`, data);
+  create(data: BrandsInterface) {
+    return super.create(data, 'create-brand');
   }
 
-
-  updateBrand(data: BrandsInterface) {
-    return this.http.post<Brand[]>(`${environment.serverURL}update-brand`, data);
+  update(data: BrandsInterface) {
+    return super.create(data, 'update-brand');
   }
 
-  deleteBrand(data: BrandsInterface) {
-    return this.http.post<Brand[]>(`${environment.serverURL}delete-brand`, data);
+  delete(data: BrandsInterface) {
+    return super.delete(data, 'delete-brand');
   }
 
-  updateBrandPosition(data: BrandsInterface) {
-    return this.http.post<Brand[]>(`${environment.serverURL}update-brand-position`, data);
-    // .pipe(
-    //   catchError(ErrorHandler.handleError('updateBrandPosition', data))
-    // );
+  updatePosition(data: BrandsInterface) {
+    return super.updatePosition(data, 'update-brand-position');
   }
 
   bulkActivate(data: BrandsInterface[]) {
-    return this.http.post<Brand[]>(`${environment.serverURL}bulk-activate-brands`, data);
+    return super.bulkActivate(data, 'bulk-activate-brands');
   }
 
   bulkDeactivate(data: BrandsInterface[]) {
-    return this.http.post<Brand[]>(`${environment.serverURL}bulk-deactivate-brands`, data);
+    return super.bulkDeactivate(data, 'bulk-deactivate-brands');
   }
 
   bulkDelete(data: BrandsInterface[]) {
-    return this.http.post<Brand[]>(`${environment.serverURL}bulk-delete-brands`, data);
+    return super.bulkDelete(data, 'bulk-delete-brands');
   }
 }

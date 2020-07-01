@@ -1,35 +1,61 @@
-import {ChangeDetectorRef, HostListener, Injector, ViewChild} from '@angular/core';
-import {BrandService, PostService} from '../_services';
+import {ChangeDetectorRef, HostListener, Directive, Injector, ViewChild} from '@angular/core';
+import {
+  BrandService,
+  CatalogService,
+  PostService,
+  ProductOilService,
+  CategoryService,
+  SubCategoryService
+} from '../_services';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {NewsInterface} from './news/news.interface';
 import {SelectionModel} from '@angular/cdk/collections';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import clonedeep from 'lodash.clonedeep';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {UploadHelper} from '../_helpers';
 
-
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class AdminBaseComponent {
-  protected dataSource;
-  protected bulkAction;
-  protected selection = new SelectionModel(true, []);
-  protected postService: PostService;
-  protected brandService: BrandService;
-  protected dialog: MatDialog;
-  protected changeDetectorRefs: ChangeDetectorRef;
+  public dataSource;
+  public bulkAction;
+  public selection = new SelectionModel(true, []);
+  public postService: PostService;
+  public brandService: BrandService;
+  public catalogService: CatalogService;
+  public categoryService: CategoryService;
+  public productOilService: ProductOilService;
+  public dialog: MatDialog;
+  public changeDetectorRefs: ChangeDetectorRef;
+  public subcategoryService: any;
+  public uploadHelper: UploadHelper;
+  public router: Router;
+  public route: ActivatedRoute;
+  public location: Location;
 
   protected constructor(private injectorObj: Injector) {
     this.postService = this.injectorObj.get(PostService);
     this.brandService = this.injectorObj.get(BrandService);
+    this.catalogService = this.injectorObj.get(CatalogService);
+    this.categoryService = this.injectorObj.get(CategoryService);
+    this.subcategoryService = this.injectorObj.get(SubCategoryService);
+    this.productOilService = this.injectorObj.get(ProductOilService);
+    this.uploadHelper = this.injectorObj.get(UploadHelper);
     this.changeDetectorRefs = this.injectorObj.get(ChangeDetectorRef);
     this.dialog = this.injectorObj.get(MatDialog);
+    this.router = this.injectorObj.get(Router);
+    this.route = this.injectorObj.get(ActivatedRoute);
+    this.location = this.injectorObj.get(Location);
   }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  abstract refreshTable();
+  abstract refreshTable(id?);
 
-  refreshTableRoutine(data) {
-    this.dataSource = new MatTableDataSource(data);
+  refreshTableRoutine() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.bulkAction = null;
@@ -37,34 +63,34 @@ export abstract class AdminBaseComponent {
     this.changeDetectorRefs.detectChanges();
   }
 
-  drop(event: CdkDragDrop<string[]>, service) {
+  drop(event: CdkDragDrop<string[]>, service, id?) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
-    this.updatePosition(this.dataSource.data, service);
+    this.updatePosition(this.dataSource.data, service, id);
   }
 
-  onBulkActionChange($event, service) {
+  onBulkActionChange($event, service, id?) {
     const selectedRows = this.selection.selected;
     switch ($event.value) {
       case 'activate':
         service.bulkActivate(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(id);
         });
         break;
       case 'deactivate':
         service.bulkDeactivate(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(id);
         });
         break;
       case 'delete':
         service.bulkDelete(selectedRows).subscribe(res => {
-          this.refreshTable();
+          this.refreshTable(id);
         });
         break;
     }
   }
 
-  openDialog(action, obj, service, dialogComponent) {
+  openDialog(action, obj, service, dialogComponent, id = null) {
     obj = obj || {};
     obj.action = action;
     const dialogRef = this.dialog.open(dialogComponent, {
@@ -74,37 +100,41 @@ export abstract class AdminBaseComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (id !== null) {
+        result.data.id = id;
+      }
+
       if (result.event === 'Create') {
-        this.create(result.data, service);
+        this.create(result.data, service, id);
       } else if (result.event === 'Update') {
-        this.update(result.data, service);
+        this.update(result.data, service, id);
       } else if (result.event === 'Delete') {
-        this.delete(result.data, service);
+        this.delete(result.data, service, id);
       }
     });
   }
 
-  create(rowObj, service) {
+  create(rowObj, service, id?) {
     service.create(rowObj).subscribe(res => {
-      this.refreshTable();
+      this.refreshTable(id);
     });
   }
 
-  update(dataSource, service) {
+  update(dataSource, service, id?) {
     service.update(dataSource).subscribe(res => {
-      this.refreshTable();
+      this.refreshTable(id);
     });
   }
 
-  delete(dataSource, service) {
+  delete(dataSource, service, id?) {
     service.delete(dataSource).subscribe(res => {
-      this.refreshTable();
+      this.refreshTable(id);
     });
   }
 
-  updatePosition(dataSource, service) {
+  updatePosition(dataSource, service, id?) {
     service.updatePosition(dataSource).subscribe(res => {
-      this.refreshTable();
+      this.refreshTable(id);
     });
   }
 

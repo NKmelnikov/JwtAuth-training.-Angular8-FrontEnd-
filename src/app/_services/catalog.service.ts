@@ -1,60 +1,43 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ErrorHandler} from '../_helpers/error.handler';
+import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {CatalogsInterface} from '../admin/catalogs/catalogs.interface';
-
-export class Catalog {
-  _id: object;
-  active: number;
-  position: number;
-  brandId: string;
-  catalogPdfPath: string;
-  catalogName: string;
-  createdAt: object;
-}
+import {Service} from './service';
 
 @Injectable({providedIn: 'root'})
-export class CatalogService {
-  constructor(private http: HttpClient) {
+export class CatalogService extends Service {
+  constructor(private injector: Injector) {
+    super(injector);
   }
 
-
-  getAll(): Observable<Catalog[]> {
-    return this.http.get<Catalog[]>(`${environment.serverURL}get-catalogs`);
+  getAll(): Observable<any[]> {
+    return super.getAll('get-catalogs');
   }
 
-  createCatalog(data: CatalogsInterface) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}create-catalog`, data);
+  create(data: CatalogsInterface) {
+    return super.create(data, 'create-catalog');
   }
 
-
-  updateCatalog(data: CatalogsInterface) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}update-catalog`, data);
+  update(data: CatalogsInterface) {
+    return super.create(data, 'update-catalog');
   }
 
-  deleteCatalog(data: CatalogsInterface) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}delete-catalog`, data);
+  delete(data: CatalogsInterface) {
+    return super.delete(data, 'delete-catalog');
   }
 
-  updateCatalogPosition(data: CatalogsInterface) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}update-catalog-position`, data);
-    // .pipe(
-    //   catchError(ErrorHandler.handleError('updateCatalogPosition', data))
-    // );
+  updatePosition(data: CatalogsInterface) {
+    return super.updatePosition(data, 'update-catalog-position');
   }
 
   bulkActivate(data: CatalogsInterface[]) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}bulk-activate-catalogs`, data);
+    return super.bulkActivate(data, 'bulk-activate-catalogs');
   }
 
   bulkDeactivate(data: CatalogsInterface[]) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}bulk-deactivate-catalogs`, data);
+    return super.bulkDeactivate(data, 'bulk-deactivate-catalogs');
   }
 
   bulkDelete(data: CatalogsInterface[]) {
-    return this.http.post<Catalog[]>(`${environment.serverURL}bulk-delete-catalogs`, data);
+    return super.bulkDelete(data, 'bulk-delete-catalogs');
   }
 }

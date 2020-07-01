@@ -1,10 +1,8 @@
 import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CatalogsInterface} from '../../../catalogs/catalogs.interface';
-import {UploadHelper} from '../../../../_helpers';
 import {environment} from '../../../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-subcategory-dialog',
@@ -15,14 +13,12 @@ export class SubcategoryDialogComponent implements OnInit {
 
   action: string;
   localData: any;
-  selectedValue: string;
   public ckEditorConfig;
   public Editor = ClassicEditor;
 
   constructor(
     public dialogRef: MatDialogRef<SubcategoryDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: CatalogsInterface,
-    public uploadHelper: UploadHelper
   ) {
     this.localData = {...data};
     this.action = this.localData.action;

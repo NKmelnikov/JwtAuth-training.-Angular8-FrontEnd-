@@ -28,7 +28,6 @@
   </div>
 </section>
 <br>
-<section *ngIf="editFlag" class="subCategory-modify-wrapper">
   <mat-toolbar color="primary" class="title-mat-toolbar">
     <h1>Подкатегории</h1>
   </mat-toolbar>
@@ -100,7 +99,7 @@
 
       <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.subCategoryName | slice:0: 20}} {{element.subCategoryName.length > 20 ? ' ...' : ''}}
+        {{element.subCategoryName | slice:0: 20}}
       </mat-cell>
     </ng-container>
 
@@ -134,5 +133,3 @@
     </mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</section>
-

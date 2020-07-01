@@ -1,61 +1,43 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {ErrorHandler} from '../_helpers/error.handler';
+import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {NewsInterface} from '../admin/news/news.interface';
-
-export class Post {
-  _id: object;
-  position: number;
-  active: number;
-  postImgPath: string;
-  postTitle: string;
-  postShortText: string;
-  postArticle: string;
-  createdAt: object;
-}
+import {Service} from './service';
 
 @Injectable({providedIn: 'root'})
-export class PostService {
-  constructor(private http: HttpClient) {
+export class PostService extends Service {
+  constructor(private injector: Injector) {
+    super(injector);
   }
 
-
-  getAll(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.serverURL}get-posts`);
+  getAll(): Observable<any[]> {
+    return super.getAll('get-posts');
   }
 
   create(data: NewsInterface) {
-    return this.http.post<Post[]>(`${environment.serverURL}create-post`, data);
+    return super.create(data, 'create-post');
   }
 
-
   update(data: NewsInterface) {
-    return this.http.post<Post[]>(`${environment.serverURL}update-post`, data);
+    return super.create(data, 'update-post');
   }
 
   delete(data: NewsInterface) {
-    return this.http.post<Post[]>(`${environment.serverURL}delete-post`, data);
+    return super.delete(data, 'delete-post');
   }
 
   updatePosition(data: NewsInterface) {
-    return this.http.post<Post[]>(`${environment.serverURL}update-post-position`, data);
-    // .pipe(
-    //   catchError(ErrorHandler.handleError('updatePostPosition', data))
-    // );
+    return super.updatePosition(data, 'update-post-position');
   }
 
   bulkActivate(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-activate-posts`, data);
+    return super.bulkActivate(data, 'bulk-activate-posts');
   }
 
   bulkDeactivate(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-deactivate-posts`, data);
+    return super.bulkDeactivate(data, 'bulk-deactivate-posts');
   }
 
   bulkDelete(data: NewsInterface[]) {
-    return this.http.post<Post[]>(`${environment.serverURL}bulk-delete-posts`, data);
+    return super.bulkDelete(data, 'bulk-delete-posts');
   }
 }
