@@ -52,8 +52,8 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   refreshTable() {
     this.news = this.postService.getAll()
       .subscribe(data => {
-        this.refreshTableRoutine();
         this.dataSource = new MatTableDataSource(data);
+        this.refreshTableRoutine();
       });
   }
 

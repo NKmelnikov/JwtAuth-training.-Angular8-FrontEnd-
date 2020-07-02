@@ -66,11 +66,19 @@ export abstract class AdminBaseComponent {
   drop(event: CdkDragDrop<string[]>, service, id?) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
+    console.log(id);
+    if (id) {
+      this.dataSource.data.push(id.id);
+    }
     this.updatePosition(this.dataSource.data, service, id);
   }
 
   onBulkActionChange($event, service, id?) {
     const selectedRows = this.selection.selected;
+    console.log(id);
+    if (id) {
+      selectedRows.push(id.id);
+    }
     switch ($event.value) {
       case 'activate':
         service.bulkActivate(selectedRows).subscribe(res => {
@@ -90,7 +98,7 @@ export abstract class AdminBaseComponent {
     }
   }
 
-  openDialog(action, obj, service, dialogComponent, id = null) {
+  openDialog(action, obj, service, dialogComponent, id?) {
     obj = obj || {};
     obj.action = action;
     const dialogRef = this.dialog.open(dialogComponent, {
@@ -100,8 +108,8 @@ export abstract class AdminBaseComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (id !== null) {
-        result.data.id = id;
+      if (id) {
+        result.data.id = id.id;
       }
 
       if (result.event === 'Create') {

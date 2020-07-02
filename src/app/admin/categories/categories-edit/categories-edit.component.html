@@ -107,7 +107,7 @@
     <ng-container matColumnDef="subCategoryDescription">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.subCategoryDescription | slice:0: 20}} {{element.subCategoryDescription.length > 20 ? ' ...' : ''}}
+        {{element.subCategoryDescription | slice:0: 20}}
       </mat-cell>
     </ng-container>
 

@@ -50,8 +50,8 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
   refreshTable() {
     this.catalogs = this.catalogService.getAll()
       .subscribe(data => {
-        this.refreshTableRoutine();
         this.dataSource = new MatTableDataSource(data);
+        this.refreshTableRoutine();
         this.brandService.getAll().subscribe(brandList => {
           this.brandList = {brandList};
           this.dataSource.data.forEach((el) => {

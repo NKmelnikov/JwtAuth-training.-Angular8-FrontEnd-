@@ -1,13 +1,20 @@
-import {Component, Injector, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Injector, OnInit, ViewChild} from '@angular/core';
 import {environment} from '../../../../environments/environment';
+import {UploadHelper} from '../../../_helpers';
+import {CategoryService, SubCategoryService} from '../../../_services';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
+import {CategoriesInterface} from '../categories.interface';
+import {Location} from '@angular/common';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
+import {SelectionModel} from '@angular/cdk/collections';
+import clonedeep from 'lodash.clonedeep';
 import {SubcategoryDialogComponent} from './subcategory-dialog/subcategory-dialog.component';
 import {AdminBaseComponent} from '../../admin.base-component';
-import {CategoriesInterface} from '../categories.interface';
 import {SubCategoriesInterface} from './subcategories.interface';
+
 
 @Component({
   selector: 'app-categories-edit',
@@ -16,6 +23,7 @@ import {SubCategoriesInterface} from './subcategories.interface';
 })
 export class CategoriesEditComponent extends AdminBaseComponent implements OnInit {
 
+  public categoryById;
   public active;
   public categoryName;
   public categoryDescription;
@@ -40,30 +48,26 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
   };
 
   public preloadData = [{
-    sub_id: {$oid: 'noData'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    subCategoryName: '/noData',
-    subCategoryDescription: 'noData',
-    subCategories: []
+    sub_id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
+    position: 1, active: 0, subCategoryName: '/noData',
+    subCategoryDescription: 'noData', subCategories: []
   }];
-
+  public dataSource;
   public displayedColumns: string[] = [
-    'select',
-    'position',
-    'active',
-    'subCategoryName',
-    'subCategoryDescription',
-    'createdAt',
-    'action'
+    'select', 'position', 'active',
+    'subCategoryName', 'subCategoryDescription',
+    'createdAt', 'action'
   ];
+  public selection = new SelectionModel(true, []);
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild('table', {static: true}) table: MatTable<CategoriesInterface>;
+
 
   constructor(private injector: Injector) {
     super(injector);
   }
-
-  @ViewChild('table', {static: true}) table: MatTable<SubCategoriesInterface>;
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
@@ -84,31 +88,26 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
   }
 
   refreshTable(categoryId) {
-    categoryId = (typeof categoryId === 'string') ? {id: this.categoryId.id} :  categoryId ;
-    // @ts-ignore
-    this.categoryService.getCategoryById(categoryId)
-      .subscribe(data => {
-        // @ts-ignore
-        this.category = data;
-        this.refreshTableRoutine();
-        // @ts-ignore
-        this.dataSource = new MatTableDataSource(data.subCategories);
-        setTimeout(() => this.dataSource.paginator = this.paginator);
-        setTimeout(() => this.dataSource.sort = this.sort);
-      });
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    this.dataSource.data.push(this.categoryId.id);
-    super.drop(event, this.subcategoryService, this.categoryId.id);
-  }
-
-  onBulkActionChange($event) {
-    super.onBulkActionChange($event, this.subcategoryService);
+    this.categoryService.getCategoryById(categoryId).subscribe(data => {
+      // @ts-ignore
+      this.category = data;
+      console.log(data);
+      // @ts-ignore
+      this.dataSource = new MatTableDataSource(data.subCategories);
+      this.refreshTableRoutine();
+    });
   }
 
   openDialog(action, obj?) {
-    super.openDialog(action, obj, this.subcategoryService, SubcategoryDialogComponent, this.categoryId.id);
+    super.openDialog(action, obj, this.subcategoryService, SubcategoryDialogComponent, this.categoryId);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    super.drop(event, this.subcategoryService, this.categoryId);
+  }
+
+  onBulkActionChange($event) {
+    super.onBulkActionChange($event, this.subcategoryService, this.categoryId);
   }
 
   back() {

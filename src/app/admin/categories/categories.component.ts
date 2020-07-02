@@ -49,8 +49,8 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
   refreshTable() {
     this.categories = this.categoryService.getAll()
       .subscribe(data => {
-        this.refreshTableRoutine();
         this.dataSource = new MatTableDataSource(data);
+        this.refreshTableRoutine();
       });
   }
 
