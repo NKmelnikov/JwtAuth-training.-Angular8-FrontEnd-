@@ -1,111 +1,89 @@
-<!--<mat-toolbar color="primary" class="title-mat-toolbar">-->
-<!--  <h1>Продукты (Масла)</h1>-->
-<!--</mat-toolbar>-->
-<!--<mat-toolbar class="option-mat-toolbar">-->
-<!--  <nav>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Массовые функции</mat-label>-->
-<!--      <mat-select [(value)]="bulkAction" (selectionChange)="onBulkActionChange($event)">-->
-<!--        <mat-option>нет</mat-option>-->
-<!--        <mat-option value="activate">Активировать</mat-option>-->
-<!--        <mat-option value="deactivate">Деактивировать</mat-option>-->
-<!--        <mat-option value="delete">Удалить</mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
-<!--  </nav>-->
-<!--  <nav>-->
-<!--    <mat-form-field>-->
-<!--      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Поиск">-->
-<!--    </mat-form-field>-->
-<!--  </nav>-->
-<!--  <nav>-->
-<!--    <button (click)="openDialog('Create', this.brandList)" mat-mini-fab color="warn">-->
-<!--      <span class="material-icons">add</span>-->
-<!--    </button>-->
-<!--  </nav>-->
-<!--</mat-toolbar>-->
-<!--<mat-table-->
-<!--  class="mat-elevation-z8"-->
-<!--  cdkDropList-->
-<!--  matSort-->
-<!--  #table-->
-<!--  [dataSource]="dataSource"-->
-<!--  [cdkDropListData]="dataSource.data"-->
-<!--  (cdkDropListDropped)="drop($event)"-->
-<!--&gt;-->
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>Заголовок</mat-label>
+        <input matInput [(ngModel)]="localData.productName" width="100%" placeholder="например, Масло">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
+        <mat-option *ngFor="let brand of localData[0].brandList" [value]="brand">
+          {{ brand.brandName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <br>
+    <p>
+      <mat-select placeholder="Категория" [(ngModel)]="selectedValueCategory" (selectionChange)="categorySelectChange($event.value)">
+        <mat-option *ngFor="let category of localData[1].categoryList" [value]="category">
+          {{ category.categoryName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <br>
+    <p *ngIf="localData.category">
+      <mat-select placeholder="Подкатегория" [(ngModel)]="selectedValueSubCategory" (selectionChange)="subcategorySelectChange($event.value)">
+        <mat-option *ngFor="let subcategory of localData.category.subCategories" [value]="subcategory">
+          {{ subcategory.subCategoryName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <p>
+      <mat-label>Статья целиком</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productDescription"></ckeditor>
+    </p>
+    <p>
+      <mat-label>Статья целиком</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productSpec"></ckeditor>
+    </p>
+    <form>
+      <div class="form-group img-upload-wrapper">
+        <fieldset class="form-group">
+          <label>Загрузить обложку</label>
+          {{imageError}}
+          <div class="custom-file fileInputProfileWrap">
+            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+            <div class="img-space">
 
-<!--  &lt;!&ndash; Checkbox Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="select">-->
-<!--    <mat-header-cell *matHeaderCellDef>-->
-<!--      <mat-checkbox (change)="$event ? masterToggle() : null"-->
-<!--                    [checked]="selection.hasValue() && isAllSelected()"-->
-<!--                    [indeterminate]="selection.hasValue() && !isAllSelected()"-->
-<!--                    [aria-label]="checkboxLabel()">-->
-<!--      </mat-checkbox>-->
-<!--    </mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let row">-->
-<!--      <mat-checkbox (click)="$event.stopPropagation()"-->
-<!--                    (change)="$event ? selection.toggle(row) : null"-->
-<!--                    [checked]="selection.isSelected(row)"-->
-<!--                    [aria-label]="checkboxLabel(row)">-->
-<!--      </mat-checkbox>-->
-<!--    </mat-cell>-->
-<!--  </ng-container>-->
+              <ng-container *ngIf="isImageSaved; else elseTemplate">
+                <img [src]="cardImageBase64"/>
+              </ng-container>
+              <ng-template #elseTemplate>
 
-<!--  &lt;!&ndash; Position Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="position">-->
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element">{{element.position}} </mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; active Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="active">-->
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> Активен</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; brand name Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="brandName">-->
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> Брэнд</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element">-->
-<!--      <span *ngFor="let brand of element.brands">{{ brand.brandName }}</span>-->
-<!--    </mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; name Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="catalogName">-->
-
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element">-->
-<!--      {{element.catalogName | slice:0: 15}} {{element.catalogName.length > 15 ? ' ...' : ''}}</mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; pdf Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="catalogPdfPath">-->
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> Путь к файлу</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element"> {{element.catalogPdfPath | slice:22: 42}} {{element.catalogPdfPath.length > 20 ? ' ...' : ''}}</mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; date Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="createdAt">-->
-<!--    <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element"> {{element.createdAt.$date | date:'dd/MM/yyyy'}} </mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  &lt;!&ndash; Action Column &ndash;&gt;-->
-<!--  <ng-container matColumnDef="action">-->
-<!--    <mat-header-cell *matHeaderCellDef> Опции</mat-header-cell>-->
-<!--    <mat-cell *matCellDef="let element" class="action-link">-->
-<!--      <a (click)="openDialog('Update',element)"><span class="table-row-action edit material-icons"> edit </span></a>-->
-<!--      <a (click)="openDialog('Delete',element)"><span class="table-row-action delete material-icons"> delete </span></a>-->
-<!--    </mat-cell>-->
-<!--  </ng-container>-->
-
-<!--  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-<!--  <mat-row *matRowDef="let row; columns: displayedColumns;"-->
-<!--           cdkDrag-->
-<!--           (click)="selection.toggle(row)">-->
-<!--  </mat-row>-->
-<!--</mat-table>-->
-<!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
-<h1>aa</h1>
+                <img src="assets/img/photo-placeholder-icon-0.jpg" class="img-responsive">
+              </ng-template>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button mat-button (click)="removeImage()" *ngIf="isImageSaved" color="warn">Удалить обложку</button>
+      <br>
+    </form>
+    <p>
+      <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'productPdf1Path', 'productPdf1Name')" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.productPdf1Path" placeholder="Загрузить .pdf">
+      <button mat-mini-fab color="primary" (click)="pdfInput.click()">
+        <span class="material-icons">attach_file</span>
+      </button>
+    </p>
+    <p>
+      <input #pdfInput2 hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'productPdf2Path', 'productPdf2Name')" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.productPdf2Path" placeholder="Загрузить .pdf">
+      <button mat-mini-fab color="primary" (click)="pdfInput2.click()">
+        <span class="material-icons">attach_file</span>
+      </button>
+    </p>
+    <p>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активная новость</mat-slide-toggle>
+    </p>
+  </div>
+  <ng-template #elseTemplate>
+    Уверен в удалении <b>{{localData.postTitle}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+</div>

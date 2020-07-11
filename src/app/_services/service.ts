@@ -2,7 +2,6 @@ import {Injectable, Injector} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
-import {PostService} from './post.service';
 
 @Injectable({providedIn: 'root'})
 export abstract class Service {

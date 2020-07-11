@@ -66,7 +66,6 @@ export abstract class AdminBaseComponent {
   drop(event: CdkDragDrop<string[]>, service, id?) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
-    console.log(id);
     if (id) {
       this.dataSource.data.push(id.id);
     }
@@ -75,7 +74,6 @@ export abstract class AdminBaseComponent {
 
   onBulkActionChange($event, service, id?) {
     const selectedRows = this.selection.selected;
-    console.log(id);
     if (id) {
       selectedRows.push(id.id);
     }
