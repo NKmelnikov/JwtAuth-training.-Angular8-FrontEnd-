@@ -1,13 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef, Injector} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
-import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
-import {BrandService, CategoryService, ProductOilService} from '../../_services';
-import clonedeep from 'lodash.clonedeep';
-import {SelectionModel} from '@angular/cdk/collections';
+import {Component, OnInit, ViewChild, Injector} from '@angular/core';
+import {MatTableDataSource, MatTable} from '@angular/material';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {ProductsOilDialogComponent} from './products-oil-dialog/products-oil-dialog.component';
 import {ProductsOilInterface} from './products-oil.interface';
 import {AdminBaseComponent} from '../admin.base-component';
-import {BrandsDialogComponent} from '../brands/brands-dialog/brands-dialog.component';
 
 @Component({
   selector: 'app-products-oil',
@@ -69,12 +65,6 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
     this.products = this.productOilService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
-        //
-        // this.dataSource.data[0].category.subCategories.forEach((el) => {
-        //   if (el.sub_id.$oid === this.dataSource.data[0].subCategory_id.$oid) {
-        //     this.dataSource.data[0].subcategory = el;
-        //   }
-        // });
 
         super.refreshTableRoutine();
 

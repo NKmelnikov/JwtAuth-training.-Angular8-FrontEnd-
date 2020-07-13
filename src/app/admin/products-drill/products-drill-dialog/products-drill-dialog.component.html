@@ -1,1 +1,55 @@
-<p>products-drill-dialog works!</p>
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>Заголовок</mat-label>
+        <input matInput [(ngModel)]="localData.productName" width="100%" placeholder="например, Масло">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
+        <mat-option *ngFor="let brand of localData[0].brandList" [value]="brand">
+          {{ brand.brandName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <br>
+    <p>
+      <mat-select placeholder="Категория" [(ngModel)]="selectedValueCategory" (selectionChange)="categorySelectChange($event.value)">
+        <mat-option *ngFor="let category of localData[1].categoryList" [value]="category">
+          {{ category.categoryName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <br>
+    <p *ngIf="localData.category">
+      <mat-select placeholder="Подкатегория" [(ngModel)]="selectedValueSubCategory" (selectionChange)="subcategorySelectChange($event.value)">
+        <mat-option *ngFor="let subcategory of localData.category.subCategories" [value]="subcategory">
+          {{ subcategory.subCategoryName }}
+        </mat-option>
+      </mat-select>
+    </p>
+    <p>
+      <mat-label>Описание продукта</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productDescription"></ckeditor>
+    </p>
+    <p>
+      <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'productPdfPath', 'productPdfName')" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.productPdfPath" placeholder="Загрузить .pdf">
+      <button mat-mini-fab color="primary" (click)="pdfInput.click()">
+        <span class="material-icons">attach_file</span>
+      </button>
+    </p>
+    <p>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активная новость</mat-slide-toggle>
+    </p>
+  </div>
+  <ng-template #elseTemplate>
+    Уверен в удалении <b>{{localData.postTitle}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+</div>

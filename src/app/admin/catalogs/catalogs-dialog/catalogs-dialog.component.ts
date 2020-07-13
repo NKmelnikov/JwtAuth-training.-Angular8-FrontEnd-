@@ -24,6 +24,7 @@ export class CatalogsDialogComponent implements OnInit {
     public uploadHelper: UploadHelper
   ) {
     this.localData = {...data};
+    this.localData.active = 1;
     this.action = this.localData.action;
   }
 

@@ -21,6 +21,7 @@ export class SubcategoryDialogComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: CatalogsInterface,
   ) {
     this.localData = {...data};
+    this.localData.active = 1;
     this.action = this.localData.action;
   }
 

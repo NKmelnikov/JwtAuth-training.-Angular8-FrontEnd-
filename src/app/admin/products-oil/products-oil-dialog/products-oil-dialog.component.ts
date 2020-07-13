@@ -32,6 +32,7 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   ) {
     super(injector);
     this.localData = {...data};
+    this.localData.active = 1;
     this.action = this.localData.action;
   }
 
