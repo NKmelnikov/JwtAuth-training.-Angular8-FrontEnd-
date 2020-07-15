@@ -19,6 +19,12 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
 import {CatalogsHomeComponent} from './home/catalogs/catalogs.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ProductsComponent} from './home/products/products.component';
+import {AboutComponent} from './home/about/about.component';
+import {ServicesComponent} from './home/services/services.component';
+import {NewsHomeComponent} from './home/news/news.component';
+import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
+import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 
 
 @NgModule({
@@ -30,6 +36,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     WelcomeComponent,
     MainComponent,
     CatalogsHomeComponent,
+    ProductsComponent,
+    AboutComponent,
+    NewsHomeComponent,
+    ServicesComponent,
+    ProductsDrillHomeComponent,
+    ProductsOilHomeComponent,
+    NewsHomeComponent,
+    ProductsOilHomeComponent,
+    ProductsDrillHomeComponent,
   ],
   imports: [
     BrowserModule,
