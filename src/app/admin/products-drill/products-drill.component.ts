@@ -12,6 +12,8 @@ import {ProductsDrillDialogComponent} from './products-drill-dialog/products-dri
 })
 export class ProductsDrillComponent extends AdminBaseComponent implements OnInit {
 
+  readonly typeDrill = 2;
+
   constructor(private injector: Injector) {
     super(injector);
   }
@@ -75,7 +77,12 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
             el.categoryList = categoryList;
           });
 
-          this.dropDownData = [{...this.brandList}, {...this.categoryList}];
+          this.dropDownData = {
+            brandList: this.brandList.brandList,
+            categoryList: this.categoryList.categoryList.filter((el) => {
+              return el.categoryType === this.typeDrill;
+            })
+          };
         });
       });
   }

@@ -9,7 +9,7 @@
     </p>
     <p>
       <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
-        <mat-option *ngFor="let brand of localData[0].brandList" [value]="brand">
+        <mat-option *ngFor="let brand of localData.brandList" [value]="brand">
           {{ brand.brandName }}
         </mat-option>
       </mat-select>
@@ -17,7 +17,7 @@
     <br>
     <p>
       <mat-select placeholder="Категория" [(ngModel)]="selectedValueCategory" (selectionChange)="categorySelectChange($event.value)">
-        <mat-option *ngFor="let category of localData[1].categoryList" [value]="category">
+        <mat-option *ngFor="let category of localData.categoryList" [value]="category">
           {{ category.categoryName }}
         </mat-option>
       </mat-select>
@@ -31,11 +31,11 @@
       </mat-select>
     </p>
     <p>
-      <mat-label>Статья целиком</mat-label>
+      <mat-label>Описание продукта</mat-label>
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productDescription"></ckeditor>
     </p>
     <p>
-      <mat-label>Статья целиком</mat-label>
+      <mat-label>Спецификация</mat-label>
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productSpec"></ckeditor>
     </p>
     <form>

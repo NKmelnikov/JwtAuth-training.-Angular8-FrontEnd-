@@ -12,6 +12,8 @@ import {AdminBaseComponent} from '../admin.base-component';
 })
 export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
 
+  readonly typeOil = 1;
+
   constructor(private injector: Injector) {
     super(injector);
   }
@@ -81,11 +83,15 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
             el.categoryList = categoryList;
           });
 
-          this.dropDownData = [{...this.brandList}, {...this.categoryList}];
+          this.dropDownData = {
+            brandList: this.brandList.brandList,
+            categoryList: this.categoryList.categoryList.filter((el) => {
+              return el.categoryType === this.typeOil;
+            })
+          };
         });
 
 
-        console.log(this.dataSource.data[0]);
       });
   }
 

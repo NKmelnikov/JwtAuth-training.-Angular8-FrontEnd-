@@ -9,11 +9,19 @@
     <div class="first-section-goToProduct-sector">
       <div class="first-section-goToProduct-sector__left goToProduct-sector-item">
         <div class="title-box title-box-left">Продажа <br>металлорежущего инструмента и оснастки</div>
-        <a class="goToProduct-btn goToProduct-btn-left" href="">Перейти в раздел</a>
+        <a
+          mat-list-item routerLinkActive="list-item-active"
+          class="goToProduct-btn goToProduct-btn-left"
+          routerLink="/products/drill"
+        >Перейти в раздел</a>
       </div>
       <div class="first-section-goToProduct-sector__right goToProduct-sector-item">
         <div class="title-box title-box-right">Продажа <br> высококачественных смазочных материалов</div>
-        <a class="goToProduct-btn goToProduct-btn-right" href="">Перейти в раздел</a>
+        <a
+          mat-list-item routerLinkActive="list-item-active"
+          class="goToProduct-btn goToProduct-btn-left"
+          routerLink="/products/oil"
+        >Перейти в раздел</a>
       </div>
     </div>
   </section>
