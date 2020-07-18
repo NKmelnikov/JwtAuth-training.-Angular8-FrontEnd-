@@ -4,6 +4,8 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {ProductsOilDialogComponent} from './products-oil-dialog/products-oil-dialog.component';
 import {ProductsOilInterface} from './products-oil.interface';
 import {AdminBaseComponent} from '../admin.base-component';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-products-oil',
@@ -24,6 +26,7 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
   public dropDownData;
 
   public preloadData = [{
+    productImgPath: environment.serverURL + 'files/img/default.jpg',
     _id: {$oid: 'noData'},
     createdAt: {$date: 111111111111111},
     position: 1,
@@ -31,27 +34,24 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
     brand: {brandName: 'noData'},
     category: {categoryName: 'noData'},
     subcategory: {subCategoryName: 'noData'},
+    productSlug: 'noData',
     productName: 'noData',
     productDescription: 'noData',
     productSpec: 'noData',
-    productImgPath: 'noData',
     productPdf1Path: 'noData',
     productPdf2Path: '/noData'
   }];
 
   public displayedColumns: string[] = [
     'select',
+    'productImgPath',
+    'productName',
     'position',
     'active',
     'brand',
     'category',
     'subcategory',
-    'productName',
-    'productDescription',
-    'productSpec',
-    'productImgPath',
-    'productPdf1Path',
-    'productPdf2Path',
+    'productSlug',
     'createdAt',
     'action'
   ];
@@ -68,6 +68,10 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
 
+        this.dataSource.data.map((el) => {
+          el.productImgPath = `${environment.serverURL}${el.productImgPath}`;
+        });
+
         super.refreshTableRoutine();
 
         this.brandService.getAll().subscribe(brandList => {
@@ -75,23 +79,21 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
           this.dataSource.data.forEach((el) => {
             el.brandList = brandList;
           });
-        });
 
-        this.categoryService.getAll().subscribe(categoryList => {
-          this.categoryList = {categoryList};
-          this.dataSource.data.forEach((el) => {
-            el.categoryList = categoryList;
+          this.categoryService.getAll().subscribe(categoryList => {
+            this.categoryList = {categoryList};
+            this.dataSource.data.forEach((el) => {
+              el.categoryList = categoryList;
+            });
+
+            this.dropDownData = {
+              brandList: this.brandList.brandList,
+              categoryList: this.categoryList.categoryList.filter((el) => {
+                return el.categoryType === this.typeOil;
+              })
+            };
           });
-
-          this.dropDownData = {
-            brandList: this.brandList.brandList,
-            categoryList: this.categoryList.categoryList.filter((el) => {
-              return el.categoryType === this.typeOil;
-            })
-          };
         });
-
-
       });
   }
 

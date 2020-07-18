@@ -52,6 +52,24 @@
     </mat-cell>
   </ng-container>
 
+  <!-- pdf Column -->
+  <ng-container matColumnDef="productImgPath">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Картинка</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <img src="{{element.productImgPath }}" height="40px;" alt="">
+    </mat-cell>
+  </ng-container>
+
+  <!-- pdf Column -->
+  <ng-container matColumnDef="productName">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Название продукта</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="font-size-10">
+              {{element.productName }}
+      </span>
+    </mat-cell>
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
@@ -83,39 +101,9 @@
   </ng-container>
 
   <!-- pdf Column -->
-  <ng-container matColumnDef="productName">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Название продукта </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productName }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="productDescription">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Описание </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productDescription }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="productSpec">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Спецификация </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productSpec }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="productImgPath">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Картинка </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productImgPath }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="productPdf1Path">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Pdf.1 </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productPdf1Path }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="productPdf2Path">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Pdf.2 </mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.productPdf2Path }}</mat-cell>
+  <ng-container matColumnDef="productSlug">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> окончание URL </mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.productSlug }}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

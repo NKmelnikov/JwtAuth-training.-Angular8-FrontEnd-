@@ -25,6 +25,8 @@ import {ServicesComponent} from './home/services/services.component';
 import {NewsHomeComponent} from './home/news/news.component';
 import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
 import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
+import { ProductsOilItemComponent } from './home/products-oil/products-oil-item/products-oil-item.component';
+import { ProductsDrillItemComponent } from './home/products-drill/products-drill-item/products-drill-item.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.c
     NewsHomeComponent,
     ProductsOilHomeComponent,
     ProductsDrillHomeComponent,
+    ProductsOilItemComponent,
+    ProductsDrillItemComponent,
   ],
   imports: [
     BrowserModule,
