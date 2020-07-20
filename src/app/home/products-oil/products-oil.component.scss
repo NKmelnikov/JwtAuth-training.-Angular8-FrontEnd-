@@ -59,4 +59,13 @@
 
   .category-header {
   }
+
+  .content-container{
+    border: 1px solid black;
+    @extend %fsb;
+
+    .navigation-container{
+
+    }
+  }
 }

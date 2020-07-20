@@ -33,13 +33,32 @@
     <div class="category-header">
       <h2>Индустриальные масла</h2>
     </div>
-    <div class="content-container">
-      <aside class="navigation-container"></aside>
+    <div class="content-container container">
+      <aside class="navigation-container">
+        <mat-accordion *ngFor="let category of categoryList" (click)="selectCategory(category)">
+          <mat-expansion-panel (closed)="isExpansionPanelClosed()">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ category.categoryName }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="sub-categories" *ngFor="let subcategory of category.subCategories" (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
+              {{subcategory.subCategoryName}}
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </aside>
       <div class="product-wrapper">
-        <div class="brand-container"></div>
-        <div class="Title"></div>
+        <div class="brand-container" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
+          {{ brand.brandName }}
+        </div>
+        <br>
+        <br>
+        <br>
         <div class="product-container">
-
+          <div class="product" *ngFor="let product of productsToShow" (click)="selectProductsOil(product)">
+            {{product.productName}}
+          </div>
         </div>
       </div>
     </div>

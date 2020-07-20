@@ -19,6 +19,5 @@ export class HeaderComponent implements OnInit {
 
   toggleActive() {
     this.activeEvent.emit(this.active = !this.active);
-    console.log(this.active);
   }
 }
