@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BrandService, CategoryService, ProductOilService} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
 
@@ -14,10 +14,10 @@ export class ProductsOilHomeComponent implements OnInit {
   public productsOilList;
   public productsToShow;
   public expanded;
-  public prodTemp;
+  public selectedBrand;
+  public selectedCategory;
 
-  @ViewChild(MatAccordion) accordion: MatAccordion;
-
+  @ViewChild('accordion') accordion: MatAccordion;
 
   constructor(
     private categoryService: CategoryService,
@@ -40,14 +40,14 @@ export class ProductsOilHomeComponent implements OnInit {
       });
   }
 
-  getBrandList(){
+  getBrandList() {
     this.brandService.getAll()
       .subscribe(brandService => {
         this.brandList = brandService;
       });
   }
 
-  getProductsOilList(){
+  getProductsOilList() {
     this.productOilService.getAll()
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
@@ -57,17 +57,25 @@ export class ProductsOilHomeComponent implements OnInit {
 
 
   selectCategory(category) {
-
-    this.productsToShow = this.productsOilList;
-    this.productsToShow = this.productsToShow.filter((el) => {
-      return el.category._id.$oid === category._id.$oid;
-    });
-
-    // console.log(this.accordion);
-    // console.log(this.productsOilList);
+    if (this.selectedCategory === category.categoryName) {
+      this.productsToShow = this.productsOilList;
+    } else {
+      this.selectedCategory = category.categoryName;
+      this.productsToShow = this.productsOilList;
+      this.productsToShow = this.productsToShow.filter((el) => {
+        return el.category._id.$oid === category._id.$oid;
+      });
+    }
   }
 
   selectSubCategory(subcategory) {
+    const subcategoriesDOM = document.querySelectorAll('.sub-categories');
+    // remove active class from all subcategories
+    [].forEach.call(subcategoriesDOM, (el) => {
+      el.className = el.className.replace(/\bactive\b/, '');
+    });
+
+    subcategory.activeClass = true;
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
       return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid;
@@ -75,18 +83,32 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectBrand(brand) {
-    // console.log(brand);
+    if (this.selectedBrand === brand.brandName) {
+      this.productsToShow = this.productsOilList;
+    } else {
+      this.selectedBrand = brand.brandName;
+      this.productsToShow = this.productsOilList;
+      this.productsToShow = this.productsToShow.filter((el) => {
+        return el.brand._id.$oid === brand._id.$oid;
+      });
+    }
   }
+
+  // performSelection(entity, selectedEntity) {
+  //   if (selectedEntity === entity[`${entity}Name`]) {
+  //     this.productsToShow = this.productsOilList;
+  //   } else {
+  //     if(selectedEntity){
+  //     }
+  //     selectedEntity = entity[`${entity}Name`];
+  //     this.productsToShow = this.productsOilList;
+  //     this.productsToShow = this.productsToShow.filter((el) => {
+  //       return el[entity]._id.$oid === entity._id.$oid;
+  //     });
+  //   }
+  // }
 
   selectProductsOil(product) {
-    // console.log(product);
-  }
-
-  trackExpanded($event){
-    // console.log($event);
-  }
-
-  isExpansionPanelClosed(){
-    this.getProductsOilList();
+    console.log(product);
   }
 }

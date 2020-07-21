@@ -35,14 +35,18 @@
     </div>
     <div class="content-container container">
       <aside class="navigation-container">
-        <mat-accordion *ngFor="let category of categoryList" (click)="selectCategory(category)">
-          <mat-expansion-panel (closed)="isExpansionPanelClosed()">
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let category of categoryList" (click)="selectCategory(category)">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ category.categoryName }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="sub-categories" *ngFor="let subcategory of category.subCategories" (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
+            <div
+              class="sub-categories"
+              *ngFor="let subcategory of category.subCategories"
+              [ngClass]="{'active': subcategory.activeClass === true} "
+              (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
               {{subcategory.subCategoryName}}
             </div>
           </mat-expansion-panel>
