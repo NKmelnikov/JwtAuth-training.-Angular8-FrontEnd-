@@ -36,24 +36,34 @@
     <div class="content-container container">
       <aside class="navigation-container">
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let category of categoryList" (click)="selectCategory(category)">
+          <mat-expansion-panel
+            *ngFor="let category of categoryList"
+            (click)="selectCategory(category)"
+            [ngClass]="{'active': category.activeClass === true}"
+          >
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ category.categoryName }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div
-              class="sub-categories"
-              *ngFor="let subcategory of category.subCategories"
-              [ngClass]="{'active': subcategory.activeClass === true} "
-              (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
-              {{subcategory.subCategoryName}}
+            <div class="sub-categories">
+              <div
+                class="sub-categories-item"
+                *ngFor="let subcategory of category.subCategories"
+                [ngClass]="{'active': subcategory.activeClass === true}"
+                (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
+                {{subcategory.subCategoryName}}
+              </div>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
       </aside>
       <div class="product-wrapper">
-        <div class="brand-container" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
+        <div class="brand-container"
+             *ngFor="let brand of brandList"
+             [ngClass]="{'active': brand.activeClass === true}"
+             (click)="selectBrand(brand)"
+        >
           {{ brand.brandName }}
         </div>
         <br>

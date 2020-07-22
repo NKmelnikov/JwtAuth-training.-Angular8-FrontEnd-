@@ -60,12 +60,45 @@
   .category-header {
   }
 
-  .content-container{
+  .content-container {
     border: 1px solid black;
     @extend %fsb;
+    align-items: flex-start;
 
-    .navigation-container{
+    .navigation-container {
 
+      .mat-expansion-panel {
+        margin-bottom: 5px;
+      }
+
+      .mat-expansion-panel-header {
+        background: $main-color2;
+      }
+
+      & .mat-expanded .mat-expansion-panel-header  {
+        background: $main-color1;
+      }
+
+      .mat-expansion-panel-header-title {
+        color: white;
+      }
+
+      ::ng-deep .mat-expansion-indicator:after {
+        color: white;
+      }
+
+      ::ng-deep .mat-expansion-panel-body{
+        padding: 5px;
+
+        .sub-categories-item {
+          cursor: pointer;
+          margin: 10px 0;
+
+          &.active {
+            color: $main-color1;
+          }
+        }
+      }
     }
   }
 }

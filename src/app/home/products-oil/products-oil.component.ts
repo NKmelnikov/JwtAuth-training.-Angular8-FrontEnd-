@@ -57,6 +57,7 @@ export class ProductsOilHomeComponent implements OnInit {
 
 
   selectCategory(category) {
+    this.toggleActive('.mat-expansion-panel', category);
     if (this.selectedCategory === category.categoryName) {
       this.productsToShow = this.productsOilList;
     } else {
@@ -69,13 +70,7 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectSubCategory(subcategory) {
-    const subcategoriesDOM = document.querySelectorAll('.sub-categories');
-    // remove active class from all subcategories
-    [].forEach.call(subcategoriesDOM, (el) => {
-      el.className = el.className.replace(/\bactive\b/, '');
-    });
-
-    subcategory.activeClass = true;
+    this.toggleActive('.sub-categories-item', subcategory);
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
       return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid;
@@ -83,6 +78,7 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectBrand(brand) {
+    this.toggleActive('.brand-container', brand);
     if (this.selectedBrand === brand.brandName) {
       this.productsToShow = this.productsOilList;
     } else {
@@ -92,6 +88,20 @@ export class ProductsOilHomeComponent implements OnInit {
         return el.brand._id.$oid === brand._id.$oid;
       });
     }
+  }
+
+  toggleActive(elementClass, element) {
+    console.log(elementClass);
+    console.log(element);
+    console.log(this.categoryList);
+    // TODO active subcategory bug
+    const subcategoriesDOM = document.querySelectorAll(elementClass);
+    // remove active class from all subcategories
+    [].forEach.call(subcategoriesDOM, (el) => {
+      el.className = el.className.replace(/\bactive\b/, '');
+    });
+
+    element.activeClass = true;
   }
 
   // performSelection(entity, selectedEntity) {
