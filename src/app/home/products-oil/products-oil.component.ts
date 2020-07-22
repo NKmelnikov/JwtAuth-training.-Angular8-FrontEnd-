@@ -16,6 +16,7 @@ export class ProductsOilHomeComponent implements OnInit {
   public expanded;
   public selectedBrand;
   public selectedCategory;
+  public selectedIndex;
 
   @ViewChild('accordion') accordion: MatAccordion;
 
@@ -57,8 +58,14 @@ export class ProductsOilHomeComponent implements OnInit {
 
 
   selectCategory(category) {
-    this.toggleActive('.mat-expansion-panel', category);
-    if (this.selectedCategory === category.categoryName) {
+    const expansionDOM = document.getElementById(category._id.$oid);
+    const isExpanded = expansionDOM.classList.contains('mat-expanded');
+
+    category.subCategories.forEach(el => {
+      el.activeClass = false;
+    });
+
+    if (this.selectedCategory === category.categoryName && !isExpanded) {
       this.productsToShow = this.productsOilList;
     } else {
       this.selectedCategory = category.categoryName;
@@ -69,8 +76,14 @@ export class ProductsOilHomeComponent implements OnInit {
     }
   }
 
-  selectSubCategory(subcategory) {
-    this.toggleActive('.sub-categories-item', subcategory);
+  selectSubCategory(subcategory, list) {
+    const expansionDOM = document.getElementById(subcategory.sub_id.$oid);
+
+    list.forEach(el => {
+      el.activeClass = false;
+    });
+
+    subcategory.activeClass = true;
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
       return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid;
@@ -79,6 +92,7 @@ export class ProductsOilHomeComponent implements OnInit {
 
   selectBrand(brand) {
     this.toggleActive('.brand-container', brand);
+    // TODO THIS active by brand and start styling
     if (this.selectedBrand === brand.brandName) {
       this.productsToShow = this.productsOilList;
     } else {
@@ -90,18 +104,12 @@ export class ProductsOilHomeComponent implements OnInit {
     }
   }
 
-  toggleActive(elementClass, element) {
-    console.log(elementClass);
-    console.log(element);
-    console.log(this.categoryList);
-    // TODO active subcategory bug
-    const subcategoriesDOM = document.querySelectorAll(elementClass);
-    // remove active class from all subcategories
-    [].forEach.call(subcategoriesDOM, (el) => {
-      el.className = el.className.replace(/\bactive\b/, '');
+  toggleActive(element, list) {
+    list.forEach(el => {
+      el.activeClass = false;
     });
 
-    element.activeClass = true;
+    element.activeClass = !element.activeClass;
   }
 
   // performSelection(entity, selectedEntity) {

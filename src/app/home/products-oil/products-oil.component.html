@@ -36,26 +36,33 @@
     <div class="content-container container">
       <aside class="navigation-container">
         <mat-accordion>
+
           <mat-expansion-panel
+            [id]="category._id.$oid"
             *ngFor="let category of categoryList"
             (click)="selectCategory(category)"
-            [ngClass]="{'active': category.activeClass === true}"
+            [ngClass]="{'active': category.activeClass}"
           >
+
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ category.categoryName }}
               </mat-panel-title>
             </mat-expansion-panel-header>
+
             <div class="sub-categories">
               <div
                 class="sub-categories-item"
+                [id]="subcategory.sub_id.$oid"
                 *ngFor="let subcategory of category.subCategories"
-                [ngClass]="{'active': subcategory.activeClass === true}"
-                (click)="$event.stopPropagation(); selectSubCategory(subcategory)">
+                [ngClass]="{'active': subcategory.activeClass}"
+                (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
                 {{subcategory.subCategoryName}}
               </div>
             </div>
+
           </mat-expansion-panel>
+
         </mat-accordion>
       </aside>
       <div class="product-wrapper">
