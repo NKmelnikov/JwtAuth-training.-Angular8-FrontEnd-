@@ -52,6 +52,14 @@
     </mat-cell>
   </ng-container>
 
+  <!-- picture Column -->
+  <ng-container matColumnDef="imgPath">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <img [src]="serverUrl + element.imgPath" height="40px;" width="120px;" alt="">
+    </mat-cell>
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
@@ -64,16 +72,10 @@
     <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
   </ng-container>
 
-  <!-- picture Column -->
-  <ng-container matColumnDef="brandImgPath">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.brandImgPath}} </mat-cell>
-  </ng-container>
-
   <!-- title Column -->
-  <ng-container matColumnDef="brandName">
+  <ng-container matColumnDef="name">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.brandName | slice:0: 15}} {{element.brandName.length > 15 ? ' ...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.name | slice:0: 15}} {{element.name.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

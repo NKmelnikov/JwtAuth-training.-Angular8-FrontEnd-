@@ -64,26 +64,17 @@
     <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
   </ng-container>
 
-  <!-- brand name Column -->
-  <ng-container matColumnDef="brandName">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Брэнд </mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      <span *ngFor="let brand of element.brands">{{ brand.brandName }}</span>
-    </mat-cell>
-  </ng-container>
-
   <!-- name Column -->
-  <ng-container matColumnDef="catalogName">
-
+  <ng-container matColumnDef="name">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{element.catalogName | slice:0: 15}} {{element.catalogName.length > 15 ? ' ...' : ''}}</mat-cell>
+      {{element.name | slice:0: 15}} {{element.name.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
     <!-- pdf Column -->
-  <ng-container matColumnDef="catalogPdfPath">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Путь к файлу </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.catalogPdfPath | slice:22: 42}} {{element.catalogPdfPath.length > 20 ? ' ...' : ''}}</mat-cell>
+  <ng-container matColumnDef="pdfPath">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> .pdf </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.pdfPath | slice:10: 35}} {{element.pdfPath.length > 45 ? '...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

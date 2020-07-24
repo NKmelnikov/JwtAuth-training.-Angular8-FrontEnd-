@@ -38,7 +38,7 @@ export class NewsDialogComponent implements OnInit {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
-    this.localData.postArticle = this.localData.postArticle || '';
+    this.localData.article = this.localData.article || '';
   }
 
   actionTranslateMapping(action) {
@@ -100,7 +100,7 @@ export class NewsDialogComponent implements OnInit {
           };
 
           this.uploadHelper.uploadImgFromB64(sendData)
-            .subscribe(data => this.localData.postImgPath = data.path);
+            .subscribe(data => this.localData.imgPath = data.path);
         };
       };
 

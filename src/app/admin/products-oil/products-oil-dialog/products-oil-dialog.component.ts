@@ -42,14 +42,13 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
-    this.localData.productDescription = this.localData.productDescription || '';
-    this.localData.productSpec = this.localData.productSpec || '';
+    this.localData.description = this.localData.description || '';
+    this.localData.spec = this.localData.spec || '';
     console.log(this.localData.category);
   }
 
   categorySelectChange(category) {
     this.localData.category = category;
-    console.log(this.localData.category);
   }
 
   subcategorySelectChange(subcategory) {
@@ -65,7 +64,7 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   }
 
   fileChangeEvent(fileInput: any) {
-    return super.fileChangeEvent(fileInput, 'productImgPath');
+    return super.fileChangeEvent(fileInput);
   }
 
   pdfInputChange(fileInput: any, entityPath, entityName) {

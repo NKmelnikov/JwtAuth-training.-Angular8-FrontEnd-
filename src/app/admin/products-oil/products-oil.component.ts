@@ -24,34 +24,35 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
   public brandList;
   public categoryList;
   public dropDownData;
+  public serverUrl;
 
   public preloadData = [{
-    productImgPath: environment.serverURL + 'files/img/default.jpg',
+    imgPath: environment.serverURL + 'files/img/default.jpg',
     _id: {$oid: 'noData'},
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    brand: {brandName: 'noData'},
-    category: {categoryName: 'noData'},
-    subcategory: {subCategoryName: 'noData'},
-    productSlug: 'noData',
-    productName: 'noData',
-    productDescription: 'noData',
+    brand: {name: 'noData'},
+    category: {name: 'noData'},
+    subcategory: {name: 'noData'},
+    slug: 'noData',
+    name: 'noData',
+    description: 'noData',
     productSpec: 'noData',
-    productPdf1Path: 'noData',
-    productPdf2Path: '/noData'
+    pdf1Path: 'noData',
+    pdf2Path: '/noData'
   }];
 
   public displayedColumns: string[] = [
     'select',
-    'productImgPath',
-    'productName',
+    'imgPath',
+    'name',
     'position',
     'active',
     'brand',
     'category',
     'subcategory',
-    'productSlug',
+    'slug',
     'createdAt',
     'action'
   ];
@@ -61,17 +62,13 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
+    this.serverUrl = environment.serverURL;
   }
 
   refreshTable() {
     this.products = this.productOilService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
-
-        this.dataSource.data.map((el) => {
-          el.productImgPath = `${environment.serverURL}${el.productImgPath}`;
-        });
-
         super.refreshTableRoutine();
 
         this.brandService.getAll().subscribe(brandList => {
@@ -89,7 +86,7 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
             this.dropDownData = {
               brandList: this.brandList.brandList,
               categoryList: this.categoryList.categoryList.filter((el) => {
-                return el.categoryType === this.typeOil;
+                return el.type === this.typeOil;
               })
             };
           });

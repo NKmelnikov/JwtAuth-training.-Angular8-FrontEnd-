@@ -3,7 +3,7 @@ export interface CatalogsInterface {
   active: number;
   position: number;
   brand: object;
-  catalogPdfPath: string;
-  catalogName: string;
+  pdfPath: string;
+  name: string;
   createdAt: object;
 }

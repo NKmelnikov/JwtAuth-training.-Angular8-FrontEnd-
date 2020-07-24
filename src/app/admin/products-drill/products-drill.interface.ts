@@ -6,7 +6,7 @@ export interface ProductsDrillInterface {
   createdAt: object;
   active: number;
   position: number;
-  productName: number;
-  productDescription: string;
-  productPdfPath: string;
+  name: number;
+  description: string;
+  pdfPath: string;
 }

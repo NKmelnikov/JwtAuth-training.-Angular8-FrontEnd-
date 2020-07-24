@@ -5,7 +5,7 @@
   </mat-toolbar>
   <div class="form-container">
     <div class="form-field">
-      <mat-radio-group [(ngModel)]="category.categoryType" aria-label="Тип">
+      <mat-radio-group [(ngModel)]="category.type" aria-label="Тип">
         <mat-radio-button value="1">Масла</mat-radio-button>
         <mat-radio-button value="2">Металлореж.</mat-radio-button>
       </mat-radio-group>
@@ -13,7 +13,7 @@
     <div class="form-field">
       <mat-form-field class="example-full-width">
         <mat-label>Название категории</mat-label>
-        <input matInput [(ngModel)]="category.categoryName" placeholder="например: Вакуумные масла">
+        <input matInput [(ngModel)]="category.name" placeholder="например: Вакуумные масла">
       </mat-form-field>
     </div>
     <div class="form-field">
@@ -21,7 +21,7 @@
     </div>
     <div class="form-field">
       <mat-label>Описание категории</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.categoryDescription"></ckeditor>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.description"></ckeditor>
     </div>
     <button (click)="createOrEditCategory()" mat-raised-button color="warn">{{editFlag === false ? 'Создать' : 'Обновить'}}</button>
     <button (click)="back()" mat-raised-button color="primary">Назад</button>
@@ -95,19 +95,18 @@
     </ng-container>
 
     <!-- name Column -->
-    <ng-container matColumnDef="subCategoryName">
-
+    <ng-container matColumnDef="name">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.subCategoryName | slice:0: 20}}
+        {{element.name | slice:0: 20}}
       </mat-cell>
     </ng-container>
 
     <!-- pdf Column -->
-    <ng-container matColumnDef="subCategoryDescription">
+    <ng-container matColumnDef="description">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.subCategoryDescription | slice:0: 20}}
+        {{element.description | slice:0: 20}}
       </mat-cell>
     </ng-container>
 

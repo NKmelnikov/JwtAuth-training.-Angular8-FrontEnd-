@@ -143,7 +143,7 @@
       </div>
       <div class="brands-wrapper">
         <div *ngFor="let brand of brands" class="logo-container">
-          <img [src]="brand.brandImgPath">
+          <img [src]="brand.imgPath">
         </div>
       </div>
     </div>
@@ -153,13 +153,13 @@
       <ng-template *ngFor="let post of news" carouselSlide [id]="post.id">
         <div class="news-wrapper">
           <div class="img-container">
-            <img [src]="post.postImgPath" alt="">
+            <img [src]="post.imgPath" alt="">
           </div>
           <div class="date">{{post.createdAt | date:'dd/MM/yyyy'}}</div>
-          <div class="title">{{ post.postTitle }}</div>
+          <div class="title">{{ post.title }}</div>
           <div class="line line1"></div>
           <div class="short-text">
-            {{ post.postShortText }}
+            {{ post.shortText }}
           </div>
           <div class="lower-box">
             <div class="line line2"></div>

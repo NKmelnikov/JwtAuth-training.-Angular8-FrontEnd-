@@ -3,6 +3,6 @@ export interface SubCategoriesInterface {
   createdAt: object;
   active: number;
   position: number;
-  subCategoryName: string;
-  subCategoryDescription: string;
+  name: string;
+  description: string;
 }

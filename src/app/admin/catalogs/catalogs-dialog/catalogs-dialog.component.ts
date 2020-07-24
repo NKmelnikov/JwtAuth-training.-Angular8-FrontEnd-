@@ -74,7 +74,7 @@ export class CatalogsDialogComponent implements OnInit {
     formData.append('pdf_file', pdf, pdf.name);
     this.uploadHelper.uploadPdf(formData)
       .subscribe(data => {
-        this.localData.catalogPdfPath = data.path;
+        this.localData.pdfPath = data.path;
         this.localData.catalogPdfName = data.name;
       });
   }

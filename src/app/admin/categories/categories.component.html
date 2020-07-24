@@ -65,26 +65,26 @@
   </ng-container>
 
   <!-- type Column -->
-  <ng-container matColumnDef="categoryType">
+  <ng-container matColumnDef="type">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Тип</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.categoryType === 1 ? 'Масла' : 'Металлореж.'}}
+    <mat-cell *matCellDef="let element">{{element.type === 1 ? 'Масла' : 'Металлореж.'}}
     </mat-cell>
   </ng-container>
 
   <!-- name Column -->
-  <ng-container matColumnDef="categoryName">
+  <ng-container matColumnDef="name">
 
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{element.categoryName | slice:0: 20}} {{element.categoryName.length > 20 ? ' ...' : ''}}
+      {{element.name | slice:0: 20}} {{element.name.length > 20 ? ' ...' : ''}}
     </mat-cell>
   </ng-container>
 
   <!-- pdf Column -->
-  <ng-container matColumnDef="categoryDescription">
+  <ng-container matColumnDef="description">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{element.categoryDescription | slice:0: 20}} {{element.categoryDescription.length > 20 ? ' ...' : ''}}
+      {{element.description | slice:0: 20}} {{element.description.length > 20 ? ' ...' : ''}}
     </mat-cell>
   </ng-container>
 

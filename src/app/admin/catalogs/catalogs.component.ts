@@ -25,17 +25,16 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
     position: 1,
     active: 0,
     brand: 'noData',
-    catalogPdfPath: '/noData',
-    catalogName: 'noData',
+    pdfPath: '/noData',
+    name: 'noData',
   }];
 
   public displayedColumns: string[] = [
     'select',
     'position',
     'active',
-    'catalogName',
-    'brandName',
-    'catalogPdfPath',
+    'name',
+    'pdfPath',
     'createdAt',
     'action'
   ];

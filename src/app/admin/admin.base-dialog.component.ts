@@ -53,7 +53,7 @@ export abstract class AdminBaseDialogComponent {
     this.isImageSaved = false;
   }
 
-  fileChangeEvent(fileInput: any, imgPathName) {
+  fileChangeEvent(fileInput: any) {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
@@ -93,7 +93,7 @@ export abstract class AdminBaseDialogComponent {
           };
 
           this.uploadHelper.uploadImgFromB64(sendData)
-            .subscribe(data => this.localData[imgPathName] = data.path);
+            .subscribe(data => this.localData.imgPath = data.path);
         };
       };
 

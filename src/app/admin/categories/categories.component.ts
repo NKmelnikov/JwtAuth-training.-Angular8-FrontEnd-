@@ -23,18 +23,18 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    categoryType: 1,
-    categoryName: '/noData',
-    categoryDescription: 'noData',
+    type: 1,
+    name: '/noData',
+    description: 'noData',
   }];
 
   public displayedColumns: string[] = [
     'select',
     'position',
     'active',
-    'categoryType',
-    'categoryName',
-    'categoryDescription',
+    'type',
+    'name',
+    'description',
     'createdAt',
     'action'
   ];

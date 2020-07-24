@@ -75,7 +75,7 @@ export class MainComponent implements AfterViewInit, OnInit {
           ...brand,
           _id: brand._id['$oid'],
           createdAt: brand.createdAt['$date'],
-          brandImgPath: `${environment.serverURL}${brand.brandImgPath}`
+          imgPath: `${environment.serverURL}${brand.imgPath}`
         }))),
         map(brands => brands.filter(brand => (brand.active > 0)))
       )
@@ -91,7 +91,7 @@ export class MainComponent implements AfterViewInit, OnInit {
           ...post,
           _id: post._id['$oid'],
           createdAt: post.createdAt['$date'],
-          postImgPath: `${environment.serverURL}${post.postImgPath}`
+          imgPath: `${environment.serverURL}${post.imgPath}`
         }))),
         map(posts => posts.filter(post => (post.active > 0)))
       )

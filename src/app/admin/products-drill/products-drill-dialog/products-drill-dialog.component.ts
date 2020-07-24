@@ -40,7 +40,7 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
-    this.localData.productDescription = this.localData.productDescription || '';
+    this.localData.description = this.localData.description || '';
     this.localData.productSpec = this.localData.productSpec || '';
   }
 
@@ -61,7 +61,7 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
   }
 
   fileChangeEvent(fileInput: any) {
-    return super.fileChangeEvent(fileInput, 'productImgPath');
+    return super.fileChangeEvent(fileInput);
   }
 
   pdfInputChange(fileInput: any, entityPath, entityName) {

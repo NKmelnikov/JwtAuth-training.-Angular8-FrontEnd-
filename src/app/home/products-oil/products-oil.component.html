@@ -31,7 +31,7 @@
   </div>
   <div class="oil-wrapper container">
     <div class="category-header">
-      <h2>Индустриальные масла</h2>
+      <h2>Категории</h2>
     </div>
     <div class="content-container container">
       <aside class="navigation-container">
@@ -40,45 +40,42 @@
           <mat-expansion-panel
             [id]="category._id.$oid"
             *ngFor="let category of categoryList"
-            (click)="selectCategory(category)"
+            (click)="selectProducts(category)"
             [ngClass]="{'active': category.activeClass}"
           >
 
             <mat-expansion-panel-header>
               <mat-panel-title>
-                {{ category.categoryName }}
+                {{ category.name }}
               </mat-panel-title>
             </mat-expansion-panel-header>
 
+            <div
+              class="expansion-item sub-categories-item"
+              [id]="subcategory.sub_id.$oid"
+              *ngFor="let subcategory of category.subCategories"
+              [ngClass]="{'active': subcategory.activeClass}"
+              (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
+              {{subcategory.name}}
+            </div>
             <div class="sub-categories">
-              <div
-                class="sub-categories-item"
-                [id]="subcategory.sub_id.$oid"
-                *ngFor="let subcategory of category.subCategories"
-                [ngClass]="{'active': subcategory.activeClass}"
-                (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
-                {{subcategory.subCategoryName}}
-              </div>
             </div>
 
           </mat-expansion-panel>
-
         </mat-accordion>
       </aside>
       <div class="product-wrapper">
-        <div class="brand-container"
-             *ngFor="let brand of brandList"
-             [ngClass]="{'active': brand.activeClass === true}"
-             (click)="selectBrand(brand)"
-        >
-          {{ brand.brandName }}
-        </div>
-        <br>
-        <br>
-        <br>
         <div class="product-container">
-          <div class="product" *ngFor="let product of productsToShow" (click)="selectProductsOil(product)">
-            {{product.productName}}
+          <div class="product-item" *ngFor="let product of productsToShow" (click)="selectProductsOil(product)">
+            <div class="product-img-container">
+              <img [src]="serverUrl + product.imgPath" class="product-img" alt="">
+            </div>
+            <div class="description-container">
+              <div class="title">{{product.name}}</div>
+              <div class="divider">----</div>
+              <div class="description" [innerHTML]="product.description"></div>
+              <button>Запросить цену</button>
+            </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {NewsInterface} from './news.interface';
 import {NewsDialogComponent} from './news-dialog/news-dialog.component';
 import {AdminBaseComponent} from '../admin.base-component';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-news',
@@ -18,26 +20,27 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   }
 
   public news;
+  public serverUrl;
 
   public preloadData = [{
     _id: {$oid: 'preload'},
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    postImgPath: '/preload',
-    postTitle: 'preload',
-    postShortText: 'preload',
-    postArticle: 'preload'
+    imgPath: '/preload',
+    title: 'preload',
+    shortText: 'preload',
+    article: 'preload'
   }];
 
   public displayedColumns: string[] = [
     'select',
+    'imgPath',
     'position',
     'active',
-    'postImgPath',
-    'postTitle',
-    'postShortText',
-    'postArticle',
+    'title',
+    'shortText',
+    'article',
     'createdAt',
     'action'
   ];
@@ -47,12 +50,14 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
+    this.serverUrl = environment.serverURL;
   }
 
   refreshTable() {
     this.news = this.postService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
+        console.log(this.dataSource.data);
         this.refreshTableRoutine();
       });
   }

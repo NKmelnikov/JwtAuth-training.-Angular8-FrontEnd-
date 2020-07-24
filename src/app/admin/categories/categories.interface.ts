@@ -3,8 +3,8 @@ export interface CategoriesInterface {
   createdAt: object;
   active: number;
   position: number;
-  categoryType: number;
-  categoryName: string;
-  categoryDescription: string;
+  type: number;
+  name: string;
+  description: string;
   subCategories: object;
 }

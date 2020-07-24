@@ -4,6 +4,7 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {BrandsDialogComponent} from './brands-dialog/brands-dialog.component';
 import {BrandsInterface} from './brands.interface';
 import {AdminBaseComponent} from '../admin.base-component';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -18,22 +19,23 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
   }
 
   public brands;
+  public serverUrl;
 
   public preloadData = [{
     _id: {$oid: 'noData'},
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    brandImgPath: '/noData',
-    brandName: 'noData',
+    imgPath: '/noData',
+    name: 'noData',
   }];
 
   public displayedColumns: string[] = [
     'select',
+    'imgPath',
     'position',
     'active',
-    'brandName',
-    'brandImgPath',
+    'name',
     'createdAt',
     'action'
   ];
@@ -43,6 +45,7 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
+    this.serverUrl = environment.serverURL;
   }
 
   refreshTable() {

@@ -61,3 +61,18 @@ table {
 .mat-row {
   max-height: 50px;
 }
+
+.mat-column-active, .mat-column-position, .mat-column-select, .mat-column-createdAt, .mat-column-action, .mat-column-imgPath {
+  flex: 0 0 5%;
+}
+
+.mat-column-title {
+  flex: 0 0 20%;
+}
+
+::ng-deep .post-article{
+  p {
+    margin: 0;
+  }
+}
+

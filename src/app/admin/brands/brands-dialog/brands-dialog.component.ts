@@ -91,7 +91,7 @@ export class BrandsDialogComponent implements OnInit {
           };
 
           this.uploadHelper.uploadImgFromB64(sendData)
-            .subscribe(data => this.localData.brandImgPath = data.path);
+            .subscribe(data => this.localData.imgPath = data.path);
         };
       };
 

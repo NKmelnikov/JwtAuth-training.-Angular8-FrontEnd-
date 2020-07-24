@@ -4,19 +4,19 @@
     <p>
       <mat-form-field class="formFieldWidth752">
         <mat-label>Заголовок</mat-label>
-        <input matInput [(ngModel)]="localData.productName" width="100%" placeholder="например, Масло">
+        <input matInput [(ngModel)]="localData.name" width="100%" placeholder="например, Масло">
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="formFieldWidth752">
         <mat-label>Название продукта в URL</mat-label>
-        <input matInput [(ngModel)]="localData.productSlug" width="100%" placeholder="например, fuchs-agrifarm-oil">
+        <input matInput [(ngModel)]="localData.slug" width="100%" placeholder="например, fuchs-agrifarm-oil">
       </mat-form-field>
     </p>
     <p>
       <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
         <mat-option *ngFor="let brand of localData.brandList" [value]="brand">
-          {{ brand.brandName }}
+          {{ brand.name }}
         </mat-option>
       </mat-select>
     </p>
@@ -24,7 +24,7 @@
     <p>
       <mat-select placeholder="Категория" [(ngModel)]="selectedValueCategory" (selectionChange)="categorySelectChange($event.value)">
         <mat-option *ngFor="let category of localData.categoryList" [value]="category">
-          {{ category.categoryName }}
+          {{ category.name }}
         </mat-option>
       </mat-select>
     </p>
@@ -32,17 +32,17 @@
     <p *ngIf="localData.category">
       <mat-select placeholder="Подкатегория" [(ngModel)]="selectedValueSubCategory" (selectionChange)="subcategorySelectChange($event.value)">
         <mat-option *ngFor="let subcategory of localData.category.subCategories" [value]="subcategory">
-          {{ subcategory.subCategoryName }}
+          {{ subcategory.name }}
         </mat-option>
       </mat-select>
     </p>
     <p>
       <mat-label>Описание продукта</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productDescription"></ckeditor>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
     </p>
     <p>
       <mat-label>Спецификация</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.productSpec"></ckeditor>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.spec"></ckeditor>
     </p>
     <form>
       <div class="form-group img-upload-wrapper">
@@ -68,25 +68,25 @@
       <br>
     </form>
     <p>
-      <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'productPdf1Path', 'productPdf1Name')" accept=".pdf"/>
-      <input class="pdf-input" matInput [(ngModel)]="localData.productPdf1Path" placeholder="Загрузить .pdf">
+      <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'pdf1Path', 'pdf1Name')" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.pdf1Path" placeholder="Загрузить .pdf">
       <button mat-mini-fab color="primary" (click)="pdfInput.click()">
         <span class="material-icons">attach_file</span>
       </button>
     </p>
     <p>
-      <input #pdfInput2 hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'productPdf2Path', 'productPdf2Name')" accept=".pdf"/>
-      <input class="pdf-input" matInput [(ngModel)]="localData.productPdf2Path" placeholder="Загрузить .pdf">
+      <input #pdfInput2 hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'pdf2Path', 'pdf2Name')" accept=".pdf"/>
+      <input class="pdf-input" matInput [(ngModel)]="localData.pdf2Path" placeholder="Загрузить .pdf">
       <button mat-mini-fab color="primary" (click)="pdfInput2.click()">
         <span class="material-icons">attach_file</span>
       </button>
     </p>
     <p>
-      <mat-slide-toggle [(ngModel)]="localData.active">Активная новость</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
     </p>
   </div>
   <ng-template #elseTemplate>
-    Уверен в удалении <b>{{localData.postTitle}}</b>?
+    Уверен в удалении <b>{{localData.title}}</b>?
   </ng-template>
 </div>
 <div mat-dialog-actions align="end">

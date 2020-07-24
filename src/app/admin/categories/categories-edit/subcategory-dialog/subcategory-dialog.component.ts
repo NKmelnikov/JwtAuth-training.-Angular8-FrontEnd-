@@ -31,7 +31,7 @@ export class SubcategoryDialogComponent implements OnInit {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
-    this.localData.subCategoryDescription = this.localData.subCategoryDescription || '';
+    this.localData.description = this.localData.description || '';
   }
 
   actionTranslateMapping(action) {

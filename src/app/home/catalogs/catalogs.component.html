@@ -17,7 +17,7 @@
       <div class="brand-box__title"> Выберите производителя</div>
       <div class="brand-box__brands">
         <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
-          <img class="brand-box__img" [src]="env.serverURL+brand.brandImgPath" [alt]="brand.brandName">
+          <img class="brand-box__img" [src]="env.serverURL+brand.imgPath" [alt]="brand.name">
         </div>
       </div>
     </div>
@@ -25,8 +25,8 @@
   <div class="catalog-container container">
     <div class="catalog-keeper">
       <div class="catalog-multiplier" *ngFor="let catalog of finalCatalogList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-        <a class="catalog-multiplier__link" target="_blank" href="{{env.serverURL + catalog.catalogPdfPath}}">
-          <pdf-viewer [src]="env.serverURL + catalog.catalogPdfPath"
+        <a class="catalog-multiplier__link" target="_blank" href="{{env.serverURL + catalog.pdfPath}}">
+          <pdf-viewer [src]="env.serverURL + catalog.pdfPath"
                       [render-text]="false"
                       [page]="1"
                       [show-all]="false"
@@ -37,7 +37,7 @@
           ></pdf-viewer>
           <div class="bot-title-box">
             <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
-            <span class="bot-title-box__text">{{catalog.catalogName | slice:0: 15 }}{{catalog.catalogName.length > 15 ? ' ...' : ''}}</span>
+            <span class="bot-title-box__text">{{catalog.name | slice:0: 15 }}{{catalog.name.length > 15 ? ' ...' : ''}}</span>
           </div>
         </a>
       </div>

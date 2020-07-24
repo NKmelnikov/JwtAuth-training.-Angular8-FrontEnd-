@@ -28,12 +28,12 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    brand: {brandName: 'noData'},
-    category: {categoryName: 'noData'},
-    subcategory: {subCategoryName: 'noData'},
-    productName: 'noData',
-    productDescription: 'noData',
-    productPdfPath: 'noData',
+    brand: {name: 'noData'},
+    category: {name: 'noData'},
+    subcategory: {name: 'noData'},
+    name: 'noData',
+    description: 'noData',
+    pdfPath: 'noData',
   }];
 
   public displayedColumns: string[] = [
@@ -43,9 +43,9 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
     'brand',
     'category',
     'subcategory',
-    'productName',
-    'productDescription',
-    'productPdfPath',
+    'name',
+    'description',
+    'pdfPath',
     'createdAt',
     'action'
   ];
@@ -80,7 +80,7 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
           this.dropDownData = {
             brandList: this.brandList.brandList,
             categoryList: this.categoryList.categoryList.filter((el) => {
-              return el.categoryType === this.typeDrill;
+              return el.type === this.typeDrill;
             })
           };
         });

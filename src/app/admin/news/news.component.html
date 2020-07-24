@@ -52,6 +52,14 @@
     </mat-cell>
   </ng-container>
 
+  <!-- picture Column -->
+  <ng-container matColumnDef="imgPath">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <img [src]="serverUrl + element.imgPath" height="40px;" alt="">
+    </mat-cell>
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
@@ -60,32 +68,26 @@
 
   <!-- active Column -->
   <ng-container matColumnDef="active">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Активная?</mat-header-cell>
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Активен </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
   </ng-container>
 
-  <!-- picture Column -->
-  <ng-container matColumnDef="postImgPath">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postImgPath}} </mat-cell>
-  </ng-container>
-
   <!-- title Column -->
-  <ng-container matColumnDef="postTitle">
+  <ng-container matColumnDef="title">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Заголовок</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postTitle | slice:0: 15}} {{element.postTitle.length > 15 ? ' ...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.title | slice:0: 45}} {{element.title.length > 45 ? '...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- short text Column -->
-  <ng-container matColumnDef="postShortText">
+  <ng-container matColumnDef="shortText">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
-    <mat-cell class="short-text" *matCellDef="let element"> {{element.postShortText  | slice:0: 10}} {{element.postShortText.length > 10 ? ' ...' : ''}}</mat-cell>
+    <mat-cell class="short-text" *matCellDef="let element"> {{element.shortText  | slice:0: 125}} {{element.shortText.length > 125 ? '...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- full text Column -->
-  <ng-container matColumnDef="postArticle">
+  <ng-container matColumnDef="article">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
-    <mat-cell class="post-article" *matCellDef="let element"> {{element.postArticle | slice:0:10 }} {{element.postArticle.length > 15 ? ' ...' : ''}}</mat-cell>
+    <mat-cell class="post-article" [innerHTML]="element.article | slice:0:180 " *matCellDef="let element"> {{element.article.length > 160 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

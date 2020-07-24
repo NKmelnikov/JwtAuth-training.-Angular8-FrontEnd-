@@ -4,7 +4,7 @@
     <p>
       <mat-form-field class="formFieldWidth752">
         <mat-label>Заголовок</mat-label>
-        <input matInput [(ngModel)]="localData.brandName" width="100%" placeholder="например, Мы побывали на выставке">
+        <input matInput [(ngModel)]="localData.name" width="100%" placeholder="например, Мы побывали на выставке">
       </mat-form-field>
     </p>
     <p>
@@ -35,7 +35,7 @@
     </form>
   </div>
   <ng-template #elseTemplate>
-    Уверен в удалении <b>{{localData.brandName}}</b>?
+    Уверен в удалении <b>{{localData.name}}</b>?
   </ng-template>
 </div>
 <div mat-dialog-actions align="end">

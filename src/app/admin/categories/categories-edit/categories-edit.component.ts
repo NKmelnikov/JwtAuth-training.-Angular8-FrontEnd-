@@ -23,10 +23,9 @@ import {SubCategoriesInterface} from './subcategories.interface';
 })
 export class CategoriesEditComponent extends AdminBaseComponent implements OnInit {
 
-  public categoryById;
   public active;
-  public categoryName;
-  public categoryDescription;
+  public name;
+  public description;
   public ckEditorConfig;
   public brand;
   public categoryId;
@@ -41,22 +40,30 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     createdAt: {},
     position: 0,
     active: 1,
-    categoryType: 1,
-    categoryName: '',
-    categoryDescription: '',
+    type: 1,
+    name: '',
+    description: '',
     subCategories: []
   };
 
   public preloadData = [{
-    sub_id: {$oid: 'noData'}, createdAt: {$date: 111111111111111},
-    position: 1, active: 0, subCategoryName: '/noData',
-    subCategoryDescription: 'noData', subCategories: []
+    sub_id: {$oid: 'noData'},
+    createdAt: {$date: 111111111111111},
+    position: 1,
+    active: 0,
+    name: '/noData',
+    description: 'noData',
+    subCategories: []
   }];
   public dataSource;
   public displayedColumns: string[] = [
-    'select', 'position', 'active',
-    'subCategoryName', 'subCategoryDescription',
-    'createdAt', 'action'
+    'select',
+    'position',
+    'active',
+    'name',
+    'description',
+    'createdAt',
+    'action'
   ];
   public selection = new SelectionModel(true, []);
 
@@ -76,7 +83,7 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
-    this.categoryDescription = this.categoryDescription || '';
+    this.description = this.description || '';
     this.route.params.subscribe((params: any) => {
       this.editFlag = false;
       if (!_.isEmpty(params)) {

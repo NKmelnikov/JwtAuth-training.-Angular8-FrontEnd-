@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BrandService, CategoryService, ProductOilService} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-products-oil',
@@ -14,9 +16,10 @@ export class ProductsOilHomeComponent implements OnInit {
   public productsOilList;
   public productsToShow;
   public expanded;
-  public selectedBrand;
   public selectedCategory;
   public selectedIndex;
+  public serverUrl;
+
 
   @ViewChild('accordion') accordion: MatAccordion;
 
@@ -30,21 +33,36 @@ export class ProductsOilHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoryList();
-    this.getBrandList();
     this.getProductsOilList();
+    this.serverUrl = environment.serverURL;
   }
 
   getCategoryList() {
     this.categoryService.getAll()
       .subscribe(categoryList => {
         this.categoryList = categoryList;
-      });
-  }
+        this.categoryList.push({
+          _id: {$oid: '5f105534ed58762626brands'},
+          active: 1,
+          description: '',
+          name: 'Брэнды',
+          type: 1,
+          isBrand: true,
+          createdAt: {$date: 1594916708310},
+          position: 999,
+          subCategories: [],
+        });
 
-  getBrandList() {
-    this.brandService.getAll()
-      .subscribe(brandService => {
-        this.brandList = brandService;
+        this.brandService.getAll()
+          .subscribe(brandList => {
+            this.brandList = brandList;
+            this.brandList.map((el) => {
+              el.sub_id = el._id;
+            });
+            this.categoryList[this.categoryList.length - 1].subCategories = this.brandList;
+          });
+
+        console.log(this.categoryList);
       });
   }
 
@@ -52,33 +70,39 @@ export class ProductsOilHomeComponent implements OnInit {
     this.productOilService.getAll()
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
+        this.productsOilList.map((el) => {
+          el.productImgPath = `${environment.serverURL}${el.productImgPath}`;
+        });
         this.productsToShow = this.productsOilList;
       });
   }
 
-
-  selectCategory(category) {
-    const expansionDOM = document.getElementById(category._id.$oid);
+  selectProducts(selectItem) {
+    const expansionDOM = document.getElementById(selectItem._id.$oid);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
 
-    category.subCategories.forEach(el => {
-      el.activeClass = false;
-    });
+    console.log(selectItem);
 
-    if (this.selectedCategory === category.categoryName && !isExpanded) {
+    if (selectItem.subCategories) {
+      selectItem.subCategories.forEach(el => {
+        el.activeClass = false;
+      });
+    }
+
+    if (this.selectedCategory === selectItem.name && !isExpanded) {
       this.productsToShow = this.productsOilList;
     } else {
-      this.selectedCategory = category.categoryName;
+      this.selectedCategory = selectItem.name;
       this.productsToShow = this.productsOilList;
-      this.productsToShow = this.productsToShow.filter((el) => {
-        return el.category._id.$oid === category._id.$oid;
-      });
+      if (!selectItem.isBrand) {
+        this.productsToShow = this.productsToShow.filter((el) => {
+          return el.category._id.$oid === selectItem._id.$oid;
+        });
+      }
     }
   }
 
   selectSubCategory(subcategory, list) {
-    const expansionDOM = document.getElementById(subcategory.sub_id.$oid);
-
     list.forEach(el => {
       el.activeClass = false;
     });
@@ -86,45 +110,11 @@ export class ProductsOilHomeComponent implements OnInit {
     subcategory.activeClass = true;
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
-      return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid;
+      if (el.subcategory !== 'null') {
+        return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid || el.brand._id.$oid === subcategory.sub_id.$oid;
+      }
     });
   }
-
-  selectBrand(brand) {
-    this.toggleActive('.brand-container', brand);
-    // TODO THIS active by brand and start styling
-    if (this.selectedBrand === brand.brandName) {
-      this.productsToShow = this.productsOilList;
-    } else {
-      this.selectedBrand = brand.brandName;
-      this.productsToShow = this.productsOilList;
-      this.productsToShow = this.productsToShow.filter((el) => {
-        return el.brand._id.$oid === brand._id.$oid;
-      });
-    }
-  }
-
-  toggleActive(element, list) {
-    list.forEach(el => {
-      el.activeClass = false;
-    });
-
-    element.activeClass = !element.activeClass;
-  }
-
-  // performSelection(entity, selectedEntity) {
-  //   if (selectedEntity === entity[`${entity}Name`]) {
-  //     this.productsToShow = this.productsOilList;
-  //   } else {
-  //     if(selectedEntity){
-  //     }
-  //     selectedEntity = entity[`${entity}Name`];
-  //     this.productsToShow = this.productsOilList;
-  //     this.productsToShow = this.productsToShow.filter((el) => {
-  //       return el[entity]._id.$oid === entity._id.$oid;
-  //     });
-  //   }
-  // }
 
   selectProductsOil(product) {
     console.log(product);

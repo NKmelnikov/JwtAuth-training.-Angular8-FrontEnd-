@@ -6,10 +6,10 @@ export interface ProductsOilInterface {
   createdAt: object;
   active: number;
   position: number;
-  productName: number;
-  productDescription: string;
+  name: number;
+  description: string;
   productSpec: string;
   productImgPath: string;
-  productPdf1Path: string;
-  productPdf2Path: string;
+  pdf1Path: string;
+  pdf2Path: string;
 }

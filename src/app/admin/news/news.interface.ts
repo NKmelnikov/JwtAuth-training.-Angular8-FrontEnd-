@@ -2,9 +2,9 @@ export interface NewsInterface {
   _id: string;
   position: number;
   active: number;
-  postImgPath: string;
-  postTitle: string;
-  postShortText: string;
-  postArticle: string;
+  imgPath: string;
+  title: string;
+  shortText: string;
+  article: string;
   createdAt: string;
 }
