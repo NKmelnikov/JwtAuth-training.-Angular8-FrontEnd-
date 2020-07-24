@@ -19,6 +19,19 @@ export class ProductsOilHomeComponent implements OnInit {
   public selectedCategory;
   public selectedIndex;
   public serverUrl;
+  public page = 1;
+  public pageSize = 5;
+  brandCategory = {
+    _id: {$oid: '5f105534ed58762626brands'},
+    active: 1,
+    description: '',
+    name: 'Брэнды',
+    type: 1,
+    isBrand: true,
+    createdAt: {$date: 1594916708310},
+    position: 999,
+    subCategories: [],
+  };
 
 
   @ViewChild('accordion') accordion: MatAccordion;
@@ -41,17 +54,7 @@ export class ProductsOilHomeComponent implements OnInit {
     this.categoryService.getAll()
       .subscribe(categoryList => {
         this.categoryList = categoryList;
-        this.categoryList.push({
-          _id: {$oid: '5f105534ed58762626brands'},
-          active: 1,
-          description: '',
-          name: 'Брэнды',
-          type: 1,
-          isBrand: true,
-          createdAt: {$date: 1594916708310},
-          position: 999,
-          subCategories: [],
-        });
+        this.categoryList.push(this.brandCategory);
 
         this.brandService.getAll()
           .subscribe(brandList => {
@@ -61,8 +64,6 @@ export class ProductsOilHomeComponent implements OnInit {
             });
             this.categoryList[this.categoryList.length - 1].subCategories = this.brandList;
           });
-
-        console.log(this.categoryList);
       });
   }
 
@@ -80,8 +81,6 @@ export class ProductsOilHomeComponent implements OnInit {
   selectProducts(selectItem) {
     const expansionDOM = document.getElementById(selectItem._id.$oid);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
-
-    console.log(selectItem);
 
     if (selectItem.subCategories) {
       selectItem.subCategories.forEach(el => {

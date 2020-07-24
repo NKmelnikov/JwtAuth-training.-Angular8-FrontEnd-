@@ -17,12 +17,12 @@
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item"
       routerLink="/"
-    >главная  / </a>
+    >главная / </a>
     <a
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item"
       routerLink="/products"
-    >продукция  / </a>
+    >продукция / </a>
     <a
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item current"
@@ -66,17 +66,27 @@
       </aside>
       <div class="product-wrapper">
         <div class="product-container">
-          <div class="product-item" *ngFor="let product of productsToShow" (click)="selectProductsOil(product)">
-            <div class="product-img-container">
+            <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="selectProductsOil(product)">
               <img [src]="serverUrl + product.imgPath" class="product-img" alt="">
-            </div>
-            <div class="description-container">
-              <div class="title">{{product.name}}</div>
-              <div class="divider">----</div>
-              <div class="description" [innerHTML]="product.description"></div>
-              <button>Запросить цену</button>
-            </div>
-          </div>
+              <div class="product-title-desc-container">
+                <mat-card-header>
+                  <mat-card-title>{{product.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
+              </div>
+              <mat-card-actions class="button-container">
+                <button mat-flat-button class="price">Запросить цену</button>
+                <button mat-flat-button class="more">Подробнее</button>
+              </mat-card-actions>
+            </mat-card>
+            <div *ngIf="productsToShow.length === 0">В этой категории продукты не представлены</div>
+        </div>
+        <div class="pagination-block">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="productsToShow.length">
+          </ngb-pagination>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@
 .breadcrumbs {
   @extend %fc;
   justify-content: flex-start;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 
   &__item {
     text-transform: uppercase;
@@ -58,6 +58,7 @@
 .oil-wrapper {
 
   .category-header {
+    margin-bottom: 40px;
   }
 
   .content-container {
@@ -68,15 +69,20 @@
     .navigation-container {
       width: 350px;
 
+      .mat-accordion{
+        //position: fixed;
+      }
+
       .mat-expansion-panel {
         margin-bottom: 5px;
       }
 
       .mat-expansion-panel-header {
         background: $main-color2;
+        height: 60px!important;
       }
 
-      & .mat-expanded .mat-expansion-panel-header  {
+      & .mat-expanded .mat-expansion-panel-header {
         background: $main-color1;
       }
 
@@ -88,7 +94,7 @@
         color: white;
       }
 
-      ::ng-deep .mat-expansion-panel-body{
+      ::ng-deep .mat-expansion-panel-body {
         padding: 0px;
 
         .expansion-item {
@@ -115,72 +121,59 @@
         }
       }
     }
-    .product-wrapper{
+
+    .product-wrapper {
       width: 725px;
+      min-height: 930px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    //.brand-container{
-    //  @extend %fc;
-    //  justify-content: flex-start;
-    //  flex-wrap: wrap;
-    //  margin-bottom: 100px;
-    //
-    //  .brand-item {
-    //    @extend %fc;
-    //    width: 173px;
-    //    height: 75px;
-    //    margin-right: 10px;
-    //    margin-bottom: 10px;
-    //    cursor: pointer;
-    //    border: 1px solid $main-color5;
-    //    transition: .2s ease-in-out;
-    //
-    //    &:nth-child(4n) {
-    //      margin-right: 0;
-    //    }
-    //
-    //    &:hover {
-    //      border: 1px solid transparent;
-    //      border-left: 5px solid $main-color1;
-    //    }
-    //
-    //    &:hover .brand-img {
-    //      filter: grayscale(0);
-    //    }
-    //
-    //    &.active {
-    //      border: 1px solid transparent;
-    //      background: $main-color1;
-    //
-    //      .brand-img {
-    //        filter: grayscale(0);
-    //      }
-    //    }
-    //  }
-    //
-    //  .brand-img {
-    //    max-width: 165px;
-    //    max-height: 70px;
-    //    filter: grayscale(100%);
-    //  }
-    //}
-
-
-    .product-container{
+    .product-container {
       margin-bottom: 50px;
 
-      .product-item{
-        @extend %fsb;
-        align-items: flex-start;
+      .product-item {
+        display: flex;
+        margin-bottom: 15px;
+        height:150px;
+        transition: .2s ease-in-out;
 
-        .product-img-container{
-          .product-img {
-            max-width: 150px;
+        &:hover {
+          box-shadow: 0px 0px 5px 0px black;
+        }
+
+        .product-img {
+          max-width: 100px;
+          margin-right: 16px;
+        }
+
+        .product-title-desc-container{
+          @extend %fcc;
+          align-items: flex-start;
+          margin-right: 16px;
+
+          ::ng-deep .mat-card-header-text {
+            margin: 0;
           }
         }
 
-        .description-container{
+        .button-container{
+          margin-left: auto;
+          display: flex;
+          flex-direction: column;
 
+
+          .price {
+            background: $main-color1;
+            color: white;
+            margin-bottom: 10px;
+          }
+
+          .more {
+            background: $main-color2;
+            color: white;
+          }
         }
       }
     }
