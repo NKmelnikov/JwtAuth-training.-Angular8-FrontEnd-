@@ -65,7 +65,7 @@
           </mat-expansion-panel>
         </mat-accordion>
       </aside>
-      <div class="product-wrapper">
+      <section class="product-wrapper">
         <div class="product-container">
             <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="selectProductsOil(product)">
               <img [src]="serverUrl + product.imgPath" class="product-img" alt="">
@@ -93,7 +93,7 @@
             [collectionSize]="productsToShow.length">
           </ngb-pagination>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </main>

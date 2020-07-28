@@ -15,8 +15,17 @@ export class ProductsOilItemComponent implements OnInit {
   public productsOilList = [];
   public productsToShow = [];
   public selectedCategory;
-  public product;
-  public serverUrl;
+  public product = {
+    imgPath: '',
+    name: '',
+    description: '',
+    spec: '',
+    pdf1Path: '',
+    pdf2Path: '',
+    pdf1Name: '',
+    pdf2Name: ''
+  };
+  public env = environment;
   public page = 1;
   public pageSize = 5;
   brandCategory = {
@@ -31,6 +40,7 @@ export class ProductsOilItemComponent implements OnInit {
     subCategories: [],
   };
 
+
   @ViewChild('accordion') accordion: MatAccordion;
 
   constructor(
@@ -41,12 +51,8 @@ export class ProductsOilItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(document.location.pathname);
-
     this.getCategoryList();
     this.getProductBySlug();
-    this.serverUrl = environment.serverURL;
-
   }
 
   getCategoryList() {
@@ -72,15 +78,9 @@ export class ProductsOilItemComponent implements OnInit {
     this.productOilService.getProductBySlug(data)
       .subscribe(product => {
         console.log(product);
-        this.product = product;
-      });
-  }
-
-  getProductsOilList() {
-    this.productOilService.getAll()
-      .subscribe(productsOilList => {
-        this.productsOilList = productsOilList;
-        this.productsToShow = this.productsOilList;
+        this.product = product[0];
+        this.product.pdf1Name = this.getPdfNameFromPath(this.product.pdf1Path);
+        this.product.pdf2Name = this.getPdfNameFromPath(this.product.pdf2Path);
       });
   }
 
@@ -123,8 +123,9 @@ export class ProductsOilItemComponent implements OnInit {
     });
   }
 
-  selectProductsOil(product) {
-    console.log(product);
+  getPdfNameFromPath(path) {
+    return path.replace(this.env.pdfFilePath, '');
   }
+
 
 }

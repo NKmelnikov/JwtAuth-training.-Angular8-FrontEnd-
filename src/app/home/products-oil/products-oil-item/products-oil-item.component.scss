@@ -57,8 +57,18 @@
 
 .oil-wrapper {
 
-  .category-header {
+  .oil-header {
     margin-bottom: 40px;
+    @extend %fc;
+    justify-content: flex-start;
+
+    span {
+      font-size: 26px;
+    }
+
+    &__category {
+      width: 385px;
+    }
   }
 
   .content-container {
@@ -123,60 +133,150 @@
     }
 
     .product-wrapper {
+      @extend %fcc;
+      align-items: center;
+      justify-content: flex-start;
       width: 725px;
       min-height: 930px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
     }
 
-    .product-container {
-      margin-bottom: 50px;
+    .product-upper {
+      @extend %fsb;
+      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 40px;
 
-      .product-item {
-        display: flex;
-        margin-bottom: 15px;
-        height: 150px;
-        transition: .2s ease-in-out;
+      &__img {
+        @extend %fcc;
 
-        &:hover {
-          box-shadow: 0px 0px 5px 0px black;
+        margin-right: 30px;
+
+        img {
+          max-width: 250px;
+          max-height: 250px;
+        }
+      }
+
+      &__description {
+        @extend %fcc;
+        align-items: flex-start;
+        width: 445px;
+
+        .head {
+          display: block;
+          font-size: 20px;
+          margin-bottom: 30px;
         }
 
-        .product-img {
-          max-width: 100px;
-          margin-right: 16px;
+        .text {
+          font-size: 14px;
         }
+      }
 
-        .product-title-desc-container {
-          @extend %fcc;
-          align-items: flex-start;
-          margin-right: 16px;
+      &__pdf {
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        transition: .3s ease-in-out;
 
-          ::ng-deep .mat-card-header-text {
-            margin: 0;
+        .pdf-link {
+          text-decoration: none;
+
+
+          &:hover {
+            box-shadow: 0 0 6px 0px gray;
+            border: 1px solid transparent;
           }
-        }
 
-        .button-container {
-          margin-left: auto;
-          display: flex;
-          flex-direction: column;
-
-
-          .price {
-            background: $main-color1;
-            color: white;
-            margin-bottom: 10px;
+          pdf-viewer {
+            border-radius: 10px;
+            display: block;
+            height: 200px;
+            width: 200px;
+            overflow: hidden;
           }
 
-          .more {
-            background: $main-color2;
-            color: white;
-            text-decoration: none;
+          .title-box {
+            @extend %fc;
+            justify-content: flex-start;
+            padding: 10px 0;
+            width: 200px;
+
+            &__img {
+              width: 25px;
+              margin: 0 10px;
+            }
+
+            &__text {
+              font-size: 12px;
+              color: $main-color2;
+            }
           }
         }
       }
+    }
+
+    .product-splitter {
+      @extend %fsb;
+      width: 100%;
+      //background: $main-color1;
+
+      .mat-icon {
+        font-size: 18px;
+        height: 18px;
+        width: 18px;
+      }
+
+      button {
+        width: 140px;
+        font-size: 12px;
+        padding: 0 3px;
+
+      }
+
+      span {
+        @extend %fcc;
+        color: white;
+      }
+
+      &__consult-btn {
+        background: $main-color2;
+        color: white;
+      }
+
+      &__tech-desc {
+
+      }
+
+      &__quality-passport {
+      }
+    }
+
+    .product-bottom {
+      width: 100%;
+
+      &__spec {
+        .head {
+          font-size: 20px;
+        }
+
+        .text {
+          table {
+
+          }
+
+          tr {
+            width: 200px;
+            padding: 0;
+          }
+
+          td {
+            width: 445px;
+          }
+        }
+      }
+
     }
   }
 }
