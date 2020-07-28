@@ -3,9 +3,10 @@ import {
   BrandService,
   CatalogService,
   PostService,
-  ProductOilService,
   CategoryService,
-  SubCategoryService
+  SubCategoryService,
+  ProductOilService,
+  ProductDrillService
 } from '../_services';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {NewsInterface} from './news/news.interface';
@@ -15,7 +16,6 @@ import clonedeep from 'lodash.clonedeep';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {UploadHelper} from '../_helpers';
-import {ProductDrillService} from '../_services/product-drill.service';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix

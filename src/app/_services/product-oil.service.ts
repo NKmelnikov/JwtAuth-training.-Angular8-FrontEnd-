@@ -2,11 +2,16 @@ import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ProductsOilInterface} from '../admin/products-oil/products-oil.interface';
 import {Service} from './service';
+import {environment} from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class ProductOilService extends Service {
   constructor(private injector: Injector) {
     super(injector);
+  }
+
+  getProductBySlug(data): Observable<ProductsOilInterface> {
+    return this.http.post<ProductsOilInterface>(`${environment.serverURL}get-product-oil-by-slug`, data);
   }
 
   getAll(): Observable<any[]> {

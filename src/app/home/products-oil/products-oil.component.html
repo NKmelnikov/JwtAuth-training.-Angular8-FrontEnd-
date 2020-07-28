@@ -30,18 +30,19 @@
     >масла </a>
   </div>
   <div class="oil-wrapper container">
-    <div class="category-header">
-      <h2>Категории</h2>
+    <div class="oil-header">
+      <span class="oil-header__category">Категории</span>
+      <span class="oil-header__selected-name">{{ this.selectedCategoryNameToShow }}</span>
     </div>
     <div class="content-container container">
       <aside class="navigation-container">
         <mat-accordion>
-
           <mat-expansion-panel
             [id]="category._id.$oid"
             *ngFor="let category of categoryList"
-            (click)="selectProducts(category)"
+            (click)="selectCategory(category)"
             [ngClass]="{'active': category.activeClass}"
+            [expanded]="category.isExpanded"
           >
 
             <mat-expansion-panel-header>
@@ -76,7 +77,11 @@
               </div>
               <mat-card-actions class="button-container">
                 <button mat-flat-button class="price">Запросить цену</button>
-                <button mat-flat-button class="more">Подробнее</button>
+                <a
+                  mat-flat-button
+                  class="more"
+                  routerLink="/products/oil/{{product.slug}}"
+                >Подробнее</a>
               </mat-card-actions>
             </mat-card>
             <div *ngIf="productsToShow.length === 0">В этой категории продукты не представлены</div>

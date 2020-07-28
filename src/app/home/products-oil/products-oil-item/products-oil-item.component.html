@@ -1,1 +1,98 @@
-<p>products-oil-item works!</p>
+<main class="products-oil-item-home-wrapper">
+  <div class="header-container">
+    <div class="header-box container">
+      <div class="header-box__title">Масла</div>
+      <div class="header-box__text">
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumbs container">
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/"
+    >главная / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/products"
+    >продукция / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item current"
+      routerLink="/products/oil"
+    >масла </a>
+  </div>
+  <div class="oil-wrapper container">
+    <div class="category-header">
+      <h2>Категории</h2>
+    </div>
+    <div class="content-container container">
+      <aside class="navigation-container">
+        <mat-accordion>
+
+          <mat-expansion-panel
+            [id]="category._id.$oid"
+            *ngFor="let category of categoryList"
+            (click)="selectCategory(category)"
+            [ngClass]="{'active': category.activeClass}"
+          >
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ category.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div
+              class="expansion-item sub-categories-item"
+              [id]="subcategory.sub_id.$oid"
+              *ngFor="let subcategory of category.subCategories"
+              [ngClass]="{'active': subcategory.activeClass}"
+              (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
+              {{subcategory.name}}
+            </div>
+            <div class="sub-categories">
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </aside>
+      <div class="product-wrapper">
+        <div class="product-container">
+          <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="selectProductsOil(product)">
+            <img [src]="serverUrl + product.imgPath" class="product-img" alt="">
+            <div class="product-title-desc-container">
+              <mat-card-header>
+                <mat-card-title>{{product.name}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
+            </div>
+            <mat-card-actions class="button-container">
+              <button mat-flat-button class="price">Запросить цену</button>
+              <a
+                mat-flat-button
+                class="more"
+                routerLink="/products/oil/{{product.slug}}"
+              >Подробнее</a>
+            </mat-card-actions>
+          </mat-card>
+          <div *ngIf="productsToShow.length === 0">В этой категории продукты не представлены</div>
+        </div>
+        <div class="pagination-block">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="productsToShow.length">
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
