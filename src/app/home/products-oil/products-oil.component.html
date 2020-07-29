@@ -66,33 +66,7 @@
         </mat-accordion>
       </aside>
       <section class="product-wrapper">
-        <div class="product-container">
-            <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" (click)="selectProductsOil(product)">
-              <img [src]="serverUrl + product.imgPath" class="product-img" alt="">
-              <div class="product-title-desc-container">
-                <mat-card-header>
-                  <mat-card-title>{{product.name}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
-              </div>
-              <mat-card-actions class="button-container">
-                <button mat-flat-button class="price">Запросить цену</button>
-                <a
-                  mat-flat-button
-                  class="more"
-                  routerLink="/products/oil/{{product.slug}}"
-                >Подробнее</a>
-              </mat-card-actions>
-            </mat-card>
-            <div *ngIf="productsToShow.length === 0">В этой категории продукты не представлены</div>
-        </div>
-        <div class="pagination-block">
-          <ngb-pagination
-            [(page)]="page"
-            [pageSize]="pageSize"
-            [collectionSize]="productsToShow.length">
-          </ngb-pagination>
-        </div>
+        <router-outlet></router-outlet>
       </section>
     </div>
   </div>

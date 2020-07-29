@@ -48,6 +48,7 @@ export class ProductsOilHomeComponent implements OnInit {
     this.getCategoryList();
     this.getProductsOilList();
     this.serverUrl = environment.serverURL;
+    console.log(11);
   }
 
   getCategoryList() {

@@ -23,6 +23,7 @@ import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.c
 import {AboutComponent} from './home/about/about.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
 import {ProductsDrillItemComponent} from './home/products-drill/products-drill-item/products-drill-item.component';
+import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,10 @@ const routes: Routes = [
       {path: '', component: MainComponent},
       {path: 'catalogs', component: CatalogsHomeComponent},
       {path: 'products', component: ProductsComponent},
-      {path: 'products/oil', component: ProductsOilHomeComponent},
-      {path: 'products/oil/:slug', component: ProductsOilItemComponent},
+      {path: 'products/oil', component: ProductsOilHomeComponent, children: [
+          {path: '', component: ProductsOilListComponent},
+          {path: ':slug', component: ProductsOilItemComponent},
+        ]},
       {path: 'products/drill', component: ProductsDrillHomeComponent},
       {path: 'products/drill/:slug', component: ProductsDrillItemComponent},
       {path: 'news', component: NewsHomeComponent},
