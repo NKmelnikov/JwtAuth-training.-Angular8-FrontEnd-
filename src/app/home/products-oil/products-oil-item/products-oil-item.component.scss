@@ -1,282 +1,67 @@
 @import "../../../app.global";
 
-.products-oil-home-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.header-container {
-  height: 370px;
-  background: $main-color2;
-  border-bottom: 10px solid $main-color1;
+.product-item {
+  @extend %fsb;
+  align-items: flex-start;
+  width: 100%;
   margin-bottom: 40px;
-  background: url("/assets/img/header-catalogs.png") no-repeat;
+  min-height: 930px;
 
-  .header-box {
-    color: white;
+  &__img {
+    @extend %fcc;
+
+    margin-right: 30px;
+
+    img {
+      max-width: 250px;
+      max-height: 250px;
+    }
+  }
+
+  &__description-container {
     @extend %fcc;
     align-items: flex-start;
-    height: 100%;
+    width: 445px;
 
-    &__title {
-      font-size: 72px;
-      text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 6px;
+    mat-tab-group {
+      width: 100%;
     }
 
-    &__text {
-      font-size: 14px;
-      height: 150px;
+    .head {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .description{
+      width: 100%;
+      padding: 10px 5px;
+
+      .text {
+        font-size: 14px;
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .button-container {
+        @extend %fsb;
+        width: 100%;
+
+        button {
+          padding: 0 5px;
+          min-width: 110px;
+        }
+
+        &__order-btn {
+          color: white;
+          background: $main-color2;
+        }
+      }
+    }
+
+    .spec {
     }
   }
 }
 
-.breadcrumbs {
-  @extend %fc;
-  justify-content: flex-start;
-  margin-bottom: 20px;
 
-  &__item {
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: 10px;
-    margin-right: 3px;
-    font-weight: bolder;
-    color: #9e9e9e;
-
-    &:hover {
-      color: $main-color2;
-    }
-
-    &.current {
-      color: $main-color2;
-    }
-  }
-}
-
-.oil-wrapper {
-
-  .oil-header {
-    margin-bottom: 40px;
-    @extend %fc;
-    justify-content: flex-start;
-
-    span {
-      font-size: 26px;
-    }
-
-    &__category {
-      width: 385px;
-    }
-  }
-
-  .content-container {
-    @extend %fsb;
-    align-items: flex-start;
-    padding: 0;
-
-    .navigation-container {
-      width: 350px;
-
-      .mat-accordion {
-        //position: fixed;
-      }
-
-      .mat-expansion-panel {
-        margin-bottom: 5px;
-      }
-
-      .mat-expansion-panel-header {
-        background: $main-color2;
-        height: 60px !important;
-      }
-
-      & .mat-expanded .mat-expansion-panel-header {
-        background: $main-color1;
-      }
-
-      .mat-expansion-panel-header-title {
-        color: white;
-      }
-
-      ::ng-deep .mat-expansion-indicator:after {
-        color: white;
-      }
-
-      ::ng-deep .mat-expansion-panel-body {
-        padding: 0px;
-
-        .expansion-item {
-          @extend %fc;
-          justify-content: flex-start;
-          cursor: pointer;
-          height: 40px;
-          border-bottom: 1px solid lightgrey;
-          padding: 5px 5px 5px 15px;
-
-          &:hover {
-            background: #e9e9e9;
-          }
-
-          &.active {
-            color: $main-color1;
-            background: #f3f3f3;
-          }
-
-          &:after {
-            content: '';
-
-          }
-        }
-      }
-    }
-
-    .product-wrapper {
-      @extend %fcc;
-      align-items: center;
-      justify-content: flex-start;
-      width: 725px;
-      min-height: 930px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-upper {
-      @extend %fsb;
-      align-items: flex-start;
-      width: 100%;
-      margin-bottom: 40px;
-
-      &__img {
-        @extend %fcc;
-
-        margin-right: 30px;
-
-        img {
-          max-width: 250px;
-          max-height: 250px;
-        }
-      }
-
-      &__description {
-        @extend %fcc;
-        align-items: flex-start;
-        width: 445px;
-
-        .head {
-          display: block;
-          font-size: 20px;
-          margin-bottom: 30px;
-        }
-
-        .text {
-          font-size: 14px;
-        }
-      }
-
-      &__pdf {
-        border: 1px solid lightgrey;
-        border-radius: 10px;
-        transition: .3s ease-in-out;
-
-        .pdf-link {
-          text-decoration: none;
-
-
-          &:hover {
-            box-shadow: 0 0 6px 0px gray;
-            border: 1px solid transparent;
-          }
-
-          pdf-viewer {
-            border-radius: 10px;
-            display: block;
-            height: 200px;
-            width: 200px;
-            overflow: hidden;
-          }
-
-          .title-box {
-            @extend %fc;
-            justify-content: flex-start;
-            padding: 10px 0;
-            width: 200px;
-
-            &__img {
-              width: 25px;
-              margin: 0 10px;
-            }
-
-            &__text {
-              font-size: 12px;
-              color: $main-color2;
-            }
-          }
-        }
-      }
-    }
-
-    .product-splitter {
-      @extend %fsb;
-      width: 100%;
-      //background: $main-color1;
-
-      .mat-icon {
-        font-size: 18px;
-        height: 18px;
-        width: 18px;
-      }
-
-      button {
-        width: 140px;
-        font-size: 12px;
-        padding: 0 3px;
-
-      }
-
-      span {
-        @extend %fcc;
-        color: white;
-      }
-
-      &__consult-btn {
-        background: $main-color2;
-        color: white;
-      }
-
-      &__tech-desc {
-
-      }
-
-      &__quality-passport {
-      }
-    }
-
-    .product-bottom {
-      width: 100%;
-
-      &__spec {
-        .head {
-          font-size: 20px;
-        }
-
-        .text {
-          table {
-
-          }
-
-          tr {
-            width: 200px;
-            padding: 0;
-          }
-
-          td {
-            width: 445px;
-          }
-        }
-      }
-
-    }
-  }
-}

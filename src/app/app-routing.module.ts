@@ -6,7 +6,6 @@ import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './admin/admin.component';
 import {AuthGuard} from './_helpers';
 import {DashboardComponent} from './admin/dashboard/dashboard.component';
-import {AppComponent} from './app.component';
 import {NewsComponent} from './admin/news/news.component';
 import {NewsHomeComponent} from './home/news/news.component';
 import {MainComponent} from './home/main/main.component';

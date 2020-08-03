@@ -7,3 +7,4 @@ export * from './category.service';
 export * from './subcategory.service';
 export * from './product-oil.service';
 export * from './product-drill.service';
+export * from './data.service';

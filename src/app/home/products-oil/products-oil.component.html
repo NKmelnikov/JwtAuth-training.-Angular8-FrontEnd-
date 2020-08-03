@@ -43,6 +43,8 @@
             (click)="selectCategory(category)"
             [ngClass]="{'active': category.activeClass}"
             [expanded]="category.isExpanded"
+            [routerLink]="['/products/oil']"
+            routerLinkActive="list-item-active"
           >
 
             <mat-expansion-panel-header>
@@ -56,6 +58,8 @@
               [id]="subcategory.sub_id.$oid"
               *ngFor="let subcategory of category.subCategories"
               [ngClass]="{'active': subcategory.activeClass}"
+              [routerLink]="['/products/oil']"
+              routerLinkActive="list-item-active"
               (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
               {{subcategory.name}}
             </div>

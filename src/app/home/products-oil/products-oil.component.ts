@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {BrandService, CategoryService, ProductOilService} from '../../_services';
+import {BrandService, CategoryService, ProductOilService, DataService} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
 import {environment} from '../../../environments/environment';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,16 +12,14 @@ import {environment} from '../../../environments/environment';
 })
 export class ProductsOilHomeComponent implements OnInit {
 
-  public categoryList = [];
-  public brandList = [];
   public productsOilList = [];
   public productsToShow = [];
+  public categoryList = [];
+  public brandList = [];
   public selectedCategory;
   public selectedCategoryNameToShow = 'Все продукты';
   public selectedIndex;
-  public serverUrl;
-  public page = 1;
-  public pageSize = 5;
+
   brandCategory = {
     _id: {$oid: '5f105534ed58762626brands'},
     active: 1,
@@ -39,7 +38,9 @@ export class ProductsOilHomeComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private brandService: BrandService,
-    private productOilService: ProductOilService
+    private productOilService: ProductOilService,
+    private dataService: DataService,
+    private router: Router
   ) {
 
   }
@@ -47,8 +48,6 @@ export class ProductsOilHomeComponent implements OnInit {
   ngOnInit(): void {
     this.getCategoryList();
     this.getProductsOilList();
-    this.serverUrl = environment.serverURL;
-    console.log(11);
   }
 
   getCategoryList() {
@@ -73,6 +72,7 @@ export class ProductsOilHomeComponent implements OnInit {
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
         this.productsToShow = this.productsOilList;
+        this.dataService.showProducts(this.productsToShow);
       });
   }
 
@@ -101,6 +101,10 @@ export class ProductsOilHomeComponent implements OnInit {
         });
       }
     }
+
+    setTimeout(() => {
+      this.dataService.showProducts(this.productsToShow);
+    }, 0);
   }
 
   selectSubCategory(subcategory, list) {
@@ -116,9 +120,10 @@ export class ProductsOilHomeComponent implements OnInit {
         return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid || el.brand._id.$oid === subcategory.sub_id.$oid;
       }
     });
-  }
 
-  selectProductsOil(product) {
-    console.log(product);
+
+    setTimeout(() => {
+      this.dataService.showProducts(this.productsToShow);
+    }, 0);
   }
 }
