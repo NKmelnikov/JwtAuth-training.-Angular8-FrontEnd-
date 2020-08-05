@@ -1,119 +1,40 @@
-<main class="products-oil-item-home-wrapper">
-  <div class="header-container">
-    <div class="header-box container">
-      <div class="header-box__title">Масла</div>
-      <div class="header-box__text">
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-      </div>
-    </div>
+<div class="product-item">
+  <div class="product-item__img">
+    <img [src]="env.serverURL + product.imgPath" alt="">
   </div>
-  <div class="breadcrumbs container">
-    <a
-      mat-list-item routerLinkActive="list-item-active"
-      class="breadcrumbs__item"
-      routerLink="/"
-    >главная / </a>
-    <a
-      mat-list-item routerLinkActive="list-item-active"
-      class="breadcrumbs__item"
-      routerLink="/products"
-    >продукция / </a>
-    <a
-      mat-list-item routerLinkActive="list-item-active"
-      class="breadcrumbs__item current"
-      routerLink="/products/oil"
-    >масла </a>
-  </div>
-  <div class="oil-wrapper container">
-    <div class="oil-header">
-      <span class="oil-header__category">Категории</span>
-      <span class="oil-header__selected-name">{{ product.name }}</span>
-    </div>
-    <div class="content-container container">
-      <aside class="navigation-container">
-        <mat-accordion>
-
-          <mat-expansion-panel
-            [id]="category._id.$oid"
-            *ngFor="let category of categoryList"
-            (click)="selectCategory(category)"
-            [ngClass]="{'active': category.activeClass}"
-          >
-
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ category.name }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <div
-              class="expansion-item sub-categories-item"
-              [id]="subcategory.sub_id.$oid"
-              *ngFor="let subcategory of category.subCategories"
-              [ngClass]="{'active': subcategory.activeClass}"
-              (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
-              {{subcategory.name}}
-            </div>
-            <div class="sub-categories">
-            </div>
-
-          </mat-expansion-panel>
-        </mat-accordion>
-      </aside>
-      <section class="product-wrapper">
-
-        <div class="product-upper">
-          <div class="product-upper__img">
-            <img [src]="env.serverURL + product.imgPath" alt="">
+  <div class="product-item__description-container">
+    <span class="name">
+      {{product.name}}
+    </span>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Описание">
+        <div class="description">
+          <span class="text" [innerHTML]="product.description"></span>
+          <div class="button-container">
+            <a
+              [href]="env.serverURL + product.pdf1Path"
+              target="_blank"
+              mat-raised-button
+              class="threeBtns button-container__consult1-btn">
+              <mat-icon aria-hidden="true" class="md-18">file_download</mat-icon>
+              Тех. описание
+            </a>
+            <a
+              [href]="env.serverURL + product.pdf2Path"
+              target="_blank" mat-raised-button
+              class="threeBtns button-container__consult2-btn">
+              <mat-icon aria-hidden="true">file_download</mat-icon>
+              Паспорт качества
+            </a>
+            <button mat-flat-button class="button-container__order-btn">Заказать</button>
           </div>
-          <mat-tab-group>
-            <mat-tab label="Описание">
-              <div class="product-upper__description">
-                <span class="text" [innerHTML]="product.description"></span>
-                <div class="product-splitter">
-                  <!--          <span class="elem product-splitter__tech-desc">Техническое описание</span>-->
-                  <!--          <span class="elem product-splitter__quality-passport">Паспорт качества</span>-->
-                  <button mat-raised-button class=" product-splitter__consult1-btn">
-                    <mat-icon aria-hidden="true" class="md-18">file_download</mat-icon>
-                    Тех. описание
-                  </button>
-                  <button mat-raised-button class=" product-splitter__consult2-btn">
-                    <mat-icon aria-hidden="true">file_download</mat-icon>
-                    Паспорт качества
-                  </button>
-                  <button mat-flat-button class=" product-splitter__consult-btn">Заказать</button>
-                </div>
-              </div>
-            </mat-tab>
-            <mat-tab label="Характеристики">
-              <div class="product-bottom__spec">
-                <span class="text" [innerHTML]="product.spec"></span>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
-
         </div>
-
-<!--        <div class="product-splitter">-->
-<!--&lt;!&ndash;          <span class="elem product-splitter__tech-desc">Техническое описание</span>&ndash;&gt;-->
-<!--&lt;!&ndash;          <span class="elem product-splitter__quality-passport">Паспорт качества</span>&ndash;&gt;-->
-<!--          <button mat-raised-button class=" product-splitter__consult1-btn">-->
-<!--            <mat-icon aria-hidden="true">file_download</mat-icon>Техническое описание-->
-<!--          </button>-->
-<!--          <button mat-raised-button class=" product-splitter__consult2-btn">-->
-<!--            <mat-icon aria-hidden="true">file_download</mat-icon>Пасспорт качества-->
-<!--          </button>-->
-<!--          <button mat-flat-button class=" product-splitter__consult-btn">Получить консультацию</button>-->
-<!--        </div>-->
-        <div class="product-bottom">
-
+      </mat-tab>
+      <mat-tab label="Характеристики">
+        <div class="spec">
+          <span class="text" [innerHTML]="product.spec"></span>
         </div>
-      </section>
-    </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-</main>
+</div>
