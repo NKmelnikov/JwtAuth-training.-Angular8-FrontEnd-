@@ -1,19 +1,13 @@
-import {ChangeDetectorRef, Component, Injector, OnInit, ViewChild} from '@angular/core';
+import {Component, Injector, OnInit, ViewChild} from '@angular/core';
 import {environment} from '../../../../environments/environment';
-import {UploadHelper} from '../../../_helpers';
-import {CategoryService, SubCategoryService} from '../../../_services';
-import {Router, ActivatedRoute, ParamMap} from '@angular/router';
-import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
-import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@angular/cdk/drag-drop';
+import {MatTableDataSource, MatSort, MatPaginator, MatTable} from '@angular/material';
+import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {CategoriesInterface} from '../categories.interface';
-import {Location} from '@angular/common';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
 import {SelectionModel} from '@angular/cdk/collections';
-import clonedeep from 'lodash.clonedeep';
 import {SubcategoryDialogComponent} from './subcategory-dialog/subcategory-dialog.component';
 import {AdminBaseComponent} from '../../admin.base-component';
-import {SubCategoriesInterface} from './subcategories.interface';
 
 
 @Component({
@@ -52,7 +46,6 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     position: 1,
     active: 0,
     name: '/noData',
-    description: 'noData',
     subCategories: []
   }];
   public dataSource;
@@ -61,7 +54,6 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     'position',
     'active',
     'name',
-    'description',
     'createdAt',
     'action'
   ];
@@ -98,7 +90,6 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     this.categoryService.getCategoryById(categoryId).subscribe(data => {
       // @ts-ignore
       this.category = data;
-      console.log(data);
       // @ts-ignore
       this.dataSource = new MatTableDataSource(data.subCategories);
       this.refreshTableRoutine();

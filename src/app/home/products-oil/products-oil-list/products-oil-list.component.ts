@@ -20,10 +20,8 @@ export class ProductsOilListComponent implements OnDestroy {
     private productOilService: ProductOilService,
     private dataService: DataService,
   ) {
-    console.log('child-component');
     this.subscription = dataService.showProducts$.subscribe(products => {
       this.productsToShow = products;
-      console.log(this.productsToShow);
     });
   }
 

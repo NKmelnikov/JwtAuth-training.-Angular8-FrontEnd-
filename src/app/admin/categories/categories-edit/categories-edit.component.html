@@ -1,15 +1,8 @@
 <section class="category-modify-wrapper">
-
   <mat-toolbar color="warn" class="title-mat-toolbar">
-    <h1>Категории {{editFlag === false ? 'Создать' : 'Обновить'}}</h1>
+    <h1>{{editFlag === false ? 'Создание категории' : 'Редактирование категории'}}</h1>
   </mat-toolbar>
   <div class="form-container">
-    <div class="form-field">
-      <mat-radio-group [(ngModel)]="category.type" aria-label="Тип">
-        <mat-radio-button value="1">Масла</mat-radio-button>
-        <mat-radio-button value="2">Металлореж.</mat-radio-button>
-      </mat-radio-group>
-    </div>
     <div class="form-field">
       <mat-form-field class="example-full-width">
         <mat-label>Название категории</mat-label>
@@ -17,17 +10,24 @@
       </mat-form-field>
     </div>
     <div class="form-field">
-      <mat-slide-toggle [(ngModel)]="category.active">Активная категория</mat-slide-toggle>
-    </div>
-    <div class="form-field">
-      <mat-label>Описание категории</mat-label>
+      <mat-label class="ck-editor-label">Описание категории</mat-label>
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.description"></ckeditor>
     </div>
-    <button (click)="createOrEditCategory()" mat-raised-button color="warn">{{editFlag === false ? 'Создать' : 'Обновить'}}</button>
+    <div class="form-field">
+      <mat-radio-group [(ngModel)]="category.type" aria-label="Тип">
+        <mat-radio-button class="" [value]="1">Масла</mat-radio-button>
+        <mat-radio-button class="" [value]="2">Металлореж.</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="form-field">
+      <mat-slide-toggle [(ngModel)]="category.active">Активная категория</mat-slide-toggle>
+    </div>
+
+    <button (click)="createOrEditCategory()" mat-raised-button color="warn">{{editFlag === false ? 'Создать' : 'Сохранить'}}</button>
     <button (click)="back()" mat-raised-button color="primary">Назад</button>
   </div>
 </section>
-<br>
+<section class="sub-category-modify-wrapper" [ngClass]="{'category-create': !editFlag}">
   <mat-toolbar color="primary" class="title-mat-toolbar">
     <h1>Подкатегории</h1>
   </mat-toolbar>
@@ -98,15 +98,7 @@
     <ng-container matColumnDef="name">
       <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
       <mat-cell *matCellDef="let element">
-        {{element.name | slice:0: 20}}
-      </mat-cell>
-    </ng-container>
-
-    <!-- pdf Column -->
-    <ng-container matColumnDef="description">
-      <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.description | slice:0: 20}}
+        {{element.name}}
       </mat-cell>
     </ng-container>
 
@@ -132,3 +124,5 @@
     </mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</section>
+

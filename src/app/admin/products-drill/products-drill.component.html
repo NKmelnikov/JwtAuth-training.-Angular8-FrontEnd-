@@ -52,6 +52,12 @@
     </mat-cell>
   </ng-container>
 
+  <!-- pdf Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Название продукта</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.name }}</mat-cell>
+  </ng-container>
+
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <mat-header-cell mat-sort-header *matHeaderCellDef> No.</mat-header-cell>
@@ -73,31 +79,21 @@
   <!-- category name Column -->
   <ng-container matColumnDef="category">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Категория</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.category.name }}</mat-cell>
+    <mat-cell *matCellDef="let element">
+    <span class="font-size-10">
+      {{ element.category.name }}
+    </span>
+    </mat-cell>
   </ng-container>
 
   <!-- subcategory Column -->
   <ng-container matColumnDef="subcategory">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Подкатегория</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{(element.subcategory.name) ? element.subcategory.name : 'подкатегории нет' }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Название продукта</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.name }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="description">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.description }}</mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="pdfPath">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Pdf</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.pdfPath }}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="font-size-10">
+        {{(element.subcategory.name) ? element.subcategory.name : 'подкатегории нет' }}
+      </span>
+    </mat-cell>
   </ng-container>
 
   <!-- date Column -->

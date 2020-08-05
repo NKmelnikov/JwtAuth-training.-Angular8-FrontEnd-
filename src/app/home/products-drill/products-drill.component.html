@@ -1,1 +1,106 @@
-<p>products-drill works!</p>
+<main class="products-drill-home-wrapper">
+  <div class="header-container">
+    <div class="header-box container">
+      <div class="header-box__title">Масла</div>
+      <div class="header-box__text">
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumbs container">
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/"
+    >главная / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/products"
+    >продукция / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item current"
+      routerLink="/products/drill"
+    >металлореж. </a>
+  </div>
+  <div class="oil-wrapper container">
+    <div class="oil-header">
+      <span class="oil-header__category">Категории</span>
+      <span class="oil-header__selected-name">{{ this.selectedCategoryNameToShow }}</span>
+    </div>
+    <div class="content-container container">
+      <aside class="navigation-container">
+        <mat-accordion>
+          <mat-expansion-panel
+            [id]="category._id.$oid"
+            *ngFor="let category of categoryList"
+            (click)="selectCategory(category)"
+            [ngClass]="{'active': category.activeClass}"
+            [expanded]="category.isExpanded"
+            [routerLink]="['/products/drill']"
+            routerLinkActive="list-item-active"
+          >
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ category.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div
+              class="expansion-item sub-categories-item"
+              [id]="subcategory.sub_id.$oid"
+              *ngFor="let subcategory of category.subCategories"
+              [ngClass]="{'active': subcategory.activeClass}"
+              [routerLink]="['/products/drill']"
+              routerLinkActive="list-item-active"
+              (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subCategories)">
+              {{subcategory.name}}
+            </div>
+            <div class="sub-categories">
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </aside>
+      <section class="product-wrapper">
+        <section class="content-section">
+          <section class="category-description" [innerHTML]="this.categoryToShow.description"></section>
+          <section class="subcategory-description" [innerHTML]="this.subcategoryToShow.description"></section>
+          <section class="products-drill-container">
+            <div class="products-drill" *ngFor="let product of productsToShow">
+              <a class="products-drill__link" target="_blank" href="{{env.serverURL + product.pdfPath}}">
+                <pdf-viewer [src]="env.serverURL + product.pdfPath"
+                            [render-text]="false"
+                            [page]="1"
+                            [show-all]="false"
+                            [original-size]="false"
+                            [fit-to-page]="false"
+                            [autoresize]="false"
+                            [show-borders]="false"
+                ></pdf-viewer>
+                <div class="bot-title-box">
+                  <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
+                  <span class="bot-title-box__text">{{product.name | slice:0: 15 }}{{product.name.length > 15 ? ' ...' : ''}}</span>
+                </div>
+              </a>
+            </div>
+          </section>
+        </section>
+        <div class="pagination-block">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="productsToShow.length">
+          </ngb-pagination>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>

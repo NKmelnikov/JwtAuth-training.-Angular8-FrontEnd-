@@ -76,15 +76,7 @@
 
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{element.name | slice:0: 20}} {{element.name.length > 20 ? ' ...' : ''}}
-    </mat-cell>
-  </ng-container>
-
-  <!-- pdf Column -->
-  <ng-container matColumnDef="description">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Описание</mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      {{element.description | slice:0: 20}} {{element.description.length > 20 ? ' ...' : ''}}
+      {{element.name}}
     </mat-cell>
   </ng-container>
 

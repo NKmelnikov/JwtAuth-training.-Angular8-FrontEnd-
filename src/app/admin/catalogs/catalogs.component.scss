@@ -61,3 +61,15 @@ table {
 .mat-row {
   max-height: 50px;
 }
+
+.mat-column-active, .mat-column-position, .mat-column-select {
+  flex: 0 0 5%;
+}
+
+.mat-column-name {
+  flex: 0 0 30%;
+}
+
+.mat-column-pdfPath {
+  flex: 0 0 35%;
+}

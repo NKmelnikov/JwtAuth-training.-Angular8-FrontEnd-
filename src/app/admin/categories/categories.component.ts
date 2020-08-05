@@ -25,7 +25,6 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
     active: 0,
     type: 1,
     name: '/noData',
-    description: 'noData',
   }];
 
   public displayedColumns: string[] = [
@@ -34,7 +33,6 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
     'active',
     'type',
     'name',
-    'description',
     'createdAt',
     'action'
   ];

@@ -1,3 +1,5 @@
+@import "../../app.global";
+
 table {
   width: 100%;
 }
@@ -60,4 +62,16 @@ table {
 
 .mat-row {
   max-height: 50px;
+}
+
+.mat-column-active, .mat-column-position, .mat-column-select {
+  flex: 0 0 5%;
+}
+
+.mat-column-productImgPath {
+  flex: 0 0 5%;
+}
+
+.mat-column-name, .mat-column-category, .mat-column-subcategory {
+  flex: 0 0 20%;
 }

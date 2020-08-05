@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BrandService, CategoryService, ProductOilService, DataService} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
-import {environment} from '../../../environments/environment';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,6 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./products-oil.component.scss']
 })
 export class ProductsOilHomeComponent implements OnInit {
+
+  readonly typeOil = 1;
 
   public productsOilList = [];
   public productsToShow = [];
@@ -40,7 +40,6 @@ export class ProductsOilHomeComponent implements OnInit {
     private brandService: BrandService,
     private productOilService: ProductOilService,
     private dataService: DataService,
-    private router: Router
   ) {
 
   }
@@ -53,7 +52,10 @@ export class ProductsOilHomeComponent implements OnInit {
   getCategoryList() {
     this.categoryService.getAll()
       .subscribe(categoryList => {
-        this.categoryList = categoryList;
+        this.categoryList = categoryList.filter((el) => {
+          return el.type === this.typeOil;
+        });
+
         this.categoryList.push(this.brandCategory);
 
         this.brandService.getAll()

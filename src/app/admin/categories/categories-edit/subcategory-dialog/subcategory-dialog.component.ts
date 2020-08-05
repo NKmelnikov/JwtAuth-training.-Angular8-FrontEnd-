@@ -7,7 +7,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 @Component({
   selector: 'app-subcategory-dialog',
   templateUrl: './subcategory-dialog.component.html',
-  styleUrls: ['./subcategory-dialog.component.sass']
+  styleUrls: ['./subcategory-dialog.component.scss']
 })
 export class SubcategoryDialogComponent implements OnInit {
 
@@ -34,12 +34,23 @@ export class SubcategoryDialogComponent implements OnInit {
     this.localData.description = this.localData.description || '';
   }
 
-  actionTranslateMapping(action) {
+  actionTitleMapping(action) {
+    switch (action) {
+      case 'Create':
+        return 'Создать подкатегорию';
+      case 'Update':
+        return 'Редактировать подкатегорию';
+      case 'Delete':
+        return 'Удалить подкатегорию';
+    }
+  }
+
+  actionButtonMapping(action) {
     switch (action) {
       case 'Create':
         return 'Создать';
       case 'Update':
-        return 'Обновить';
+        return 'Сохранить';
       case 'Delete':
         return 'Удалить';
     }

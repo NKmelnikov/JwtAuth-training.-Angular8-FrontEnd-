@@ -17,7 +17,7 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  selectedValue: string;
+  selectedValueBrand: string;
   selectedValueCategory: string;
   selectedValueSubCategory: string;
   public ckEditorConfig;
@@ -30,6 +30,14 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
   ) {
     super(injector);
     this.localData = {...data};
+    console.log(this.localData);
+
+    if (this.localData.brand) {
+      this.selectedValueBrand = this.localData.brand.name;
+      this.selectedValueCategory = this.localData.category.name;
+      this.selectedValueSubCategory = this.localData.subcategory.name;
+    }
+
     this.localData.active = 1;
     this.action = this.localData.action;
   }

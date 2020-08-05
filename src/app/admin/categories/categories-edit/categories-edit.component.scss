@@ -1,3 +1,5 @@
+@import "../../../app.global";
+
 table {
   width: 100%;
 }
@@ -60,4 +62,59 @@ table {
 
 .mat-row {
   max-height: 50px;
+}
+
+.category-create{
+  display: none;
+}
+
+.category-modify-wrapper{
+  margin-bottom: 50px;
+
+  .form-container{
+    margin: 20px 0 0 15px;
+  }
+
+  .form-field{
+    margin-bottom: 15px;
+
+    .ck-editor-label{
+      font-size: 12px;
+      color: gray;
+    }
+
+    ::ng-deep .ck-editor {
+      min-width: 500px;
+      max-width: 800px;
+    }
+  }
+
+  mat-radio-group{
+    @extend %fcc;
+    align-items: flex-start;
+  }
+
+  mat-radio-button:first-child{
+    margin-bottom: 10px;
+  }
+
+  .mat-raised-button {
+    margin-right: 10px;
+    min-width: 120px;
+  }
+}
+
+.sub-category-modify-wrapper{
+
+  .title-mat-toolbar {
+    background: #bfbfbf;
+  }
+}
+
+.mat-column-active, .mat-column-position, .mat-column-select {
+  flex: 0 0 5%;
+}
+
+.mat-column-name {
+  flex: 0 0 55%;
 }

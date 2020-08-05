@@ -67,14 +67,13 @@
   <!-- name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название </mat-header-cell>
-    <mat-cell *matCellDef="let element">
-      {{element.name | slice:0: 15}} {{element.name.length > 15 ? ' ...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
   </ng-container>
 
     <!-- pdf Column -->
   <ng-container matColumnDef="pdfPath">
     <mat-header-cell mat-sort-header *matHeaderCellDef> .pdf </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.pdfPath | slice:10: 35}} {{element.pdfPath.length > 45 ? '...' : ''}}</mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.pdfPath | slice:10}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->

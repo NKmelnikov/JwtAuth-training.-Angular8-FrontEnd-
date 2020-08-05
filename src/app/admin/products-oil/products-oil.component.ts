@@ -72,22 +72,23 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
         super.refreshTableRoutine();
 
         this.brandService.getAll().subscribe(brandList => {
-          this.brandList = {brandList};
-          this.dataSource.data.forEach((el) => {
-            el.brandList = brandList;
-          });
+          this.brandList = brandList;
+          // this.dataSource.data.forEach((el) => {
+          //   el.brandList = brandList;
+          // });
 
           this.categoryService.getAll().subscribe(categoryList => {
-            this.categoryList = {categoryList};
-            this.dataSource.data.forEach((el) => {
-              el.categoryList = categoryList;
+            this.categoryList = categoryList.filter((el) => {
+              return el.type === this.typeOil;
             });
 
+            // this.dataSource.data.forEach((el) => {
+            //   el.categoryList = this.categoryList;
+            // });
+
             this.dropDownData = {
-              brandList: this.brandList.brandList,
-              categoryList: this.categoryList.categoryList.filter((el) => {
-                return el.type === this.typeOil;
-              })
+              brandList: this.brandList,
+              categoryList: this.categoryList
             };
           });
         });

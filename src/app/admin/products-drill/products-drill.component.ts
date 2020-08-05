@@ -38,14 +38,12 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
 
   public displayedColumns: string[] = [
     'select',
+    'name',
     'position',
     'active',
     'brand',
     'category',
     'subcategory',
-    'name',
-    'description',
-    'pdfPath',
     'createdAt',
     'action'
   ];
@@ -65,23 +63,23 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
         super.refreshTableRoutine();
 
         this.brandService.getAll().subscribe(brandList => {
-          this.brandList = {brandList};
-          this.dataSource.data.forEach((el) => {
-            el.brandList = brandList;
-          });
+          this.brandList = brandList;
+          // this.dataSource.data.forEach((el) => {
+          //   el.brandList = brandList;
+          // });
         });
 
         this.categoryService.getAll().subscribe(categoryList => {
-          this.categoryList = {categoryList};
-          this.dataSource.data.forEach((el) => {
-            el.categoryList = categoryList;
+          this.categoryList = categoryList.filter((el) => {
+            return el.type === this.typeDrill;
           });
+          // this.dataSource.data.forEach((el) => {
+          //   el.categoryList = categoryList;
+          // });
 
           this.dropDownData = {
             brandList: this.brandList.brandList,
-            categoryList: this.categoryList.categoryList.filter((el) => {
-              return el.type === this.typeDrill;
-            })
+            categoryList: this.categoryList.categoryList
           };
         });
       });
