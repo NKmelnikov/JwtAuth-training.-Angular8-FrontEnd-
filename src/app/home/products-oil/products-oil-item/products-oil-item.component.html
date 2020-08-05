@@ -11,14 +11,21 @@
         <div class="description">
           <span class="text" [innerHTML]="product.description"></span>
           <div class="button-container">
-            <button mat-raised-button class="button-container__consult1-btn">
+            <a
+              [href]="env.serverURL + product.pdf1Path"
+              target="_blank"
+              mat-raised-button
+              class="threeBtns button-container__consult1-btn">
               <mat-icon aria-hidden="true" class="md-18">file_download</mat-icon>
               Тех. описание
-            </button>
-            <button mat-raised-button class="button-container__consult2-btn">
+            </a>
+            <a
+              [href]="env.serverURL + product.pdf2Path"
+              target="_blank" mat-raised-button
+              class="threeBtns button-container__consult2-btn">
               <mat-icon aria-hidden="true">file_download</mat-icon>
               Паспорт качества
-            </button>
+            </a>
             <button mat-flat-button class="button-container__order-btn">Заказать</button>
           </div>
         </div>

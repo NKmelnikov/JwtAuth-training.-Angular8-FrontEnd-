@@ -102,9 +102,7 @@ export class ProductsOilHomeComponent implements OnInit {
       }
     }
 
-    setTimeout(() => {
-      this.dataService.showProducts(this.productsToShow);
-    }, 0);
+    this.dataService.showProducts(this.productsToShow);
   }
 
   selectSubCategory(subcategory, list) {
@@ -122,8 +120,6 @@ export class ProductsOilHomeComponent implements OnInit {
     });
 
 
-    setTimeout(() => {
-      this.dataService.showProducts(this.productsToShow);
-    }, 0);
+    this.dataService.showProducts(this.productsToShow);
   }
 }

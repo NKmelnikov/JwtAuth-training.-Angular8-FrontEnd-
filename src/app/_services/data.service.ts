@@ -12,6 +12,8 @@ export class DataService {
 
   // Service message commands
   showProducts(products: any[]) {
-    this.productsToShow.next(products);
+    setTimeout(() => {
+      this.productsToShow.next(products);
+    }, 0);
   }
 }
