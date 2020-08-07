@@ -1,12 +1,10 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {interval} from 'rxjs';
-import {map, take, mergeMap, filter} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {AuthService, PostService, BrandService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {NewsInterface} from '../../admin/news/news.interface';
 import {environment} from '../../../environments/environment';
-import {OwlOptions} from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -165,5 +163,18 @@ export class MainComponent implements AfterViewInit, OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  playVideo(elementId) {
+    // @ts-ignore
+    const video = document.getElementById(elementId) as HTMLVideoElement;
+    video.play();
+  }
+
+  pauseVideo(elementId) {
+    // @ts-ignore
+
+    // const video = document.getElementById(elementId) as HTMLVideoElement;
+    // video.pause();
   }
 }

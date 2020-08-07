@@ -11,99 +11,61 @@
     position: relative;
     overflow: hidden;
 
-    &-left-sector, &-right-sector {
-      filter: brightness(1.15) contrast(0.75);
-    }
-
-    &-left-sector {
+    .video-container {
+      height: 100%;
+      width: 60vw;
       position: absolute;
-      left: 0;
+      overflow: hidden;
       top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      background: url("/assets/img/back-left1.png") no-repeat;
-      transition: .3s ease-in-out;
-    }
+      bottom: 0;
+      transform: skew(10deg);
+      @extend %fc;
 
-    &-right-sector {
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      background: url("/assets/img/back-right.png") no-repeat;
-    }
-
-    &-sq-sector {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .sq-sector-item {
-        width: 308px;
-        height: 615px;
-        transition: .7s ease-in-out;
-        animation-delay: 1.2s;
-
-      }
-
-      &__left {
+      &:after {
+        content: '';
         position: absolute;
-        left: -308px;
-        z-index: 3;
-        animation: sq-from-left .8s forwards;
+        top: 0;
+        left: 0;
+        background: url('/assets/img/video-back.png') repeat;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
       }
 
-      &__right {
+      &:hover {
+
+        &:after {
+          background: none;
+        }
+      }
+
+      .text-container {
+        transform: skew(-10deg);
         position: absolute;
-        right: -308px;
-        z-index: 3;
-        animation: sq-from-right .8s forwards;
-      }
-    }
+        @extend %fcc;
 
-    &-goToProduct-sector {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 4;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
 
-      .goToProduct-sector-item {
-        width: 470px;
-        height: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
+        z-index: 2;
 
-        .title-box {
-          border: 1px solid $main-color4;
+        .text {
+          display: block;
           color: white;
-          background: rgba(0, 35, 89, 0.7);
+          text-transform: uppercase;
+          border: 1px solid #1d263f;
+          background-color: rgba(0, 35, 89, 0.8);
           font-size: 30px;
           font-weight: bolder;
-          text-transform: uppercase;
           padding: 15px 20px;
-        }
+          margin-bottom: 20px;
+          text-align: center;
 
-        .title-box-right {
-          text-align: right;
         }
 
         .goToProduct-btn {
-          text-decoration: none;
-          padding: 15px 20px;
           background: $main-color1;
           color: white;
+          text-decoration: none;
+          padding: 10px 15px;
           border-radius: 3px;
           font-weight: bolder;
           font-size: 18px;
@@ -114,12 +76,46 @@
         }
       }
 
-      &__left {
-        align-items: flex-end !important;
+      video {
+        position: relative;
+        transform: skew(-10deg);
+        object-fit: fill;
       }
 
-      &__right {
-        align-items: flex-start !important;
+      &:first-child {
+        left: -10vw;
+        //justify-content: flex-end;
+
+        .text-container {
+          align-items: flex-end;
+          right: 150px;
+
+          .text {
+            text-align: left;
+          }
+        }
+
+        video {
+
+        }
+      }
+
+      &:last-child {
+        right: -10vw;
+        //justify-content: flex-start;
+
+        .text-container {
+          align-items: flex-start;
+          left: 150px;
+
+          .text {
+            text-align: right;
+          }
+        }
+
+        video {
+          right: 10vw;
+        }
       }
     }
   }
@@ -382,8 +378,6 @@
 
       height: 100%;
       overflow: hidden;
-      padding-bottom: 100px;
-
 
       .brands-wrapper {
         display: flex;
@@ -397,7 +391,7 @@
         font-size: 40px;
         font-weight: bolder;
         text-transform: uppercase;
-        margin: 100px 0 50px 0;
+        margin: 50px 0 20px 0;
       }
 
       .logo-container {
@@ -603,7 +597,7 @@
     }
   }
 
-  .seventh-section{
+  .seventh-section {
     background: $main-color3;
   }
 }

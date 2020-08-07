@@ -1,9 +1,35 @@
 <main class="main-wrapper">
   <section id="s1" class="first-section">
-    <video width="100%" autoplay loop>
-      <source src="assets/videos/video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-container">
+          <video id="video-drill" width="120%" height="100%" autoplay loop>
+            <source src="assets/videos/drill.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+      <div class="text-container">
+        <span class="text">ПРОДАЖА <br>
+МЕТАЛЛОРЕЖУЩЕГО <br> ИНСТРУМЕНТА И ОСНАСТКИ</span>
+        <a
+          mat-raised-button routerLinkActive="list-item-active"
+          class="goToProduct-btn"
+          routerLink="/products/drill"
+        >Перейти в раздел</a>
+      </div>
+    </div>
+    <div class="video-container">
+      <video id="video-oil" width="120%" height="100%" autoplay loop>
+        <source src="assets/videos/oil.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="text-container">
+        <span class="text">ПРОДАЖА <br>
+ВЫСОКОКАЧЕСТВЕННЫХ <br> СМАЗОЧНЫХ МАТЕРИАЛОВ</span>
+        <a
+          mat-raised-button routerLinkActive="list-item-active"
+          class="goToProduct-btn"
+          routerLink="/products/oil"
+        >Перейти в раздел</a>
+      </div>
+    </div>
   </section>
   <section id="s2" class="second-section">
     <div class="second-section__advantages adv-section_js container">
