@@ -28,6 +28,7 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
     active: 0,
     imgPath: '/noData',
     name: 'noData',
+    slug: 'noData',
   }];
 
   public displayedColumns: string[] = [
@@ -36,6 +37,7 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
     'position',
     'active',
     'name',
+    'slug',
     'createdAt',
     'action'
   ];

@@ -1,0 +1,106 @@
+@import "../../../app.global";
+
+.catalog-item-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-description {
+    margin-bottom: 40px;
+}
+
+.header-container {
+  height: 370px;
+  background: $main-color2;
+  border-bottom: 10px solid $main-color1;
+  margin-bottom: 40px;
+  background: url("/assets/img/header-default.png") no-repeat;
+
+  .header-box {
+    color: white;
+    @extend %fcc;
+    align-items: flex-start;
+    height: 100%;
+
+    &__title {
+      font-size: 52px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 6px;
+
+    }
+
+    &__text {
+      font-size: 14px;
+      height: 150px;
+
+    }
+  }
+}
+
+.catalogs-container {
+  @extend %fcc;
+  margin-bottom: 100px;
+
+  .catalog-keeper {
+    @extend %fc;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    width: 100%;
+
+    .catalog-multiplier {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      transition: .3s ease-in-out;
+      margin-right: 47px;
+      margin-bottom: 47px;
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        box-shadow: 0 0 6px 0px gray;
+        border: 1px solid transparent;
+      }
+
+      &__link {
+        text-decoration: none;
+      }
+
+      pdf-viewer {
+        border-radius: 10px;
+        display: block;
+        height: 240px;
+        width: 240px;
+        overflow: hidden;
+      }
+
+      .bot-title-box {
+        @extend %fc;
+        justify-content: flex-start;
+        padding: 10px 0;
+        width: 240px;
+
+        &__img {
+          width: 25px;
+          margin: 0 10px;
+        }
+
+        &__text {
+          color: $main-color2;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+
+  .pagination-block {
+    width: 100%;
+    @extend %fc;
+    justify-content: flex-end;
+  }
+}

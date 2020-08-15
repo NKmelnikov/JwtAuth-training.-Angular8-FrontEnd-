@@ -1,7 +1,7 @@
 <main class="catalog-home-wrapper">
   <div class="header-container">
     <div class="header-box container">
-      <div class="header-box__title">Каталоги</div>
+      <div class="header-box__title">Каталоги и брэнды</div>
       <div class="header-box__text">
         ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
         ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
@@ -17,39 +17,15 @@
       <div class="brand-box__title"> Выберите производителя</div>
       <div class="brand-box__brands">
         <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
-          <img class="brand-box__img" [src]="env.serverURL+brand.imgPath" [alt]="brand.name">
+
+          <a
+             mat-list-item routerLinkActive="list-item-active"
+             [routerLink]="brand.slug">
+            <img class="brand-box__img" [src]="env.serverURL+brand.imgPath" [alt]="brand.name">
+          </a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="catalog-container container">
-    <div class="catalog-keeper">
-      <div class="catalog-multiplier" *ngFor="let catalog of finalCatalogList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-        <a class="catalog-multiplier__link" target="_blank" href="{{env.serverURL + catalog.pdfPath}}">
-          <pdf-viewer [src]="env.serverURL + catalog.pdfPath"
-                      [render-text]="false"
-                      [page]="1"
-                      [show-all]="false"
-                      [original-size]="false"
-                      [fit-to-page]="false"
-                      [autoresize]="false"
-                      [show-borders]="false"
-          ></pdf-viewer>
-          <div class="bot-title-box">
-            <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
-            <span class="bot-title-box__text">{{catalog.name | slice:0: 15 }}{{catalog.name.length > 15 ? ' ...' : ''}}</span>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="pagination-block">
-      <ngb-pagination
-        [(page)]="page"
-        [pageSize]="pageSize"
-        [collectionSize]="finalCatalogList.length">
-      </ngb-pagination>
-    </div>
-
   </div>
 </main>
 

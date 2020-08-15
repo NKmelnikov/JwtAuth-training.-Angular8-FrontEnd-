@@ -1,6 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {BrandService, CatalogService} from '../../_services';
 import {environment} from '../../../environments/environment';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class CatalogsHomeComponent implements OnInit {
   constructor(
     private catalogService: CatalogService,
     private brandService: BrandService,
+    private router: Router
   ) {
   }
 
@@ -63,5 +65,9 @@ export class CatalogsHomeComponent implements OnInit {
 
   hasClass(elem, className) {
     return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+  }
+
+  goToCatalog(brand) {
+    this.router.navigate([`/catalogs/${brand.name.toLowerCase()}`]);
   }
 }

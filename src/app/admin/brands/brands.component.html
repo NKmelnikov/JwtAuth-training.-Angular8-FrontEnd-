@@ -78,6 +78,12 @@
     <mat-cell *matCellDef="let element"> {{element.name | slice:0: 15}} {{element.name.length > 15 ? ' ...' : ''}}</mat-cell>
   </ng-container>
 
+  <!-- title Column -->
+  <ng-container matColumnDef="slug">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> оконачание URL</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.slug}}</mat-cell>
+  </ng-container>
+
   <!-- date Column -->
   <ng-container matColumnDef="createdAt">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>

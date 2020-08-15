@@ -2,6 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs';
 import {BrandsInterface} from '../admin/brands/brands.interface';
 import {Service} from './service';
+import {environment} from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class BrandService extends Service {
@@ -11,6 +12,10 @@ export class BrandService extends Service {
 
   getAll(): Observable<any[]> {
     return super.getAll('get-brands');
+  }
+
+  getBrandBySlug(slug) {
+    return this.http.post<any[]>(`${environment.serverURL}get-brand-by-slug`, slug);
   }
 
   create(data: BrandsInterface) {

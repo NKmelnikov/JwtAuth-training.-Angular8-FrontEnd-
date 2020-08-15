@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NewsInterface} from '../news.interface';
 import {UploadHelper} from '../../../_helpers';
 import {environment} from '../../../../environments/environment';
-
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
 

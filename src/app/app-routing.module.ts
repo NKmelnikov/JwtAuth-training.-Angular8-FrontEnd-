@@ -23,12 +23,14 @@ import {AboutComponent} from './home/about/about.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
 import {ProductsDrillItemComponent} from './home/products-drill/products-drill-item/products-drill-item.component';
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
+import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent, children: [
       {path: '', component: MainComponent},
       {path: 'catalogs', component: CatalogsHomeComponent},
+      {path: 'catalogs/:brand', component: CatalogItemComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'products/oil', component: ProductsOilHomeComponent, children: [
           {path: '', component: ProductsOilListComponent},

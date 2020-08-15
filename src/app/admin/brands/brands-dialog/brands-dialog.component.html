@@ -8,6 +8,16 @@
       </mat-form-field>
     </p>
     <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>окончание url</mat-label>
+        <input matInput [(ngModel)]="localData.slug" width="100%" placeholder="например, eroglu">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-label>Описание брэнда</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
+    </p>
+    <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
     </p>
     <form>
