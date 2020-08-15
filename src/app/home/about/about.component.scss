@@ -5,9 +5,11 @@ main {
   width: 100%;
   background: $main-color3;
   @extend %fcc;
+
 }
 
 p {
-  color: whitesmoke;
+  color:whitesmoke;
   font-size: 24px;
+
 }

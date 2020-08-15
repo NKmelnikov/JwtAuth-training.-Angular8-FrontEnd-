@@ -10,7 +10,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-catalogs.png") no-repeat;
+  background: url("/assets/img/header-drill.png") no-repeat;
 
   .header-box {
     color: white;
@@ -19,7 +19,7 @@
     height: 100%;
 
     &__title {
-      font-size: 72px;
+      font-size: 36px;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
