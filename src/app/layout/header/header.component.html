@@ -1,4 +1,4 @@
-<header>
+<header class="header-desktop">
   <nav class="logo"><a href="#"><img src="assets/img/AEGIS_logo_white_en.png" alt=""></a></nav>
   <nav class="item item1 item-main">
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Главная</a>
@@ -15,6 +15,16 @@
   <nav class="item item5 item-about">
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/about">О нас</a>
   </nav>
+  <nav class="item item6 item-contacts" (click)="toggleActive()">
+    <div class="line-container">
+      <span class="line line-top"></span>
+      <span class="line line-mid"></span>
+      <span class="line line-bot"></span>
+    </div>
+  </nav>
+</header>
+<header class="header-mobile">
+  <nav class="logo"><a href="#"><img src="assets/img/AEGIS_logo_white_en.png" alt=""></a></nav>
   <nav class="item item6 item-contacts" (click)="toggleActive()">
     <div class="line-container">
       <span class="line line-top"></span>

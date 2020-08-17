@@ -10,6 +10,21 @@ header {
   overflow: hidden;
   background: white;
 
+  &.header-desktop {
+    @media #{$noDesktop} {
+      display: none;
+    }
+  }
+
+  &.header-mobile {
+    display: none;
+
+    @media #{$noDesktop} {
+      display: flex;
+    }
+  }
+
+
   nav {
     border-right: 1px solid lightgray;
     height: 100%;
@@ -33,12 +48,13 @@ header {
     }
 
     &.logo {
+      @extend %fcc;
       background: $main-color1;
 
       a {
         width: 300px;
 
-        img{
+        img {
           width: 175px;
         }
       }

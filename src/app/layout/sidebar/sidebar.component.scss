@@ -2,7 +2,7 @@
 @import "../../../assets/libs/scss/fontawesome.scss";
 @import "../../../assets/libs/scss/brands.scss";
 
-section {
+.side-bar {
 
   .cross-box {
     width: 100%;
@@ -63,6 +63,37 @@ section {
     padding-left: 50px;
     color: $main-color5;
     width: 280px;
+
+    &.side-desktop {
+      @media #{$noDesktop} {
+        display: none;
+      }
+    }
+
+    &.side-mobile {
+      display: none;
+
+      @media #{$noDesktop} {
+        display: flex;
+      }
+    }
+
+    .link-container{
+      width: 100%;
+      margin-bottom: 40px;
+      .item {
+
+        border: 1px solid $main-color5;
+        width: 100%;
+        height: 50px;
+        @extend %fc;
+
+        a {
+          text-decoration: none;
+          color: whitesmoke;
+        }
+      }
+    }
 
     &__head {
       color: white;
