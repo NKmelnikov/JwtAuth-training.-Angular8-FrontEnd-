@@ -9,7 +9,6 @@ import {RegisterComponent} from './auth/register/register.component';
 import {LoginComponent} from './auth/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {WelcomeComponent} from './auth/welcome/welcome.component';
-import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {LayoutModule} from './layout/layout.module';
@@ -29,6 +28,8 @@ import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/pr
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 import {ProductsDrillItemComponent} from './home/products-drill/products-drill-item/products-drill-item.component';
 import { CatalogItemComponent } from './home/catalogs/catalog-item/catalog-item.component';
+import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+import {AuthGuardService, AuthService, DataService, HttpInterceptorService, TokenService} from './_services';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { CatalogItemComponent } from './home/catalogs/catalog-item/catalog-item.
     ProductsDrillItemComponent,
     ProductsOilListComponent,
     CatalogItemComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +70,11 @@ import { CatalogItemComponent } from './home/catalogs/catalog-item/catalog-item.
     NgbModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    AuthService,
+    TokenService,
+    DataService,
+    AuthGuardService,
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
   ],
   bootstrap: [AppComponent]
 })

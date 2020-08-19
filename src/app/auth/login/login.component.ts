@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../_services';
-import {Router, ActivatedRoute} from '@angular/router';
-import { first } from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {UserModel} from '../UserModel';
+import {TokenService} from '../../_services';
 
 @Component({
   selector: 'app-login',
@@ -9,36 +10,33 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(
-    private authService: AuthService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    if (this.authService.currentUserValue) {
-      this.router.navigate(['/admin']);
-    }
-  }
-
-  user = {
+  public user = {
     email: '',
     password: ''
   };
-  returnUrl: string;
 
-  ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/admin';
+  constructor(
+    private authService: AuthService,
+    private token: TokenService,
+    private router: Router
+  ) {
+
   }
 
-  login() {
-    this.authService.login(this.user)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          console.log(error);
-        });
+  ngOnInit() {
+  }
+
+  async login() {
+    try {
+      const success = await this.authService.login(this.user);
+      this.token.handle(success['access_token']);
+      this.user.password = '***';
+      localStorage.setItem('currentUser', JSON.stringify(this.user));
+      await this.router.navigate(['/admin']);
+      console.log(success);
+    } catch (error) {
+      console.error(error);
+      alert('Bad credentials.');
+    }
   }
 }
