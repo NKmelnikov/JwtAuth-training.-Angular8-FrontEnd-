@@ -29,18 +29,18 @@ export abstract class Service {
   }
 
   updatePosition(data: any, path: string) {
-    return this.http.post<any[]>(`${environment.serverURL}${path}`, data);
+    return this.http.post<any[]>(`${environment.serverURL}${path}`, {data});
   }
 
   bulkActivate(data: any, path: string) {
-    return this.http.post<any[]>(`${environment.serverURL}${path}`, data);
+    return this.http.post<any[]>(`${environment.serverURL}${path}`, {data});
   }
 
   bulkDeactivate(data: any, path: string) {
-    return this.http.post<any[]>(`${environment.serverURL}${path}`, data);
+    return this.http.post<any[]>(`${environment.serverURL}${path}`, {data});
   }
 
   bulkDelete(data: any, path: string) {
-    return this.http.post<any[]>(`${environment.serverURL}${path}`, data);
+    return this.http.post<any[]>(`${environment.serverURL}${path}`, {data});
   }
 }

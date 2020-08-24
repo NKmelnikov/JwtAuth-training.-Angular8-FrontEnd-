@@ -78,22 +78,28 @@
     <mat-cell *matCellDef="let element"> {{element.title | slice:0: 45}} {{element.title.length > 45 ? '...' : ''}}</mat-cell>
   </ng-container>
 
+  <!-- title Column -->
+  <ng-container matColumnDef="slug">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Окончание url</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.slug}}</mat-cell>
+  </ng-container>
+
   <!-- short text Column -->
   <ng-container matColumnDef="shortText">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Короткий текст</mat-header-cell>
-    <mat-cell class="short-text" *matCellDef="let element"> {{element.shortText  | slice:0: 125}} {{element.shortText.length > 125 ? '...' : ''}}</mat-cell>
+    <mat-cell class="short-text" *matCellDef="let element"> {{element.shortText  | slice:0: 70}} {{element.shortText.length > 70 ? '...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- full text Column -->
   <ng-container matColumnDef="article">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Полный текст</mat-header-cell>
-    <mat-cell class="post-article" [innerHTML]="element.article | slice:0:180 " *matCellDef="let element"> {{element.article.length > 160 ? ' ...' : ''}}</mat-cell>
+    <mat-cell class="post-article" [innerHTML]="element.article | slice:0:70 " *matCellDef="let element"> {{element.article.length > 70 ? '...' : ''}}</mat-cell>
   </ng-container>
 
   <!-- date Column -->
   <ng-container matColumnDef="createdAt">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.createdAt.$date | date:'dd/MM/yyyy'}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy'}} </mat-cell>
   </ng-container>
 
   <!-- Action Column -->

@@ -30,6 +30,7 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
     active: 0,
     imgPath: '/preload',
     title: 'preload',
+    slug: 'preload',
     shortText: 'preload',
     article: 'preload'
   }];
@@ -40,6 +41,7 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
     'position',
     'active',
     'title',
+    'slug',
     'shortText',
     'article',
     'createdAt',

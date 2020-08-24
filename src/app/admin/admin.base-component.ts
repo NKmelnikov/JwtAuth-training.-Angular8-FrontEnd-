@@ -72,7 +72,7 @@ export abstract class AdminBaseComponent {
     if (id) {
       this.dataSource.data.push(id.id);
     }
-    this.updatePosition(this.dataSource.data, service, id);
+    this.updatePosition(JSON.stringify(this.dataSource.data), service, id);
   }
 
   onBulkActionChange($event, service, id?) {
@@ -80,19 +80,20 @@ export abstract class AdminBaseComponent {
     if (id) {
       selectedRows.push(id.id);
     }
+
     switch ($event.value) {
       case 'activate':
-        service.bulkActivate(selectedRows).subscribe(res => {
+        service.bulkActivate(JSON.stringify(selectedRows)).subscribe(res => {
           this.refreshTable(id);
         });
         break;
       case 'deactivate':
-        service.bulkDeactivate(selectedRows).subscribe(res => {
+        service.bulkDeactivate(JSON.stringify(selectedRows)).subscribe(res => {
           this.refreshTable(id);
         });
         break;
       case 'delete':
-        service.bulkDelete(selectedRows).subscribe(res => {
+        service.bulkDelete(JSON.stringify(selectedRows)).subscribe(res => {
           this.refreshTable(id);
         });
         break;

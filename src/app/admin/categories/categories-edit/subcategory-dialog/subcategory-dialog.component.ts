@@ -27,7 +27,7 @@ export class SubcategoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.ckEditorConfig = {
-      ckfinder: {
+      simpleUpload: {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };

@@ -2,11 +2,11 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NewsInterface} from '../news.interface';
 import {UploadHelper} from '../../../_helpers';
-import {environment} from '../../../../environments/environment';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as _ from 'lodash';
-import {QuillEditorBase} from 'ngx-quill';
-import {FormControl, FormGroup} from "@angular/forms";
+import {environment} from '../../../../environments/environment';
+import Indent from '@ckeditor/ckeditor5-indent/src/indent';
+import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
 
 @Component({
   selector: 'app-news-dialog',
@@ -20,35 +20,8 @@ export class NewsDialogComponent implements OnInit {
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  editorForm: FormGroup;
-  editorStyles = {
-    height: '200px'
-  };
-  editorConfig = {
-    theme: 'snow',
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-      [{ 'script': 'sub'}, { 'script': 'super' }],
-      ['blockquote', 'code-block'],
-
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'align': [] }],
-            // superscript/subscript
-      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-      [{ 'direction': 'rtl' }],                         // text direction
-
-      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-
-      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-      [{ 'font': [] }],
-
-      ['link', 'image', 'video'],
-
-      ['clean']
-    ]
-  };
   public ckEditorConfig;
-  public Editor = ClassicEditor;
+  public Editor;
 
   constructor(
     public dialogRef: MatDialogRef<NewsDialogComponent>,
@@ -61,6 +34,16 @@ export class NewsDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    ClassicEditor.builtinPlugins = [
+      Indent, IndentBlock
+    ];
+    this.ckEditorConfig = {
+      simpleUpload: {
+        uploadUrl: `${environment.serverURL}ck-upload`
+      }
+    };
+
+    this.Editor = ClassicEditor;
     this.localData.article = this.localData.article || '';
   }
 
