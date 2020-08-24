@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CatalogsInterface} from '../../../catalogs/catalogs.interface';
 import {environment} from '../../../../../environments/environment';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../../../../_helpers/ckeditor';
 
 @Component({
   selector: 'app-subcategory-dialog',

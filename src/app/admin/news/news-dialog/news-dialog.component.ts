@@ -2,11 +2,9 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NewsInterface} from '../news.interface';
 import {UploadHelper} from '../../../_helpers';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../../../_helpers/ckeditor';
 import * as _ from 'lodash';
 import {environment} from '../../../../environments/environment';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
-import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
 
 @Component({
   selector: 'app-news-dialog',
@@ -21,7 +19,7 @@ export class NewsDialogComponent implements OnInit {
   isImageSaved: boolean;
   cardImageBase64: string;
   public ckEditorConfig;
-  public Editor;
+  public Editor = ClassicEditor;
 
   constructor(
     public dialogRef: MatDialogRef<NewsDialogComponent>,
@@ -34,16 +32,62 @@ export class NewsDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    ClassicEditor.builtinPlugins = [
-      Indent, IndentBlock
-    ];
     this.ckEditorConfig = {
-      simpleUpload: {
+      toolbar: {
+        items: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'subscript',
+          'superscript',
+          'blockQuote',
+          'bulletedList',
+          'numberedList',
+          'removeFormat',
+          '|',
+          'indent',
+          'outdent',
+          'alignment',
+          '|',
+          'link',
+          'imageUpload',
+          'insertTable',
+          'mediaEmbed',
+          'undo',
+          'redo',
+          'exportPdf',
+          'horizontalLine',
+          'highlight',
+          'fontSize'
+        ]
+      },
+
+      image: {
+        toolbar: [
+          'imageTextAlternative',
+          'imageStyle:full',
+          'imageStyle:side'
+        ]
+      },
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableCellProperties',
+          'tableProperties'
+        ]
+      },
+      language: 'ru',
+      licenseKey: '',
+      ckfinder: {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
 
-    this.Editor = ClassicEditor;
     this.localData.article = this.localData.article || '';
   }
 

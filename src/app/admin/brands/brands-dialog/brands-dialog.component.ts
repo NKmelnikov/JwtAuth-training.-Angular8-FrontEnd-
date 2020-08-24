@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BrandsInterface} from '../brands.interface';
 import {UploadHelper} from '../../../_helpers';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../../../_helpers/ckeditor';
 import * as _ from 'lodash';
 import {environment} from '../../../../environments/environment';
 

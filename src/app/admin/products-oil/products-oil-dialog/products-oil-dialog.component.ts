@@ -2,7 +2,7 @@ import {Component, Inject, Injector, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ProductsOilInterface} from '../products-oil.interface';
 import {environment} from '../../../../environments/environment';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 
 // @ts-ignore

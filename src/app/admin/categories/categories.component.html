@@ -83,14 +83,14 @@
   <!-- date Column -->
   <ng-container matColumnDef="createdAt">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Дата создания</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.createdAt.$date | date:'dd/MM/yyyy'}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.created_at | date:'dd/MM/yyyy'}} </mat-cell>
   </ng-container>
 
   <!-- Action Column -->
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef> Опции</mat-header-cell>
     <mat-cell *matCellDef="let element" class="action-link">
-      <a routerLinkActive="list-item-active" [routerLink]="['/admin/categories/edit', element._id.$oid]">
+      <a routerLinkActive="list-item-active" [routerLink]="['/admin/categories/edit', element.id]">
         <span class="table-row-action edit material-icons"> edit </span>
       </a>
       <a (click)="delete(element, this.categoryService)">

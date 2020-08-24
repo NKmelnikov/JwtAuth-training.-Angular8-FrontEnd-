@@ -3,7 +3,7 @@ import {environment} from '../../../../environments/environment';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable} from '@angular/material';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {CategoriesInterface} from '../categories.interface';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../../../_helpers/ckeditor';
 import * as _ from 'lodash';
 import {SelectionModel} from '@angular/cdk/collections';
 import {SubcategoryDialogComponent} from './subcategory-dialog/subcategory-dialog.component';
@@ -71,6 +71,56 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.ckEditorConfig = {
+      toolbar: {
+        items: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'subscript',
+          'superscript',
+          'blockQuote',
+          'bulletedList',
+          'numberedList',
+          'removeFormat',
+          '|',
+          'indent',
+          'outdent',
+          'alignment',
+          '|',
+          'link',
+          'imageUpload',
+          'insertTable',
+          'mediaEmbed',
+          'undo',
+          'redo',
+          'exportPdf',
+          'horizontalLine',
+          'highlight',
+          'fontSize'
+        ]
+      },
+
+      image: {
+        toolbar: [
+          'imageTextAlternative',
+          'imageStyle:full',
+          'imageStyle:side'
+        ]
+      },
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableCellProperties',
+          'tableProperties'
+        ]
+      },
+      language: 'ru',
+      licenseKey: '',
       ckfinder: {
         uploadUrl: `${environment.serverURL}ck-upload`
       }

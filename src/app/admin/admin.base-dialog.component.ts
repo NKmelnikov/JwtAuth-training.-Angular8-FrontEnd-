@@ -2,7 +2,7 @@ import {Component, Directive, Inject, Injector, OnInit, Optional} from '@angular
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UploadHelper} from '../_helpers';
 import * as _ from 'lodash';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '../_helpers/ckeditor';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix

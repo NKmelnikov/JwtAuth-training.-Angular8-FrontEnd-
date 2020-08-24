@@ -104,7 +104,7 @@ export abstract class AdminBaseComponent {
     obj = obj || {};
     obj.action = action;
     const dialogRef = this.dialog.open(dialogComponent, {
-      width: '800px',
+      width: '1000px',
       data: obj,
       panelClass: 'formFieldWidth752'
     });
