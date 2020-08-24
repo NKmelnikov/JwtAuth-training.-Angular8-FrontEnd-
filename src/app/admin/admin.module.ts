@@ -6,7 +6,7 @@ import {MaterialModule} from '../material/material.module';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NewsDialogComponent} from './news/news-dialog/news-dialog.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {BrandsComponent} from './brands/brands.component';
 import {BrandsDialogComponent} from './brands/brands-dialog/brands-dialog.component';
@@ -19,6 +19,7 @@ import {ProductsOilComponent} from './products-oil/products-oil.component';
 import {SubcategoryDialogComponent} from './categories/categories-edit/subcategory-dialog/subcategory-dialog.component';
 import {ProductsOilDialogComponent} from './products-oil/products-oil-dialog/products-oil-dialog.component';
 import {ProductsDrillDialogComponent} from './products-drill/products-drill-dialog/products-drill-dialog.component';
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,8 @@ import {ProductsDrillDialogComponent} from './products-drill/products-drill-dial
     CommonModule,
     FormsModule,
     CKEditorModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     AdminComponent,

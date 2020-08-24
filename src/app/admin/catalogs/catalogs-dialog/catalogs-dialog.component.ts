@@ -16,7 +16,7 @@ export class CatalogsDialogComponent implements OnInit {
   action: string;
   localData: any;
   imageError: string;
-  selectedValue: string;
+  selectedValue: number;
 
   constructor(
     public dialogRef: MatDialogRef<CatalogsDialogComponent>,
@@ -24,6 +24,7 @@ export class CatalogsDialogComponent implements OnInit {
     public uploadHelper: UploadHelper
   ) {
     this.localData = {...data};
+    this.selectedValue = this.localData.brand_id;
     this.localData.active = 1;
     this.action = this.localData.action;
   }
@@ -52,6 +53,7 @@ export class CatalogsDialogComponent implements OnInit {
 
   brandSelectChange(brand) {
     this.localData.brand = brand;
+    this.localData.brand_id = brand.id;
   }
 
   pdfInputChange(fileInput: any) {

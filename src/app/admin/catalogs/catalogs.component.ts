@@ -24,8 +24,8 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    brand: 'noData',
-    pdfPath: '/noData',
+    brandName: 'noData',
+    pdfPath: '#',
     name: 'noData',
   }];
 
@@ -34,6 +34,7 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
     'position',
     'active',
     'name',
+    'brandName',
     'pdfPath',
     'createdAt',
     'action'
@@ -57,6 +58,7 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
             el.brandList = brandList;
           });
         });
+        console.log(this.dataSource.data);
       });
   }
 

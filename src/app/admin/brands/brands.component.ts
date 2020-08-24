@@ -19,14 +19,14 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
   }
 
   public brands;
-  public serverUrl;
+  public env = environment;
 
   public preloadData = [{
     _id: {$oid: 'noData'},
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
-    imgPath: '/noData',
+    imgPath: 'noData',
     name: 'noData',
     slug: 'noData',
   }];
@@ -47,12 +47,12 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
-    this.serverUrl = environment.serverURL;
   }
 
   refreshTable() {
     this.brands = this.brandService.getAll()
       .subscribe(data => {
+        console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.refreshTableRoutine();
       });

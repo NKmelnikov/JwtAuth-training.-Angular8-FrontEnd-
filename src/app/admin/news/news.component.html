@@ -56,7 +56,7 @@
   <ng-container matColumnDef="imgPath">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Обложка</mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <img [src]="serverUrl + element.imgPath" height="40px;" alt="">
+      <img [src]="env.serverURL + element.imgPath" height="40px;" alt="">
     </mat-cell>
   </ng-container>
 

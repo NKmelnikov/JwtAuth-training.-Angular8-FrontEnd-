@@ -21,6 +21,7 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
 
   public news;
   public serverUrl;
+  public env = environment;
 
   public preloadData = [{
     _id: {$oid: 'preload'},
@@ -50,7 +51,6 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.preloadData);
     this.refreshTable();
-    this.serverUrl = environment.serverURL;
   }
 
   refreshTable() {

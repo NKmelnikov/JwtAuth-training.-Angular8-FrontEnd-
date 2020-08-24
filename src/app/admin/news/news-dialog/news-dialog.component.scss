@@ -49,3 +49,8 @@
 //:host ::ng-deep .ck-editor__editable_inline {
 //    min-height: 500px !important;
 //}
+
+::ng-deep .ql-tooltip{
+  left: 0!important;
+  white-space: normal!important;
+}

@@ -13,10 +13,8 @@
         <textarea matInput [(ngModel)]="localData.shortText" placeholder="Описание события"></textarea>
       </mat-form-field>
     </p>
-    <p>
       <mat-label>Статья целиком</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.article"></ckeditor>
-    </p>
+      <quill-editor [styles]="editorStyles" [modules]="editorConfig" [(ngModel)]="localData.article"></quill-editor>
     <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активный элемент</mat-slide-toggle>
     </p>
