@@ -30,7 +30,7 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
 
   public category: CategoriesInterface = {
     // @ts-ignore
-    _id: {},
+    id: {},
     createdAt: {},
     position: 0,
     active: 1,
@@ -41,7 +41,6 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
   };
 
   public preloadData = [{
-    sub_id: {$oid: 'noData'},
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
@@ -140,8 +139,9 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     this.categoryService.getCategoryById(categoryId).subscribe(data => {
       // @ts-ignore
       this.category = data;
+      console.log(this.category);
       // @ts-ignore
-      this.dataSource = new MatTableDataSource(data.subCategories);
+      this.dataSource = new MatTableDataSource(data.subcategories);
       this.refreshTableRoutine();
     });
   }

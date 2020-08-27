@@ -27,7 +27,57 @@ export class SubcategoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.ckEditorConfig = {
-      simpleUpload: {
+      toolbar: {
+        items: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'subscript',
+          'superscript',
+          'blockQuote',
+          'bulletedList',
+          'numberedList',
+          'removeFormat',
+          '|',
+          'indent',
+          'outdent',
+          'alignment',
+          '|',
+          'link',
+          'imageUpload',
+          'insertTable',
+          'mediaEmbed',
+          'undo',
+          'redo',
+          'exportPdf',
+          'horizontalLine',
+          'highlight',
+          'fontSize'
+        ]
+      },
+
+      image: {
+        toolbar: [
+          'imageTextAlternative',
+          'imageStyle:full',
+          'imageStyle:side'
+        ]
+      },
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableCellProperties',
+          'tableProperties'
+        ]
+      },
+      language: 'ru',
+      licenseKey: '',
+      ckfinder: {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };

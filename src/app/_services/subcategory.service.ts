@@ -1,11 +1,16 @@
 import {Injectable, Injector} from '@angular/core';
 import {SubCategoriesInterface} from '../admin/categories/categories-edit/subcategories.interface';
 import {Service} from './service';
+import {environment} from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class SubCategoryService extends Service {
   constructor(private injector: Injector) {
     super(injector);
+  }
+
+  getByCategoryId(categoryId) {
+    return this.http.post<any[]>(`${environment.serverURL}get-by-category-id`, categoryId);
   }
 
   create(data: SubCategoriesInterface) {
