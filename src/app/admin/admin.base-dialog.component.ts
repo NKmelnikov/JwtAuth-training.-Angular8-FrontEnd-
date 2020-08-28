@@ -44,8 +44,8 @@ export abstract class AdminBaseDialogComponent {
     dialogRef.close({event: 'Cancel'});
   }
 
-  brandSelectChange(brand) {
-    this.localData.brand = brand;
+  brandSelectChange(brandId) {
+    this.localData.brand_id = brandId;
   }
 
   removeImage() {

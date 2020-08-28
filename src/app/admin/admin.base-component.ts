@@ -69,7 +69,6 @@ export abstract class AdminBaseComponent {
   drop(event: CdkDragDrop<string[]>, service, id?) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = clonedeep(this.dataSource.data);
-    console.log(this.dataSource.data);
     this.updatePosition(JSON.stringify(this.dataSource.data), service, id);
   }
 

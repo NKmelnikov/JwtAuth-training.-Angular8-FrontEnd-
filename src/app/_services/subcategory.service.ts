@@ -2,6 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {SubCategoriesInterface} from '../admin/categories/categories-edit/subcategories.interface';
 import {Service} from './service';
 import {environment} from '../../environments/environment';
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class SubCategoryService extends Service {
@@ -9,8 +10,12 @@ export class SubCategoryService extends Service {
     super(injector);
   }
 
-  getByCategoryId(categoryId) {
-    return this.http.post<any[]>(`${environment.serverURL}get-by-category-id`, categoryId);
+  getAll(): Observable<any[]> {
+    return super.getAll('get-subcategories');
+  }
+
+  getByCategoryId(id) {
+    return this.http.post<any[]>(`${environment.serverURL}get-by-category-id`, {id});
   }
 
   create(data: SubCategoriesInterface) {

@@ -14,8 +14,8 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-select placeholder="Партнёр" [(ngModel)]="selectedValue" (selectionChange)="brandSelectChange($event.value)">
-        <mat-option *ngFor="let brand of localData.brandList" [value]="brand">
+      <mat-select placeholder="Партнёр" [(ngModel)]="selectedValueBrand" (selectionChange)="brandSelectChange($event.value)">
+        <mat-option *ngFor="let brand of localData.brandList" [value]="brand.id">
           {{ brand.name }}
         </mat-option>
       </mat-select>
@@ -23,15 +23,15 @@
     <br>
     <p>
       <mat-select placeholder="Категория" [(ngModel)]="selectedValueCategory" (selectionChange)="categorySelectChange($event.value)">
-        <mat-option *ngFor="let category of localData.categoryList" [value]="category">
+        <mat-option *ngFor="let category of localData.categoryList" [value]="category.id">
           {{ category.name }}
         </mat-option>
       </mat-select>
     </p>
     <br>
-    <p *ngIf="localData.category">
+    <p *ngIf="localData.category_id">
       <mat-select placeholder="Подкатегория" [(ngModel)]="selectedValueSubCategory" (selectionChange)="subcategorySelectChange($event.value)">
-        <mat-option *ngFor="let subcategory of localData.category.subCategories" [value]="subcategory">
+        <mat-option *ngFor="let subcategory of localData.subcategoryList" [value]="subcategory.id">
           {{ subcategory.name }}
         </mat-option>
       </mat-select>

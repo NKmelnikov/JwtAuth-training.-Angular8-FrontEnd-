@@ -4,6 +4,7 @@ import {ProductsOilInterface} from '../products-oil.interface';
 import {environment} from '../../../../environments/environment';
 import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
+import {SubCategoryService} from "../../../_services";
 
 // @ts-ignore
 @Component({
@@ -19,40 +20,98 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  selectedValue: string;
-  selectedValueCategory: string;
-  selectedValueSubCategory: string;
+  selectedValueBrand: number;
+  selectedValueCategory: number;
+  selectedValueSubCategory: number;
   public ckEditorConfig;
   public Editor = ClassicEditor;
 
   constructor(
     public injector: Injector,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: ProductsOilInterface,
-    public dialogRef: MatDialogRef<ProductsOilDialogComponent>
+    public dialogRef: MatDialogRef<ProductsOilDialogComponent>,
+    public subcategoryService: SubCategoryService
   ) {
     super(injector);
     this.localData = {...data};
     this.localData.active = 1;
     this.action = this.localData.action;
+    console.log(this.localData);
+    this.selectedValueBrand = this.localData.brand_id;
+    this.selectedValueCategory = this.localData.category_id;
+    this.selectedValueSubCategory = this.localData.subcategory_id;
   }
 
   ngOnInit(): void {
     this.ckEditorConfig = {
+      toolbar: {
+        items: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'underline',
+          'strikethrough',
+          'subscript',
+          'superscript',
+          'blockQuote',
+          'bulletedList',
+          'numberedList',
+          'removeFormat',
+          '|',
+          'indent',
+          'outdent',
+          'alignment',
+          '|',
+          'link',
+          'imageUpload',
+          'insertTable',
+          'mediaEmbed',
+          'undo',
+          'redo',
+          'exportPdf',
+          'horizontalLine',
+          'highlight',
+          'fontSize'
+        ]
+      },
+
+      image: {
+        toolbar: [
+          'imageTextAlternative',
+          'imageStyle:full',
+          'imageStyle:side'
+        ]
+      },
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells',
+          'tableCellProperties',
+          'tableProperties'
+        ]
+      },
+      language: 'ru',
+      licenseKey: '',
       ckfinder: {
         uploadUrl: `${environment.serverURL}ck-upload`
       }
     };
     this.localData.description = this.localData.description || '';
     this.localData.spec = this.localData.spec || '';
-    console.log(this.localData.category);
   }
 
-  categorySelectChange(category) {
-    this.localData.category = category;
+  categorySelectChange(categoryId) {
+    this.localData.category_id = categoryId;
+    this.subcategoryService.getByCategoryId(JSON.stringify(categoryId))
+      .subscribe(data => {
+        this.localData.subcategoryList = data;
+      });
   }
 
-  subcategorySelectChange(subcategory) {
-    this.localData.subcategory = subcategory;
+  subcategorySelectChange(subcategoryId) {
+    this.localData.subcategory_id = subcategoryId;
   }
 
   doAction() {

@@ -85,7 +85,7 @@
   <!-- brand name Column -->
   <ng-container matColumnDef="brand">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Брэнд</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.brand.name }}</mat-cell>
+    <mat-cell *matCellDef="let element">{{ element.brand_name }}</mat-cell>
   </ng-container>
 
   <!-- category name Column -->
@@ -93,7 +93,7 @@
     <mat-header-cell mat-sort-header *matHeaderCellDef> Категория</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span class="font-size-10">
-        {{ element.category.name }}
+        {{ element.category_name }}
       </span>
     </mat-cell>
   </ng-container>
@@ -103,7 +103,7 @@
     <mat-header-cell mat-sort-header *matHeaderCellDef> Подкатегория</mat-header-cell>
     <mat-cell *matCellDef="let element">
       <span class="font-size-10">
-        {{(element.subcategory.name) ? element.subcategory.name : 'подкатегории нет' }}
+        {{(element.subcategory_name) ? element.subcategory_name : 'подкатегории нет' }}
       </span>
     </mat-cell>
   </ng-container>

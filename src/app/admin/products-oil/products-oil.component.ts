@@ -23,6 +23,7 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
   public products;
   public brandList;
   public categoryList;
+  public subcategoryList;
   public dropDownData;
   public serverUrl;
 
@@ -73,19 +74,27 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
 
         this.brandService.getAll().subscribe(brandList => {
           this.brandList = brandList;
-          // this.dataSource.data.forEach((el) => {
-          //   el.brandList = brandList;
-          // });
+          this.dataSource.data.forEach((el) => {
+            el.brandList = brandList;
+          });
 
           this.categoryService.getAll().subscribe(categoryList => {
             this.categoryList = categoryList.filter((el) => {
               return el.type === this.typeOil;
             });
 
-            // this.dataSource.data.forEach((el) => {
-            //   el.categoryList = this.categoryList;
-            // });
+            this.dataSource.data.forEach((el) => {
+              el.categoryList = this.categoryList;
+            });
 
+            this.subcategoryService.getAll().subscribe(subcategoryList => {
+              this.subcategoryList = subcategoryList;
+              this.dataSource.data.forEach((el) => {
+                el.subcategoryList = this.subcategoryList;
+              });
+            });
+
+            console.log(this.dataSource.data);
             this.dropDownData = {
               brandList: this.brandList,
               categoryList: this.categoryList

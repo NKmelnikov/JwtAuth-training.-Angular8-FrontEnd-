@@ -27,6 +27,7 @@ export class CatalogsDialogComponent implements OnInit {
     this.selectedValue = this.localData.brand_id;
     this.localData.active = 1;
     this.action = this.localData.action;
+    console.log(this.localData);
   }
 
   ngOnInit(): void {
@@ -51,9 +52,8 @@ export class CatalogsDialogComponent implements OnInit {
     this.dialogRef.close({event: 'Cancel'});
   }
 
-  brandSelectChange(brand) {
-    this.localData.brand = brand;
-    this.localData.brand_id = brand.id;
+  brandSelectChange(brandId) {
+    this.localData.brand_id = brandId;
   }
 
   pdfInputChange(fileInput: any) {
