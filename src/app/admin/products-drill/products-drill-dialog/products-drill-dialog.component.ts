@@ -4,6 +4,7 @@ import {ProductsDrillInterface} from '../products-drill.interface';
 import {environment} from '../../../../environments/environment';
 import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
+import {SubCategoryService} from '../../../_services';
 
 @Component({
   selector: 'app-products-drill-dialog',
@@ -26,21 +27,14 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
   constructor(
     public injector: Injector,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: ProductsDrillInterface,
-    public dialogRef: MatDialogRef<ProductsDrillDialogComponent>
+    public dialogRef: MatDialogRef<ProductsDrillDialogComponent>,
+    public subcategoryService: SubCategoryService
   ) {
     super(injector);
     this.localData = {...data};
     this.selectedValueBrand = this.localData.brand_id;
     this.selectedValueCategory = this.localData.category_id;
     this.selectedValueSubCategory = this.localData.subcategory_id;
-
-
-    // if (this.localData.brand) {
-    //   this.selectedValueBrand = this.localData.brand.name;
-    //   this.selectedValueCategory = this.localData.category.name;
-    //   this.selectedValueSubCategory = this.localData.subcategory.name;
-    // }
-
     this.localData.active = 1;
     this.action = this.localData.action;
   }
@@ -102,15 +96,18 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
       }
     };
     this.localData.description = this.localData.description || '';
-    this.localData.productSpec = this.localData.productSpec || '';
   }
 
-  categorySelectChange(category) {
-    this.localData.category = category;
+  categorySelectChange(categoryId) {
+    this.localData.category_id = categoryId;
+    this.subcategoryService.getByCategoryId(JSON.stringify(categoryId))
+      .subscribe(data => {
+        this.localData.subcategoryList = data;
+      });
   }
 
-  subcategorySelectChange(subcategory) {
-    this.localData.subcategory = subcategory;
+  subcategorySelectChange(subcategoryId) {
+    this.localData.subcategory_id = subcategoryId;
   }
 
   doAction() {

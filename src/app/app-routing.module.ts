@@ -31,7 +31,7 @@ const routes: Routes = [
     path: '', component: HomeComponent, children: [
       {path: '', component: MainComponent},
       {path: 'catalogs', component: CatalogsHomeComponent},
-      {path: 'catalogs/:brand', component: CatalogItemComponent},
+      {path: 'catalogs/:slug', component: CatalogItemComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'products/oil', component: ProductsOilHomeComponent, children: [
           {path: '', component: ProductsOilListComponent},

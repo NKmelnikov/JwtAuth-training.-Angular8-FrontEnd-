@@ -21,6 +21,7 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
   public products;
   public brandList;
   public categoryList;
+  public subcategoryList;
   public dropDownData;
 
   public preloadData = [{
@@ -59,28 +60,34 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
     this.products = this.productDrillService.getAll()
       .subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
-
         super.refreshTableRoutine();
 
         this.brandService.getAll().subscribe(brandList => {
           this.brandList = brandList;
-          // this.dataSource.data.forEach((el) => {
-          //   el.brandList = brandList;
-          // });
-        });
-
-        this.categoryService.getAll().subscribe(categoryList => {
-          this.categoryList = categoryList.filter((el) => {
-            return el.type === this.typeDrill;
+          this.dataSource.data.forEach((el) => {
+            el.brandList = brandList;
           });
-          // this.dataSource.data.forEach((el) => {
-          //   el.categoryList = categoryList;
-          // });
 
-          this.dropDownData = {
-            brandList: this.brandList.brandList,
-            categoryList: this.categoryList.categoryList
-          };
+          this.categoryService.getAll().subscribe(categoryList => {
+            this.categoryList = categoryList.filter((el) => {
+              return el.type === this.typeDrill;
+            });
+            this.dataSource.data.forEach((el) => {
+              el.categoryList = categoryList;
+            });
+
+            this.subcategoryService.getAll().subscribe(subcategoryList => {
+              this.subcategoryList = subcategoryList;
+              this.dataSource.data.forEach((el) => {
+                el.subcategoryList = this.subcategoryList;
+              });
+            });
+
+            this.dropDownData = {
+              brandList: this.brandList,
+              categoryList: this.categoryList
+            };
+          });
         });
       });
   }

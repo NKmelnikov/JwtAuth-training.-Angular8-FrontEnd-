@@ -71,8 +71,6 @@ export class MainComponent implements AfterViewInit, OnInit {
       .pipe(
         map(brands => brands.map(brand => ({
           ...brand,
-          _id: brand._id['$oid'],
-          createdAt: brand.createdAt['$date'],
           imgPath: `${environment.serverURL}${brand.imgPath}`
         }))),
         map(brands => brands.filter(brand => (brand.active > 0)))
@@ -87,8 +85,6 @@ export class MainComponent implements AfterViewInit, OnInit {
       .pipe(
         map(posts => posts.map(post => ({
           ...post,
-          _id: post._id['$oid'],
-          createdAt: post.createdAt['$date'],
           imgPath: `${environment.serverURL}${post.imgPath}`
         }))),
         map(posts => posts.filter(post => (post.active > 0)))

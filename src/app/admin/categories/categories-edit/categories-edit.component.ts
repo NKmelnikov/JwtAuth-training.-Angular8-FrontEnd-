@@ -139,7 +139,6 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     this.categoryService.getCategoryById(categoryId).subscribe(data => {
       // @ts-ignore
       this.category = data;
-      console.log(this.category);
       // @ts-ignore
       this.dataSource = new MatTableDataSource(data.subcategories);
       this.refreshTableRoutine();

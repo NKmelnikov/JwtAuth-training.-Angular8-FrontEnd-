@@ -58,7 +58,6 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
             el.brandList = brandList;
           });
         });
-        console.log(this.dataSource.data);
       });
   }
 

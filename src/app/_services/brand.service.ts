@@ -15,7 +15,7 @@ export class BrandService extends Service {
   }
 
   getBrandBySlug(slug) {
-    return this.http.post<any[]>(`${environment.serverURL}get-brand-by-slug`, slug);
+    return this.http.post<any[]>(`${environment.serverURL}get-brand-by-slug`, {slug});
   }
 
   create(data: BrandsInterface) {

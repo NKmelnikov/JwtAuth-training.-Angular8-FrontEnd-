@@ -21,7 +21,7 @@ export class ProductsOilHomeComponent implements OnInit {
   public selectedIndex;
 
   brandCategory = {
-    _id: {$oid: '5f105534ed58762626brands'},
+    id: 1,
     active: 1,
     description: '',
     name: 'Брэнды',
@@ -61,10 +61,7 @@ export class ProductsOilHomeComponent implements OnInit {
         this.brandService.getAll()
           .subscribe(brandList => {
             this.brandList = brandList;
-            this.brandList.map((el) => {
-              el.sub_id = el._id;
-            });
-            this.categoryList[this.categoryList.length - 1].subCategories = this.brandList;
+            this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
           });
       });
   }
@@ -79,7 +76,7 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectCategory(item) {
-    const expansionDOM = document.getElementById(item._id.$oid);
+    const expansionDOM = document.getElementById(item.id);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
 
     item.isExpanded = true;
@@ -99,7 +96,7 @@ export class ProductsOilHomeComponent implements OnInit {
       this.productsToShow = this.productsOilList;
       if (!item.isBrand) {
         this.productsToShow = this.productsToShow.filter((el) => {
-          return el.category._id.$oid === item._id.$oid;
+          return el.category_id === item.id;
         });
       }
     }
@@ -117,7 +114,7 @@ export class ProductsOilHomeComponent implements OnInit {
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
       if (el.subcategory !== 'null') {
-        return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid || el.brand._id.$oid === subcategory.sub_id.$oid;
+        return el.subcategory_id === subcategory.id || el.brand_id === subcategory.id;
       }
     });
 

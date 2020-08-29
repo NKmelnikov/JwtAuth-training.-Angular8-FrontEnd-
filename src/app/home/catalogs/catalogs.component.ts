@@ -47,12 +47,12 @@ export class CatalogsHomeComponent implements OnInit {
     });
 
     this.catalogList.forEach(el => {
-      if (el.brand.$oid === brand._id.$oid) {
+      if (el.id === brand.id) {
         selectedCatalogs.push(el);
       }
     });
 
-    this.selectedBrand = (this.selectedBrand !== brand._id.$oid) ? brand._id.$oid : '';
+    this.selectedBrand = (this.selectedBrand !== brand.id) ? brand.id : '';
 
     if (this.selectedBrand === '') {
       this.finalCatalogList = this.catalogList;

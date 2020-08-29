@@ -52,7 +52,6 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
   refreshTable() {
     this.brands = this.brandService.getAll()
       .subscribe(data => {
-        console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.refreshTableRoutine();
       });

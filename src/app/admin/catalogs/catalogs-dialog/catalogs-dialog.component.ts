@@ -27,7 +27,6 @@ export class CatalogsDialogComponent implements OnInit {
     this.selectedValue = this.localData.brand_id;
     this.localData.active = 1;
     this.action = this.localData.action;
-    console.log(this.localData);
   }
 
   ngOnInit(): void {

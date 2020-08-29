@@ -94,7 +94,6 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
               });
             });
 
-            console.log(this.dataSource.data);
             this.dropDownData = {
               brandList: this.brandList,
               categoryList: this.categoryList

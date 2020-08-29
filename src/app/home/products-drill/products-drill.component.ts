@@ -76,10 +76,7 @@ export class ProductsDrillHomeComponent implements OnInit {
         this.brandService.getAll()
           .subscribe(brandList => {
             this.brandList = brandList;
-            this.brandList.map((el) => {
-              el.sub_id = el._id;
-            });
-            this.categoryList[this.categoryList.length - 1].subCategories = this.brandList;
+            this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
           });
       });
   }
@@ -95,7 +92,7 @@ export class ProductsDrillHomeComponent implements OnInit {
   selectCategory(item) {
     this.categoryToShow = this.categoryToShowDefault;
     this.subcategoryToShow = this.subcategoryToShowDefault;
-    const expansionDOM = document.getElementById(item._id.$oid);
+    const expansionDOM = document.getElementById(item.id);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
 
     item.isExpanded = true;
@@ -117,7 +114,7 @@ export class ProductsDrillHomeComponent implements OnInit {
 
       if (!item.isBrand) {
         this.productsToShow = this.productsToShow.filter((el) => {
-          return el.category._id.$oid === item._id.$oid;
+          return el.id === item.id;
         });
       }
     }
@@ -134,8 +131,8 @@ export class ProductsDrillHomeComponent implements OnInit {
     this.selectedCategoryNameToShow = subcategory.name;
     this.productsToShow = this.productsDrillList;
     this.productsToShow = this.productsToShow.filter((el) => {
-      if (el.subcategory !== 'null') {
-        return el.subcategory.sub_id.$oid === subcategory.sub_id.$oid || el.brand._id.$oid === subcategory.sub_id.$oid;
+      if (el !== 'null') {
+        return el.subcategory_id === subcategory.id || el.brand_id === subcategory.id;
       }
     });
   }

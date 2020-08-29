@@ -4,7 +4,7 @@ import {ProductsOilInterface} from '../products-oil.interface';
 import {environment} from '../../../../environments/environment';
 import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
-import {SubCategoryService} from "../../../_services";
+import {SubCategoryService} from '../../../_services';
 
 // @ts-ignore
 @Component({
@@ -36,7 +36,6 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
     this.localData = {...data};
     this.localData.active = 1;
     this.action = this.localData.action;
-    console.log(this.localData);
     this.selectedValueBrand = this.localData.brand_id;
     this.selectedValueCategory = this.localData.category_id;
     this.selectedValueSubCategory = this.localData.subcategory_id;

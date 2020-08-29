@@ -14,7 +14,6 @@ export class UploadHelper {
   }
 
   uploadPdf(data): Observable<any> {
-    console.log(data);
     return this.http.post<any>(`${environment.serverURL}upload-pdf`, data);
   }
 }

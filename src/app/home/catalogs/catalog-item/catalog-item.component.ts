@@ -32,10 +32,11 @@ export class CatalogItemComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param: any) => {
       if (!_.isEmpty(param)) {
-        this.brandService.getBrandBySlug(param)
+        this.brandService.getBrandBySlug(JSON.stringify(param['slug']))
           .subscribe((brand) => {
             // @ts-ignore
-            this.brand = brand;
+            this.brand = brand[0];
+            console.log(this.brand);
           });
       }
     });

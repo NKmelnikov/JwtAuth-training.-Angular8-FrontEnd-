@@ -36,10 +36,12 @@ export class ProductsOilItemComponent implements OnInit {
 
   getProductBySlug() {
     const slug = document.location.pathname.split('/');
-    const data = {slug: slug[slug.length - 1]};
+    const data = JSON.stringify(slug[slug.length - 1]);
+    console.log(slug);
     this.productOilService.getProductBySlug(data)
       .subscribe(product => {
-        this.product = product[0];
+        // @ts-ignore
+        this.product = product;
         this.product.pdf1Name = this.getPdfNameFromPath(this.product.pdf1Path);
         this.product.pdf2Name = this.getPdfNameFromPath(this.product.pdf2Path);
       });
