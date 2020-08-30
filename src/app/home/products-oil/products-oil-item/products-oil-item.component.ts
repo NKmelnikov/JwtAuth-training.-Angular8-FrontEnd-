@@ -31,23 +31,15 @@ export class ProductsOilItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductBySlug();
-
   }
 
   getProductBySlug() {
     const slug = document.location.pathname.split('/');
     const data = JSON.stringify(slug[slug.length - 1]);
-    console.log(slug);
     this.productOilService.getProductBySlug(data)
       .subscribe(product => {
         // @ts-ignore
         this.product = product;
-        this.product.pdf1Name = this.getPdfNameFromPath(this.product.pdf1Path);
-        this.product.pdf2Name = this.getPdfNameFromPath(this.product.pdf2Path);
       });
-  }
-
-  getPdfNameFromPath(path) {
-    return path.replace(this.env.pdfFilePath, '');
   }
 }
