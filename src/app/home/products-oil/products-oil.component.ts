@@ -21,7 +21,7 @@ export class ProductsOilHomeComponent implements OnInit {
   public selectedIndex;
 
   brandCategory = {
-    id: 1,
+    id: 999,
     active: 1,
     description: '',
     name: 'Брэнды',
@@ -57,10 +57,21 @@ export class ProductsOilHomeComponent implements OnInit {
         });
 
         this.categoryList.push(this.brandCategory);
-
         this.brandService.getAll()
           .subscribe(brandList => {
             this.brandList = brandList;
+            this.brandList = this.brandList.map(brand => ({
+              ...brand,
+              brand_uid: brand.id
+            }));
+
+            this.categoryList.forEach(el => {
+              el.subcategories = el.subcategories.map(sub => ({
+                ...sub,
+                sub_uid: sub.id
+              }));
+            });
+
             this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
           });
       });
@@ -105,8 +116,6 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectSubCategory(subcategory, list) {
-    console.log(subcategory);
-    console.log(list);
     list.forEach(el => {
       el.activeClass = false;
     });
@@ -115,8 +124,9 @@ export class ProductsOilHomeComponent implements OnInit {
     this.selectedCategoryNameToShow = subcategory.name;
     this.productsToShow = this.productsOilList;
     this.productsToShow = this.productsToShow.filter((el) => {
-      if (el.subcategory !== 'null') {
-        return el.subcategory_id === subcategory.id || el.brand_id === subcategory.id;
+
+      if (el !== 'null') {
+        return el.subcategory_id === subcategory.sub_uid || el.brand_id === subcategory.brand_uid;
       }
     });
 

@@ -80,9 +80,16 @@ export class ProductsDrillHomeComponent implements OnInit {
             this.brandList = brandList;
             this.brandList = this.brandList.map(brand => ({
               ...brand,
-              description: ''
+              description: '',
+              brand_uid: brand.id
             }));
-            console.log(this.brandList);
+
+            this.categoryList.forEach(el => {
+              el.subcategories = el.subcategories.map(sub => ({
+                ...sub,
+                sub_uid: sub.id
+              }));
+            });
 
             this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
           });
@@ -122,7 +129,7 @@ export class ProductsDrillHomeComponent implements OnInit {
 
       if (!item.isBrand) {
         this.productsToShow = this.productsToShow.filter((el) => {
-          return el.id === item.id;
+          return el.category_id === item.id;
         });
       }
     }
@@ -141,7 +148,7 @@ export class ProductsDrillHomeComponent implements OnInit {
     this.productsToShow = this.productsDrillList;
     this.productsToShow = this.productsToShow.filter((el) => {
       if (el !== 'null') {
-        return el.subcategory_id === subcategory.id || el.brand_id === subcategory.id;
+        return el.subcategory_id === subcategory.sub_uid || el.brand_id === subcategory.brand_uid;
       }
     });
   }
