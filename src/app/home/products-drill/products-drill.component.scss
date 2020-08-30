@@ -204,3 +204,11 @@
     }
   }
 }
+::ng-deep.media {
+  @extend %fc;
+}
+
+::ng-deep.media > div {
+  width: 600px;
+  height: 400px;
+}

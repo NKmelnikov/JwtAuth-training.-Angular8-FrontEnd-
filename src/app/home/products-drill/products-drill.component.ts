@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import {BrandService, CategoryService, ProductDrillService} from '../../_services';
 import {environment} from '../../../environments/environment';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-products-drill',
@@ -45,7 +46,7 @@ export class ProductsDrillHomeComponent implements OnInit {
     isBrand: true,
     createdAt: {$date: 1594916708310},
     position: 999,
-    subCategories: [],
+    subcategories: [],
   };
 
 
@@ -55,6 +56,7 @@ export class ProductsDrillHomeComponent implements OnInit {
     private categoryService: CategoryService,
     private brandService: BrandService,
     private productDrillService: ProductDrillService,
+    private sanitizer: DomSanitizer
   ) {
 
   }
@@ -76,6 +78,12 @@ export class ProductsDrillHomeComponent implements OnInit {
         this.brandService.getAll()
           .subscribe(brandList => {
             this.brandList = brandList;
+            this.brandList = this.brandList.map(brand => ({
+              ...brand,
+              description: ''
+            }));
+            console.log(this.brandList);
+
             this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
           });
       });
@@ -92,13 +100,13 @@ export class ProductsDrillHomeComponent implements OnInit {
   selectCategory(item) {
     this.categoryToShow = this.categoryToShowDefault;
     this.subcategoryToShow = this.subcategoryToShowDefault;
-    const expansionDOM = document.getElementById(item.id);
+    const expansionDOM = document.getElementById('category_' + item.id);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
 
     item.isExpanded = true;
 
-    if (item.subCategories) {
-      item.subCategories.forEach(el => {
+    if (item.subcategories) {
+      item.subcategories.forEach(el => {
         el.activeClass = false;
       });
     }
@@ -121,12 +129,13 @@ export class ProductsDrillHomeComponent implements OnInit {
   }
 
   selectSubCategory(subcategory, list) {
-
     list.forEach(el => {
       el.activeClass = false;
     });
 
     this.subcategoryToShow = subcategory;
+    // @ts-ignore
+    this.subcategoryToShow.description = this.sanitizer.bypassSecurityTrustHtml(this.subcategoryToShow.description);
     subcategory.activeClass = true;
     this.selectedCategoryNameToShow = subcategory.name;
     this.productsToShow = this.productsDrillList;

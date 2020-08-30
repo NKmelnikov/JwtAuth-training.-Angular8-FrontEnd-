@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
 import {BrandService} from '../../../_services';
 import {environment} from '../../../../environments/environment';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class CatalogItemComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private brandService: BrandService
+    private brandService: BrandService,
+    private sanitizer: DomSanitizer
   ) {
   }
 
@@ -36,6 +38,8 @@ export class CatalogItemComponent implements OnInit {
           .subscribe((brand) => {
             // @ts-ignore
             this.brand = brand[0];
+            // @ts-ignore
+            this.brand.description = this.sanitizer.bypassSecurityTrustHtml(this.brand.description);
             console.log(this.brand);
           });
       }

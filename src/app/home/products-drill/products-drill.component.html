@@ -38,7 +38,7 @@
       <aside class="navigation-container">
         <mat-accordion>
           <mat-expansion-panel
-            [id]="category.id"
+            [id]="'category_'+category.id"
             *ngFor="let category of categoryList"
             (click)="selectCategory(category)"
             [ngClass]="{'active': category.activeClass}"
@@ -55,7 +55,7 @@
 
             <div
               class="expansion-item sub-categories-item"
-              [id]="subcategory.id"
+              [id]="'subcategory_'+subcategory.id"
               *ngFor="let subcategory of category.subcategories"
               [ngClass]="{'active': subcategory.activeClass}"
               [routerLink]="['/products/drill']"
@@ -71,7 +71,7 @@
       </aside>
       <section class="product-wrapper">
         <section class="content-section">
-          <section class="category-description" [innerHTML]="this.categoryToShow.description"></section>
+<!--          <section class="category-description" [innerHTML]="this.categoryToShow.description"></section>-->
           <section class="subcategory-description" [innerHTML]="this.subcategoryToShow.description"></section>
           <section class="products-drill-container">
             <div class="products-drill" *ngFor="let product of productsToShow">

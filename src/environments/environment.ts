@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverURL: 'http://localhost:8002/',
+  serverURL: 'http://aegis-serverok.loc/',
   pdfFilePath: 'files/pdf/',
   imgFilePath: 'files/img/',
 };

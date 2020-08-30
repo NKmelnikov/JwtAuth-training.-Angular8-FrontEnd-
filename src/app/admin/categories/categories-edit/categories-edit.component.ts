@@ -101,7 +101,9 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

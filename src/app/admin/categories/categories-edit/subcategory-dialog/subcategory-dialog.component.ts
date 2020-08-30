@@ -58,7 +58,9 @@ export class SubcategoryDialogComponent implements OnInit {
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serverURL: 'https://aegis-server.loc:8002/',
+  serverURL: 'http://back.aegis.by/',
   pdfFilePath: 'files/pdf/',
   imgFilePath: 'files/img/',
 };

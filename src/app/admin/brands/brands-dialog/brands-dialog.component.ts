@@ -65,7 +65,9 @@ export class BrandsDialogComponent implements OnInit {
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

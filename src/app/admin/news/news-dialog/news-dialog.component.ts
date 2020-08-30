@@ -64,7 +64,9 @@ export class NewsDialogComponent implements OnInit {
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

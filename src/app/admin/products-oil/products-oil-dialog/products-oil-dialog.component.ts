@@ -74,7 +74,9 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

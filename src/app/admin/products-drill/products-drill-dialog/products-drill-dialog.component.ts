@@ -72,7 +72,9 @@ export class ProductsDrillDialogComponent extends AdminBaseDialogComponent imple
           'fontSize'
         ]
       },
-
+      mediaEmbed: {
+        previewsInData: true
+      },
       image: {
         toolbar: [
           'imageTextAlternative',

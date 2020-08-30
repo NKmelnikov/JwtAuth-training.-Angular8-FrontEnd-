@@ -29,7 +29,7 @@ export class ProductsOilHomeComponent implements OnInit {
     isBrand: true,
     createdAt: {$date: 1594916708310},
     position: 999,
-    subCategories: [],
+    subcategories: [],
   };
 
 
@@ -76,13 +76,13 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectCategory(item) {
-    const expansionDOM = document.getElementById(item.id);
+    const expansionDOM = document.getElementById('category_' + item.id);
     const isExpanded = expansionDOM.classList.contains('mat-expanded');
 
     item.isExpanded = true;
 
-    if (item.subCategories) {
-      item.subCategories.forEach(el => {
+    if (item.subcategories) {
+      item.subcategories.forEach(el => {
         el.activeClass = false;
       });
     }
@@ -105,6 +105,8 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   selectSubCategory(subcategory, list) {
+    console.log(subcategory);
+    console.log(list);
     list.forEach(el => {
       el.activeClass = false;
     });
