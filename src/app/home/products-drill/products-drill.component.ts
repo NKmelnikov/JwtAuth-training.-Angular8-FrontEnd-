@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import {BrandService, CategoryService, ProductDrillService} from '../../_services';
 import {environment} from '../../../environments/environment';
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products-drill',
@@ -38,7 +38,7 @@ export class ProductsDrillHomeComponent implements OnInit {
 
 
   brandCategory = {
-    _id: {$oid: '5f105534ed58762626brands'},
+    id: 555,
     active: 1,
     description: '',
     name: 'Брэнды',

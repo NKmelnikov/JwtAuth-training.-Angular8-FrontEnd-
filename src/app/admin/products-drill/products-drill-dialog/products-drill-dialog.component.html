@@ -35,6 +35,7 @@
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
     </p>
     <p>
+      <mat-progress-bar *ngIf="localData.pdfName == undefined && localData.formData_pdfPath != undefined" mode="indeterminate"></mat-progress-bar>
       <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'pdfPath', 'pdfName')" accept=".pdf"/>
       <input class="pdf-input" matInput [(ngModel)]="localData.pdfPath" placeholder="Загрузить .pdf">
       <button mat-mini-fab color="primary" (click)="pdfInput.click()">

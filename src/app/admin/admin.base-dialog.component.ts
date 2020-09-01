@@ -55,10 +55,11 @@ export abstract class AdminBaseDialogComponent {
 
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
+    console.log(fileInput.target.files[0].type);
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
       const maxSize = 100000000; // 100mb
-      const allowedTypes = ['image/png', 'image/jpeg', 'image/svg'];
+      const allowedTypes = ['image/png', 'image/jpeg'];
       const maxHeight = 15200;
       const maxWidth = 25600;
 
@@ -102,8 +103,9 @@ export abstract class AdminBaseDialogComponent {
   }
 
   pdfInputChange(fileInput: any, entityPath, entityName) {
+    console.log(fileInput);
     const pdf = fileInput.target.files[0];
-    const maxSize = 200000000; // 200mb TODO put into config file
+    const maxSize = 1000000000; // 1gb TODO put into config file
     const allowedTypes = ['application/pdf'];
 
     if (pdf.size > maxSize) {
@@ -118,9 +120,12 @@ export abstract class AdminBaseDialogComponent {
       return false;
     }
     const formData: FormData = new FormData();
+    this.localData['formData_' + entityPath] = formData;
     formData.append('pdf_file', pdf, pdf.name);
+    console.log(formData);
     this.uploadHelper.uploadPdf(formData)
       .subscribe(data => {
+        console.log(data);
         this.localData[entityPath] = data.path;
         this.localData[entityName] = data.name;
       });

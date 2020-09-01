@@ -68,6 +68,7 @@
       <br>
     </form>
     <p>
+      <mat-progress-bar *ngIf="localData.pdf1Name == undefined && localData.formData_pdf1Path != undefined" mode="indeterminate"></mat-progress-bar>
       <input #pdfInput hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'pdf1Path', 'pdf1Name')" accept=".pdf"/>
       <input class="pdf-input" matInput [(ngModel)]="localData.pdf1Path" placeholder="Загрузить .pdf">
       <button mat-mini-fab color="primary" (click)="pdfInput.click()">
@@ -75,6 +76,7 @@
       </button>
     </p>
     <p>
+      <mat-progress-bar *ngIf="localData.pdf2Name == undefined && localData.formData_pdf2Path != undefined" mode="indeterminate"></mat-progress-bar>
       <input #pdfInput2 hidden="true" type="file" onclick="this.value=null" (change)="pdfInputChange($event, 'pdf2Path', 'pdf2Name')" accept=".pdf"/>
       <input class="pdf-input" matInput [(ngModel)]="localData.pdf2Path" placeholder="Загрузить .pdf">
       <button mat-mini-fab color="primary" (click)="pdfInput2.click()">

@@ -20,7 +20,7 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
   public brandList;
 
   public preloadData = [{
-    _id: {$oid: 'noData'},
+    id: 777,
     createdAt: {$date: 111111111111111},
     position: 1,
     active: 0,
