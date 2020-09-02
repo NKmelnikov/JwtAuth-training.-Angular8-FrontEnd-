@@ -12,7 +12,7 @@
           <img  class="catalog-multiplier__cover" src="{{env.serverURL + catalog.imgPath}}" alt="PDF">
           <div class="bot-title-box">
             <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
-            <span class="bot-title-box__text">{{catalog.name | slice:0: 15 }}{{catalog.name.length > 15 ? ' ...' : ''}}</span>
+            <span class="bot-title-box__text">{{catalog.name | slice:0: 32 }}{{catalog.name.length > 32 ? ' ...' : ''}}</span>
           </div>
         </a>
       </div>

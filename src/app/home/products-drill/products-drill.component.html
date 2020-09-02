@@ -71,7 +71,7 @@
                 <img  class="products-drill__cover" src="{{env.serverURL + product.imgPath}}" alt="PDF">
                 <div class="bot-title-box">
                   <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
-                  <span class="bot-title-box__text">{{product.name | slice:0: 15 }}{{product.name.length > 15 ? ' ...' : ''}}</span>
+                  <span class="bot-title-box__text">{{product.name | slice:0: 32 }}{{product.name.length > 32 ? ' ...' : ''}}</span>
                 </div>
               </a>
             </div>

@@ -56,7 +56,6 @@ export class MainComponent implements AfterViewInit, OnInit {
     touchDrag: false,
     pullDrag: false,
     autoplay: true,
-    items: 15,
     dots: false,
     navSpeed: 700,
     autoplayTimeout: 3000,

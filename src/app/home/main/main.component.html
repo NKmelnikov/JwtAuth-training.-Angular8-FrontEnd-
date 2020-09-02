@@ -170,6 +170,7 @@
       <div class="brands-wrapper">
         <owl-carousel-o class="container" [options]="carouselBrandsOptions">
           <ng-template class="brands-wrapper__carousel-item" *ngFor="let brand of brands" carouselSlide [id]="brand.id">
+
                 <img class="brands-wrapper__img" [src]="brand.imgPath">
           </ng-template>
         </owl-carousel-o>
