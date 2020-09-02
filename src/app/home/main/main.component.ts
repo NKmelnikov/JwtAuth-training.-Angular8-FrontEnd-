@@ -23,7 +23,7 @@ export class MainComponent implements AfterViewInit, OnInit {
   public qualityTriggered = false;
   public news = [];
   public brands = [];
-  public carouselOptions = {
+  public carouselNewsOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -43,6 +43,36 @@ export class MainComponent implements AfterViewInit, OnInit {
       },
       940: {
         items: 3
+      }
+    },
+    nav: true
+  };
+
+  public carouselBrandsOptions = {
+    loop: true,
+    center: true,
+    autoWidth: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    autoplay: true,
+    items: 15,
+    dots: false,
+    navSpeed: 700,
+    autoplayTimeout: 3000,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 7
       }
     },
     nav: true

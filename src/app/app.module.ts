@@ -26,8 +26,8 @@ import {ProductsOilHomeComponent} from './home/products-oil/products-oil.compone
 import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
-import { CatalogItemComponent } from './home/catalogs/catalog-item/catalog-item.component';
-import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
+import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
 import {AuthGuardService, AuthService, DataService, HttpInterceptorService, TokenService} from './_services';
 
 
@@ -65,7 +65,8 @@ import {AuthGuardService, AuthService, DataService, HttpInterceptorService, Toke
     AdminModule,
     CarouselModule,
     PdfViewerModule,
-    NgbModule
+    NgbModule,
+    BrowserModule
   ],
   providers: [
     AuthService,

@@ -384,6 +384,12 @@
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+
+        &__img {
+          max-width: 150px;
+          max-height: 50px;
+        }
+
       }
 
       .outer-title {
@@ -394,16 +400,16 @@
         margin: 50px 0 20px 0;
       }
 
-      .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 277.5px;
-
-        img {
-          max-width: 100%;
-        }
-      }
+      //.logo-container {
+      //  display: flex;
+      //  justify-content: center;
+      //  align-items: center;
+      //  width: 277.5px;
+      //
+      //  img {
+      //    max-width: 100%;
+      //  }
+      //}
     }
   }
 
