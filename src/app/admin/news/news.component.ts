@@ -22,18 +22,7 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
   public news;
   public serverUrl;
   public env = environment;
-
-  public preloadData = [{
-    _id: {$oid: 'preload'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    imgPath: '/preload',
-    title: 'preload',
-    slug: 'preload',
-    shortText: 'preload',
-    article: 'preload'
-  }];
+  public preloadData = [{id: 0, title: '0', shortText: '0'}];
 
   public displayedColumns: string[] = [
     'select',
@@ -43,7 +32,6 @@ export class NewsComponent extends AdminBaseComponent implements OnInit {
     'title',
     'slug',
     'shortText',
-    'article',
     'createdAt',
     'action'
   ];

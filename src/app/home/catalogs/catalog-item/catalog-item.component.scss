@@ -10,7 +10,7 @@
 }
 
 .header-container {
-  height: 370px;
+  height: 175px;
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
@@ -23,7 +23,7 @@
     height: 100%;
 
     &__title {
-      font-size: 52px;
+      font-size: 40px;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
@@ -70,8 +70,9 @@
         text-decoration: none;
       }
 
-      pdf-viewer {
+      &__cover {
         border-radius: 10px;
+        padding:10px;
         display: block;
         height: 240px;
         width: 240px;
@@ -92,6 +93,7 @@
         &__text {
           color: $main-color2;
           font-weight: bold;
+          font-size: 10px;
         }
       }
     }

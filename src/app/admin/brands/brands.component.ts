@@ -20,17 +20,7 @@ export class BrandsComponent extends AdminBaseComponent implements OnInit {
 
   public brands;
   public env = environment;
-
-  public preloadData = [{
-    _id: {$oid: 'noData'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    imgPath: 'noData',
-    name: 'noData',
-    slug: 'noData',
-  }];
-
+  public preloadData = [{id: 0, name: '0'}];
   public displayedColumns: string[] = [
     'select',
     'imgPath',

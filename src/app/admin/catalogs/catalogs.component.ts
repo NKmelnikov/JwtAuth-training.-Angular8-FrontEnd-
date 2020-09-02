@@ -4,6 +4,8 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {CatalogsDialogComponent} from './catalogs-dialog/catalogs-dialog.component';
 import {CatalogsInterface} from './catalogs.interface';
 import {AdminBaseComponent} from '../admin.base-component';
+import {environment} from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-catalogs',
@@ -18,19 +20,12 @@ export class CatalogsComponent extends AdminBaseComponent implements OnInit {
 
   public catalogs;
   public brandList;
-
-  public preloadData = [{
-    id: 777,
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    brandName: 'noData',
-    pdfPath: '#',
-    name: 'noData',
-  }];
+  public env = environment;
+  public preloadData = [{id: 0}];
 
   public displayedColumns: string[] = [
     'select',
+    'imgPath',
     'position',
     'active',
     'name',

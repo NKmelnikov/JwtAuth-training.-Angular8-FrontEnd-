@@ -49,9 +49,22 @@ table {
 
 .option-mat-toolbar {
   font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &>div {
+    display: flex;
+    align-items: center;
+
+  }
 
   nav {
     margin-right: 20px;
+
+    a {
+      text-decoration: none;
+    }
   }
 }
 

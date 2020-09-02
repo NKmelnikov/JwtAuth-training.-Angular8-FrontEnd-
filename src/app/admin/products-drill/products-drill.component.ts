@@ -4,6 +4,7 @@ import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {MatTableDataSource, MatTable} from '@angular/material';
 import {AdminBaseComponent} from '../admin.base-component';
 import {ProductsDrillDialogComponent} from './products-drill-dialog/products-drill-dialog.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-products-drill',
@@ -23,22 +24,12 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
   public categoryList;
   public subcategoryList;
   public dropDownData;
-
-  public preloadData = [{
-    _id: {$oid: 'noData'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    brand: {name: 'noData'},
-    category: {name: 'noData'},
-    subcategory: {name: 'noData'},
-    name: 'noData',
-    description: 'noData',
-    pdfPath: 'noData',
-  }];
+  public env = environment;
+  public preloadData = [{id: 0}];
 
   public displayedColumns: string[] = [
     'select',
+    'imgPath',
     'name',
     'position',
     'active',

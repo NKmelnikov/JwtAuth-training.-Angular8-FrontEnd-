@@ -47,9 +47,22 @@ table {
 
 .option-mat-toolbar {
   font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &>div {
+    display: flex;
+    align-items: center;
+
+  }
 
   nav {
     margin-right: 20px;
+
+    a {
+      text-decoration: none;
+    }
   }
 }
 
@@ -62,7 +75,7 @@ table {
   max-height: 50px;
 }
 
-.mat-column-active, .mat-column-position, .mat-column-select {
+.mat-column-active, .mat-column-position, .mat-column-select, .mat-column-createdAt, .mat-column-action, .mat-column-imgPath {
   flex: 0 0 5%;
 }
 

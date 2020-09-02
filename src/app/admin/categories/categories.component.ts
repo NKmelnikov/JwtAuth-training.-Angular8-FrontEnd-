@@ -17,15 +17,7 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
 
   public categories;
   public brandList;
-
-  public preloadData = [{
-    _id: {$oid: 'noData'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    type: 1,
-    name: '/noData',
-  }];
+  public preloadData = [{id: 0}];
 
   public displayedColumns: string[] = [
     'select',

@@ -6,7 +6,7 @@
 }
 
 .header-container {
-  height: 370px;
+  height: 175px;
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
@@ -175,7 +175,7 @@
             text-decoration: none;
           }
 
-          pdf-viewer {
+          &__cover  {
             border-radius: 10px;
             display: block;
             height: 215px;
@@ -211,4 +211,11 @@
 ::ng-deep.media > div {
   width: 600px;
   height: 400px;
+}
+
+.pagination-block{
+
+  ::ng-deep.pagination {
+    justify-content: flex-end;
+  }
 }

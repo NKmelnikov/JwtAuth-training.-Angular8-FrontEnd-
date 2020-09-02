@@ -2,28 +2,36 @@
   <h1>Категории</h1>
 </mat-toolbar>
 <mat-toolbar class="option-mat-toolbar">
-  <nav>
-    <mat-form-field>
-      <mat-label>Массовые функции</mat-label>
-      <mat-select [(value)]="bulkAction" (selectionChange)="onBulkActionChange($event)">
-        <mat-option>нет</mat-option>
-        <mat-option value="activate">Активировать</mat-option>
-        <mat-option value="deactivate">Деактивировать</mat-option>
-        <mat-option value="delete">Удалить</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </nav>
-  <nav>
-    <mat-form-field>
-      <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Поиск">
-    </mat-form-field>
-  </nav>
-  <nav>
-    <a mat-mini-fab color="warn" routerLinkActive="list-item-active" routerLink="/admin/categories/add">
-      <span class="material-icons">add</span>
-    </a>
-  </nav>
+  <div class="left-btn-section">
+    <nav>
+      <mat-form-field>
+        <mat-label>Массовые функции</mat-label>
+        <mat-select [(value)]="bulkAction" (selectionChange)="onBulkActionChange($event)">
+          <mat-option>нет</mat-option>
+          <mat-option value="activate">Активировать</mat-option>
+          <mat-option value="deactivate">Деактивировать</mat-option>
+          <mat-option value="delete">Удалить</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </nav>
+    <nav>
+      <mat-form-field>
+        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Поиск">
+      </mat-form-field>
+    </nav>
+    <nav>
+      <a mat-mini-fab color="warn" routerLinkActive="list-item-active" routerLink="/admin/categories/add">
+        <span class="material-icons">add</span>
+      </a>
+    </nav>
+  </div>
+  <div class="right-btn-section">
+    <nav>
+      <a routerLink="/products" mat-raised-button color="primary" target="_blank">Перейти в "Продукты"</a>
+    </nav>
+  </div>
 </mat-toolbar>
+
 <mat-table
   class="mat-elevation-z8"
   cdkDropList

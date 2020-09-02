@@ -55,7 +55,6 @@ export abstract class AdminBaseDialogComponent {
 
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
-    console.log(fileInput.target.files[0].type);
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
       const maxSize = 100000000; // 100mb
@@ -95,6 +94,7 @@ export abstract class AdminBaseDialogComponent {
 
           this.uploadHelper.uploadImgFromB64(sendData)
             .subscribe(data => this.localData.imgPath = data.path);
+          console.log(this.localData);
         };
       };
 

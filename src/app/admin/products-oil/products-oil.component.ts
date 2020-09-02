@@ -26,23 +26,7 @@ export class ProductsOilComponent extends AdminBaseComponent implements OnInit {
   public subcategoryList;
   public dropDownData;
   public serverUrl;
-
-  public preloadData = [{
-    imgPath: environment.serverURL + 'files/img/default.jpg',
-    _id: {$oid: 'noData'},
-    createdAt: {$date: 111111111111111},
-    position: 1,
-    active: 0,
-    brand: {name: 'noData'},
-    category: {name: 'noData'},
-    subcategory: {name: 'noData'},
-    slug: 'noData',
-    name: 'noData',
-    description: 'noData',
-    productSpec: 'noData',
-    pdf1Path: 'noData',
-    pdf2Path: '/noData'
-  }];
+  public preloadData = [{id: 0}];
 
   public displayedColumns: string[] = [
     'select',

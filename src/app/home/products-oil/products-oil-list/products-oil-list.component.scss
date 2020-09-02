@@ -49,3 +49,10 @@
     }
   }
 }
+
+.pagination-block{
+
+  ::ng-deep.pagination {
+    justify-content: flex-end;
+  }
+}

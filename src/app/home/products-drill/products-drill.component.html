@@ -2,14 +2,6 @@
   <div class="header-container">
     <div class="header-box container">
       <div class="header-box__title">Металлорежущие <br> конструкции и оснастка</div>
-      <div class="header-box__text">
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-        ТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекстТекст <br>
-      </div>
     </div>
   </div>
   <div class="breadcrumbs container">
@@ -76,15 +68,7 @@
           <section class="products-drill-container">
             <div class="products-drill" *ngFor="let product of productsToShow">
               <a class="products-drill__link" target="_blank" href="{{env.serverURL + product.pdfPath}}">
-                <pdf-viewer [src]="env.serverURL + product.pdfPath"
-                            [render-text]="false"
-                            [page]="1"
-                            [show-all]="false"
-                            [original-size]="false"
-                            [fit-to-page]="false"
-                            [autoresize]="false"
-                            [show-borders]="false"
-                ></pdf-viewer>
+                <img  class="products-drill__cover" src="{{env.serverURL + product.imgPath}}" alt="PDF">
                 <div class="bot-title-box">
                   <img class="bot-title-box__img" src="assets/img/pdf-orange.png" alt="">
                   <span class="bot-title-box__text">{{product.name | slice:0: 15 }}{{product.name.length > 15 ? ' ...' : ''}}</span>
