@@ -16,17 +16,7 @@ export class HomeComponent implements OnInit {
   showLoadingIndicator = true;
 
   constructor(private router: Router) {
-    this.router.events.subscribe((routerEvent: Event) => {
-      if (routerEvent instanceof NavigationStart) {
-        this.showLoadingIndicator = true;
 
-      }
-      if (routerEvent instanceof NavigationEnd ||
-        routerEvent instanceof NavigationCancel ||
-        routerEvent instanceof NavigationError) {
-        this.showLoadingIndicator = false;
-      }
-    });
   }
 
   ngOnInit() {
