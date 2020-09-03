@@ -40,7 +40,7 @@ const routes: Routes = [
       {path: 'news', component: NewsHomeComponent},
       {path: 'about', component: AboutComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
+      // {path: 'register', component: RegisterComponent},
     ]
   },
 

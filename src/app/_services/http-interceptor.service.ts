@@ -18,8 +18,8 @@ export class HttpInterceptorService implements HttpInterceptor {
       this.apiRequest = request.clone({ setHeaders: { Authorization: tokenService.get() } });
       return next.handle(this.apiRequest);
     } else {
-      this.router.navigate(['/notfound']);
-
+      // this.router.navigate(['/notfound']);
+      return next.handle(request);
     }
 
 
