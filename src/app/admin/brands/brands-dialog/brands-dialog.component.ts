@@ -117,10 +117,4 @@ export class BrandsDialogComponent extends AdminBaseDialogComponent implements O
   fileChangeEvent(fileInput: any) {
     return super.fileChangeEvent(fileInput);
   }
-
-  removeImage() {
-    this.cardImageBase64 = null;
-    this.isImageSaved = false;
-  }
-
 }

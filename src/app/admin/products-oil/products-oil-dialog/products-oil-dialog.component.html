@@ -51,7 +51,7 @@
           {{imageError}}
           <mat-progress-bar *ngIf="localData.fileInput != undefined && !this.imageLoaded" mode="indeterminate"></mat-progress-bar>
           <div class="custom-file fileInputProfileWrap">
-            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+            <input #fileInput type="file" (click)="fileInput.value = null" value="" (change)="fileChangeEvent($event)" class="fileInputProfile">
             <div class="img-space">
 
               <ng-container *ngIf="isImageSaved; else elseTemplate">

@@ -52,6 +52,7 @@ export abstract class AdminBaseDialogComponent {
   removeImage() {
     this.cardImageBase64 = null;
     this.isImageSaved = false;
+    this.localData.imgPath = '';
   }
 
   fileChangeEvent(fileInput: any) {
@@ -75,8 +76,6 @@ export abstract class AdminBaseDialogComponent {
       }
 
       this.localData.fileInput = fileInput;
-      console.log(this.localData.fileInput);
-      console.log(this.localData.imgPath);
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const image = new Image();
