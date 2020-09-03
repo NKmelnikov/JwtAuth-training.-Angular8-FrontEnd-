@@ -11,11 +11,11 @@ export class CategoryService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-categories');
+    return super.getAll('home/get-categories');
   }
 
   getCategoryById(categoryId) {
-    return this.http.post<any[]>(`${environment.serverURL}get-category-by-id`, categoryId);
+    return this.http.post<any[]>(`${environment.serverURL}home/get-category-by-id`, categoryId);
   }
 
   create(data: any) {

@@ -10,7 +10,7 @@ export class CatalogService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-catalogs');
+    return super.getAll('home/get-catalogs');
   }
 
   create(data: CatalogsInterface) {

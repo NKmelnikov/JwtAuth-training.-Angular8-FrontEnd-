@@ -10,7 +10,7 @@ export class PostService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-posts');
+    return super.getAll('home/get-posts');
   }
 
   create(data: NewsInterface) {

@@ -1,29 +1,26 @@
-import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpHeaders } from '@angular/common/http';
-import { TokenService } from './token.service';
-import { Router } from '@angular/router';
+import {Injectable, Injector} from '@angular/core';
+import {HttpInterceptor, HttpRequest, HttpHandler, HttpHeaders} from '@angular/common/http';
+import {TokenService} from './token.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
   apiRequest: HttpRequest<any>;
 
-  constructor(private injector: Injector, private router: Router) { }
+  constructor(private injector: Injector, private router: Router) {
+  }
 
   intercept(request, next) {
     const tokenService = this.injector.get(TokenService);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (JSON.stringify(request).includes('auth')) {
+
+    if (JSON.stringify(request).includes('auth') || JSON.stringify(request).includes('home')) {
       return next.handle(request);
     } else if (tokenService.get() && currentUser) {
-      this.apiRequest = request.clone({ setHeaders: { Authorization: tokenService.get() } });
+      this.apiRequest = request.clone({setHeaders: {Authorization: tokenService.get()}});
       return next.handle(this.apiRequest);
     } else {
-      // this.router.navigate(['/notfound']);
-      return next.handle(request);
+      this.router.navigate(['/404']);
     }
-
-
   }
-
-
 }

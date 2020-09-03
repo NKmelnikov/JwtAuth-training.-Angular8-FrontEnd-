@@ -40,7 +40,6 @@ export class CatalogItemComponent implements OnInit {
             this.brand = brand[0];
             // @ts-ignore
             this.brand.description = this.sanitizer.bypassSecurityTrustHtml(this.brand.description);
-            console.log(this.brand);
           });
       }
     });

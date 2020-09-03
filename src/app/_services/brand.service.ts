@@ -11,11 +11,11 @@ export class BrandService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-brands');
+    return super.getAll('home/get-brands');
   }
 
   getBrandBySlug(slug) {
-    return this.http.post<any[]>(`${environment.serverURL}get-brand-by-slug`, {slug});
+    return this.http.post<any[]>(`${environment.serverURL}home/get-brand-by-slug`, {slug});
   }
 
   create(data: BrandsInterface) {

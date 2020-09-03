@@ -94,7 +94,6 @@ export abstract class AdminBaseDialogComponent {
 
           this.uploadHelper.uploadImgFromB64(sendData)
             .subscribe(data => this.localData.imgPath = data.path);
-          console.log(this.localData);
         };
       };
 
@@ -103,7 +102,6 @@ export abstract class AdminBaseDialogComponent {
   }
 
   pdfInputChange(fileInput: any, entityPath, entityName) {
-    console.log(fileInput);
     const pdf = fileInput.target.files[0];
     const maxSize = 1000000000; // 1gb TODO put into config file
     const allowedTypes = ['application/pdf'];
@@ -122,10 +120,8 @@ export abstract class AdminBaseDialogComponent {
     const formData: FormData = new FormData();
     this.localData['formData_' + entityPath] = formData;
     formData.append('pdf_file', pdf, pdf.name);
-    console.log(formData);
     this.uploadHelper.uploadPdf(formData)
       .subscribe(data => {
-        console.log(data);
         this.localData[entityPath] = data.path;
         this.localData[entityName] = data.name;
       });

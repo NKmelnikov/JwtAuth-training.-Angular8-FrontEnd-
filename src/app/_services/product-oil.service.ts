@@ -11,7 +11,7 @@ export class ProductOilService extends Service {
   }
 
   getProductBySlug(slug): Observable<ProductsOilInterface> {
-    return this.http.post<ProductsOilInterface>(`${environment.serverURL}get-product-oil-by-slug`, {slug});
+    return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-slug`, {slug});
   }
 
   getAll(): Observable<any[]> {

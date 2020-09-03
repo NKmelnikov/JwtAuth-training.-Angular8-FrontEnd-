@@ -10,7 +10,7 @@ export class ProductDrillService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-products-drill');
+    return super.getAll('home/get-products-drill');
   }
 
   create(data: ProductsDrillInterface) {
