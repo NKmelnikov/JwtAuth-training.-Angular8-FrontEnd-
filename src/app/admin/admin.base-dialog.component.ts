@@ -11,6 +11,7 @@ export abstract class AdminBaseDialogComponent {
   public action: string;
   public localData: any;
   public imageError: string;
+  public imageLoaded: boolean;
   public isImageSaved: boolean;
   public cardImageBase64: string;
   public selectedValue: string;
@@ -55,6 +56,7 @@ export abstract class AdminBaseDialogComponent {
 
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
+    this.imageLoaded = false;
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
       const maxSize = 100000000; // 100mb
@@ -72,6 +74,9 @@ export abstract class AdminBaseDialogComponent {
         return false;
       }
 
+      this.localData.fileInput = fileInput;
+      console.log(this.localData.fileInput);
+      console.log(this.localData.imgPath);
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const image = new Image();
@@ -92,8 +97,12 @@ export abstract class AdminBaseDialogComponent {
             b64: this.cardImageBase64
           };
 
+
           this.uploadHelper.uploadImgFromB64(sendData)
-            .subscribe(data => this.localData.imgPath = data.path);
+            .subscribe(data => {
+              this.imageLoaded = true;
+              this.localData.imgPath = data.path;
+            });
         };
       };
 

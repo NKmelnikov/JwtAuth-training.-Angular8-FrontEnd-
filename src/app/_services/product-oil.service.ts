@@ -15,7 +15,7 @@ export class ProductOilService extends Service {
   }
 
   getAll(): Observable<any[]> {
-    return super.getAll('get-products-oil');
+    return super.getAll('home/get-products-oil');
   }
 
   create(data: ProductsOilInterface) {

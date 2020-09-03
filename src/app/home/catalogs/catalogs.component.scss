@@ -3,6 +3,7 @@
 .catalog-home-wrapper{
   display: flex;
   flex-direction: column;
+  min-height: 800px;
 }
 
 .header-container{
@@ -33,7 +34,7 @@
 }
 
 .brand-container{
-  min-height: 240px;
+  min-height: 400px;
   margin-bottom: 100px;
 
   .brand-box {
