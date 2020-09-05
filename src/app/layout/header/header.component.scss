@@ -26,7 +26,7 @@ header {
 
 
   nav {
-    border-right: 1px solid lightgray;
+    border-right: 1px solid #ff8954;
     height: 100%;
     width: 100%;
 
@@ -63,11 +63,15 @@ header {
     &.item-contacts {
       width: 35rem;
       background: $main-color1;
-      display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       transition: .2s ease-out;
+      display: none;
+
+      @media #{$noDesktop} {
+        display: flex;
+      }
 
       &:hover {
         .line-container {

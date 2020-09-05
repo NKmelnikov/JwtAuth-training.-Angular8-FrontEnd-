@@ -3,6 +3,12 @@
 @import "../../../assets/libs/scss/brands.scss";
 
 .side-bar {
+  display: none;
+  width: 100%;
+
+  @media #{$noDesktop} {
+    display: block;
+  }
 
   .cross-box {
     width: 100%;
@@ -59,10 +65,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding-left: 50px;
+    align-items: center;
     color: $main-color5;
-    width: 280px;
+    width: 100%;
 
     &.side-desktop {
       @media #{$noDesktop} {
@@ -79,19 +84,33 @@
     }
 
     .link-container{
-      width: 100%;
-      margin-bottom: 40px;
-      .item {
+      margin: 50px 0;
+      width: 280px;
+      border: 1px solid $main-color4;
 
-        border: 1px solid $main-color5;
+      .item {
+        border-bottom: 1px solid $main-color4;
         width: 100%;
-        height: 50px;
+        height: 70px;
         @extend %fc;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:active {
+          background: $main-color1;
+        }
 
         a {
           text-decoration: none;
           color: whitesmoke;
+          width: 100%;
+          height: 100%;
+          @extend %fc;
+          font-size: 20px;
         }
+
       }
     }
 

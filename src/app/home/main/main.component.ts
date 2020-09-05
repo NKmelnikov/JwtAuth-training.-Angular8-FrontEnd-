@@ -89,6 +89,21 @@ export class MainComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.getNews();
     this.getBrands();
+    const video1 = document.getElementById('video-drill');
+    const video2 = document.getElementById('video-oil');
+
+    video1.oncanplaythrough = () => {
+      // @ts-ignore
+      video1.muted = true;
+      // @ts-ignore
+      video1.play();
+    };
+    video2.oncanplaythrough = () => {
+      // @ts-ignore
+      video2.muted = true;
+      // @ts-ignore
+      video2.play();
+    };
   }
 
   ngAfterViewInit() {
