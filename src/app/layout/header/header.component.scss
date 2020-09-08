@@ -26,9 +26,13 @@ header {
 
 
   nav {
-    border-right: 1px solid #ff8954;
+    border-right: 1px solid lightgrey;
     height: 100%;
     width: 100%;
+
+    @media #{$noDesktop} {
+      border-right: 1px solid #ff8954;
+    }
 
     &:hover {
       background: url("/assets/img/default_pattern.png");

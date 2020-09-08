@@ -160,10 +160,10 @@ export class MainComponent implements AfterViewInit, OnInit {
   }
 
   startAdvantageCount() {
-    this.advantageCounter(100, 25, 'clients');
-    this.advantageCounter(100, 13, 'yearsOrMarket');
-    this.advantageCounter(100, 9, 'developers');
-    this.advantageCounter(100, 5, 'countries');
+    this.advantageCounter(50, 111, 'clients');
+    this.advantageCounter(100, 6, 'yearsOrMarket');
+    this.advantageCounter(100, 12, 'developers');
+    this.advantageCounter(100, 7, 'countries');
     this.advCountTriggered = true;
   }
 
