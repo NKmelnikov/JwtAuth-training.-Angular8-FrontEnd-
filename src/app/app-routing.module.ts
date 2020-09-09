@@ -24,6 +24,9 @@ import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/pr
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
+import {ServicesComponent} from './home/services/services.component';
+import {ServicesMetalworkingComponent} from './home/services-metalworking/services-metalworking.component';
+import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
 
 const routes: Routes = [
   {
@@ -37,6 +40,9 @@ const routes: Routes = [
           {path: ':slug', component: ProductsOilItemComponent},
         ]},
       {path: 'products/drill', component: ProductsDrillHomeComponent},
+      {path: 'services', component: ServicesComponent},
+      {path: 'services/metalworking', component: ServicesMetalworkingComponent},
+      {path: 'services/recovery', component: ServicesRecoveryComponent},
       {path: 'news', component: NewsHomeComponent},
       {path: 'about', component: AboutComponent},
       {path: 'login', component: LoginComponent},

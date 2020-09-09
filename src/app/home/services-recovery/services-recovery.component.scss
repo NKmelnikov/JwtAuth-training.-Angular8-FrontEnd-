@@ -1,0 +1,13 @@
+@import "../../app.global";
+
+main {
+  height: calc(100vh - 120px);
+  width: 100%;
+  background: $main-color3;
+  @extend %fcc;
+}
+
+p {
+  color: whitesmoke;
+  font-size: 24px;
+}

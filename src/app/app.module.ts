@@ -29,6 +29,8 @@ import {ProductsOilListComponent} from './home/products-oil/products-oil-list/pr
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
 import {AuthGuardService, AuthService, DataService, HttpInterceptorService, TokenService} from './_services';
+import { ServicesMetalworkingComponent } from './home/services-metalworking/services-metalworking.component';
+import { ServicesRecoveryComponent } from './home/services-recovery/services-recovery.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import {AuthGuardService, AuthService, DataService, HttpInterceptorService, Toke
     ProductsOilListComponent,
     CatalogItemComponent,
     PageNotFoundComponent,
+    ServicesMetalworkingComponent,
+    ServicesRecoveryComponent,
   ],
   imports: [
     BrowserModule,

@@ -91,6 +91,7 @@ export class MainComponent implements AfterViewInit, OnInit {
     this.getBrands();
     const video1 = document.getElementById('video-drill');
     const video2 = document.getElementById('video-oil');
+    const advSection = document.querySelector('.adv-section_js');
 
     video1.oncanplaythrough = () => {
       // @ts-ignore
@@ -104,6 +105,10 @@ export class MainComponent implements AfterViewInit, OnInit {
       // @ts-ignore
       video2.play();
     };
+
+    if (this.isInViewport(advSection) && !this.advCountTriggered) {
+      this.startAdvantageCount();
+    }
   }
 
   ngAfterViewInit() {
