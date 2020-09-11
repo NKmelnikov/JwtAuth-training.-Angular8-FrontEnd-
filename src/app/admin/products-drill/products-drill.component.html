@@ -88,7 +88,11 @@
   <!-- brand name Column -->
   <ng-container matColumnDef="brand">
     <mat-header-cell mat-sort-header *matHeaderCellDef> Брэнд</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.brand_name }}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="font-size-10">
+        {{(element.brand_name) ? element.brand_name : 'партнёра нет' }}
+      </span>
+    </mat-cell>
   </ng-container>
 
   <!-- category name Column -->
