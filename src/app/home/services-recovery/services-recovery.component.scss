@@ -1,13 +1,146 @@
 @import "../../app.global";
 
-main {
-  height: calc(100vh - 120px);
-  width: 100%;
-  background: $main-color3;
-  @extend %fcc;
+.services-metalworking-home-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-p {
-  color: whitesmoke;
-  font-size: 24px;
+.header-container {
+  height: 175px;
+  background: $main-color2;
+  border-bottom: 10px solid $main-color1;
+  margin-bottom: 40px;
+  background: url("/assets/img/header-default.png") no-repeat 50% 100%;
+
+  .header-box {
+    color: white;
+    @extend %fcc;
+    align-items: flex-start;
+    height: 100%;
+
+    &__title {
+      font-size: 36px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 6px;
+    }
+
+    &__text {
+      font-size: 14px;
+      height: 150px;
+    }
+  }
+}
+
+.breadcrumbs {
+  @extend %fc;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+
+  &__item {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 10px;
+    margin-right: 3px;
+    font-weight: bolder;
+    color: #9e9e9e;
+
+    &:hover {
+      color: $main-color2;
+    }
+
+    &.current {
+      color: $main-color2;
+    }
+  }
+}
+
+
+.recovery-wrapper {
+
+  .title {
+    font-size: 30px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: $main-color2;
+  }
+
+  .line {
+    border-top: 7px solid $main-color1;
+    width: 80px;
+    margin-bottom: 20px;
+  }
+
+  .first-section, .second-section {
+    @extend %fcc;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 40px;
+
+    .img-container {
+      width: 100%;
+
+      img {
+        width: 100%;
+        margin-bottom: 40px;
+        //border-top-left-radius: 140px;
+        //border-bottom-right-radius: 140px;
+      }
+    }
+
+    .text-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .text {
+        font-size: 16px;
+        line-height: 25px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .second-section {
+    .img-container {
+      img {
+        width: 100%;
+        //border-top-left-radius: 0;
+        //border-top-right-radius: 140px;
+        //border-bottom-left-radius: 140px;
+        //border-bottom-right-radius: 0;
+      }
+    }
+  }
+
+  .third-section{
+    margin-bottom: 50px;
+
+    .coating-item{
+      margin-bottom: 20px;
+      @extend %fsb;
+      background: #f7fafd;
+
+      img {
+        width: 300px;
+        padding-right: 16px;
+      }
+
+      &__text {
+
+        mat-card-title{
+          font-weight: bolder;
+          color: $main-color2;
+        }
+
+        ::ng-deep.mat-card-header-text {
+          margin:0;
+        }
+      }
+    }
+  }
 }

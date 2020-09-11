@@ -1,4 +1,94 @@
-<main class="news-wrapper">
-  <p>Данная страница временно не доступна.</p>
-  <p>Приносим свои извинения</p>
+<main class="services-metalworking-home-wrapper">
+  <section class="header-container">
+    <div class="header-box container">
+      <div class="header-box__title">Восстановление <br> инструмента</div>
+    </div>
+  </section>
+  <section class="breadcrumbs container">
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/"
+    >главная / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/services"
+    >услуги / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item current"
+      routerLink="/services/metalworking"
+    >восстановление инструмента </a>
+  </section>
+  <section class="recovery-wrapper container">
+    <div class="recovery-wrapper__box first-section">
+      <div class="img-container">
+        <img src="assets/img/recovery/recovery1.png" alt="металлообработка">
+      </div>
+      <div class="text-container">
+        <div class="title">
+          Восстановление инструмента
+        </div>
+        <div class="line"></div>
+        <div class="text">
+          <p>
+            Используя те же высокоточные шлифовальные станки с ЧПУ,
+            которые используются на производственных предприятиях Guhring,
+            наш отдел восстановления хорошо оборудован для восстановления
+            стандартных и специальных инструментов из быстрорежущих сталей
+            и твердых сплавов до их первоначального заводского качества,
+            состояния и рабочих характеристик. Прецизионное восстановление
+            обеспечивает более длительный срок службы инструмента и часто
+            больше переточек на один инструмент, что приводит к значительной
+            экономии затрат как на инструмент, так и на обработку. Мы можем
+            обеспечить заводской ремонт не только инструмента Guhring,
+            но и инструмента других производителей.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="recovery-wrapper__box second-section">
+      <div class="img-container">
+        <img src="assets/img/recovery/recovery2.png" alt="металлообработка">
+      </div>
+      <div class="text-container">
+        <div class="title">
+          Нанесение покрытий на инструмент
+        </div>
+        <div class="line"></div>
+        <div class="text">
+          <p>
+            Используя те же высокоточные шлифовальные станки с ЧПУ,
+            которые используются на производственных предприятиях Guhring,
+            наш отдел восстановления хорошо оборудован для восстановления
+            стандартных и специальных инструментов из быстрорежущих сталей
+            и твердых сплавов до их первоначального заводского качества,
+            состояния и рабочих характеристик. Прецизионное восстановление
+            обеспечивает более длительный срок службы инструмента и часто
+            больше переточек на один инструмент, что приводит к значительной
+            экономии затрат как на инструмент, так и на обработку. Мы можем
+            обеспечить заводской ремонт не только инструмента Guhring,
+            но и инструмента других производителей.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="recovery-wrapper__box third-section">
+      <div class="title">
+        Виды покрытий
+      </div>
+      <mat-card class="coating-item" *ngFor="let item of coatingList">
+        <img [src]="item.imgPath" class="product-img" alt="">
+        <div class="coating-item__text">
+          <mat-card-header>
+            <mat-card-title>{{item.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content [innerHTML]="item.spec" class="spec"></mat-card-content>
+          <mat-card-content class="description">{{item.description}}</mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+
+  </section>
 </main>
