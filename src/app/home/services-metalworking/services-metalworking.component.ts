@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-services-metalworking',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesMetalworkingComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  page = 1;
+  pageSize = 10;
+  equipmentList = [];
 
   ngOnInit(): void {
+    for (let i = 1; i < 23; i++) {
+      this.equipmentList.push({imgPath: `assets/img/metalworking/portfolio/${i}.jpg`});
+    }
   }
 
 }

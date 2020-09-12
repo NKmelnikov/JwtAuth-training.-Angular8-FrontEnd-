@@ -57,6 +57,26 @@
 
 .metalworking-wrapper{
 
+  .title {
+    font-size: 30px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: $main-color2;
+  }
+
+  .line {
+    border-top: 7px solid $main-color1;
+    width: 80px;
+    margin-bottom: 20px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 20px;
+  }
+
   .first-section{
     @extend %fsb;
     align-items: flex-start;
@@ -80,40 +100,12 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-
-      .title {
-        font-size: 30px;
-        font-weight: bolder;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-        color: $main-color2;
-      }
-
-      .line {
-        border-top: 7px solid $main-color1;
-        width: 80px;
-        margin-bottom: 20px;
-      }
-
-      .text {
-        font-size: 16px;
-        line-height: 25px;
-        margin-bottom: 20px;
-      }
     }
   }
 
   .second-section{
 
     margin-bottom: 40px;
-
-    .title {
-      font-size: 30px;
-      font-weight: bolder;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      color: $main-color2;
-    }
 
     .services{
       @extend %fsb;
@@ -156,19 +148,32 @@
           margin:0;
           height: 46px;
           color: $main-color2;
-
         }
       }
     }
   }
 
   .third-section {
-    .title {
-      font-size: 30px;
-      font-weight: bolder;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      color: $main-color2;
+
+  }
+
+  .fourth-section{
+
+    .equipment-container{
+      @extend %fsb;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      height: 400px;
+      https://openbase.io/js/angular2-image-gallery
+      .equipment-item{
+        width: 200px;
+
+
+        img {
+          max-width: 200px;
+          max-height: 200px;
+        }
+      }
     }
   }
 }
