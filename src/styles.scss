@@ -55,6 +55,9 @@ $custom-typography: mat-typography-config(
   }
 }
 
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}
 @include mat-core($custom-typography);
 
 /* Importing Bootstrap SCSS file. */

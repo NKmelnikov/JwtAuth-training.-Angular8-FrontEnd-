@@ -88,16 +88,8 @@
     <div class="metalworking-wrapper__box fourth-section">
       <div class="title">Наше оборудование</div>
       <div class="equipment-container">
-        <div class="equipment-item" *ngFor="let item of equipmentList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-          <img [src]="item.imgPath" alt="">
-        </div>
-      </div>
-      <div class="pagination-block">
-        <ngb-pagination
-          [(page)]="page"
-          [pageSize]="pageSize"
-          [collectionSize]="equipmentList.length">
-        </ngb-pagination>
+        <mat-spinner *ngIf="!imagesReady"></mat-spinner>
+        <ngx-gallery [options]="galleryOptions" [images]="equipmentList" (imagesReady)="imagesReadyEvent()"></ngx-gallery>
       </div>
     </div>
   </section>

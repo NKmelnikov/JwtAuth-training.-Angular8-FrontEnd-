@@ -1,0 +1,49 @@
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <p>
+      <mat-form-field class="formFieldWidth752">
+        <mat-label>Заголовок</mat-label>
+        <input matInput [(ngModel)]="localData.name" width="100%" placeholder="например, болт м12">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-label>Описание элемента</mat-label>
+      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
+    </p>
+    <p>
+      <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
+    </p>
+    <form>
+      <div class="form-group img-upload-wrapper">
+        <fieldset class="form-group">
+          <label>Загрузить обложку</label>
+          {{imageError}}
+          <mat-progress-bar *ngIf="localData.fileInput != undefined && !this.imageLoaded" mode="indeterminate"></mat-progress-bar>
+          <div class="custom-file fileInputProfileWrap">
+            <input #fileInput type="file" (click)="fileInput.value = null" value="" (change)="fileChangeEvent($event)" class="fileInputProfile">
+            <div class="img-space">
+
+              <ng-container *ngIf="isImageSaved; else elseTemplate">
+                <img [src]="cardImageBase64"/>
+              </ng-container>
+              <ng-template #elseTemplate>
+
+                <img src="assets/img/photo-placeholder-icon-0.jpg" class="img-responsive">
+              </ng-template>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button mat-button (click)="removeImage()" *ngIf="isImageSaved" color="warn">Удалить обложку</button>
+      <br>
+    </form>
+  </div>
+  <ng-template #elseTemplate>
+    Уверен в удалении <b>{{localData.name}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+</div>

@@ -29,8 +29,9 @@ import {ProductsOilListComponent} from './home/products-oil/products-oil-list/pr
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
 import {AuthGuardService, AuthService, DataService, HttpInterceptorService, TokenService} from './_services';
-import { ServicesMetalworkingComponent } from './home/services-metalworking/services-metalworking.component';
+import { ServicesMetalworkingHomeComponent } from './home/services-metalworking/services-metalworking.component';
 import { ServicesRecoveryComponent } from './home/services-recovery/services-recovery.component';
+import { NgxGalleryModule } from 'ngx-gallery-9';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { ServicesRecoveryComponent } from './home/services-recovery/services-rec
     ProductsOilListComponent,
     CatalogItemComponent,
     PageNotFoundComponent,
-    ServicesMetalworkingComponent,
+    ServicesMetalworkingHomeComponent,
     ServicesRecoveryComponent,
   ],
   imports: [
@@ -70,7 +71,8 @@ import { ServicesRecoveryComponent } from './home/services-recovery/services-rec
     CarouselModule,
     PdfViewerModule,
     NgbModule,
-    BrowserModule
+    BrowserModule,
+    NgxGalleryModule
   ],
   providers: [
     AuthService,

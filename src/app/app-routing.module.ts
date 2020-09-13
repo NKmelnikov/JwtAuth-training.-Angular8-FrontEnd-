@@ -25,7 +25,8 @@ import {ProductsOilListComponent} from './home/products-oil/products-oil-list/pr
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
 import {ServicesComponent} from './home/services/services.component';
-import {ServicesMetalworkingComponent} from './home/services-metalworking/services-metalworking.component';
+import {ServicesMetalworkingHomeComponent} from './home/services-metalworking/services-metalworking.component';
+import {ServicesMetalworkingComponent} from './admin/services-metalworking/services-metalworking.component';
 import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
 
 const routes: Routes = [
@@ -41,7 +42,7 @@ const routes: Routes = [
         ]},
       {path: 'products/drill', component: ProductsDrillHomeComponent},
       {path: 'services', component: ServicesComponent},
-      {path: 'services/metalworking', component: ServicesMetalworkingComponent},
+      {path: 'services/metalworking', component: ServicesMetalworkingHomeComponent},
       {path: 'services/recovery', component: ServicesRecoveryComponent},
       {path: 'news', component: NewsHomeComponent},
       {path: 'about', component: AboutComponent},
@@ -61,6 +62,7 @@ const routes: Routes = [
       {path: 'categories/edit/:id', component: CategoriesEditComponent},
       {path: 'products-oil', component: ProductsOilComponent},
       {path: 'products-drill', component: ProductsDrillComponent},
+      {path: 'services-metalworking', component: ServicesMetalworkingComponent},
     ]
   },
   { path: '404', component: PageNotFoundComponent},

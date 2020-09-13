@@ -154,20 +154,21 @@
   }
 
   .third-section {
+    margin-bottom: 40px;
 
   }
 
   .fourth-section{
+    margin-bottom: 40px;
 
     .equipment-container{
       @extend %fsb;
       align-items: flex-start;
       flex-wrap: wrap;
-      height: 400px;
-      https://openbase.io/js/angular2-image-gallery
+      height: 600px;
+
       .equipment-item{
         width: 200px;
-
 
         img {
           max-width: 200px;

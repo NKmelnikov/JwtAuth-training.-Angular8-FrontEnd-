@@ -16,6 +16,7 @@ import clonedeep from 'lodash.clonedeep';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {UploadHelper} from '../_helpers';
+import {MetalworkingService} from '../_services/metalworking.service';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -29,6 +30,7 @@ export abstract class AdminBaseComponent {
   public categoryService: CategoryService;
   public productOilService: ProductOilService;
   public productDrillService: ProductDrillService;
+  public metalworkingService: MetalworkingService;
   public dialog: MatDialog;
   public changeDetectorRefs: ChangeDetectorRef;
   public subcategoryService: any;
@@ -45,6 +47,7 @@ export abstract class AdminBaseComponent {
     this.subcategoryService = this.injectorObj.get(SubCategoryService);
     this.productOilService = this.injectorObj.get(ProductOilService);
     this.productDrillService = this.injectorObj.get(ProductDrillService);
+    this.metalworkingService = this.injectorObj.get(MetalworkingService);
     this.uploadHelper = this.injectorObj.get(UploadHelper);
     this.changeDetectorRefs = this.injectorObj.get(ChangeDetectorRef);
     this.dialog = this.injectorObj.get(MatDialog);

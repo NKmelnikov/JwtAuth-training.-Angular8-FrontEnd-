@@ -19,7 +19,8 @@ import {ProductsOilComponent} from './products-oil/products-oil.component';
 import {SubcategoryDialogComponent} from './categories/categories-edit/subcategory-dialog/subcategory-dialog.component';
 import {ProductsOilDialogComponent} from './products-oil/products-oil-dialog/products-oil-dialog.component';
 import {ProductsDrillDialogComponent} from './products-drill/products-drill-dialog/products-drill-dialog.component';
-import {QuillModule} from 'ngx-quill';
+import {ServicesMetalworkingComponent} from './services-metalworking/services-metalworking.component';
+import {ServicesMetalworkingDialogComponent} from './services-metalworking/services-metalworking-dialog/services-metalworking-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import {QuillModule} from 'ngx-quill';
     SubcategoryDialogComponent,
     ProductsOilDialogComponent,
     ProductsDrillDialogComponent,
+    ServicesMetalworkingComponent,
+    ServicesMetalworkingDialogComponent,
   ],
   imports: [
     MaterialModule,
@@ -45,7 +48,6 @@ import {QuillModule} from 'ngx-quill';
     CommonModule,
     FormsModule,
     CKEditorModule,
-    QuillModule.forRoot(),
     ReactiveFormsModule
   ],
   exports: [
@@ -58,6 +60,7 @@ import {QuillModule} from 'ngx-quill';
     ProductsDrillComponent,
     ProductsOilComponent,
     CategoriesEditComponent,
+    ServicesMetalworkingComponent,
   ],
   entryComponents: [
     NewsDialogComponent,
