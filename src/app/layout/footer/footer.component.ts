@@ -26,7 +26,6 @@ export class FooterComponent implements OnInit {
   text = '';
   userData;
   recaptchaToken;
-  formSendClicked = false;
   env = environment;
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -56,7 +55,6 @@ export class FooterComponent implements OnInit {
   }
 
   sendMessageToTelegram() {
-    this.formSendClicked = true;
     const sendObj = {
       chat_id: this.env.telegramChatId,
       text: [
@@ -74,7 +72,6 @@ export class FooterComponent implements OnInit {
           this.telegramService.sendMessage(sendObj)
             .subscribe(data => {
               this.clearForm();
-              this.formSendClicked = true;
               this.snackBar.open('Сообщение было успешно отправлено, в ближайшее время с Вами свяжется наш администратор', 'Закрыть', {
                 duration: 7000,
               });

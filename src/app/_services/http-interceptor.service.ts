@@ -3,21 +3,24 @@ import {HttpInterceptor, HttpRequest, HttpHandler, HttpHeaders} from '@angular/c
 import {TokenService} from './token.service';
 import {Router} from '@angular/router';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class HttpInterceptorService implements HttpInterceptor {
   apiRequest: HttpRequest<any>;
 
-  constructor(private injector: Injector, private router: Router) {
+  constructor(
+    private injector: Injector,
+    private router: Router,
+    private tokenService: TokenService,
+  ) {
   }
 
   intercept(request, next) {
-    const tokenService = this.injector.get(TokenService);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (JSON.stringify(request).includes('auth') || JSON.stringify(request).includes('home')) {
-      return next.handle(request);
-    } else if (tokenService.get() && currentUser) {
-      this.apiRequest = request.clone({setHeaders: {Authorization: tokenService.get()}});
+    if (this.tokenService.get() && currentUser) {
+      this.apiRequest = request.clone({setHeaders: {Authorization: this.tokenService.get()}});
       return next.handle(this.apiRequest);
+    } else {
+      return next.handle(request);
     }
   }
 }
