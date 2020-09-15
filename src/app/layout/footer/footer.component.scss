@@ -43,8 +43,11 @@ footer {
       }
 
       &.contact-us {
-        ::ng-deep .mat-form-field-label {
+        ::ng-deep .mat-form-field-label{
           color: $main-color5 !important;
+        }
+        ::ng-deep .mat-input-element::placeholder {
+          color: #75797d !important;
         }
         ::ng-deep.mat-form-field-underline {
           background-color: $main-color5 !important;
@@ -55,6 +58,11 @@ footer {
 
         input, textarea {
           color: $main-color5;
+        }
+
+        ::ng-deep.send-btn[disabled] {
+          background-color: $main-color5;
+          cursor: not-allowed;
         }
       }
 

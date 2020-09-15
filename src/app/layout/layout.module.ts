@@ -3,7 +3,7 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {MaterialModule} from '../material/material.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 
@@ -19,12 +19,13 @@ import {CommonModule} from '@angular/common';
     SidebarComponent,
     FooterComponent,
   ],
-  imports: [
-    MaterialModule,
-    FormsModule,
-    RouterModule,
-    CommonModule
-  ]
+    imports: [
+        MaterialModule,
+        FormsModule,
+        RouterModule,
+        CommonModule,
+        ReactiveFormsModule
+    ]
 })
 export class LayoutModule {
 }

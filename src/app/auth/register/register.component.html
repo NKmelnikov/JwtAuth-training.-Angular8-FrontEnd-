@@ -1,4 +1,22 @@
-<h1>Register</h1>
-<input type="text" id="email" name="email" [(ngModel)]="user.email">
-<input type="text" id="password" name="password" [(ngModel)]="user.password">
-<button id="sbmt_btn" (click)="register()">submit</button>
+<main class="register-wrapper">
+  <h1>Регистрация</h1>
+  <mat-form-field >
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      [(ngModel)]="user.email"
+      placeholder="Например, boss@site.com"
+      color="warn">
+  </mat-form-field>
+  <mat-form-field >
+    <mat-label>Пароль</mat-label>
+    <input
+      type="password"
+      matInput
+      [(ngModel)]="user.password"
+      color="warn">
+  </mat-form-field>
+  <button id="sbmt_btn" mat-raised-button color="warn" (click)="register()">Войти</button>
+</main>
+

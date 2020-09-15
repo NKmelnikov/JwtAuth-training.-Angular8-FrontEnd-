@@ -42,14 +42,27 @@
       <h3 class="title">Напишите нам</h3>
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [(ngModel)]="email" placeholder="" color="warn">
+        <input
+          type="email"
+          matInput
+          [formControl]="emailFormControl"
+          [errorStateMatcher]="matcher"
+          [(ngModel)]="email"
+          placeholder="Например, boss@site.com"
+          color="warn">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Пожалуйста введите корректный email адрес
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email - <strong>обязательное поле</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Вопрос</mat-label>
         <textarea matInput [(ngModel)]="text" placeholder=""></textarea>
       </mat-form-field>
-      <button mat-raised-button (click)="sendMessageToTelegram()" color="warn">Отправить</button>
+      <button class="send-btn" mat-raised-button [disabled]="blockFormButton()" (click)="sendMessageToTelegram()" color="warn">Отправить</button>
     </div>
   </section>
   <section class="fronter-down-wrapper">

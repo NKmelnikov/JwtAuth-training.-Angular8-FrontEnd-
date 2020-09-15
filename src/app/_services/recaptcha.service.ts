@@ -1,16 +1,23 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {NgRecaptcha3Service} from 'ng-recaptcha3';
 
-@Injectable()
+
+@Injectable({providedIn: 'root'})
 export class RecaptchaService {
 
-  public env = environment;
-
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private recaptcha3: NgRecaptcha3Service,
+  ) {
   }
 
-  // checkValidity() {
-  //   return this.http.get(`https://www.google.com/recaptcha/api/siteverify?secret=${this.env.recaptchaSecretKey}&response=${recaptchaToken}&remoteip=${userIp}`);
-  // }
+  getToken() {
+    return this.recaptcha3.getToken();
+  }
+
+  checkValidity(token) {
+    return this.http.post(`${environment.serverURL}check-recaptcha`, {token});
+  }
 }

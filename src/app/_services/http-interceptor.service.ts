@@ -13,14 +13,11 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(request, next) {
     const tokenService = this.injector.get(TokenService);
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
     if (JSON.stringify(request).includes('auth') || JSON.stringify(request).includes('home')) {
       return next.handle(request);
     } else if (tokenService.get() && currentUser) {
       this.apiRequest = request.clone({setHeaders: {Authorization: tokenService.get()}});
       return next.handle(this.apiRequest);
-    } else {
-      this.router.navigate(['/404']);
     }
   }
 }
