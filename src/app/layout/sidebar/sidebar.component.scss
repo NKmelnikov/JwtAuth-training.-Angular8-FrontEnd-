@@ -3,12 +3,8 @@
 @import "../../../assets/libs/scss/brands.scss";
 
 .side-bar {
-  display: none;
+  display: block;
   width: 100%;
-
-  @media #{$noDesktop} {
-    display: block;
-  }
 
   .cross-box {
     width: 100%;
@@ -65,9 +61,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: $main-color5;
     width: 100%;
+    padding: 30px;
 
     &.side-desktop {
       @media #{$noDesktop} {
@@ -136,10 +133,12 @@
 
     &__social {
       border: 1px solid $main-color4;
-      width: 280px;
+      width: 140px;
       height: 70px;
       margin-top: 20px;
       display: flex;
+      justify-content: center;
+      align-items: center;
 
 
       .social-network {

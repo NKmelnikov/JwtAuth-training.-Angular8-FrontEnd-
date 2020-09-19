@@ -72,7 +72,10 @@ export class FooterComponent implements OnInit {
           this.telegramService.sendMessage(sendObj)
             .subscribe(data => {
               this.clearForm();
-              this.snackBar.open('Сообщение было успешно отправлено, в ближайшее время с Вами свяжется наш администратор', 'Закрыть', {
+              this.snackBar.open(
+                'Сообщение было успешно отправлено, в ближайшее время с Вами свяжется наш администратор',
+                'Закрыть',
+                {
                 duration: 7000,
               });
             });

@@ -71,11 +71,7 @@ header {
       align-items: center;
       cursor: pointer;
       transition: .2s ease-out;
-      display: none;
-
-      @media #{$noDesktop} {
-        display: flex;
-      }
+      display: flex;
 
       &:hover {
         .line-container {
