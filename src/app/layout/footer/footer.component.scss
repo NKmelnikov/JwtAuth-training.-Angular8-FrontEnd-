@@ -12,11 +12,37 @@ footer {
     align-items: flex-start;
     padding-bottom: 50px;
 
+    @media #{$tablet} {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      padding-bottom: 0;
+    }
+
+    @media #{$mobile} {
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 0;
+    }
+
     &__item {
       display: flex;
       flex-direction: column;
       width: 300px;
       margin-right: 30px;
+
+      @media #{$tablet} {
+        margin-bottom: 30px;
+        flex: 0 34%;
+      }
+
+      @media #{$mobile} {
+        margin-right: 0;
+        margin-bottom: 30px;
+        width: 100%;
+      }
 
       .title {
         color: white;
@@ -81,6 +107,10 @@ footer {
 
   .fronter-down-wrapper {
     border-top: 1px solid $main-color4;
+
+    @media #{$mobile} {
+      border-top: none;
+    }
   }
 
   .footer-down {
@@ -89,6 +119,20 @@ footer {
     justify-content: space-between;
     align-items: center;
 
+    @media #{$mobile} {
+      flex-direction: column;
+      align-items: center;
+      height: 210px;
+
+      & > div {
+        margin-bottom: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     &__logo {
       height: 100%;
       background: $main-color1;
@@ -96,6 +140,10 @@ footer {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @media #{$mobile} {
+        width: 100%;
+      }
 
       a {
         display: flex;
@@ -135,6 +183,10 @@ footer {
       display: flex;
       border-right: 1px solid $main-color4;
       border-left: 1px solid $main-color4;
+
+      @media #{$mobile} {
+        border-top: 1px solid $main-color4;
+      }
 
       .social-network {
         width: 70px;

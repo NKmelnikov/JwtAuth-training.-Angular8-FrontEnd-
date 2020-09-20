@@ -24,7 +24,6 @@ header {
     }
   }
 
-
   nav {
     border-right: 1px solid lightgrey;
     height: 100%;
@@ -58,6 +57,14 @@ header {
       a {
         width: 300px;
 
+        @media #{$mobile360} {
+          width: 280px;
+        }
+
+        @media #{$mobile320} {
+          width: 240px;
+        }
+
         img {
           width: 175px;
         }
@@ -72,6 +79,10 @@ header {
       cursor: pointer;
       transition: .2s ease-out;
       display: flex;
+
+      @media #{$tablet} {
+        max-width: 100px;
+      }
 
       &:hover {
         .line-container {
