@@ -68,7 +68,7 @@ export class MainComponent implements AfterViewInit, OnInit {
         items: 2
       },
       740: {
-        items: 3
+        items: 2
       },
       940: {
         items: 7
