@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BrandService, CategoryService, ProductOilService, DataService} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
+import {CatalogsDialogComponent} from '../../admin/catalogs/catalogs-dialog/catalogs-dialog.component';
+import {ProductsOilDialogHomeComponent} from './products-oil-dialog-home/products-oil-dialog-home.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -40,6 +43,7 @@ export class ProductsOilHomeComponent implements OnInit {
     private brandService: BrandService,
     private productOilService: ProductOilService,
     private dataService: DataService,
+    private dialog: MatDialog
   ) {
 
   }
@@ -82,6 +86,7 @@ export class ProductsOilHomeComponent implements OnInit {
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
         this.productsToShow = this.productsOilList;
+        // @ts-ignore
         this.dataService.showProducts(this.productsToShow);
       });
   }
@@ -105,6 +110,7 @@ export class ProductsOilHomeComponent implements OnInit {
       this.selectedCategory = item.name;
       this.selectedCategoryNameToShow = item.name;
       this.productsToShow = this.productsOilList;
+
       if (!item.isBrand) {
         this.productsToShow = this.productsToShow.filter((el) => {
           return el.category_id === item.id;
@@ -123,13 +129,13 @@ export class ProductsOilHomeComponent implements OnInit {
     subcategory.activeClass = true;
     this.selectedCategoryNameToShow = subcategory.name;
     this.productsToShow = this.productsOilList;
+
     this.productsToShow = this.productsToShow.filter((el) => {
 
       if (el !== 'null') {
         return el.subcategory_id === subcategory.sub_uid || el.brand_id === subcategory.brand_uid;
       }
     });
-
 
     this.dataService.showProducts(this.productsToShow);
   }

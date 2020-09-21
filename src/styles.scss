@@ -63,6 +63,10 @@ $custom-typography: mat-typography-config(
   visibility: hidden;
 }
 
+.single-page {
+  display: none!important;
+}
+
 @include mat-core($custom-typography);
 
 /* Importing Bootstrap SCSS file. */

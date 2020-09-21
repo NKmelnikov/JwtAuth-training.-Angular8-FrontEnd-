@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {DataService, ProductOilService} from '../../../_services';
 import {Subscription} from 'rxjs';
+import {ProductsOilDialogHomeComponent} from '../products-oil-dialog-home/products-oil-dialog-home.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-products-oil-item',
@@ -26,6 +28,7 @@ export class ProductsOilItemComponent implements OnInit {
 
   constructor(
     private productOilService: ProductOilService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -41,5 +44,23 @@ export class ProductsOilItemComponent implements OnInit {
         // @ts-ignore
         this.product = product;
       });
+  }
+
+  openDialog(action, obj) {
+    obj = obj || {};
+    obj.action = action;
+    const dialogRef = this.dialog.open(ProductsOilDialogHomeComponent, {
+      width: '320px',
+      data: obj,
+      panelClass: 'formFieldWidth752'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.orderProduct(result.data);
+    });
+  }
+
+  orderProduct(data) {
+    console.log(data);
   }
 }

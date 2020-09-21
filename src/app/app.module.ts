@@ -32,6 +32,7 @@ import {AuthGuardService, AuthService, DataService, HttpInterceptorService, Toke
 import { ServicesMetalworkingHomeComponent } from './home/services-metalworking/services-metalworking.component';
 import { ServicesRecoveryComponent } from './home/services-recovery/services-recovery.component';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { ProductsOilDialogHomeComponent } from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
     PageNotFoundComponent,
     ServicesMetalworkingHomeComponent,
     ServicesRecoveryComponent,
+    ProductsOilDialogHomeComponent,
   ],
   imports: [
     BrowserModule,

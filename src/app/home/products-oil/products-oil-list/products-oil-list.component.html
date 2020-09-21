@@ -8,7 +8,7 @@
       <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
     </div>
     <mat-card-actions class="button-container">
-      <button mat-flat-button class="price">Запросить цену</button>
+      <button (click)="openDialog('request', product)" mat-flat-button class="price">Запросить цену</button>
       <a
         mat-flat-button
         class="more"
@@ -16,9 +16,10 @@
       >Подробнее</a>
     </mat-card-actions>
   </mat-card>
-  <div *ngIf="productsToShow.length === 0">В этой категории продукты не представлены</div>
+  <mat-spinner *ngIf="productsToShow.length <= 0 && !productsToShow['loaded']"></mat-spinner>
+  <div *ngIf="productsToShow.length === 0 && productsToShow['loaded']">В этой категории продукты не представлены</div>
 </div>
-<div class="pagination-block">
+<div class="pagination-block" [ngClass]="{'single-page': productsToShow.length <= pageSize}">
   <ngb-pagination
     [(page)]="page"
     [pageSize]="pageSize"

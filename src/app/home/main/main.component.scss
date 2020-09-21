@@ -220,6 +220,10 @@
           width: 100%;
           height: 20%;
           z-index: 1;
+
+          @media #{$mobile} {
+            height: 30%;
+          }
         }
 
         .link-text {
@@ -234,6 +238,7 @@
 
           @media #{$mobile} {
             padding: 2px;
+            height: 30%;
           }
         }
       }

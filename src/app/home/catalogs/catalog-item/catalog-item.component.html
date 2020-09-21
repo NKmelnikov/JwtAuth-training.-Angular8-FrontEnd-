@@ -19,7 +19,7 @@
         </a>
       </div>
     </div>
-    <div class="pagination-block">
+    <div class="pagination-block" [ngClass]="{'single-page': brand.catalogs.length <= pageSize}">
       <ngb-pagination
         (click)="scroll(scrollTarget)"
         [(page)]="page"

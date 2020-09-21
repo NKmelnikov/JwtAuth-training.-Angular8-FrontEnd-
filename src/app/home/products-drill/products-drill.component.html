@@ -77,7 +77,7 @@
             </div>
           </section>
         </section>
-        <div class="pagination-block">
+        <div class="pagination-block" [ngClass]="{'single-page': productsToShow.length <= pageSize}">
           <ngb-pagination
             (click)="scroll(scrollTarget)"
             [(page)]="page"

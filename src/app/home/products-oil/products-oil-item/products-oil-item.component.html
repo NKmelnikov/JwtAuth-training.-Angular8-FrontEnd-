@@ -24,7 +24,7 @@
           <mat-icon aria-hidden="true">file_download</mat-icon>
           Паспорт качества
         </a>
-        <button mat-flat-button class="button-container__order-btn">Заказать</button>
+        <button (click)="openDialog('order', product)" mat-flat-button class="button-container__order-btn">Заказать</button>
       </div>
       <span class="text" [innerHTML]="product.description"></span>
     </div>

@@ -1,0 +1,25 @@
+<div class="products-oil-dialog-home-wrapper">
+  <p>
+    <mat-form-field>
+      <mat-label>Продукт</mat-label>
+      <input matInput [(ngModel)]="localData.name" width="100%">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>email или телефон*</mat-label>
+      <input matInput [(ngModel)]="email" width="100%" >
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <mat-label>Комментарий</mat-label>
+      <textarea [(ngModel)]="comment" matInput cols="30" rows="5"></textarea>
+    </mat-form-field>
+  </p>
+  <div mat-dialog-actions align="center">
+    <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+    <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
+  </div>
+</div>
+
