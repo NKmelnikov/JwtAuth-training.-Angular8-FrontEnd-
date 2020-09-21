@@ -44,4 +44,8 @@ export class CatalogItemComponent implements OnInit {
       }
     });
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 }

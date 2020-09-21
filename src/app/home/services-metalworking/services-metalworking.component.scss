@@ -10,7 +10,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-oil.png") no-repeat 50% 100%;
+  background: url("/assets/img/header/header-oil.png") no-repeat 50% 100%;
 
   .header-box {
     color: white;
@@ -23,6 +23,11 @@
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
+
+      @media #{$mobile} {
+        font-size: 30px;
+        letter-spacing: 0.3px;
+      }
     }
 
     &__text {
@@ -55,7 +60,7 @@
   }
 }
 
-.metalworking-wrapper{
+.metalworking-wrapper {
 
   .title {
     font-size: 30px;
@@ -77,44 +82,68 @@
     margin-bottom: 20px;
   }
 
-  .first-section{
+  .first-section {
     @extend %fsb;
     align-items: flex-start;
     width: 100%;
     margin-bottom: 40px;
 
-    .img-container{
-      width: 46%;
+    @media #{$tablet} {
+      flex-direction: column-reverse;
+    }
+
+    @media #{$mobile} {
+      flex-direction: column-reverse;
+    }
+
+    .img-container {
+      margin-right: 30px;
+      width: 100%;
+      @extend %fc;
 
       img {
         width: 570px;
         border-top-left-radius: 140px;
         border-bottom-right-radius: 140px;
-      }
-    }
 
-    .text-container {
-      width: 46%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
+        @media #{$tablet} {
+          width: 80%;
+        }
+
+        @media #{$mobile} {
+          width: 100%;
+        }
+      }
     }
   }
 
-  .second-section{
+
+  .second-section {
 
     margin-bottom: 40px;
 
-    .services{
+    .services {
       @extend %fsb;
+
+      @media #{$tablet} {
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+
+      @media #{$mobile} {
+        flex-direction: column;
+      }
 
       &__item {
         @extend %fcc;
         border-radius: 4px;
         width: 250px;
-        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+
+        @media #{$tablet} {
+          flex: 0 34%;
+          margin-bottom: 40px;
+        }
 
         .img {
           width: 100%;
@@ -140,12 +169,12 @@
           }
         }
 
-        .text{
+        .text {
           @extend %fc;
           font-size: 18px;
           font-weight: 500;
           text-align: center;
-          margin:0;
+          margin: 0;
           height: 46px;
           color: $main-color2;
         }
@@ -158,16 +187,16 @@
 
   }
 
-  .fourth-section{
+  .fourth-section {
     margin-bottom: 40px;
 
-    .equipment-container{
+    .equipment-container {
       @extend %fsb;
       align-items: flex-start;
       flex-wrap: wrap;
       height: 600px;
 
-      .equipment-item{
+      .equipment-item {
         width: 200px;
 
         img {

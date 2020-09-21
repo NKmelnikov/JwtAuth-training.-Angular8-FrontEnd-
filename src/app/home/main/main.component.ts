@@ -65,11 +65,8 @@ export class MainComponent implements AfterViewInit, OnInit {
         items: 1
       },
       740: {
-        items: 2
-      },
-      1360: {
         items: 7
-      }
+      },
     },
     nav: true
   };

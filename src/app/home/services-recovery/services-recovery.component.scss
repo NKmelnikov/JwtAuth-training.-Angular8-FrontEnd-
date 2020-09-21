@@ -10,7 +10,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-default.png") no-repeat 50% 100%;
+  background: url("/assets/img/header/header-default.png") no-repeat 50% 100%;
 
   .header-box {
     color: white;
@@ -23,6 +23,12 @@
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
+
+
+      @media #{$mobile} {
+        font-size: 30px;
+        letter-spacing: 0.3px;
+      }
     }
 
     &__text {
@@ -111,6 +117,10 @@
       margin-bottom: 20px;
       @extend %fsb;
       background: #f7fafd;
+
+      @media #{$mobile} {
+        flex-direction: column;
+      }
 
       img {
         width: 300px;

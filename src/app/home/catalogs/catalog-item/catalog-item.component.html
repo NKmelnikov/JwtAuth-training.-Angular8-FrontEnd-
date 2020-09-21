@@ -4,7 +4,9 @@
       <div class="header-box__title">Каталоги</div>
     </div>
   </div>
+  <mat-spinner class="container" *ngIf="brand.description === ''"></mat-spinner>
   <section class="brand-description container" [innerHTML]="brand.description"></section>
+  <div #scrollTarget class="scroll-to-me-on-page-switch-mobile"></div>
   <section class="catalogs-container container">
     <div class="catalog-keeper">
       <div class="catalog-multiplier" *ngFor="let catalog of brand.catalogs | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
@@ -19,6 +21,7 @@
     </div>
     <div class="pagination-block">
       <ngb-pagination
+        (click)="scroll(scrollTarget)"
         [(page)]="page"
         [pageSize]="pageSize"
         [collectionSize]="brand.catalogs.length">

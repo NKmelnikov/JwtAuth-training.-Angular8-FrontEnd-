@@ -9,7 +9,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-default.png") no-repeat 50% 100%;
+  background: url("/assets/img/header/header-default.png") no-repeat 50% 100%;
 
   .header-box {
     color: white;
@@ -34,6 +34,15 @@
 .about-container {
   @extend %fcc;
   padding: 40px 0;
+
+  @media #{$tablet} {
+    padding: 0;
+  }
+
+  @media #{$mobile} {
+    padding: 0 20px;
+  }
+
 
   .title {
     font-size: 30px;
@@ -83,13 +92,31 @@
     width: 100%;
     margin-bottom: 40px;
 
+    @media #{$tablet} {
+      flex-direction: column-reverse;
+    }
+
+    @media #{$mobile} {
+      flex-direction: column-reverse;
+    }
+
     .img-container {
       margin-right: 30px;
+      width: 100%;
+      @extend %fc;
 
       img {
         width: 570px;
         border-top-left-radius: 140px;
         border-bottom-right-radius: 140px;
+
+        @media #{$tablet} {
+          width: 80%;
+        }
+
+        @media #{$mobile} {
+          width: 100%;
+        }
       }
     }
   }

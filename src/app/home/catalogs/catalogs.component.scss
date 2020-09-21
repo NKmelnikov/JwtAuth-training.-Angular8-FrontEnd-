@@ -11,7 +11,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-default.png") no-repeat;
+  background: url("/assets/img/header/header-default.png") no-repeat;
 
   .header-box {
     color: white;
@@ -41,18 +41,42 @@
     @extend %fsbc;
     align-items: flex-start;
 
+    @media #{$tablet} {
+      align-items: center;
+    }
+
+    @media #{$mobile} {
+      align-items: center;
+    }
+
     &__title {
       color: #002359;
       font-size: 40px;
       font-weight: bolder;
       text-transform: uppercase;
       margin: 50px 0 50px 0;
+
+      @media #{$mobile} {
+        text-align: center;
+      }
+
+      @media #{$mobile320} {
+        font-size: 30px;
+      }
     }
 
     &__brands {
       @extend %fc;
       justify-content: flex-start;
       flex-wrap: wrap;
+
+      @media #{$tablet} {
+        justify-content: space-evenly;
+      }
+
+      @media #{$mobile} {
+        justify-content: space-evenly;
+      }
     }
 
     &__keeper {
@@ -63,6 +87,14 @@
       cursor: pointer;
       transition: .2s ease-in-out;
       margin-right: 36px;
+
+      @media #{$tablet} {
+        margin-right: 0;
+      }
+
+      @media #{$mobile} {
+        margin-right: 0;
+      }
 
       a {
         width: 100%;

@@ -6,7 +6,8 @@
 }
 
 .brand-description {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+  min-height: 500px;
 }
 
 .header-container {
@@ -14,7 +15,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-default.png") no-repeat;
+  background: url("/assets/img/header/header-default.png") no-repeat;
 
   .header-box {
     color: white;
@@ -27,13 +28,11 @@
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
-
     }
 
     &__text {
       font-size: 14px;
       height: 150px;
-
     }
   }
 }
@@ -49,6 +48,14 @@
     flex-wrap: wrap;
     margin-bottom: 40px;
     width: 100%;
+
+    @media #{$tablet} {
+      justify-content: space-evenly;
+    }
+
+    @media #{$mobile} {
+      justify-content: space-evenly;
+    }
 
     .catalog-multiplier {
       border: 1px solid lightgrey;
@@ -66,13 +73,21 @@
         border: 1px solid transparent;
       }
 
+      @media #{$tablet} {
+        margin-right: 0;
+      }
+
+      @media #{$mobile} {
+        margin-right: 0;
+      }
+
       &__link {
         text-decoration: none;
       }
 
       &__cover {
         border-radius: 10px;
-        padding:10px;
+        padding: 10px;
         display: block;
         height: 240px;
         width: 240px;
@@ -106,6 +121,7 @@
     justify-content: flex-end;
   }
 }
+
 ::ng-deep.media {
   @extend %fc;
 }
@@ -113,4 +129,12 @@
 ::ng-deep.media > div {
   width: 600px;
   height: 400px;
+}
+
+.scroll-to-me-on-page-switch-mobile{
+  margin-bottom: 40px;
+
+  @media #{$desktop} {
+    display: none;
+  }
 }

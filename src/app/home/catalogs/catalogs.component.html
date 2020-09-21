@@ -6,7 +6,8 @@
   </div>
   <div class="brand-container">
     <div class="brand-box container">
-      <div class="brand-box__title"> Выберите производителя</div>
+      <mat-spinner *ngIf="brandList.length <= 0"></mat-spinner>
+      <div *ngIf="brandList.length > 0" class="brand-box__title"> Выберите производителя</div>
       <div class="brand-box__brands">
         <div class="brand-box__keeper" [ngClass]="{'active': brand.activeBrand}" *ngFor="let brand of brandList" (click)="selectBrand(brand)">
 
