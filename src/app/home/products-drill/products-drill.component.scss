@@ -23,6 +23,11 @@
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 6px;
+
+      @media #{$noDesktop} {
+        font-size: 26px;
+        letter-spacing: 1px;
+      }
     }
 
     &__text {
@@ -73,6 +78,10 @@
 
       @media #{$noDesktop} {
         margin-bottom: 40px;
+      }
+
+      @media #{$mobile} {
+        width: 100%;
       }
 
       .category-title {

@@ -184,6 +184,10 @@
       &.section-metalworking {
         background: url(/assets/img/background/services-metalworking-left.png) no-repeat 30% 40%;
         background-size: 150%;
+
+        @media #{$mobile} {
+          background-size: 200%;
+        }
       }
 
       &.section-recovery {
