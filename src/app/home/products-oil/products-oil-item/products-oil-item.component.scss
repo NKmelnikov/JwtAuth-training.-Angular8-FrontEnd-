@@ -6,10 +6,19 @@
   width: 100%;
   min-height: 500px;
 
+  @media #{$mobile} {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__img {
     @extend %fcc;
-
     margin-right: 30px;
+
+    @media #{$mobile} {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
 
     img {
       max-width: 250px;
@@ -21,6 +30,11 @@
     @extend %fcc;
     align-items: flex-start;
     width: 445px;
+
+    @media #{$mobile} {
+      width: 100%;
+      align-items: center;
+    }
 
     mat-tab-group {
       width: 100%;
@@ -40,6 +54,7 @@
         font-size: 14px;
         overflow: hidden;
         width: 100%;
+
       }
 
       .button-container {
@@ -47,11 +62,19 @@
         width: 100%;
         margin-bottom: 40px;
 
+        @media #{$mobile} {
+          flex-direction: column;
+        }
+
         .threeBtns {
           padding: 0 5px;
           min-width: 110px;
           text-decoration: none;
           color: black;
+
+          @media #{$mobile} {
+            margin-bottom: 20px;
+          }
 
           &:hover {
             color: black;
@@ -68,6 +91,7 @@
     }
 
     .spec {
+
     }
   }
 }

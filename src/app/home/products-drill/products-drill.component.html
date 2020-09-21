@@ -21,13 +21,10 @@
       routerLink="/products/drill"
     >металлореж. </a>
   </div>
-  <div class="oil-wrapper container">
-    <div class="oil-header">
-      <span class="oil-header__category">Категории</span>
-      <span class="oil-header__selected-name">{{ this.selectedCategoryNameToShow }}</span>
-    </div>
+  <div class="drill-wrapper container">
     <div class="content-container container">
       <aside class="navigation-container">
+        <div class="category-title">Категории</div>
         <mat-accordion>
           <mat-expansion-panel
             [id]="'category_'+category.id"
@@ -62,11 +59,14 @@
         </mat-accordion>
       </aside>
       <section class="product-wrapper">
+        <div class="selected-name">{{ this.selectedCategoryNameToShow }}</div>
+        <mat-spinner *ngIf="productsToShow.length <= 0"></mat-spinner>
+
         <section class="content-section">
-<!--          <section class="category-description" [innerHTML]="this.categoryToShow.description"></section>-->
-          <section class="subcategory-description" [innerHTML]="this.subcategoryToShow.description"></section>
+          <section class="subcategory-description" [innerHTML]="descriptionInnerHtml"></section>
+          <div #scrollTarget class="scroll-to-me-on-page-switch-mobile"></div>
           <section class="products-drill-container">
-            <div class="products-drill" *ngFor="let product of productsToShow">
+            <div class="products-drill" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
               <a class="products-drill__link" target="_blank" href="{{env.serverURL + product.pdfPath}}">
                 <img  class="products-drill__cover" src="{{env.serverURL + product.imgPath}}" alt="PDF">
                 <div class="bot-title-box">
@@ -79,6 +79,7 @@
         </section>
         <div class="pagination-block">
           <ngb-pagination
+            (click)="scroll(scrollTarget)"
             [(page)]="page"
             [pageSize]="pageSize"
             [collectionSize]="productsToShow.length">

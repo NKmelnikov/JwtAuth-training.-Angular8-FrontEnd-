@@ -129,6 +129,10 @@
       max-width: 200px;
       max-height: 75px;
       filter: grayscale(100%);
+
+      @media #{$noDesktop} {
+        filter: grayscale(0);
+      }
     }
   }
 }

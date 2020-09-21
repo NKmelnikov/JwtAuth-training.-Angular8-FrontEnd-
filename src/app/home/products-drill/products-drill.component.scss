@@ -10,7 +10,7 @@
   background: $main-color2;
   border-bottom: 10px solid $main-color1;
   margin-bottom: 40px;
-  background: url("/assets/img/header-drill.png") no-repeat;
+  background: url("/assets/img/header/header-drill.png") no-repeat;
 
   .header-box {
     color: white;
@@ -55,32 +55,29 @@
   }
 }
 
-.oil-wrapper {
 
-  .oil-header {
-    margin-bottom: 40px;
-    @extend %fc;
-    justify-content: flex-start;
-
-    span {
-      font-size: 26px;
-    }
-
-    &__category {
-      width: 385px;
-    }
-  }
+.drill-wrapper {
 
   .content-container {
     @extend %fsb;
     align-items: flex-start;
     padding: 0;
 
+    @media #{$noDesktop} {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .navigation-container {
       width: 350px;
 
-      .mat-accordion {
-        //position: fixed;
+      @media #{$noDesktop} {
+        margin-bottom: 40px;
+      }
+
+      .category-title {
+        font-size: 26px;
+        margin-bottom: 40px;
       }
 
       .mat-expansion-panel {
@@ -143,17 +140,36 @@
       flex-direction: column;
       justify-content: space-between;
 
+      @media #{$noDesktop} {
+        justify-content: center;
+        width: 100%;
+
+      }
+
       ::ng-deep img {
         max-width: 725px;
       }
 
-      .products-drill-container{
+      .selected-name {
+        margin-bottom: 40px;
+        font-size: 26px;
+
+        @media #{$noDesktop} {
+          text-align: center;
+        }
+      }
+
+      .products-drill-container {
         @extend %fc;
         justify-content: flex-start;
         align-items: flex-start;
         flex-wrap: wrap;
         margin-bottom: 40px;
         width: 100%;
+
+        @media #{$noDesktop} {
+          justify-content: space-evenly;
+        }
 
         .products-drill {
           border: 1px solid lightgrey;
@@ -171,11 +187,15 @@
             border: 1px solid transparent;
           }
 
+          @media #{$noDesktop} {
+            margin-right: 0;
+          }
+
           &__link {
             text-decoration: none;
           }
 
-          &__cover  {
+          &__cover {
             border-radius: 10px;
             display: block;
             height: 215px;
@@ -205,6 +225,7 @@
     }
   }
 }
+
 ::ng-deep.media {
   @extend %fc;
 }
@@ -214,9 +235,17 @@
   height: 400px;
 }
 
-.pagination-block{
+.pagination-block {
 
   ::ng-deep.pagination {
     justify-content: flex-end;
+  }
+}
+
+.scroll-to-me-on-page-switch-mobile {
+  margin-bottom: 40px;
+
+  @media #{$desktop} {
+    display: none;
   }
 }

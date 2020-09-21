@@ -22,12 +22,9 @@
     >масла </a>
   </div>
   <div class="oil-wrapper container">
-    <div class="oil-header">
-      <span class="oil-header__category">Категории</span>
-      <span class="oil-header__selected-name">{{ this.selectedCategoryNameToShow }}</span>
-    </div>
     <div class="content-container container">
       <aside class="navigation-container">
+        <div class="category-title">Категории</div>
         <mat-accordion>
           <mat-expansion-panel
             [id]="'category_'+category.id"
@@ -57,11 +54,11 @@
             </div>
             <div class="sub-categories">
             </div>
-
           </mat-expansion-panel>
         </mat-accordion>
       </aside>
       <section class="product-wrapper">
+        <div class="selected-name">{{ this.selectedCategoryNameToShow }}</div>
         <router-outlet></router-outlet>
       </section>
     </div>

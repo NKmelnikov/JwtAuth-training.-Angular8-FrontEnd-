@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, SecurityContext, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import {BrandService, CategoryService, ProductDrillService} from '../../_services';
 import {environment} from '../../../environments/environment';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products-drill',
@@ -36,6 +36,8 @@ export class ProductsDrillHomeComponent implements OnInit {
   public page = 1;
   public pageSize = 12;
 
+  descriptionInnerHtml: SafeHtml = '';
+
 
   brandCategory = {
     id: 555,
@@ -58,7 +60,7 @@ export class ProductsDrillHomeComponent implements OnInit {
     private productDrillService: ProductDrillService,
     private sanitizer: DomSanitizer
   ) {
-
+    this.descriptionInnerHtml = this.getInnerHTMLValue();
   }
 
   ngOnInit(): void {
@@ -142,7 +144,7 @@ export class ProductsDrillHomeComponent implements OnInit {
 
     this.subcategoryToShow = subcategory;
     // @ts-ignore
-    this.subcategoryToShow.description = this.sanitizer.bypassSecurityTrustHtml(this.subcategoryToShow.description);
+    this.descriptionInnerHtml = this.getInnerHTMLValue();
     subcategory.activeClass = true;
     this.selectedCategoryNameToShow = subcategory.name;
     this.productsToShow = this.productsDrillList;
@@ -152,4 +154,14 @@ export class ProductsDrillHomeComponent implements OnInit {
       }
     });
   }
+
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
+
+  getInnerHTMLValue() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.subcategoryToShow.description);
+  }
+
 }
