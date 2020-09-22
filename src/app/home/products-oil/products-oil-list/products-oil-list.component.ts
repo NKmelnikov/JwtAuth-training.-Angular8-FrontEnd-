@@ -26,8 +26,6 @@ export class ProductsOilListComponent implements OnDestroy {
     this.subscription = dataService.showProducts$.subscribe(products => {
       this.productsToShow = products;
       this.productsToShow['loaded'] = true;
-
-      console.log(this.productsToShow);
     });
   }
 
@@ -38,18 +36,10 @@ export class ProductsOilListComponent implements OnDestroy {
   openDialog(action, obj) {
     obj = obj || {};
     obj.action = action;
-    const dialogRef = this.dialog.open(ProductsOilDialogHomeComponent, {
+    this.dialog.open(ProductsOilDialogHomeComponent, {
       width: '320px',
       data: obj,
       panelClass: 'formFieldWidth752'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.requestProduct(result.data);
-    });
-  }
-
-  requestProduct(data) {
-    console.log(data);
   }
 }

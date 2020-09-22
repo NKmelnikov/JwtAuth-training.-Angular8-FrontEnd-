@@ -104,7 +104,6 @@ export class ProductsDrillHomeComponent implements OnInit {
         this.productsDrillList = productsOilList;
         this.productsToShow = this.productsDrillList;
         this.productsToShow['loaded'] = true;
-        console.log(this.productsToShow);
       });
   }
 
@@ -139,9 +138,6 @@ export class ProductsDrillHomeComponent implements OnInit {
         });
       }
       this.productsToShow['loaded'] = true;
-      console.log(this.productsToShow.length);
-
-
     }
   }
 
@@ -162,7 +158,6 @@ export class ProductsDrillHomeComponent implements OnInit {
       }
     });
     this.productsToShow['loaded'] = true;
-    console.log(this.productsToShow);
   }
 
 

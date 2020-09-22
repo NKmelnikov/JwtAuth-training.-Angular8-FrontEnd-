@@ -63,8 +63,9 @@ export class ProductsDrillComponent extends AdminBaseComponent implements OnInit
             this.categoryList = categoryList.filter((el) => {
               return el.type === this.typeDrill;
             });
+
             this.dataSource.data.forEach((el) => {
-              el.categoryList = categoryList;
+              el.categoryList = this.categoryList;
             });
 
             this.subcategoryService.getAll().subscribe(subcategoryList => {

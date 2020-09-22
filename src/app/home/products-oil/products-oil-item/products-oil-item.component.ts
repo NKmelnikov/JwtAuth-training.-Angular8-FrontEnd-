@@ -58,19 +58,11 @@ export class ProductsOilItemComponent implements OnInit {
   openDialog(action, obj) {
     obj = obj || {};
     obj.action = action;
-    const dialogRef = this.dialog.open(ProductsOilDialogHomeComponent, {
+    this.dialog.open(ProductsOilDialogHomeComponent, {
       width: '320px',
       data: obj,
       panelClass: 'formFieldWidth752'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.orderProduct(result.data);
-    });
-  }
-
-  orderProduct(data) {
-    console.log(data);
   }
 
   getInnerHTMLDescription() {
