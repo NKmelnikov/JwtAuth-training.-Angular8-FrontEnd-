@@ -34,7 +34,7 @@ export class ProductsDrillHomeComponent implements OnInit {
   public selectedIndex;
   public env = environment;
   public page = 1;
-  public pageSize = 12;
+  public pageSize = 9;
 
   descriptionInnerHtml: SafeHtml = '';
 
@@ -103,10 +103,13 @@ export class ProductsDrillHomeComponent implements OnInit {
       .subscribe(productsOilList => {
         this.productsDrillList = productsOilList;
         this.productsToShow = this.productsDrillList;
+        this.productsToShow['loaded'] = true;
+        console.log(this.productsToShow);
       });
   }
 
   selectCategory(item) {
+    this.descriptionInnerHtml = '';
     this.categoryToShow = this.categoryToShowDefault;
     this.subcategoryToShow = this.subcategoryToShowDefault;
     const expansionDOM = document.getElementById('category_' + item.id);
@@ -122,6 +125,7 @@ export class ProductsDrillHomeComponent implements OnInit {
 
     if (this.selectedCategory === item.name && !isExpanded) {
       this.productsToShow = this.productsDrillList;
+      this.productsToShow['loaded'] = true;
       this.selectedCategoryNameToShow = 'Все продукты';
     } else {
       this.categoryToShow = item;
@@ -134,6 +138,10 @@ export class ProductsDrillHomeComponent implements OnInit {
           return el.category_id === item.id;
         });
       }
+      this.productsToShow['loaded'] = true;
+      console.log(this.productsToShow.length);
+
+
     }
   }
 
@@ -153,6 +161,8 @@ export class ProductsDrillHomeComponent implements OnInit {
         return el.subcategory_id === subcategory.sub_uid || el.brand_id === subcategory.brand_uid;
       }
     });
+    this.productsToShow['loaded'] = true;
+    console.log(this.productsToShow);
   }
 
 

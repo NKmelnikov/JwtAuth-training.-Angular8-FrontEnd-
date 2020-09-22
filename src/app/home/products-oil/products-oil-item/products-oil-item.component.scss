@@ -120,3 +120,16 @@
 ::ng-deep.text-huge {
   font-size: 22px;
 }
+
+::ng-deep.media {
+  @extend %fc;
+}
+
+::ng-deep.media > div {
+  width: 435px;
+  height: 400px;
+
+  @media #{$noDesktop} {
+    height: auto;
+  }
+}

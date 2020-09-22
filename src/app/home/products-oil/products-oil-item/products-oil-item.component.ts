@@ -4,6 +4,7 @@ import {DataService, ProductOilService} from '../../../_services';
 import {Subscription} from 'rxjs';
 import {ProductsOilDialogHomeComponent} from '../products-oil-dialog-home/products-oil-dialog-home.component';
 import {MatDialog} from '@angular/material/dialog';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products-oil-item',
@@ -26,10 +27,16 @@ export class ProductsOilItemComponent implements OnInit {
     pdf2Name: ''
   };
 
+  description;
+  spec;
+
   constructor(
     private productOilService: ProductOilService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sanitizer: DomSanitizer
   ) {
+    // this.description = this.product.description;
+    // this.spec = this.product.spec;
   }
 
   ngOnInit(): void {
@@ -43,6 +50,8 @@ export class ProductsOilItemComponent implements OnInit {
       .subscribe(product => {
         // @ts-ignore
         this.product = product;
+        this.description = this.getInnerHTMLDescription();
+        this.spec = this.getInnerHTMLSpec();
       });
   }
 
@@ -62,5 +71,13 @@ export class ProductsOilItemComponent implements OnInit {
 
   orderProduct(data) {
     console.log(data);
+  }
+
+  getInnerHTMLDescription() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.product.description);
+  }
+
+  getInnerHTMLSpec() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.product.spec);
   }
 }

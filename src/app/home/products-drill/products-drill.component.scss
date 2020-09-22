@@ -147,12 +147,10 @@
       min-height: 930px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
 
       @media #{$noDesktop} {
-        justify-content: center;
         width: 100%;
-
       }
 
       ::ng-deep img {
@@ -242,6 +240,10 @@
 ::ng-deep.media > div {
   width: 600px;
   height: 400px;
+
+  @media #{$noDesktop} {
+    height: auto;
+  }
 }
 
 .pagination-block {

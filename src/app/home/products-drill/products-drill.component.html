@@ -60,7 +60,8 @@
       </aside>
       <section class="product-wrapper">
         <div class="selected-name">{{ this.selectedCategoryNameToShow }}</div>
-        <mat-spinner *ngIf="productsToShow.length <= 0"></mat-spinner>
+        <mat-spinner *ngIf="productsToShow.length <= 0 && !productsToShow['loaded']"></mat-spinner>
+        <div *ngIf="productsToShow.length === 0 && productsToShow['loaded']">В этой категории продукты не представлены</div>
 
         <section class="content-section">
           <section class="subcategory-description" [innerHTML]="descriptionInnerHtml"></section>

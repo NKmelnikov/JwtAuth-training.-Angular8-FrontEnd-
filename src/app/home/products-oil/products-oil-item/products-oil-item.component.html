@@ -26,10 +26,10 @@
         </a>
         <button (click)="openDialog('order', product)" mat-flat-button class="button-container__order-btn">Заказать</button>
       </div>
-      <span class="text" [innerHTML]="product.description"></span>
+      <span class="text" [innerHTML]="description"></span>
     </div>
   </div>
 </div>
 <div *ngIf="product.spec != null" class="spec">
-  <span class="text" [innerHTML]="product.spec"></span>
+  <span class="text" [innerHTML]="spec"></span>
 </div>

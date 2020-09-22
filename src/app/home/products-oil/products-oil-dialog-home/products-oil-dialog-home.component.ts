@@ -78,7 +78,7 @@ export class ProductsOilDialogHomeComponent implements OnInit {
         `категория: _${this.localData.category_name}_`,
         `подкатегория: _${this.localData.subcategory_name}_`,
         `брэнд: _${this.localData.brand_name}_`,
-        `email: _${this.email}_`,
+        `email|телефон: _${this.email}_`,
         `комментарий: _${this.comment}_`
       ].join("\n"),
       parse_mode: 'markdown',
