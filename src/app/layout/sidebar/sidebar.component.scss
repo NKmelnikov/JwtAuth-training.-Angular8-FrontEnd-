@@ -13,6 +13,11 @@
     justify-content: flex-end;
     align-items: center;
     transition: .2s ease-out;
+    margin-bottom: 20px;
+
+    @media #{$mobile} {
+      margin-bottom: 0;
+    }
 
     &:hover {
       .cross-square {
@@ -29,14 +34,19 @@
     }
 
     .cross-square {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       background: $main-color1;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       transition: .2s ease-out;
+
+      @media #{$mobile} {
+        width: 40px;
+        height: 40px;
+      }
 
       .line {
         width: 1rem;
@@ -68,9 +78,14 @@
       display: block;
     }
 
+    @media #{$mobile} {
+      padding: 0 20px;
+      margin-bottom: 20px;
+    }
+
     .item {
       width: 100%;
-      height: 70px;
+      height: 40px;
       border-top: 1px solid $main-color4;
       border-left: 1px solid $main-color4;
       border-right: 1px solid $main-color4;
@@ -78,6 +93,10 @@
 
       &:last-child {
         border-bottom: 1px solid $main-color4;
+      }
+
+      @media #{$mobile} {
+        width: 100%;
       }
 
       a {
@@ -106,6 +125,10 @@
     color: $main-color5;
     width: 100%;
     padding: 30px;
+
+    @media #{$mobile} {
+      padding: 5px 5px 5px 20px;
+    }
 
     .link-container {
       margin: 50px 0;
@@ -140,11 +163,19 @@
 
     &__head {
       color: white;
+
+      @media #{$mobile} {
+        font-size: 14px;
+      }
     }
 
     &__description {
       font-size: 16px;
       padding-bottom: 20px;
+
+      @media #{$mobile} {
+        font-size: 12px;
+      }
     }
 
     &__item {
@@ -152,10 +183,21 @@
       justify-content: flex-start;
       align-items: center;
       padding-bottom: 20px;
+
+      @media #{$mobile} {
+        padding-bottom: 10px;
+      }
     }
 
     &__small-img {
       padding-right: 20px;
+    }
+
+    &__small-text {
+
+      @media #{$mobile} {
+        font-size: 12px;
+      }
     }
 
     &__social {
@@ -167,6 +209,11 @@
       justify-content: center;
       align-items: center;
 
+      @media #{$mobile} {
+        height: 40px;
+        width: 80px;
+      }
+
 
       .social-network {
         width: 70px;
@@ -174,6 +221,11 @@
         border-right: 1px solid $main-color4;
         cursor: pointer;
         transition: .2s ease-in-out;
+
+        @media #{$mobile} {
+          height: 40px;
+          width: 40px;
+        }
 
         a {
           width: 100%;

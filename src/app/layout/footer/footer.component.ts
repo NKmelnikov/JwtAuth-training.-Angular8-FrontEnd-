@@ -60,7 +60,7 @@ export class FooterComponent implements OnInit {
       text: [
         `*Вопрос*`,
         `email: ${this.email}`,
-        `вопрос: ${this.text}`
+        `вопрос: _${this.text}_`
       ].join("\n"),
       parse_mode: 'markdown',
     };

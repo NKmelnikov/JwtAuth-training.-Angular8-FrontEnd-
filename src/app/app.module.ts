@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -61,21 +61,22 @@ import { ProductsOilDialogHomeComponent } from './home/products-oil/products-oil
     ServicesRecoveryComponent,
     ProductsOilDialogHomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    LayoutModule,
-    AdminModule,
-    CarouselModule,
-    PdfViewerModule,
-    NgbModule,
-    BrowserModule,
-    NgxGalleryModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        LayoutModule,
+        AdminModule,
+        CarouselModule,
+        PdfViewerModule,
+        NgbModule,
+        BrowserModule,
+        NgxGalleryModule,
+        ReactiveFormsModule
+    ],
   providers: [
     AuthService,
     TokenService,

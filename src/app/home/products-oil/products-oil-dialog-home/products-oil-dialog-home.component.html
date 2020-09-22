@@ -6,9 +6,18 @@
     </mat-form-field>
   </p>
   <p>
-    <mat-form-field>
-      <mat-label>email или телефон*</mat-label>
-      <input matInput [(ngModel)]="email" width="100%" >
+    <mat-form-field class="example-full-width">
+      <mat-label>Email или Телефон</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="emailFormControl"
+        [errorStateMatcher]="matcher"
+        [(ngModel)]="email"
+        color="warn">
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        <strong>Обязательное поле</strong>
+      </mat-error>
     </mat-form-field>
   </p>
   <p>
@@ -18,7 +27,7 @@
     </mat-form-field>
   </p>
   <div mat-dialog-actions align="center">
-    <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
+    <button mat-button mat-flat-button [disabled]="blockFormButton()" (click)="sendMessageToTelegram(actionTranslateMapping(action))" color="warn">{{actionTranslateMapping(action)}}</button>
     <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
   </div>
 </div>
