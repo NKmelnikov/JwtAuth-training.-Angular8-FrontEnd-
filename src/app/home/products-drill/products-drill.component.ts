@@ -43,7 +43,7 @@ export class ProductsDrillHomeComponent implements OnInit {
     id: 555,
     active: 1,
     description: '',
-    name: 'Брэнды',
+    name: 'бренды',
     type: 1,
     isBrand: true,
     createdAt: {$date: 1594916708310},

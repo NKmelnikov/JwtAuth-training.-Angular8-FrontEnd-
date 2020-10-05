@@ -37,6 +37,29 @@
   }
 }
 
+.breadcrumbs {
+  @extend %fc;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+
+  &__item {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 10px;
+    margin-right: 3px;
+    font-weight: bolder;
+    color: #9e9e9e;
+
+    &:hover {
+      color: $main-color2;
+    }
+
+    &.current {
+      color: $main-color2;
+    }
+  }
+}
+
 .catalogs-container {
   @extend %fcc;
   margin-bottom: 100px;

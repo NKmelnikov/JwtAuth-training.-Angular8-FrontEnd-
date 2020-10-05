@@ -14,6 +14,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class CatalogItemComponent implements OnInit {
 
   public brand = {
+    name: '',
+    slug: '',
     description: '',
     catalogs: []
   };

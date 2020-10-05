@@ -27,7 +27,7 @@ export class ProductsOilHomeComponent implements OnInit {
     id: 999,
     active: 1,
     description: '',
-    name: 'Брэнды',
+    name: 'бренды',
     type: 1,
     isBrand: true,
     createdAt: {$date: 1594916708310},

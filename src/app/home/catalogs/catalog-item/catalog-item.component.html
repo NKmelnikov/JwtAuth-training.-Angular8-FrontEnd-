@@ -4,6 +4,23 @@
       <div class="header-box__title">Каталоги</div>
     </div>
   </div>
+  <section class="breadcrumbs container" *ngIf="brand.description !== ''">
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/"
+    >главная / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/catalogs"
+    >Бренды и каталоги / </a>
+    <a
+      mat-list-item routerLinkActive="list-item-active"
+      class="breadcrumbs__item current"
+      routerLink="/catalogs/{{brand.slug}}"
+    >{{brand.name}}</a>
+  </section>
   <mat-spinner class="container" *ngIf="brand.description === ''"></mat-spinner>
   <section class="brand-description container" [innerHTML]="brand.description"></section>
   <div #scrollTarget class="scroll-to-me-on-page-switch-mobile"></div>

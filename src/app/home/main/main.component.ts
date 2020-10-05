@@ -5,6 +5,7 @@ import {AuthService, PostService, BrandService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import { AngularYandexMapsModule, IConfig } from 'angular8-yandex-maps';
 
 
 @Component({
@@ -47,7 +48,6 @@ export class MainComponent implements AfterViewInit, OnInit {
     },
     nav: true
   };
-
   public carouselBrandsOptions = {
     loop: true,
     center: true,
@@ -70,6 +70,7 @@ export class MainComponent implements AfterViewInit, OnInit {
     },
     nav: true
   };
+  public yandexMap;
 
   constructor(
     private http: HttpClient,
@@ -107,6 +108,15 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     window.addEventListener('scroll', this.scrollEvent, true);
+  }
+
+  activateMap() {
+    this.yandexMap = document.querySelector('#map-wrap iframe');
+    this.yandexMap.style.pointerEvents = 'all';
+  }
+
+  deactivateMap() {
+    this.yandexMap.style.pointerEvents = 'none';
   }
 
   getBrands() {
