@@ -4,9 +4,6 @@
     <img [src]="env.serverURL + product.imgPath" alt="">
   </div>
   <div class="product-item__description-container">
-    <span class="name">
-      {{product.name}}
-    </span>
     <div class="description">
       <div class="button-container">
         <a *ngIf="product.pdf1Path != null"
@@ -26,10 +23,10 @@
         </a>
         <button (click)="openDialog('order', product)" mat-flat-button class="button-container__order-btn">Заказать</button>
       </div>
-      <span class="text" [innerHTML]="description"></span>
     </div>
   </div>
 </div>
 <div *ngIf="product.spec != null" class="spec">
-  <span class="text" [innerHTML]="spec"></span>
+  <div class="text description" [innerHTML]="description"></div>
+  <div class="text specification" [innerHTML]="spec"></div>
 </div>

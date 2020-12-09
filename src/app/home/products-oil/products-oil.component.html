@@ -4,7 +4,7 @@
       <div class="header-box__title">Масла</div>
     </div>
   </div>
-  <div class="breadcrumbs container">
+  <div class="breadcrumbs container" id="breadcrumbs-products">
     <a
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item"
@@ -12,14 +12,9 @@
     >главная / </a>
     <a
       mat-list-item routerLinkActive="list-item-active"
-      class="breadcrumbs__item"
-      routerLink="/products"
-    >продукция / </a>
-    <a
-      mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item current"
-      routerLink="/products/oil"
-    >масла </a>
+      routerLink="/products"
+    >продукция /</a>
   </div>
   <div class="oil-wrapper container">
     <div class="content-container container">
@@ -32,7 +27,7 @@
             (click)="selectCategory(category)"
             [ngClass]="{'active': category.activeClass}"
             [expanded]="category.isExpanded"
-            [routerLink]="['/products/oil']"
+            [routerLink]="['/products']"
             routerLinkActive="list-item-active"
           >
 
@@ -47,7 +42,7 @@
               [id]="'subcategory_'+subcategory.id"
               *ngFor="let subcategory of category.subcategories"
               [ngClass]="{'active': subcategory.activeClass}"
-              [routerLink]="['/products/oil']"
+              [routerLink]="['/products']"
               routerLinkActive="list-item-active"
               (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subcategories)">
               {{subcategory.name}}
@@ -58,7 +53,7 @@
         </mat-accordion>
       </aside>
       <section class="product-wrapper">
-        <div class="selected-name">{{ this.selectedCategoryNameToShow }}</div>
+        <div id="current-view-name" class="selected-name">{{ this.selectedNameToShow }}</div>
         <router-outlet></router-outlet>
       </section>
     </div>

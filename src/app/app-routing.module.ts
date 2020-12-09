@@ -35,8 +35,7 @@ const routes: Routes = [
       {path: '', component: MainComponent},
       {path: 'catalogs', component: CatalogsHomeComponent},
       {path: 'catalogs/:slug', component: CatalogItemComponent},
-      {path: 'products', component: ProductsComponent},
-      {path: 'products/oil', component: ProductsOilHomeComponent, children: [
+      {path: 'products', component: ProductsOilHomeComponent, children: [
           {path: '', component: ProductsOilListComponent},
           {path: ':slug', component: ProductsOilItemComponent},
         ]},
@@ -47,7 +46,7 @@ const routes: Routes = [
       {path: 'news', component: NewsHomeComponent},
       {path: 'about', component: AboutComponent},
       {path: 'login', component: LoginComponent},
-      // {path: 'register', component: RegisterComponent},
+      {path: 'register', component: RegisterComponent},
     ]
   },
 
@@ -60,8 +59,8 @@ const routes: Routes = [
       {path: 'categories', component: CategoriesComponent},
       {path: 'categories/add', component: CategoriesEditComponent},
       {path: 'categories/edit/:id', component: CategoriesEditComponent},
-      {path: 'products-oil', component: ProductsOilComponent},
-      {path: 'products-drill', component: ProductsDrillComponent},
+      {path: 'products', component: ProductsOilComponent},
+      // {path: 'products-drill', component: ProductsDrillComponent},
       {path: 'services-metalworking', component: ServicesMetalworkingComponent},
     ]
   },

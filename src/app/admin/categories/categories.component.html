@@ -72,13 +72,6 @@
     <mat-cell *matCellDef="let element"> {{(element.active === 1) ? 'Да' : 'Нет'}} </mat-cell>
   </ng-container>
 
-  <!-- type Column -->
-  <ng-container matColumnDef="type">
-    <mat-header-cell mat-sort-header *matHeaderCellDef> Тип</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.type === 1 ? 'Масла' : 'Металлореж.'}}
-    </mat-cell>
-  </ng-container>
-
   <!-- name Column -->
   <ng-container matColumnDef="name">
 

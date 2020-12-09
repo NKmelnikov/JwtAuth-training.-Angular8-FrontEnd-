@@ -20,7 +20,7 @@ export class ProductsOilHomeComponent implements OnInit {
   public categoryList = [];
   public brandList = [];
   public selectedCategory;
-  public selectedCategoryNameToShow = 'Все продукты';
+  public selectedNameToShow = 'Все продукты';
   public selectedIndex;
 
   brandCategory = {
@@ -105,10 +105,10 @@ export class ProductsOilHomeComponent implements OnInit {
 
     if (this.selectedCategory === item.name && !isExpanded) {
       this.productsToShow = this.productsOilList;
-      this.selectedCategoryNameToShow = 'Все продукты';
+      document.getElementById('current-view-name').textContent = String('Все продукты');
     } else {
+      document.getElementById('current-view-name').textContent = String(item.name);
       this.selectedCategory = item.name;
-      this.selectedCategoryNameToShow = item.name;
       this.productsToShow = this.productsOilList;
 
       if (!item.isBrand) {
@@ -127,7 +127,8 @@ export class ProductsOilHomeComponent implements OnInit {
     });
 
     subcategory.activeClass = true;
-    this.selectedCategoryNameToShow = subcategory.name;
+    document.getElementById('current-view-name').textContent = String(subcategory.name);
+
     this.productsToShow = this.productsOilList;
 
     this.productsToShow = this.productsToShow.filter((el) => {

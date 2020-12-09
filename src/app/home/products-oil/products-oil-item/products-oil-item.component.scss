@@ -4,7 +4,7 @@
   @extend %fsb;
   align-items: flex-start;
   width: 100%;
-  min-height: 500px;
+  min-height: 250px;
 
   @media #{$mobile} {
     flex-direction: column;
@@ -38,6 +38,7 @@
 
     mat-tab-group {
       width: 100%;
+      margin-bottom: 20px;
     }
 
     .head {
@@ -54,11 +55,13 @@
         font-size: 14px;
         overflow: hidden;
         width: 100%;
-
+        background: #f7fafd;
+        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
       }
 
       .button-container {
-        @extend %fsb;
+        @extend %fsbc;
+        align-items: flex-start;
         width: 100%;
         margin-bottom: 40px;
 
@@ -71,6 +74,7 @@
           min-width: 110px;
           text-decoration: none;
           color: black;
+          margin-bottom: 15px;
 
           @media #{$mobile} {
             margin-bottom: 20px;
@@ -89,12 +93,31 @@
         }
       }
     }
-
-    .spec {
-
-    }
   }
 }
+
+.spec {
+
+  .description {
+    padding: 15px;
+    background: #e6f7ff6b;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    margin-bottom: 20px;
+  }
+
+  .specification {
+
+  }
+}
+
+::ng-deep thead {
+  background: #d8f0ff;
+}
+
+::ng-deep tr:nth-child(even){
+  background: #f2faff;
+}
+
 
 ::ng-deep td {
   border-right: 1px solid #dee2e6;

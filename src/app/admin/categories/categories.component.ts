@@ -23,7 +23,6 @@ export class CategoriesComponent extends AdminBaseComponent implements OnInit {
     'select',
     'position',
     'active',
-    'type',
     'name',
     'createdAt',
     'action'

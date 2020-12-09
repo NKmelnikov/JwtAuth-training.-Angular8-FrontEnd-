@@ -1,3 +1,15 @@
+@import "../../app.global";
+
+main {
+  min-height: 100vh;
+  @extend %fcc;
+  background: $main-color3;
+}
+
 h1{
-  color: red;
+  color: $main-color1;
+}
+
+h4 {
+  color: $main-color5;
 }

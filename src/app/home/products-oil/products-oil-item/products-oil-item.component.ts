@@ -52,6 +52,7 @@ export class ProductsOilItemComponent implements OnInit {
         this.product = product;
         this.description = this.getInnerHTMLDescription();
         this.spec = this.getInnerHTMLSpec();
+        document.getElementById('current-view-name').textContent = String(product.name);
       });
   }
 

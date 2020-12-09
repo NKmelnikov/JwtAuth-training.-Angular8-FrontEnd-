@@ -13,7 +13,7 @@
       <mat-label class="ck-editor-label">Описание категории</mat-label>
       <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.description"></ckeditor>
     </div>
-    <div class="form-field">
+    <div class="form-field category-selection-radio">
       <mat-radio-group [(ngModel)]="category.type" aria-label="Тип">
         <mat-radio-button class="" [value]="1">Масла</mat-radio-button>
         <mat-radio-button class="" [value]="2">Металлореж.</mat-radio-button>
