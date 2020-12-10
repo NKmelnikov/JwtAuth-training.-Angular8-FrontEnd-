@@ -14,7 +14,8 @@
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item current"
       routerLink="/products"
-    >продукция /</a>
+      (click)="resetShownProducts()"
+    >продукция</a>
   </div>
   <div class="oil-wrapper container">
     <div class="content-container container">
@@ -26,6 +27,7 @@
             *ngFor="let category of categoryList"
             (click)="selectCategory(category)"
             [ngClass]="{'active': category.activeClass}"
+            class="category-expansion-panel"
             [expanded]="category.isExpanded"
             [routerLink]="['/products']"
             routerLinkActive="list-item-active"

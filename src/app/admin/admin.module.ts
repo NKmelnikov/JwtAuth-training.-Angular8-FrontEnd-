@@ -21,7 +21,7 @@ import {ProductsOilDialogComponent} from './products-oil/products-oil-dialog/pro
 import {ProductsDrillDialogComponent} from './products-drill/products-drill-dialog/products-drill-dialog.component';
 import {ServicesMetalworkingComponent} from './services-metalworking/services-metalworking.component';
 import {ServicesMetalworkingDialogComponent} from './services-metalworking/services-metalworking-dialog/services-metalworking-dialog.component';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg'
 @NgModule({
   declarations: [
     AdminComponent,
@@ -48,7 +48,9 @@ import {ServicesMetalworkingDialogComponent} from './services-metalworking/servi
     CommonModule,
     FormsModule,
     CKEditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   exports: [
     AdminComponent,

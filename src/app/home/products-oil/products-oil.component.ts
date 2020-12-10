@@ -1,9 +1,20 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {BrandService, CategoryService, ProductOilService, DataService} from '../../_services';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  BrandService,
+  CategoryService,
+  ProductOilService,
+  DataService
+} from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
 import {CatalogsDialogComponent} from '../../admin/catalogs/catalogs-dialog/catalogs-dialog.component';
 import {ProductsOilDialogHomeComponent} from './products-oil-dialog-home/products-oil-dialog-home.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 
 @Component({
@@ -22,6 +33,7 @@ export class ProductsOilHomeComponent implements OnInit {
   public selectedCategory;
   public selectedNameToShow = 'Все продукты';
   public selectedIndex;
+
 
   brandCategory = {
     id: 999,
@@ -43,7 +55,8 @@ export class ProductsOilHomeComponent implements OnInit {
     private brandService: BrandService,
     private productOilService: ProductOilService,
     private dataService: DataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
 
   }
@@ -130,7 +143,6 @@ export class ProductsOilHomeComponent implements OnInit {
     document.getElementById('current-view-name').textContent = String(subcategory.name);
 
     this.productsToShow = this.productsOilList;
-
     this.productsToShow = this.productsToShow.filter((el) => {
 
       if (el !== 'null') {
@@ -139,5 +151,20 @@ export class ProductsOilHomeComponent implements OnInit {
     });
 
     this.dataService.showProducts(this.productsToShow);
+  }
+
+  resetShownProducts() {
+    // this.productsToShow = this.productsOilList;
+    // this.dataService.showProducts(this.productsToShow);
+    // const expansionPanelArray = document.getElementsByClassName("category-expansion-panel");
+    // for (let ex of expansionPanelArray) {
+    //   ex.setAttribute('ng-reflect-expanded', false);
+    //   console.log(ex);
+    // }
+
+    this.router.navigate(['/products'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

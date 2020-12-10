@@ -5,6 +5,7 @@ import {environment} from '../../../../environments/environment';
 import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 import {SubCategoryService} from '../../../_services';
+import 'froala-editor/js/plugins.pkgd.min.js';
 
 // @ts-ignore
 @Component({
@@ -25,6 +26,17 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   selectedValueSubCategory: number;
   public ckEditorConfig;
   public Editor = ClassicEditor;
+  public options: Object = {
+    placeholderText: "Start typing...",
+    imageUpload: true,
+    imageTextNear: true,
+    imageMove: true,
+    imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
+    imageAltButtons: ['imageBack'],
+    imagePaste: true,
+    imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif', 'webp'],
+    imageUploadURL: `${environment.serverURL}ck-upload`
+  };
 
   constructor(
     public injector: Injector,

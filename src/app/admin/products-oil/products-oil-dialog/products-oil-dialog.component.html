@@ -36,14 +36,12 @@
         </mat-option>
       </mat-select>
     </p>
-    <p>
-      <mat-label>Описание продукта</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
-    </p>
-    <p>
-      <mat-label>Спецификация</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.spec"></ckeditor>
-    </p>
+    <mat-label>Описание продукта</mat-label>
+    <div [froalaEditor]='options' [(froalaModel)]="localData.description"></div>
+    <br>
+    <mat-label>Спецификация</mat-label>
+    <div [froalaEditor]='options' [(froalaModel)]="localData.spec"></div>
+    <br>
     <form>
       <div class="form-group img-upload-wrapper">
         <fieldset class="form-group">

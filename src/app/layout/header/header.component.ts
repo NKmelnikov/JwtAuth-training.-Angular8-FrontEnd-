@@ -1,4 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -7,7 +9,7 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   // active = false;
@@ -19,5 +21,12 @@ export class HeaderComponent implements OnInit {
 
   toggleActive() {
     this.activeEvent.emit(this.active = !this.active);
+  }
+
+  refreshProductPage() {
+    this.router.navigate(['/products'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

@@ -1,6 +1,6 @@
 <div class="product-container">
   <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-    <img [src]="env.serverURL + product.imgPath" class="product-img" alt="">
+    <div class="product-img" [ngStyle]="{'background-image': 'url(' + env.serverURL + product.imgPath + ')'}"></div>
     <div class="product-title-desc-container">
       <mat-card-header>
         <mat-card-title>{{product.name}}</mat-card-title>
@@ -8,6 +8,7 @@
       <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
     </div>
     <mat-card-actions class="button-container">
+
       <button (click)="openDialog('request', product)" mat-flat-button class="price">Запросить цену</button>
       <a
         mat-flat-button
