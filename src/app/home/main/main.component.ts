@@ -5,7 +5,6 @@ import {AuthService, PostService, BrandService} from '../../_services';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import { AngularYandexMapsModule, IConfig } from 'angular8-yandex-maps';
 
 
 @Component({

@@ -1,5 +1,5 @@
-<mat-spinner *ngIf="product.description.length <= 0"></mat-spinner>
-<div *ngIf="product.description.length > 0" class="product-item">
+<mat-spinner *ngIf="product.imgPath.length <= 0"></mat-spinner>
+<div *ngIf="product.imgPath.length > 0" class="product-item">
   <div class="product-item__img">
     <img [src]="env.serverURL + product.imgPath" alt="">
   </div>
