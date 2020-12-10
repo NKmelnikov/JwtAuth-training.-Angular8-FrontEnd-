@@ -26,7 +26,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="product.spec != null" class="spec">
-  <div class="text description" [innerHTML]="description"></div>
-  <div class="text specification" [innerHTML]="spec"></div>
+<div  class="spec">
+  <div *ngIf="product.description.length > 0" class="text description" [innerHTML]="description"></div>
+  <div *ngIf="product.spec != null" class="text specification" [innerHTML]="spec"></div>
 </div>
