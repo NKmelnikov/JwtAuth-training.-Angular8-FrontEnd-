@@ -10,7 +10,7 @@ export abstract class Service {
 
   durationInSeconds = 5;
   protected http: HttpClient;
-  protected snackBar: MatSnackBar;
+  public snackBar: MatSnackBar;
 
   protected constructor(
     private injectorObj: Injector,
@@ -34,7 +34,6 @@ export abstract class Service {
   }
 
   copy(data: any, path: string) {
-    console.log(this.snackBar);
     return this.http.post<any[]>(`${environment.serverURL}${path}`, data)
       .pipe(
         catchError(this.handleError.bind(this))
