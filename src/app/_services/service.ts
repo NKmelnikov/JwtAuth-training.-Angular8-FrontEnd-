@@ -10,10 +10,10 @@ export abstract class Service {
 
   durationInSeconds = 5;
   protected http: HttpClient;
+  protected snackBar: MatSnackBar;
 
   protected constructor(
     private injectorObj: Injector,
-    private snackBar: MatSnackBar
   ) {
     this.http = this.injectorObj.get(HttpClient);
     this.snackBar = this.injectorObj.get(MatSnackBar);
