@@ -32,6 +32,8 @@ export abstract class AdminBaseDialogComponent {
         return 'Создать';
       case 'Update':
         return 'Обновить';
+      case 'Copy':
+        return 'Копировать';
       case 'Delete':
         return 'Удалить';
     }

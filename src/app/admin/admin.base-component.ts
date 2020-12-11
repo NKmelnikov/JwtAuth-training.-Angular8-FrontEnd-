@@ -111,12 +111,19 @@ export abstract class AdminBaseComponent {
         result.data.category_id = id.id;
       }
 
-      if (result.event === 'Create') {
-        this.create(result.data, service, id);
-      } else if (result.event === 'Update') {
-        this.update(result.data, service, id);
-      } else if (result.event === 'Delete') {
-        this.delete(result.data, service, id);
+      switch (result.event) {
+        case 'Create':
+          this.create(result.data, service, id);
+          break;
+        case 'Update':
+          this.update(result.data, service, id);
+          break;
+        case 'Copy':
+          this.copy(result.data, service, id);
+          break;
+        case 'Delete':
+          this.delete(result.data, service, id);
+          break;
       }
     });
   }
@@ -129,6 +136,12 @@ export abstract class AdminBaseComponent {
 
   update(dataSource, service, id?) {
     service.update(dataSource).subscribe(res => {
+      this.refreshTable(id);
+    });
+  }
+
+  copy(dataSource, service, id?) {
+    service.copy(dataSource).subscribe(res => {
       this.refreshTable(id);
     });
   }

@@ -9,7 +9,7 @@
     </p>
     <p>
       <mat-form-field class="formFieldWidth752">
-        <mat-label>Название продукта в URL</mat-label>
+        <mat-label>Slug: Название продукта в URL</mat-label>
         <input matInput [(ngModel)]="localData.slug" width="100%" placeholder="например, fuchs-agrifarm-oil">
       </mat-form-field>
     </p>
@@ -37,10 +37,10 @@
       </mat-select>
     </p>
     <mat-label>Описание продукта</mat-label>
-    <div [froalaEditor]='options' [(froalaModel)]="localData.description"></div>
+    <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.description"></div>
     <br>
     <mat-label>Спецификация</mat-label>
-    <div [froalaEditor]='options' [(froalaModel)]="localData.spec"></div>
+    <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.spec"></div>
     <br>
     <form>
       <div class="form-group img-upload-wrapper">

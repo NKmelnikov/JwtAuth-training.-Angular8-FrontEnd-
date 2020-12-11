@@ -135,6 +135,7 @@
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef> Опции</mat-header-cell>
     <mat-cell *matCellDef="let element" class="action-link">
+      <a (click)="openDialog('Copy',element)"><span class="table-row-action copy material-icons"> content_copy </span></a>
       <a (click)="openDialog('Update',element)"><span class="table-row-action edit material-icons"> edit </span></a>
       <a (click)="openDialog('Delete',element)"><span class="table-row-action delete material-icons"> delete </span></a>
     </mat-cell>

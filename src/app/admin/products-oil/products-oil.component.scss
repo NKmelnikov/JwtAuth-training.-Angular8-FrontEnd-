@@ -27,6 +27,14 @@ table {
 .table-row-action {
   cursor: pointer;
 
+  &.copy {
+    margin-right: 20px;
+
+    &:hover {
+      color: #f7db88;
+    }
+  }
+
   &.edit {
 
     &:hover {

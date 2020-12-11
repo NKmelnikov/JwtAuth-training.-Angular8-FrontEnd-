@@ -24,9 +24,7 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   selectedValueBrand: number;
   selectedValueCategory: number;
   selectedValueSubCategory: number;
-  public ckEditorConfig;
-  public Editor = ClassicEditor;
-  public options: Object = {
+  public frolaOptions: Object = {
     placeholderText: "Start typing...",
     imageUpload: true,
     imageTextNear: true,
@@ -54,63 +52,6 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
   }
 
   ngOnInit(): void {
-    this.ckEditorConfig = {
-      toolbar: {
-        items: [
-          'heading',
-          '|',
-          'bold',
-          'italic',
-          'underline',
-          'strikethrough',
-          'subscript',
-          'superscript',
-          'blockQuote',
-          'bulletedList',
-          'numberedList',
-          'removeFormat',
-          '|',
-          'indent',
-          'outdent',
-          'alignment',
-          '|',
-          'link',
-          'imageUpload',
-          'insertTable',
-          'mediaEmbed',
-          'undo',
-          'redo',
-          'exportPdf',
-          'horizontalLine',
-          'highlight',
-          'fontSize'
-        ]
-      },
-      mediaEmbed: {
-        previewsInData: true
-      },
-      image: {
-        toolbar: [
-          'imageTextAlternative',
-          'imageStyle:full',
-          'imageStyle:side'
-        ]
-      },
-      table: {
-        contentToolbar: [
-          'tableColumn',
-          'tableRow',
-          'mergeTableCells',
-          'tableCellProperties',
-          'tableProperties'
-        ]
-      },
-      language: 'ru',
-      licenseKey: '',
-      ckfinder: {
-        uploadUrl: `${environment.serverURL}ck-upload`
-      }
-    };
     this.localData.description = this.localData.description || '';
     this.localData.spec = this.localData.spec || '';
   }

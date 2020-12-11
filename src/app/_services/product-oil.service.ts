@@ -26,6 +26,10 @@ export class ProductOilService extends Service {
     return super.create(data, 'update-product-oil');
   }
 
+  copy(data: ProductsOilInterface) {
+    return super.copy(data, 'copy-product-oil')
+  }
+
   delete(data: ProductsOilInterface) {
     return super.delete(data, 'delete-product-oil');
   }
