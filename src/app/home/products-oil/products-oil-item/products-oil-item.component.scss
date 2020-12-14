@@ -71,10 +71,11 @@
 
         .threeBtns {
           padding: 0 5px;
-          min-width: 110px;
+          width: 155px;
           text-decoration: none;
           color: black;
           margin-bottom: 15px;
+          text-align: left;
 
           @media #{$mobile} {
             margin-bottom: 20px;
@@ -88,7 +89,7 @@
         &__order-btn {
           color: white;
           padding: 0 5px;
-          min-width: 110px;
+          width: 155px;
           background: $main-color2;
         }
       }
