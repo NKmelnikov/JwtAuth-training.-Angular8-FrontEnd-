@@ -16,7 +16,7 @@ export class ProductsOilListComponent implements OnDestroy {
   subscription: Subscription;
   public env = environment;
   public page = 1;
-  public pageSize = 5;
+  public pageSize = 10;
 
   constructor(
     private productOilService: ProductOilService,
