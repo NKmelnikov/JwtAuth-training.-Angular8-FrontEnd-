@@ -1,7 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -25,14 +31,22 @@ import {NewsHomeComponent} from './home/news/news.component';
 import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
 import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
-import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
+import {ProductsOilCategoryListComponent} from './home/products-oil/products-oil-category-list/products-oil-category-list.component';
+import {ProductsOilSubcategoryListComponent} from './home/products-oil/products-oil-subcategory-list/products-oil-subcategory-list.component';
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
 import {PageNotFoundComponent} from './home/page-not-found/page-not-found.component';
-import {AuthGuardService, AuthService, DataService, HttpInterceptorService, TokenService} from './_services';
-import { ServicesMetalworkingHomeComponent } from './home/services-metalworking/services-metalworking.component';
-import { ServicesRecoveryComponent } from './home/services-recovery/services-recovery.component';
-import { NgxGalleryModule } from 'ngx-gallery-9';
-import { ProductsOilDialogHomeComponent } from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
+import {
+  AuthGuardService,
+  AuthService,
+  DataService,
+  HttpInterceptorService,
+  TokenService
+} from './_services';
+import {ServicesMetalworkingHomeComponent} from './home/services-metalworking/services-metalworking.component';
+import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
+import {NgxGalleryModule} from 'ngx-gallery-9';
+import {ProductsOilDialogHomeComponent} from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
+import {NgDynamicBreadcrumbModule} from 'ng-dynamic-breadcrumb';
 
 
 @NgModule({
@@ -54,35 +68,41 @@ import { ProductsOilDialogHomeComponent } from './home/products-oil/products-oil
     ProductsOilHomeComponent,
     ProductsDrillHomeComponent,
     ProductsOilItemComponent,
-    ProductsOilListComponent,
+    ProductsOilCategoryListComponent,
+    ProductsOilSubcategoryListComponent,
     CatalogItemComponent,
     PageNotFoundComponent,
     ServicesMetalworkingHomeComponent,
     ServicesRecoveryComponent,
     ProductsOilDialogHomeComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MaterialModule,
-        LayoutModule,
-        AdminModule,
-        CarouselModule,
-        PdfViewerModule,
-        NgbModule,
-        BrowserModule,
-        NgxGalleryModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    LayoutModule,
+    AdminModule,
+    CarouselModule,
+    PdfViewerModule,
+    NgbModule,
+    BrowserModule,
+    NgxGalleryModule,
+    ReactiveFormsModule,
+    NgDynamicBreadcrumbModule,
+  ],
   providers: [
     AuthService,
     TokenService,
     DataService,
     AuthGuardService,
-    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

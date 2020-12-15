@@ -36,6 +36,7 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     active: 1,
     type: 1,
     name: '',
+    slug: '',
     description: '',
     subCategories: []
   };
@@ -53,6 +54,7 @@ export class CategoriesEditComponent extends AdminBaseComponent implements OnIni
     'position',
     'active',
     'name',
+    'slug',
     'createdAt',
     'action'
   ];

@@ -1,0 +1,30 @@
+<div class="product-container">
+  <mat-card class="product-item" *ngFor="let product of productsToShow | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+    <div class="product-img" [ngStyle]="{'background-image': 'url(' + env.serverURL + product.imgPath + ')'}"></div>
+    <div class="product-title-desc-container">
+      <mat-card-header>
+        <mat-card-title>{{product.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content [innerHTML]="product.description | slice : 0 : 185" class="description"></mat-card-content>
+    </div>
+    <mat-card-actions class="button-container">
+
+      <button (click)="openDialog('request', product)" mat-flat-button class="price">Запросить цену</button>
+      <a
+        mat-flat-button
+        class="more"
+        routerLink="/products/{{product.slug}}"
+      >Подробнее</a>
+    </mat-card-actions>
+  </mat-card>
+  <mat-spinner *ngIf="productsToShow.length <= 0 && !productsToShow['loaded']"></mat-spinner>
+  <div *ngIf="productsToShow.length === 0 && productsToShow['loaded']">В этой категории продукты не представлены</div>
+</div>
+<div class="pagination-block" [ngClass]="{'single-page': productsToShow.length <= pageSize}">
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="productsToShow.length">
+  </ngb-pagination>
+</div>
+

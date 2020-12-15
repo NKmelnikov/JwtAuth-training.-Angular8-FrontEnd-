@@ -74,10 +74,17 @@
 
   <!-- name Column -->
   <ng-container matColumnDef="name">
-
     <mat-header-cell mat-sort-header *matHeaderCellDef> Название</mat-header-cell>
     <mat-cell *matCellDef="let element">
       {{element.name}}
+    </mat-cell>
+  </ng-container>
+
+  <!-- name Column -->
+  <ng-container matColumnDef="slug">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Slug </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{element.slug}}
     </mat-cell>
   </ng-container>
 

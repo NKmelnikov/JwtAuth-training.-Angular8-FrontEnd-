@@ -61,6 +61,7 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
     this.subcategoryService.getByCategoryId(JSON.stringify(categoryId))
       .subscribe(data => {
         this.localData.subcategoryList = data;
+        console.log(data);
       });
   }
 

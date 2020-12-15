@@ -4,5 +4,6 @@ export interface SubCategoriesInterface {
   active: number;
   position: number;
   name: string;
+  slug: string;
   description: string;
 }

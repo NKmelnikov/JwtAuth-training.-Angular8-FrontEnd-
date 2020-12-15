@@ -14,6 +14,14 @@ export class ProductOilService extends Service {
     return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-slug`, {slug});
   }
 
+  getProductByCategorySlug(slug): Observable<ProductsOilInterface> {
+    return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-category-slug`, {slug});
+  }
+
+  getProductBySubcategorySlug(slug): Observable<ProductsOilInterface> {
+    return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-subcategory-slug`, {slug});
+  }
+
   getAll(): Observable<any[]> {
     return super.getAll('home/get-products-oil');
   }
@@ -27,7 +35,7 @@ export class ProductOilService extends Service {
   }
 
   copy(data: ProductsOilInterface) {
-    return super.copy(data, 'copy-product-oil')
+    return super.copy(data, 'copy-product-oil');
   }
 
   delete(data: ProductsOilInterface) {
