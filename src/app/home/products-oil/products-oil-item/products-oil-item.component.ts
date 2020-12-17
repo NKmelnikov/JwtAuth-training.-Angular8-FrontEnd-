@@ -14,13 +14,15 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class ProductsOilItemComponent implements OnInit {
 
   public env = environment;
-  public productsToShow = [];
   public subscriptions = new Subscription();
   public product = {
     imgPath: '',
     name: '',
+    slug: '',
     description: '',
     spec: '',
+    category_slug: '',
+    subcategory_slug: '',
     pdf1Path: '',
     pdf2Path: '',
     pdf1Name: '',
@@ -50,6 +52,8 @@ export class ProductsOilItemComponent implements OnInit {
       .subscribe(product => {
         // @ts-ignore
         this.product = product;
+        console.log('product');
+        console.log(product);
         this.description = this.getInnerHTMLDescription();
         this.spec = this.getInnerHTMLSpec();
         document.getElementById('current-view-name').textContent = String(product.name);

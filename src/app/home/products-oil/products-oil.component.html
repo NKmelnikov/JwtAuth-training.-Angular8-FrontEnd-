@@ -14,7 +14,6 @@
       mat-list-item routerLinkActive="list-item-active"
       class="breadcrumbs__item current"
       routerLink="/products"
-      (click)="resetShownProducts()"
     >продукция</a>
   </div>
   <app-ng-dynamic-breadcrumb></app-ng-dynamic-breadcrumb>
@@ -31,7 +30,7 @@
             [ngClass]="{'active': category.activeClass}"
             class="category-expansion-panel"
             [expanded]="category.isExpanded"
-            [routerLink]="['/products']"
+            [routerLink]="['/products/' + category.slug]"
             routerLinkActive="list-item-active"
           >
 
@@ -46,7 +45,7 @@
               [id]="'subcategory_'+subcategory.id"
               *ngFor="let subcategory of category.subcategories"
               [ngClass]="{'active': subcategory.activeClass}"
-              [routerLink]="['/products']"
+              [routerLink]="['/products/' + category.slug + '/' + subcategory.slug]"
               routerLinkActive="list-item-active"
               (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subcategories)">
               {{subcategory.name}}

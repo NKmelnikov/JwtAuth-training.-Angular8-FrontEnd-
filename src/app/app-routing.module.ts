@@ -22,6 +22,7 @@ import {ProductsOilHomeComponent} from './home/products-oil/products-oil.compone
 import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {AboutComponent} from './home/about/about.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
+import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 import {ProductsOilCategoryListComponent} from './home/products-oil/products-oil-category-list/products-oil-category-list.component';
 import {ProductsOilSubcategoryListComponent} from './home/products-oil/products-oil-subcategory-list/products-oil-subcategory-list.component';
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
@@ -62,6 +63,10 @@ const routes: Routes = [
         },
         children: [
           {
+            path: '',
+            component: ProductsOilListComponent
+          },
+          {
             path: ':categorySlug',
             component: ProductsOilCategoryListComponent
           },
@@ -70,21 +75,12 @@ const routes: Routes = [
             component: ProductsOilSubcategoryListComponent
           },
           {
+            path: ':categorySlug/no-subcategory/:productSlug',
+            component: ProductsOilItemComponent,
+          },
+          {
             path: ':categorySlug/:subcategorySlug/:productSlug',
             component: ProductsOilItemComponent,
-            data: {
-              title: 'Продукты',
-              breadcrumb: [
-                {
-                  label: 'Продукты',
-                  url: '/products'
-                },
-                {
-                  label: '{{slug}}',
-                  url: ':slug'
-                }
-              ]
-            },
           },
         ]
       },

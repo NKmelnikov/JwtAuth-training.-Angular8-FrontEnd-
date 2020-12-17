@@ -31,6 +31,7 @@ import {NewsHomeComponent} from './home/news/news.component';
 import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
 import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
+import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 import {ProductsOilCategoryListComponent} from './home/products-oil/products-oil-category-list/products-oil-category-list.component';
 import {ProductsOilSubcategoryListComponent} from './home/products-oil/products-oil-subcategory-list/products-oil-subcategory-list.component';
 import {CatalogItemComponent} from './home/catalogs/catalog-item/catalog-item.component';
@@ -68,6 +69,7 @@ import {NgDynamicBreadcrumbModule} from 'ng-dynamic-breadcrumb';
     ProductsOilHomeComponent,
     ProductsDrillHomeComponent,
     ProductsOilItemComponent,
+    ProductsOilListComponent,
     ProductsOilCategoryListComponent,
     ProductsOilSubcategoryListComponent,
     CatalogItemComponent,

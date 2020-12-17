@@ -1,6 +1,6 @@
 import {
   Component,
-  OnDestroy
+  OnInit
 } from '@angular/core';
 import {
   ProductOilService,
@@ -10,21 +10,26 @@ import {environment} from '../../../../environments/environment';
 import {Subscription} from 'rxjs';
 import {ProductsOilDialogHomeComponent} from '../products-oil-dialog-home/products-oil-dialog-home.component';
 import {MatDialog} from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-products-oil-list',
   templateUrl: './products-oil-category-list.component.html',
   styleUrls: ['./products-oil-category-list.component.scss']
 })
-export class ProductsOilCategoryListComponent implements OnDestroy {
+export class ProductsOilCategoryListComponent implements OnInit {
 
   productsToShow = [];
   subscription: Subscription;
   public products = [{
     imgPath: '',
     name: '',
+    slug: '',
     description: '',
     spec: '',
+    category_slug: '',
+    subcategory_slug: '',
     pdf1Path: '',
     pdf2Path: '',
     pdf1Name: '',
@@ -40,31 +45,29 @@ export class ProductsOilCategoryListComponent implements OnDestroy {
   constructor(
     private productOilService: ProductOilService,
     private dataService: DataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private activeRoute: ActivatedRoute,
   ) {
-    this.subscription = dataService.showProducts$.subscribe(products => {
-      this.productsToShow = products;
-      this.productsToShow['loaded'] = true;
-    });
-  }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
-    this.getProductByCategorySlug();
+    this.activeRoute.params.subscribe((param) => {
+      this.getProductByCategorySlug(param.categorySlug);
+    });
   }
 
-  getProductByCategorySlug() {
-    const slug = document.location.pathname.split('/');
-    const data = JSON.stringify(slug[slug.length - 1]);
-    this.productOilService.getProductByCategorySlug(data)
+  getProductByCategorySlug(slug) {
+    this.productOilService.getProductByCategorySlug(slug)
       .subscribe(products => {
         // @ts-ignore
         this.products = products;
-        console.log(this.products);
+        // @ts-ignore
+        this.productsToShow = products;
+        console.log('cat');
+        console.log(products);
+        this.productsToShow['loaded'] = true;
       });
   }
 

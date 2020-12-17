@@ -5,6 +5,7 @@ export interface CategoriesInterface {
   position: number;
   type: number;
   name: string;
+  slug: string;
   description: string;
   subCategories: object;
 }
