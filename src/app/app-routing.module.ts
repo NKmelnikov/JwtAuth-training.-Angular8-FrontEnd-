@@ -52,19 +52,10 @@ const routes: Routes = [
       {
         path: 'products',
         component: ProductsOilHomeComponent,
-        data: {
-          title: 'Продукты',
-          breadcrumb: [
-            {
-              label: 'Продукты',
-              url: '/products'
-            }
-          ]
-        },
         children: [
           {
             path: '',
-            component: ProductsOilListComponent
+            component: ProductsOilListComponent,
           },
           {
             path: ':categorySlug',

@@ -23,10 +23,9 @@ export class HeaderComponent implements OnInit {
     this.activeEvent.emit(this.active = !this.active);
   }
 
-  refreshProductPage() {
-    this.router.navigate(['/products'])
-      .then(() => {
-        window.location.reload();
-      });
+  redirectTo(uri){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
+
 }

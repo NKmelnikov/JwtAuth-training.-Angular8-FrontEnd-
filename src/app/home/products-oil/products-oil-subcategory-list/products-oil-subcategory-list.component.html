@@ -10,10 +10,15 @@
     <mat-card-actions class="button-container">
 
       <button (click)="openDialog('request', product)" mat-flat-button class="price">Запросить цену</button>
-      <a
+      <a *ngIf="brandIsActive"
         mat-flat-button
         class="more"
-        routerLink="/products/{{product.category_slug}}/{{product.subcategory_slug}}/{{product.slug}}"
+        routerLink="/products/brands/{{product.brand_slug}}/{{product.slug}}"
+      >Подробнее</a>
+      <a *ngIf="!brandIsActive"
+         mat-flat-button
+         class="more"
+         routerLink="/products/{{product.category_slug}}/{{product.subcategory_slug}}/{{product.slug}}"
       >Подробнее</a>
     </mat-card-actions>
   </mat-card>

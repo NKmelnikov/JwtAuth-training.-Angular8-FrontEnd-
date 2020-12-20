@@ -65,8 +65,6 @@ export class ProductsOilCategoryListComponent implements OnInit {
         this.products = products;
         // @ts-ignore
         this.productsToShow = products;
-        console.log('cat');
-        console.log(products);
         this.productsToShow['loaded'] = true;
       });
   }

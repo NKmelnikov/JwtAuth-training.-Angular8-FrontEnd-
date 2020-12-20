@@ -7,13 +7,13 @@ export class DataService {
   constructor() {
   }
 
-  private productsToShow = new Subject<Array<any>>();
-  public showProducts$ = this.productsToShow.asObservable();
+  private selectedProduct = new Subject();
+  public selectProduct$ = this.selectedProduct.asObservable();
 
   // Service message commands
-  showProducts(products: any[]) {
+  selectProduct(products: any[]) {
     setTimeout(() => {
-      this.productsToShow.next(products);
+      this.selectedProduct.next(products);
     }, 0);
   }
 }

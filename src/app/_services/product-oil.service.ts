@@ -1,4 +1,7 @@
-import {Injectable, Injector} from '@angular/core';
+import {
+  Injectable,
+  Injector
+} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ProductsOilInterface} from '../admin/products-oil/products-oil.interface';
 import {Service} from './service';
@@ -14,12 +17,20 @@ export class ProductOilService extends Service {
     return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-slug`, {slug});
   }
 
-  getProductByCategorySlug(slug): Observable<ProductsOilInterface> {
+  getProductByCategorySlug(slug): Observable<any[]> {
+    if (slug === 'brands') {
+      return super.getAll('home/get-products-oil-by-brand');
+    }
+    // @ts-ignore
     return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-category-slug`, {slug});
   }
 
   getProductBySubcategorySlug(slug): Observable<ProductsOilInterface> {
     return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-subcategory-slug`, {slug});
+  }
+
+  getProductByBrandSlug(slug): Observable<ProductsOilInterface> {
+    return this.http.post<ProductsOilInterface>(`${environment.serverURL}home/get-product-oil-by-brand-slug`, {slug});
   }
 
   getAll(): Observable<any[]> {

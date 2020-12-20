@@ -10,7 +10,7 @@ import {environment} from '../../../../environments/environment';
 import {Subscription} from 'rxjs';
 import {ProductsOilDialogHomeComponent} from '../products-oil-dialog-home/products-oil-dialog-home.component';
 import {MatDialog} from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -24,6 +24,7 @@ export class ProductsOilSubcategoryListComponent implements OnInit {
   public env = environment;
   public page = 1;
   public pageSize = 10;
+  public brandIsActive: boolean;
 
   public products = [{
     imgPath: '',
@@ -61,7 +62,13 @@ export class ProductsOilSubcategoryListComponent implements OnInit {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit(): void {
     this.activeRoute.params.subscribe((param) => {
-      this.getProductBySubcategorySlug(param.subcategorySlug);
+      if (param.categorySlug !== 'brands') {
+        this.brandIsActive = false;
+        this.getProductBySubcategorySlug(param.subcategorySlug);
+      } else {
+        this.brandIsActive = true;
+        this.getProductByBrandSlug(param.subcategorySlug);
+      }
     });
   }
 
@@ -72,8 +79,17 @@ export class ProductsOilSubcategoryListComponent implements OnInit {
         this.products = products;
         // @ts-ignore
         this.productsToShow = products;
-        console.log('sub');
-        console.log(products);
+        this.productsToShow['loaded'] = true;
+      });
+  }
+
+  getProductByBrandSlug(slug) {
+    this.productOilService.getProductByBrandSlug(slug)
+      .subscribe(products => {
+        // @ts-ignore
+        this.products = products;
+        // @ts-ignore
+        this.productsToShow = products;
         this.productsToShow['loaded'] = true;
       });
   }

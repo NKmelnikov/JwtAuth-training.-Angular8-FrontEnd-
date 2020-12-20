@@ -10,11 +10,9 @@ import {
   DataService
 } from '../../_services';
 import {MatAccordion} from '@angular/material/expansion';
-import {CatalogsDialogComponent} from '../../admin/catalogs/catalogs-dialog/catalogs-dialog.component';
-import {ProductsOilDialogHomeComponent} from './products-oil-dialog-home/products-oil-dialog-home.component';
 import {MatDialog} from '@angular/material/dialog';
-import {ActivatedRoute, Router} from '@angular/router';
-
+import {Router} from '@angular/router';
+import {HostListener} from '@angular/core';
 
 
 @Component({
@@ -22,6 +20,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './products-oil.component.html',
   styleUrls: ['./products-oil.component.scss']
 })
+
 export class ProductsOilHomeComponent implements OnInit {
 
   readonly typeOil = 1;
@@ -30,22 +29,15 @@ export class ProductsOilHomeComponent implements OnInit {
   public productsToShow = [];
   public categoryList = [];
   public brandList = [];
+  public expandPanels = [];
   public selectedCategory;
+  public selectedSubcategory;
+  public selectedProduct;
   public selectedNameToShow = 'Все продукты';
-  public selectedIndex;
-
-
-  brandCategory = {
-    id: 999,
-    active: 1,
-    description: '',
-    name: 'бренды',
-    type: 1,
-    isBrand: true,
-    createdAt: {$date: 1594916708310},
-    position: 999,
-    subcategories: [],
-  };
+  public urlParamProduct;
+  public urlParamSubcategory;
+  public urlParamCategory;
+  public pathArray;
 
 
   @ViewChild('accordion') accordion: MatAccordion;
@@ -56,40 +48,86 @@ export class ProductsOilHomeComponent implements OnInit {
     private productOilService: ProductOilService,
     private dataService: DataService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) {
 
   }
 
-  ngOnInit(): void {
-    this.getCategoryList();
-    this.getProductsOilList();
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.createExpandPanels();
   }
 
-  getCategoryList() {
+  ngOnInit(): void {
+    this.createExpandPanels();
+    this.getProductsOilList();
+
+    // @ts-ignore
+    this.dataService.selectProduct$
+      .subscribe(product => {
+        this.createExpandPanels();
+        this.selectedProduct = product;
+      });
+  }
+
+  redirectTo(uri) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
+  }
+
+  handleUrlPathParameters() {
+    this.pathArray = window.location.pathname.split('/');
+    this.urlParamProduct = this.pathArray[4] || null;
+    this.urlParamSubcategory = this.pathArray[3] || null;
+    this.urlParamCategory = this.pathArray[2] || null;
+  }
+
+  createExpandPanels() {
+    this.selectedProduct = null;
+    this.selectedSubcategory = null;
+    this.selectedProduct = null;
+
+    this.handleUrlPathParameters();
+
     this.categoryService.getAll()
       .subscribe(categoryList => {
-        this.categoryList = categoryList.filter((el) => {
-          return el.type === this.typeOil;
+        // @ts-ignore
+        this.categoryList = categoryList
+          .filter(category => category.type === this.typeOil)
+          .map(category => ({
+            ...category,
+            expanded: this.urlParamCategory === category.slug,
+            subcategories: category.subcategories.map(sub => ({
+              ...sub,
+              active: this.urlParamSubcategory === sub.slug
+            }))
+          }));
+
+        this.categoryList.push({
+          id: 999,
+          active: 1,
+          description: '',
+          name: 'Бренды',
+          slug: 'brands',
+          type: 1,
+          isBrand: true,
+          expanded: this.urlParamCategory === 'brands',
+          createdAt: {$date: 1594916708310},
+          position: 999,
+          subcategories: [],
         });
 
-        this.categoryList.push(this.brandCategory);
         this.brandService.getAll()
           .subscribe(brandList => {
             this.brandList = brandList;
             this.brandList = this.brandList.map(brand => ({
               ...brand,
-              brand_uid: brand.id
+              active: this.urlParamSubcategory === brand.slug
             }));
-
-            this.categoryList.forEach(el => {
-              el.subcategories = el.subcategories.map(sub => ({
-                ...sub,
-                sub_uid: sub.id
-              }));
-            });
-
             this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
+
+            this.selectedCategory = this.categoryList.filter(category => category.expanded === true)[0];
+            this.selectedSubcategory = this.selectedCategory?.subcategories.filter(sub => sub.active === true)[0];
           });
       });
   }
@@ -99,72 +137,31 @@ export class ProductsOilHomeComponent implements OnInit {
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
         this.productsToShow = this.productsOilList;
-        // @ts-ignore
-        this.dataService.showProducts(this.productsToShow);
       });
   }
 
-  selectCategory(item) {
-    const expansionDOM = document.getElementById('category_' + item.id);
-    const isExpanded = expansionDOM.classList.contains('mat-expanded');
+  selectCategory(category) {
+    this.selectedProduct = null;
+    this.selectedSubcategory = null;
+    this.selectedCategory = category;
+    this.selectedNameToShow = category.name;
 
-    item.isExpanded = true;
-
-    if (item.subcategories) {
-      item.subcategories.forEach(el => {
-        el.activeClass = false;
+    if (category.subcategories) {
+      category.subcategories.forEach(subcategory => {
+        subcategory.active = false;
       });
     }
-
-    if (this.selectedCategory === item.name && !isExpanded) {
-      this.productsToShow = this.productsOilList;
-      document.getElementById('current-view-name').textContent = String('Все продукты');
-    } else {
-      document.getElementById('current-view-name').textContent = String(item.name);
-      this.selectedCategory = item.name;
-      this.productsToShow = this.productsOilList;
-
-      if (!item.isBrand) {
-        this.productsToShow = this.productsToShow.filter((el) => {
-          return el.category_id === item.id;
-        });
-      }
-    }
-
-    this.dataService.showProducts(this.productsToShow);
   }
 
-  selectSubCategory(subcategory, list) {
+  selectSubcategory(subcategory, list?) {
+    this.selectedProduct = null;
+    this.selectedSubcategory = subcategory;
+    this.selectedNameToShow = subcategory.name;
+
+
     list.forEach(el => {
-      el.activeClass = false;
+      el.active = false;
     });
-
-    subcategory.activeClass = true;
-    document.getElementById('current-view-name').textContent = String(subcategory.name);
-
-    this.productsToShow = this.productsOilList;
-    this.productsToShow = this.productsToShow.filter((el) => {
-
-      if (el !== 'null') {
-        return el.subcategory_id === subcategory.sub_uid || el.brand_id === subcategory.brand_uid;
-      }
-    });
-
-    this.dataService.showProducts(this.productsToShow);
-  }
-
-  resetShownProducts() {
-    // this.productsToShow = this.productsOilList;
-    // this.dataService.showProducts(this.productsToShow);
-    // const expansionPanelArray = document.getElementsByClassName("category-expansion-panel");
-    // for (let ex of expansionPanelArray) {
-    //   ex.setAttribute('ng-reflect-expanded', false);
-    //   console.log(ex);
-    // }
-
-    this.router.navigate(['/products'])
-      .then(() => {
-        window.location.reload();
-      });
+    subcategory.active = true;
   }
 }

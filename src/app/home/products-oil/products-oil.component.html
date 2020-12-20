@@ -1,53 +1,81 @@
 <main class="products-oil-home-wrapper">
   <div class="header-container">
     <div class="header-box container">
-      <div class="header-box__title">Продукция</div>
+      <div class="header-box__title">
+        Продукция
+      </div>
     </div>
   </div>
   <div class="breadcrumbs container" id="breadcrumbs-products">
     <a
-      mat-list-item routerLinkActive="list-item-active"
+      mat-list-item
+      routerLinkActive="list-item-active"
       class="breadcrumbs__item"
       routerLink="/"
-    >главная / </a>
+    >Главная
+      / </a>
     <a
-      mat-list-item routerLinkActive="list-item-active"
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      (click)="redirectTo('products')"
+    >Продукция
+      /</a>
+    <a
+      *ngIf="selectedCategory != null"
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      [routerLink]="'/products/' + selectedCategory.slug"
+      (click)="selectCategory(selectedCategory)"
+    > {{selectedCategory.name + ' / '}}</a>
+
+    <a
+      *ngIf="selectedSubcategory != null"
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      [routerLink]="'/products/' + selectedCategory.slug + '/' + selectedSubcategory.slug "
+      (click)="selectSubcategory(selectedSubcategory)"
+    >{{selectedSubcategory.name + ' / '}}</a>
+    <a
+      *ngIf="selectedProduct  != null"
+      mat-list-item
+      routerLinkActive="list-item-active"
       class="breadcrumbs__item current"
-      routerLink="/products"
-    >продукция</a>
+      [routerLink]="'/products/' + selectedCategory?.slug + '/' + selectedSubcategory?.slug + '/' + selectedProduct?.slug"
+    >{{selectedProduct.name}}</a>
   </div>
-  <app-ng-dynamic-breadcrumb></app-ng-dynamic-breadcrumb>
 
   <div class="oil-wrapper container">
     <div class="content-container container">
       <aside class="navigation-container">
-        <div class="category-title">Категории</div>
+        <div class="category-title">
+          Категории
+        </div>
         <mat-accordion>
           <mat-expansion-panel
-            [id]="'category_'+category.id"
+            [id]="category.slug"
             *ngFor="let category of categoryList"
             (click)="selectCategory(category)"
-            [ngClass]="{'active': category.activeClass}"
             class="category-expansion-panel"
-            [expanded]="category.isExpanded"
+            [expanded]="category.expanded"
             [routerLink]="['/products/' + category.slug]"
             routerLinkActive="list-item-active"
           >
-
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ category.name }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-
             <div
               class="expansion-item sub-categories-item"
               [id]="'subcategory_'+subcategory.id"
               *ngFor="let subcategory of category.subcategories"
-              [ngClass]="{'active': subcategory.activeClass}"
+              [ngClass]="{'active': subcategory.active}"
               [routerLink]="['/products/' + category.slug + '/' + subcategory.slug]"
               routerLinkActive="list-item-active"
-              (click)="$event.stopPropagation(); selectSubCategory(subcategory, category.subcategories)">
+              (click)="$event.stopPropagation(); selectSubcategory(subcategory, category.subcategories)">
               {{subcategory.name}}
             </div>
             <div class="sub-categories">
@@ -55,7 +83,8 @@
           </mat-expansion-panel>
         </mat-accordion>
       </aside>
-      <section class="product-wrapper">
+      <section
+        class="product-wrapper">
         <div id="current-view-name" class="selected-name">{{ this.selectedNameToShow }}</div>
         <router-outlet></router-outlet>
       </section>

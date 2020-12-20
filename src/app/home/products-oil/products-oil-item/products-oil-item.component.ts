@@ -34,6 +34,7 @@ export class ProductsOilItemComponent implements OnInit {
 
   constructor(
     private productOilService: ProductOilService,
+    private dataService: DataService,
     private dialog: MatDialog,
     private sanitizer: DomSanitizer
   ) {
@@ -47,13 +48,13 @@ export class ProductsOilItemComponent implements OnInit {
 
   getProductBySlug() {
     const slug = document.location.pathname.split('/');
-    const data = JSON.stringify(slug[slug.length - 1]);
+    const data = slug[slug.length - 1];
     this.productOilService.getProductBySlug(data)
       .subscribe(product => {
         // @ts-ignore
         this.product = product;
-        console.log('product');
-        console.log(product);
+        // @ts-ignore
+        this.dataService.selectProduct(product);
         this.description = this.getInnerHTMLDescription();
         this.spec = this.getInnerHTMLSpec();
         document.getElementById('current-view-name').textContent = String(product.name);

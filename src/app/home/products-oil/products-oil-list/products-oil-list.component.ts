@@ -75,8 +75,6 @@ export class ProductsOilListComponent implements OnDestroy {
         // @ts-ignore
         this.products = products;
         this.productsToShow = products;
-        console.log('all');
-        console.log(products);
         this.productsToShow['loaded'] = true;
       });
   }
