@@ -17,7 +17,7 @@
     </div>
     <div class="form-field">
       <mat-label class="ck-editor-label">Описание категории</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="category.description"></ckeditor>
+      <div [froalaEditor]='frolaOptions' [(froalaModel)]="category.description"></div>
     </div>
     <div class="form-field category-selection-radio">
       <mat-radio-group [(ngModel)]="category.type" aria-label="Тип">
@@ -137,6 +137,6 @@
              (click)="selection.toggle(row)">
     </mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, dataSource.data.length]" showFirstLastButtons></mat-paginator>
 </section>
 

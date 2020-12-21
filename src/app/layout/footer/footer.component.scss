@@ -45,8 +45,17 @@ footer {
       }
 
       .title {
+        outline: none;
         color: white;
         margin: 0 0 30px 0;
+
+        &.clickable {
+          cursor: pointer;
+
+          &:hover {
+            color: $main-color1;
+          }
+        }
       }
 
       .text {

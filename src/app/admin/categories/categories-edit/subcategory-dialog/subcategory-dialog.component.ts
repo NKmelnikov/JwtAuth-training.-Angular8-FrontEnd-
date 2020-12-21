@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CatalogsInterface} from '../../../catalogs/catalogs.interface';
 import {environment} from '../../../../../environments/environment';
-import * as ClassicEditor from '../../../../_helpers/ckeditor';
+import 'froala-editor/js/plugins.pkgd.min.js';
 
 @Component({
   selector: 'app-subcategory-dialog',
@@ -13,8 +13,18 @@ export class SubcategoryDialogComponent implements OnInit {
 
   action: string;
   localData: any;
-  public ckEditorConfig;
-  public Editor = ClassicEditor;
+  // tslint:disable-next-line:ban-types
+  public frolaOptions: Object = {
+    placeholderText: 'Start typing...',
+    imageUpload: true,
+    imageTextNear: true,
+    imageMove: true,
+    imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
+    imageAltButtons: ['imageBack'],
+    imagePaste: true,
+    imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif', 'webp'],
+    imageUploadURL: `${environment.serverURL}ck-upload`
+  };
 
   constructor(
     public dialogRef: MatDialogRef<SubcategoryDialogComponent>,
@@ -26,63 +36,6 @@ export class SubcategoryDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ckEditorConfig = {
-      toolbar: {
-        items: [
-          'heading',
-          '|',
-          'bold',
-          'italic',
-          'underline',
-          'strikethrough',
-          'subscript',
-          'superscript',
-          'blockQuote',
-          'bulletedList',
-          'numberedList',
-          'removeFormat',
-          '|',
-          'indent',
-          'outdent',
-          'alignment',
-          '|',
-          'link',
-          'imageUpload',
-          'insertTable',
-          'mediaEmbed',
-          'undo',
-          'redo',
-          'exportPdf',
-          'horizontalLine',
-          'highlight',
-          'fontSize'
-        ]
-      },
-      mediaEmbed: {
-        previewsInData: true
-      },
-      image: {
-        toolbar: [
-          'imageTextAlternative',
-          'imageStyle:full',
-          'imageStyle:side'
-        ]
-      },
-      table: {
-        contentToolbar: [
-          'tableColumn',
-          'tableRow',
-          'mergeTableCells',
-          'tableCellProperties',
-          'tableProperties'
-        ]
-      },
-      language: 'ru',
-      licenseKey: '',
-      ckfinder: {
-        uploadUrl: `${environment.serverURL}ck-upload`
-      }
-    };
     this.localData.description = this.localData.description || '';
   }
 

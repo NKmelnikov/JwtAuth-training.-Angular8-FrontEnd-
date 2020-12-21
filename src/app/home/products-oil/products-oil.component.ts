@@ -26,13 +26,12 @@ export class ProductsOilHomeComponent implements OnInit {
   readonly typeOil = 1;
 
   public productsOilList = [];
-  public productsToShow = [];
   public categoryList = [];
   public brandList = [];
   public expandPanels = [];
-  public selectedCategory;
-  public selectedSubcategory;
-  public selectedProduct;
+  public selectedCategory = null;
+  public selectedSubcategory = null;
+  public selectedProduct = null;
   public selectedNameToShow = 'Все продукты';
   public urlParamProduct;
   public urlParamSubcategory;
@@ -67,12 +66,22 @@ export class ProductsOilHomeComponent implements OnInit {
       .subscribe(product => {
         this.createExpandPanels();
         this.selectedProduct = product;
+        setTimeout(() => {
+          this.selectedNameToShow = this.selectedProduct.name;
+        }, 400);
       });
   }
 
   redirectTo(uri) {
+    this.clearSelectedEntities();
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  clearSelectedEntities() {
+    this.selectedProduct = null;
+    this.selectedSubcategory = null;
+    this.selectedCategory = null;
   }
 
   handleUrlPathParameters() {
@@ -83,10 +92,7 @@ export class ProductsOilHomeComponent implements OnInit {
   }
 
   createExpandPanels() {
-    this.selectedProduct = null;
-    this.selectedSubcategory = null;
-    this.selectedProduct = null;
-
+    this.clearSelectedEntities();
     this.handleUrlPathParameters();
 
     this.categoryService.getAll()
@@ -127,7 +133,10 @@ export class ProductsOilHomeComponent implements OnInit {
             this.categoryList[this.categoryList.length - 1].subcategories = this.brandList;
 
             this.selectedCategory = this.categoryList.filter(category => category.expanded === true)[0];
+            this.selectedNameToShow = this.selectedCategory.name != null ? this.selectedCategory.name : '';
+
             this.selectedSubcategory = this.selectedCategory?.subcategories.filter(sub => sub.active === true)[0];
+            this.selectedNameToShow = this.selectedSubcategory.name != null ? this.selectedSubcategory.name : '';
           });
       });
   }
@@ -136,7 +145,6 @@ export class ProductsOilHomeComponent implements OnInit {
     this.productOilService.getAll()
       .subscribe(productsOilList => {
         this.productsOilList = productsOilList;
-        this.productsToShow = this.productsOilList;
       });
   }
 
@@ -145,6 +153,14 @@ export class ProductsOilHomeComponent implements OnInit {
     this.selectedSubcategory = null;
     this.selectedCategory = category;
     this.selectedNameToShow = category.name;
+
+    const expansionDOM = document.getElementById(category.slug);
+    const isExpanded = expansionDOM.classList.contains('mat-expanded');
+
+    if (this.selectedCategory.name === category.name && !isExpanded) {
+      this.selectedCategory = null;
+      this.redirectTo('products');
+    }
 
     if (category.subcategories) {
       category.subcategories.forEach(subcategory => {

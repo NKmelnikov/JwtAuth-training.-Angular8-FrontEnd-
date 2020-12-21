@@ -122,7 +122,11 @@
   <!-- pdf Column -->
   <ng-container matColumnDef="slug">
     <mat-header-cell mat-sort-header *matHeaderCellDef> окончание URL</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.slug }}</mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span class="font-size-10">
+        {{element.slug }}
+      </span>
+  </mat-cell>
   </ng-container>
 
   <!-- date Column -->
@@ -142,9 +146,7 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"
-           cdkDrag
-           (click)="selection.toggle(row)">
+  <mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag (click)="selection.toggle(row)">
   </mat-row>
 </mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<mat-paginator [pageSize]="20" [pageSizeOptions]="[5, 10, 20, 50, dataSource.data.length]" showFirstLastButtons></mat-paginator>

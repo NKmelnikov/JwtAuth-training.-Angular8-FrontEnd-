@@ -85,7 +85,7 @@ table {
   max-height: 50px;
 }
 
-.mat-column-active, .mat-column-position, .mat-column-select {
+.mat-column-active, .mat-column-brand, .mat-column-position, .mat-column-select {
   flex: 0 0 5%;
 }
 
@@ -95,4 +95,8 @@ table {
 
 .mat-column-name {
   flex: 0 0 20%;
+}
+
+.mat-column-slug {
+  flex: 0 0 15%;
 }

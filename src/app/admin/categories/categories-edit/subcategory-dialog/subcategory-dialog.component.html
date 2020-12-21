@@ -16,10 +16,8 @@
     <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
     </p>
-    <p>
       <mat-label class="ck-editor-label">Описание</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
-    </p>
+      <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.description"></div>
 
   </div>
   <ng-template #elseTemplate>

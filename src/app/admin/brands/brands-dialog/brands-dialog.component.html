@@ -13,10 +13,8 @@
         <input matInput [(ngModel)]="localData.slug" width="100%" placeholder="например, eroglu">
       </mat-form-field>
     </p>
-    <p>
       <mat-label>Описание бренда</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.description"></ckeditor>
-    </p>
+      <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.description"></div>
     <p>
       <mat-slide-toggle [(ngModel)]="localData.active">Активен</mat-slide-toggle>
     </p>

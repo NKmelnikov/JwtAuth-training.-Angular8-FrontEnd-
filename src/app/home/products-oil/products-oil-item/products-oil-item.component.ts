@@ -57,7 +57,6 @@ export class ProductsOilItemComponent implements OnInit {
         this.dataService.selectProduct(product);
         this.description = this.getInnerHTMLDescription();
         this.spec = this.getInnerHTMLSpec();
-        document.getElementById('current-view-name').textContent = String(product.name);
       });
   }
 

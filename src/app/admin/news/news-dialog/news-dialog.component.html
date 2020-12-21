@@ -19,11 +19,11 @@
         <textarea matInput [(ngModel)]="localData.shortText" placeholder="Описание события"></textarea>
       </mat-form-field>
     </p>
-    <p>
       <mat-label class="ck-editor-label">Статья целиком</mat-label>
-      <ckeditor [config]="ckEditorConfig" [editor]="Editor" [(ngModel)]="localData.article"></ckeditor>
-    </p>
-      <mat-slide-toggle [(ngModel)]="localData.active">Активный элемент</mat-slide-toggle>
+      <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.article"></div>
+    <br>
+    <mat-slide-toggle [(ngModel)]="localData.active">Активный элемент</mat-slide-toggle>
+    <br>
     <form>
       <div class="form-group img-upload-wrapper">
         <fieldset class="form-group">
