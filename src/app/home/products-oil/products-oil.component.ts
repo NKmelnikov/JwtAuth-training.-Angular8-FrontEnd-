@@ -82,6 +82,7 @@ export class ProductsOilHomeComponent implements OnInit {
     this.selectedProduct = null;
     this.selectedSubcategory = null;
     this.selectedCategory = null;
+    this.selectedNameToShow = 'Все продукты';
   }
 
   handleUrlPathParameters() {
