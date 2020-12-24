@@ -47,7 +47,6 @@ import {ServicesMetalworkingHomeComponent} from './home/services-metalworking/se
 import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
 import {NgxGalleryModule} from 'ngx-gallery-9';
 import {ProductsOilDialogHomeComponent} from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
-import {NgDynamicBreadcrumbModule} from 'ng-dynamic-breadcrumb';
 
 
 @NgModule({
@@ -93,7 +92,6 @@ import {NgDynamicBreadcrumbModule} from 'ng-dynamic-breadcrumb';
     BrowserModule,
     NgxGalleryModule,
     ReactiveFormsModule,
-    NgDynamicBreadcrumbModule,
   ],
   providers: [
     AuthService,

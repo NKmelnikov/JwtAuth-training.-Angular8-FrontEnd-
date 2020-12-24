@@ -17,12 +17,11 @@
 
     .video-container {
       height: 100%;
-      width: 60vw;
+      width: 100vw;
       position: absolute;
       overflow: hidden;
       top: 0;
       bottom: 0;
-      transform: skew(10deg);
       @extend %fc;
 
       &:after {
@@ -35,91 +34,17 @@
         height: 100%;
         z-index: 1;
       }
-
-      &:hover {
-
-        &:after {
-          background: none;
-        }
-      }
-
-      .text-container {
-        transform: skew(-10deg);
-        position: absolute;
-        @extend %fcc;
-        min-width: 500px;
-        z-index: 2;
-
-        .text {
-          display: block;
-          color: white;
-          text-transform: uppercase;
-          border: 1px solid #1d263f;
-          background-color: rgba(0, 35, 89, 0.8);
-          font-size: 30px;
-          font-weight: bolder;
-          padding: 15px 20px;
-          margin-bottom: 20px;
-          text-align: center;
-          //width: 400px;
-          //height: 167px;
-        }
-
-        .goToProduct-btn {
-          background: $main-color1;
-          color: white;
-          text-decoration: none;
-          padding: 10px 15px;
-          border-radius: 3px;
-          font-weight: bolder;
-          font-size: 18px;
-
-          &:hover {
-            background: $main-color2;
-          }
-        }
-      }
+      //
+      //&:hover {
+      //
+      //  &:after {
+      //    background: none;
+      //  }
+      //}
 
       video {
         position: relative;
-        transform: skew(-10deg);
         object-fit: fill;
-      }
-
-      &:first-child {
-        left: -10vw;
-        //justify-content: flex-end;
-
-        .text-container {
-          align-items: flex-end;
-          right: 150px;
-
-          .text {
-            text-align: left;
-          }
-        }
-
-        video {
-
-        }
-      }
-
-      &:last-child {
-        right: -10vw;
-        //justify-content: flex-start;
-
-        .text-container {
-          align-items: flex-start;
-          left: 150px;
-
-          .text {
-            text-align: right;
-          }
-        }
-
-        video {
-          right: 10vw;
-        }
       }
     }
   }
@@ -431,6 +356,7 @@
           font-size: 16px;
           line-height: 25px;
           margin-bottom: 20px;
+          text-align: justify;
 
           @media #{$tablet} {
             text-align: left;
@@ -607,6 +533,7 @@
           font-size: 16px;
           padding: 20px 0;
           height: 260px;
+          text-align: justify;
 
           @media #{$tablet} {
             height: auto;

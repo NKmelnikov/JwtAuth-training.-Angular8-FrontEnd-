@@ -64,11 +64,8 @@
     border-radius: 4px;
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
     padding: 10px;
+    text-align: justify;
   }
-
-  //.material-icons{
-  //  font-size: 16px;
-  //}
 
   .work-goals {
     list-style: none;
@@ -121,10 +118,26 @@
         }
       }
     }
+
+    .text-container {
+
+      .text {
+        text-align: justify;
+      }
+    }
   }
 
   .second-section {
     margin-bottom: 40px;
+    text-align: justify;
+  }
+
+  .third-section {
+
+    .short-description {
+      text-align: justify;
+    }
+
   }
 }
 

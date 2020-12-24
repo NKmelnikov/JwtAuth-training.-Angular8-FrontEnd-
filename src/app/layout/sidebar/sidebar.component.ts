@@ -1,4 +1,12 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  ElementRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,11 +15,22 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() {
+  constructor(private elementRef: ElementRef) {
   }
+
+  isHeaderButtonIdArray = ['o-s0', 'o-s1', 'o-s2', 'o-s3', 'o-s4'];
 
   @Input() active: boolean;
   @Output() activeEvent2 = new EventEmitter<boolean>();
+  @HostListener('document:click', ['$event.target'])
+  public onClick(targetElement) {
+    const clickedOutside = !this.elementRef.nativeElement.contains(targetElement);
+    const isHeaderButtonClicked = (this.isHeaderButtonIdArray.includes(targetElement.id));
+
+    if (clickedOutside && !isHeaderButtonClicked) {
+      this.activeEvent2.emit(false);
+    }
+  }
 
   ngOnInit() {
   }

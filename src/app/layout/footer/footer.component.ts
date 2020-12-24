@@ -6,6 +6,7 @@ import {RecaptchaService} from '../../_services/recaptcha.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {BrandService} from "../../_services";
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -32,12 +33,14 @@ export class FooterComponent implements OnInit {
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
+  brandList;
 
   constructor(
     private recaptcha3: NgRecaptcha3Service,
     private recaptchaService: RecaptchaService,
     private telegramService: TelegramService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private brandService: BrandService,
   ) {
   }
 
@@ -52,6 +55,11 @@ export class FooterComponent implements OnInit {
         });
       });
     });
+
+    this.brandService.getAll()
+      .subscribe(data => {
+        this.brandList = data;
+      });
   }
 
   sendMessageToTelegram() {

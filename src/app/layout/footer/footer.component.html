@@ -1,7 +1,10 @@
 <footer>
   <section class="footer-up container">
-    <div class="footer-up__item products">
-      <h3 routerLink="/products" class="title clickable">Продукты</h3>
+    <div class="footer-up__item brands">
+      <h3 routerLink="/catalogs" class="title clickable">Бренды</h3>
+      <div class="brands-link-wrapper">
+        <a *ngFor="let brand of brandList" class="text" [routerLink]="'/catalogs/'+ brand.slug">{{brand.name}}</a>
+      </div>
     </div>
     <div class="footer-up__item services">
       <h3 routerLink="/services" class="title clickable">Услуги</h3>
