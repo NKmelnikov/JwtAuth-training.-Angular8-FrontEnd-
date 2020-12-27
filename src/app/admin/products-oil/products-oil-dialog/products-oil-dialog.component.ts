@@ -2,7 +2,6 @@ import {Component, Inject, Injector, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ProductsOilInterface} from '../products-oil.interface';
 import {environment} from '../../../../environments/environment';
-import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 import {SubCategoryService} from '../../../_services';
 import 'froala-editor/js/plugins.pkgd.min.js';
@@ -61,7 +60,6 @@ export class ProductsOilDialogComponent extends AdminBaseDialogComponent impleme
     this.subcategoryService.getByCategoryId(JSON.stringify(categoryId))
       .subscribe(data => {
         this.localData.subcategoryList = data;
-        console.log(data);
       });
   }
 

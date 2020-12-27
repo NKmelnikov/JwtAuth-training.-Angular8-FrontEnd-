@@ -30,8 +30,6 @@
       background-repeat: no-repeat;
     }
 
-
-
     .product-title-desc-container {
       @extend %fcc;
       align-items: flex-start;
@@ -54,7 +52,6 @@
       @media #{$mobile} {
         margin-left: 0;
       }
-
 
       .price {
         background: $main-color1;

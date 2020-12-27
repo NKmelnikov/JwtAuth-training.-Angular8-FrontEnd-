@@ -48,6 +48,6 @@
   width: 50%;
 }
 
-//:host ::ng-deep .ck-editor__editable_inline {
-//    min-height: 500px !important;
-//}
+::ng-deep.fr-popup.fr-active {
+  z-index: 1000000!important;
+}

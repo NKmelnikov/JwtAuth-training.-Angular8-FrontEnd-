@@ -26,6 +26,10 @@ export class SubCategoryService extends Service {
     return super.create(data, 'update-subcategory');
   }
 
+  copy(data: SubCategoriesInterface) {
+    return super.copy(data, 'copy-subcategory');
+  }
+
   delete(data: SubCategoriesInterface) {
     return super.delete(data, 'delete-subcategory');
   }

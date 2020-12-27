@@ -47,6 +47,7 @@ import {ServicesMetalworkingHomeComponent} from './home/services-metalworking/se
 import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
 import {NgxGalleryModule} from 'ngx-gallery-9';
 import {ProductsOilDialogHomeComponent} from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
+import { NewsItemComponent } from './home/news-item/news-item.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import {ProductsOilDialogHomeComponent} from './home/products-oil/products-oil-d
     ServicesMetalworkingHomeComponent,
     ServicesRecoveryComponent,
     ProductsOilDialogHomeComponent,
+    NewsItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -48,17 +48,6 @@ export class NewsDialogComponent extends AdminBaseDialogComponent implements OnI
     this.localData.article = this.localData.article || '';
   }
 
-  actionTranslateMapping(action) {
-    switch (action) {
-      case 'Create':
-        return 'Создать';
-      case 'Update':
-        return 'Обновить';
-      case 'Delete':
-        return 'Удалить';
-    }
-  }
-
   doAction() {
     this.dialogRef.close({event: this.action, data: this.localData});
   }

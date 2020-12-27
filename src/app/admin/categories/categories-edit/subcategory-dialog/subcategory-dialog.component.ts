@@ -1,15 +1,22 @@
-import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+  Optional
+} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CatalogsInterface} from '../../../catalogs/catalogs.interface';
 import {environment} from '../../../../../environments/environment';
 import 'froala-editor/js/plugins.pkgd.min.js';
+import {AdminBaseDialogComponent} from '../../../admin.base-dialog.component';
 
 @Component({
   selector: 'app-subcategory-dialog',
   templateUrl: './subcategory-dialog.component.html',
   styleUrls: ['./subcategory-dialog.component.scss']
 })
-export class SubcategoryDialogComponent implements OnInit {
+export class SubcategoryDialogComponent extends AdminBaseDialogComponent implements OnInit {
 
   action: string;
   localData: any;
@@ -29,7 +36,9 @@ export class SubcategoryDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SubcategoryDialogComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: CatalogsInterface,
+    public injector: Injector
   ) {
+    super(injector);
     this.localData = {...data};
     this.localData.active = 1;
     this.action = this.localData.action;
@@ -37,28 +46,6 @@ export class SubcategoryDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.localData.description = this.localData.description || '';
-  }
-
-  actionTitleMapping(action) {
-    switch (action) {
-      case 'Create':
-        return 'Создать подкатегорию';
-      case 'Update':
-        return 'Редактировать подкатегорию';
-      case 'Delete':
-        return 'Удалить подкатегорию';
-    }
-  }
-
-  actionButtonMapping(action) {
-    switch (action) {
-      case 'Create':
-        return 'Создать';
-      case 'Update':
-        return 'Сохранить';
-      case 'Delete':
-        return 'Удалить';
-    }
   }
 
   doAction() {

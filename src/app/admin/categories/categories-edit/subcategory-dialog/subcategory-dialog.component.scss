@@ -1,4 +1,6 @@
 .mat-form-field {
   width: 752px;
 }
-
+::ng-deep.fr-popup.fr-active {
+  z-index: 1000000!important;
+}

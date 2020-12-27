@@ -21,6 +21,10 @@ export class MetalworkingService extends Service {
     return super.create(data, 'update-metalworking');
   }
 
+  copy(data: BrandsInterface) {
+    return super.copy(data, 'copy-metalworking');
+  }
+
   delete(data: BrandsInterface) {
     return super.delete(data, 'delete-metalworking');
   }

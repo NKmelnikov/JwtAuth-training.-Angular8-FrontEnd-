@@ -26,6 +26,10 @@ export class CategoryService extends Service {
     return super.create(data, 'update-category');
   }
 
+  copy(data: CategoriesInterface) {
+    return super.copy(data, 'copy-category');
+  }
+
   delete(data: CategoriesInterface) {
     return super.delete(data, 'delete-category');
   }

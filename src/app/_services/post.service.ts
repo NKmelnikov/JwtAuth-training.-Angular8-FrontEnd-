@@ -21,6 +21,10 @@ export class PostService extends Service {
     return super.create(data, 'update-post');
   }
 
+  copy(data: NewsInterface) {
+    return super.copy(data, 'copy-post');
+  }
+
   delete(data: NewsInterface) {
     return super.delete(data, 'delete-post');
   }

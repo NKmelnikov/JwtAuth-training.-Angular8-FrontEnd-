@@ -25,6 +25,14 @@ table {
 .table-row-action {
   cursor: pointer;
 
+  &.copy {
+    margin-right: 20px;
+
+    &:hover {
+      color: #f7db88;
+    }
+  }
+
   &.edit {
 
     &:hover {
@@ -78,9 +86,6 @@ table {
 .mat-column-active,
 .mat-column-position,
 .mat-column-select,
-.mat-column-createdAt,
-.mat-column-action,
-.mat-column-imgPath
 {
   flex: 0 0 5%;
 }
@@ -91,6 +96,10 @@ table {
 
 .mat-column-title {
   flex: 0 0 20%;
+}
+
+.mat-column-shortText {
+  flex: 0 0 33%;
 }
 
 ::ng-deep .post-article{

@@ -26,6 +26,10 @@ export class BrandService extends Service {
     return super.create(data, 'update-brand');
   }
 
+  copy(data: BrandsInterface) {
+    return super.copy(data, 'copy-brand');
+  }
+
   delete(data: BrandsInterface) {
     return super.delete(data, 'delete-brand');
   }

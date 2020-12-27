@@ -21,6 +21,10 @@ export class CatalogService extends Service {
     return super.create(data, 'update-catalog');
   }
 
+  copy(data: CatalogsInterface) {
+    return super.copy(data, 'copy-catalog');
+  }
+
   delete(data: CatalogsInterface) {
     return super.delete(data, 'delete-catalog');
   }

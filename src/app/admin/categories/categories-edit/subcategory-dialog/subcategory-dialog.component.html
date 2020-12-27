@@ -1,4 +1,4 @@
-<h1 mat-dialog-title><strong>{{actionTitleMapping(action)}}</strong></h1>
+<h1 mat-dialog-title><strong>{{actionTranslateMapping(action)}}</strong></h1>
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
     <p>
@@ -25,6 +25,6 @@
   </ng-template>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionButtonMapping(action)}}</button>
+  <button mat-button mat-flat-button (click)="doAction()" color="warn">{{actionTranslateMapping(action)}}</button>
   <button mat-button mat-flat-button (click)="closeDialog()" color="primary">Отменить</button>
 </div>

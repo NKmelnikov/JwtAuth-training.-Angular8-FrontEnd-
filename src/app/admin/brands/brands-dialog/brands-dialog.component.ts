@@ -48,17 +48,6 @@ export class BrandsDialogComponent extends AdminBaseDialogComponent implements O
     this.localData.description = this.localData.description || '';
   }
 
-  actionTranslateMapping(action) {
-    switch (action) {
-      case 'Create':
-        return 'Создать';
-      case 'Update':
-        return 'Обновить';
-      case 'Delete':
-        return 'Удалить';
-    }
-  }
-
   doAction() {
     this.dialogRef.close({event: this.action, data: this.localData});
   }

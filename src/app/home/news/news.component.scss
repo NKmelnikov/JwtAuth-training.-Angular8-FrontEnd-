@@ -1,13 +1,41 @@
 @import "../../app.global";
 
-main {
-  height: calc(100vh - 120px);
+.news-wrapper {
+  height: 100%;
+  //height: calc(100vh - 120px);
   width: 100%;
-  background: $main-color3;
-  @extend %fcc;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
 }
 
-p {
-  color: whitesmoke;
-  font-size: 24px;
+.recent-news-wrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px;
+
+  .news-block {
+    border: 1px solid black;
+    width: 30%;
+    height: 500px;
+  }
+}
+
+
+
+.all-news-container {
+  width: 600px;
+  height: 500px;
+  background: $main-color3;
+
+  .news-box{
+
+  }
 }

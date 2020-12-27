@@ -31,6 +31,7 @@ import {ServicesComponent} from './home/services/services.component';
 import {ServicesMetalworkingHomeComponent} from './home/services-metalworking/services-metalworking.component';
 import {ServicesMetalworkingComponent} from './admin/services-metalworking/services-metalworking.component';
 import {ServicesRecoveryComponent} from './home/services-recovery/services-recovery.component';
+import {NewsItemComponent} from './home/news-item/news-item.component';
 
 const routes: Routes = [
   {
@@ -94,6 +95,10 @@ const routes: Routes = [
       {
         path: 'news',
         component: NewsHomeComponent
+      },
+      {
+        path: 'news/:newsSlug',
+        component: NewsItemComponent
       },
       {
         path: 'about',

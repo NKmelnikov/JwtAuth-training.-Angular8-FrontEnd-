@@ -1,9 +1,9 @@
 import {Component, Inject, Injector, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import * as ClassicEditor from '../../../_helpers/ckeditor';
 import {environment} from '../../../../environments/environment';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 import {ServicesMetalworkingInterface} from '../services-metalworking.interface';
+import 'froala-editor/js/plugins.pkgd.min.js';
 
 
 @Component({
@@ -18,8 +18,18 @@ export class ServicesMetalworkingDialogComponent extends AdminBaseDialogComponen
   imageError: string;
   isImageSaved: boolean;
   cardImageBase64: string;
-  public ckEditorConfig;
-  public Editor = ClassicEditor;
+  // tslint:disable-next-line:ban-types
+  public frolaOptions: Object = {
+    placeholderText: 'Start typing...',
+    imageUpload: true,
+    imageTextNear: true,
+    imageMove: true,
+    imageEditButtons: ['imageReplace', 'imageAlign', 'imageCaption', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize'],
+    imageAltButtons: ['imageBack'],
+    imagePaste: true,
+    imageAllowedTypes: ['jpeg', 'jpg', 'png', 'gif', 'webp'],
+    imageUploadURL: `${environment.serverURL}ck-upload`
+  };
 
   constructor(
     public dialogRef: MatDialogRef<ServicesMetalworkingDialogComponent>,

@@ -1,4 +1,17 @@
 <main class="news-wrapper">
-  <p>Данная страница временно не доступна.</p>
-  <p>Приносим свои извинения</p>
+  <div class="recent-news-wrapper">
+    <div *ngFor="let news of newsList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" class="news-block">
+    </div>
+  </div>
+  <section class="all-news-container">
+    <div *ngFor="let news of newsList" class="news-box">
+
+    </div>
+  </section>
 </main>
+
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="newsList.length">
+</ngb-pagination>

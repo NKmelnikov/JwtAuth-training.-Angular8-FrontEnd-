@@ -27,6 +27,14 @@ table {
 .table-row-action {
   cursor: pointer;
 
+  &.copy {
+    margin-right: 20px;
+
+    &:hover {
+      color: #f7db88;
+    }
+  }
+
   &.edit {
 
     &:hover {
@@ -119,7 +127,10 @@ table {
   flex: 0 0 55%;
 }
 
-
 .category-selection-radio{
   visibility: hidden;
+}
+
+::ng-deep.fr-popup.fr-active {
+  z-index: 1000000!important;
 }
