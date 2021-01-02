@@ -1,12 +1,20 @@
-import {Injectable, Injector} from '@angular/core';
+import {
+  Injectable,
+  Injector
+} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NewsInterface} from '../admin/news/news.interface';
 import {Service} from './service';
+import {environment} from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class PostService extends Service {
   constructor(private injector: Injector) {
     super(injector);
+  }
+
+  getNewsItemBySlug(slug): Observable<NewsInterface> {
+    return this.http.post<NewsInterface>(`${environment.serverURL}home/get-news-item-by-slug`, {slug});
   }
 
   getAll(): Observable<any[]> {

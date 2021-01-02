@@ -1,1 +1,38 @@
-<p>news-item works!</p>
+<main class="news-item-wrapper">
+  <section class="header-container">
+    <div class="header-box container">
+      <div class="header-box__title">{{headerTitle}}</div>
+    </div>
+  </section>
+  <div class="breadcrumbs container" id="breadcrumbs-products">
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/"
+    >Главная</a>
+    <span class="breadcrumbs__divider">
+      &nbsp;/&nbsp;
+    </span>
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item"
+      routerLink="/news"
+    >Новости</a>
+    <span
+      class="breadcrumbs__divider">
+      &nbsp;/&nbsp;
+    </span>
+    <a
+      mat-list-item
+      routerLinkActive="list-item-active"
+      class="breadcrumbs__item current"
+    >{{newsItem.title}}</a>
+  </div>
+  <section class="news-item-container container">
+    <img [src]="env.serverURL + newsItem.imgPath" alt="">
+    <article [innerHTML]="newsItem.article"></article>
+  </section>
+
+</main>
