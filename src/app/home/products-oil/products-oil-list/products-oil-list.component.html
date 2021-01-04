@@ -23,6 +23,7 @@
 <div class="pagination-block" [ngClass]="{'single-page': productsToShow.length <= pageSize}">
   <ngb-pagination
     [(page)]="page"
+    (pageChange)="onPageChange()"
     [pageSize]="pageSize"
     [collectionSize]="productsToShow.length">
   </ngb-pagination>

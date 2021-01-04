@@ -39,21 +39,55 @@
 
 .news-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  padding: 40px 0;
+  padding: 30px;
 
   @media #{$noDesktop} {
     flex-direction: column;
   }
 
   .news-block {
-    width: 30%;
+    width: 30vw;
     margin-bottom: 40px;
+    margin-right: 2vw;
 
     @media #{$noDesktop} {
       width: 100%;
+    }
+
+    mat-card-title {
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      @media #{$noDesktop} {
+        height: auto;
+      }
+    }
+
+    .news-image {
+      height: 275px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-bottom: 20px;
+
+      @media #{$noDesktop} {
+        background-position: center;
+        background-size: contain;
+
+      }
+    }
+
+    mat-card-content {
+      height: 126px;
+
+      @media #{$noDesktop} {
+        height: auto;
+      }
     }
 
     mat-card-actions {
@@ -74,4 +108,13 @@
   justify-content: flex-end;
   align-items: center;
   padding-right: 50px;
+
+  ::ng-deep.pagination {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  ::ng-deep.page-item {
+    margin-bottom: 25px;
+  }
 }

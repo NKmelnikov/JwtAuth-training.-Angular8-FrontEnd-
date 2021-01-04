@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {PostService} from '../../_services';
 import {environment} from '../../../environments/environment';
 
@@ -9,23 +12,25 @@ import {environment} from '../../../environments/environment';
 })
 export class NewsHomeComponent implements OnInit {
 
-  newsList;
+  newsList = [];
   page = 1;
   pageSize = 6;
-  public env = environment;
+  env = environment;
 
 
   constructor(
     private newsService: PostService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-
     this.newsService.getAll()
       .subscribe(data => {
         this.newsList = data;
-        console.log(this.newsList);
       });
   }
 
+  onPageChange() {
+    window.scrollTo(0, 0);
+  }
 }

@@ -3,8 +3,8 @@
   <div *ngIf="action != 'Delete'; else elseTemplate">
     <p>
       <mat-form-field class="formFieldWidth752">
-        <mat-label>Заголовок</mat-label>
-        <input matInput [(ngModel)]="localData.title" width="100%" placeholder="например, Мы побывали на выставке">
+        <mat-label> Заголовок <span>Максимальное кол-во символов 96, текущее: <span id="wordCount0">{{ localData.title.length || 0 }}</span></span></mat-label>
+        <input matInput [maxLength]="96" [(ngModel)]="localData.title" width="100%" placeholder="например, Мы побывали на выставке">
       </mat-form-field>
     </p>
     <p>
@@ -15,9 +15,9 @@
     </p>
     <p>
       <mat-form-field class="formFieldWidth752">
-        <mat-label>Краткое описание</mat-label>
-        <textarea matInput [(ngModel)]="localData.shortText" placeholder="Описание события"></textarea>
-      </mat-form-field>
+        <mat-label>Краткое описание. <span>Максимальное кол-во символов 400, текущее: <span id="wordCount1">{{ localData.shortText.length || 0 }}</span></span></mat-label>
+        <textarea rows="5" [maxLength]="400" matInput [(ngModel)]="localData.shortText" placeholder="Описание события"></textarea>
+    </mat-form-field>
     </p>
       <mat-label class="ck-editor-label">Статья целиком</mat-label>
       <div [froalaEditor]='frolaOptions' [(froalaModel)]="localData.article"></div>

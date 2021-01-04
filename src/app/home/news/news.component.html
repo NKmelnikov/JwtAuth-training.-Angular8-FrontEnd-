@@ -13,7 +13,7 @@
           <mat-card-title>{{news.title}}</mat-card-title>
           <mat-card-subtitle>{{news.created_at | date:'dd.MM.yyyy'}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="env.serverURL + news.imgPath" alt="Photo of a Shiba Inu">
+        <div class="news-image" [ngStyle]="{'background-image': 'url(' + env.serverURL + news.imgPath + ')'}"></div>
         <mat-card-content>
           <p>
             {{news.shortText}}
@@ -30,6 +30,7 @@
     <ngb-pagination
       [(page)]="page"
       [pageSize]="pageSize"
+      (pageChange)="onPageChange()"
       [collectionSize]="newsList.length">
     </ngb-pagination>
   </section>

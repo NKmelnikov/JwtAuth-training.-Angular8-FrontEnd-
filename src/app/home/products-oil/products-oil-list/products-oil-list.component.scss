@@ -72,5 +72,10 @@
 
   ::ng-deep.pagination {
     justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  ::ng-deep.page-item {
+    margin-bottom: 25px;
   }
 }

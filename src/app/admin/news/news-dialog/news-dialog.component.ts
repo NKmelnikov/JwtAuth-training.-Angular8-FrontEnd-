@@ -45,6 +45,8 @@ export class NewsDialogComponent extends AdminBaseDialogComponent implements OnI
   }
 
   ngOnInit(): void {
+    this.localData.title = this.localData.title || '';
+    this.localData.shortText = this.localData.shortText || '';
     this.localData.article = this.localData.article || '';
   }
 

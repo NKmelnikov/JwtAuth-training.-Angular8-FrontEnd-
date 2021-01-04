@@ -14,16 +14,16 @@ import {environment} from '../../../environments/environment';
 })
 export class MainComponent implements AfterViewInit, OnInit {
 
-  public clients = 1;
-  public yearsOrMarket = 1;
-  public developers = 1;
-  public countries = 1;
-  public advCountTriggered = false;
-  public proofsTriggered = false;
-  public qualityTriggered = false;
-  public news = [];
-  public brands = [];
-  public carouselNewsOptions = {
+   clients = 1;
+   yearsOrMarket = 1;
+   developers = 1;
+   countries = 1;
+   advCountTriggered = false;
+   proofsTriggered = false;
+   qualityTriggered = false;
+   news = [];
+   brands = [];
+   carouselNewsOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: false,
@@ -47,7 +47,7 @@ export class MainComponent implements AfterViewInit, OnInit {
     },
     nav: true
   };
-  public carouselBrandsOptions = {
+   carouselBrandsOptions = {
     loop: true,
     center: true,
     autoWidth: true,
@@ -69,7 +69,8 @@ export class MainComponent implements AfterViewInit, OnInit {
     },
     nav: true
   };
-  public yandexMap;
+   yandexMap;
+   env = environment;
 
   constructor(
     private http: HttpClient,
@@ -84,7 +85,6 @@ export class MainComponent implements AfterViewInit, OnInit {
     this.getNews();
     this.getBrands();
     const video1 = document.getElementById('video-drill');
-    const video2 = document.getElementById('video-oil');
     const advSection = document.querySelector('.adv-section_js');
 
     video1.oncanplaythrough = () => {
@@ -92,12 +92,6 @@ export class MainComponent implements AfterViewInit, OnInit {
       video1.muted = true;
       // @ts-ignore
       video1.play();
-    };
-    video2.oncanplaythrough = () => {
-      // @ts-ignore
-      video2.muted = true;
-      // @ts-ignore
-      video2.play();
     };
 
     if (this.isInViewport(advSection) && !this.advCountTriggered) {

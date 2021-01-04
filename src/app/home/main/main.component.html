@@ -186,16 +186,16 @@
   </section>
   <section id="s5" class="fifth-section">
     <owl-carousel-o class="container" [options]="carouselNewsOptions">
-      <ng-template *ngFor="let post of news" carouselSlide [id]="post.id">
+      <ng-template *ngFor="let post of news" carouselSlide>
         <div class="news-wrapper">
-          <div class="img-container">
-            <img [src]="post.imgPath" alt="">
-          </div>
-          <div class="date">{{post.created_at | date:'dd/MM/yyyy'}}</div>
-          <div class="title">{{ post.title }}</div>
-          <div class="line line1"></div>
-          <div class="short-text">
-            {{ post.shortText }}
+          <div class="upper-box">
+            <div class="img-container" [ngStyle]="{'background-image': 'url(' +  post.imgPath + ')'}"></div>
+            <div class="date">{{post.created_at | date:'dd/MM/yyyy'}}</div>
+            <div class="title">{{ post.title }}</div>
+            <div class="line line1"></div>
+            <div class="short-text">
+              {{ post.shortText | slice:0: 400}} {{ post.shortText.length >= 400 ? ' ...' : ''}}
+            </div>
           </div>
           <div class="lower-box">
             <div class="line line2"></div>

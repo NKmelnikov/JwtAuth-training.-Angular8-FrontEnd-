@@ -671,40 +671,38 @@
       color: white;
       margin: 100px 0;
       width: 325px;
+      height: 900px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-      .img-container {
+      .upper-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
 
-        height: 200px;
-
-        img {
-          margin-bottom: 20px;
+        .img-container {
+          background-repeat: no-repeat;
+          background-size: cover;
           width: 100%;
-          height: auto;
+          height: 200px;
+          margin-bottom: 15px;
         }
-      }
 
+        .date {
+          color: $main-color5;
+          margin-bottom: 10px;
+        }
 
-      .line {
-        border-top: 7px solid $main-color1;
-        width: 75px;
-        margin-bottom: 20px;
-      }
+        .title {
+          font-size: 24px;
+          font-weight: bolder;
+          margin-bottom: 15px;
+        }
 
-      .date {
-        color: $main-color5;
-        margin-bottom: 20px;
-      }
-
-      .title {
-        font-size: 24px;
-        font-weight: bolder;
-        margin-bottom: 20px;
-        height: 36px;
-      }
-
-      .short-text {
-        margin-bottom: 20px;
-        height: 320px;
+        .short-text {
+          margin-bottom: 20px;
+        }
       }
 
       .lower-box {
@@ -728,6 +726,12 @@
             background: $main-color3;
           }
         }
+      }
+
+      .line {
+        border-top: 7px solid $main-color1;
+        width: 75px;
+        margin-bottom: 15px;
       }
 
     }
