@@ -185,21 +185,19 @@
     </div>
   </section>
   <section id="s5" class="fifth-section">
-    <owl-carousel-o class="container" [options]="carouselNewsOptions">
+    <div class="title-container container">
+      <div class="title" routerLink="/news">Новости
+        <span class="material-icons"> east </span>
+      </div>
+    </div>
+    <owl-carousel-o class="news-carousel container" [options]="carouselNewsOptions">
       <ng-template *ngFor="let post of news" carouselSlide>
-        <div class="news-wrapper">
+        <div class="news-wrapper" [routerLink]="'/news/'+post.slug">
           <div class="upper-box">
             <div class="img-container" [ngStyle]="{'background-image': 'url(' +  post.imgPath + ')'}"></div>
             <div class="date">{{post.created_at | date:'dd/MM/yyyy'}}</div>
             <div class="title">{{ post.title }}</div>
             <div class="line line1"></div>
-            <div class="short-text">
-              {{ post.shortText | slice:0: 400}} {{ post.shortText.length >= 400 ? ' ...' : ''}}
-            </div>
-          </div>
-          <div class="lower-box">
-            <div class="line line2"></div>
-            <button class="btn">читать далее</button>
           </div>
         </div>
       </ng-template>
