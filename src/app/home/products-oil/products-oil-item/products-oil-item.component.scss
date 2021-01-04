@@ -99,6 +99,14 @@
 
 .spec {
 
+  @media #{$normalDesktop} {
+    overflow-x: scroll;
+  }
+
+  @media #{$noDesktop} {
+    overflow-x: scroll;
+  }
+
   .description {
     margin-bottom: 20px;
   }
