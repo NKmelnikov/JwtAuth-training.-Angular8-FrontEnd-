@@ -6,7 +6,8 @@ import {RecaptchaService} from '../../_services/recaptcha.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {BrandService} from "../../_services";
+import {BrandService} from '../../_services';
+import {TRANSLOCO_SCOPE} from '@ngneat/transloco';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,7 +20,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
+  providers: [
+    {
+      provide: TRANSLOCO_SCOPE,
+      useValue: 'layout'
+    }
+  ]
 })
 export class FooterComponent implements OnInit {
 

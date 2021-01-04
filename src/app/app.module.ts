@@ -48,6 +48,7 @@ import {ServicesRecoveryComponent} from './home/services-recovery/services-recov
 import {NgxGalleryModule} from 'ngx-gallery-9';
 import {ProductsOilDialogHomeComponent} from './home/products-oil/products-oil-dialog-home/products-oil-dialog-home.component';
 import { NewsItemComponent } from './home/news-item/news-item.component';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { NewsItemComponent } from './home/news-item/news-item.component';
     BrowserModule,
     NgxGalleryModule,
     ReactiveFormsModule,
+    TranslocoRootModule,
   ],
   providers: [
     AuthService,

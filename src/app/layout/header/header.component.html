@@ -1,23 +1,31 @@
-<header class="header-desktop">
+<header class="header-desktop" *transloco="let t; read: 'layout.header'">
   <nav class="logo"><a href="#"><img src="assets/img/AEGIS_logo_white_en.png" alt=""></a></nav>
   <nav class="item item1 item-main">
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Главная</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">{{ t('main') }}</a>
   </nav>
   <nav class="item item2 item-products">
-    <a mat-list-item routerLinkActive="list-item-active" (click)="redirectTo('products')">Продукция</a>
+    <a mat-list-item routerLinkActive="list-item-active" (click)="redirectTo('products')">{{ t('products') }}</a>
   </nav>
   <nav class="item item2 item-products">
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/services">Услуги</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/services">{{ t('services') }}</a>
   </nav>
   <nav class="item item3 item-catalogs">
-    <a mat-list-item routerLink="/catalogs">Бренды и Каталоги</a>
+    <a mat-list-item routerLink="/catalogs">{{ t('brands_catalogs') }}</a>
   </nav>
   <nav class="item item4 item-news">
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/news">Новости</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/news">{{ t('news') }}</a>
   </nav>
   <nav class="item item5 item-about">
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/about">О нас</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/about">{{ t('about') }}</a>
   </nav>
+  <div class="translation">
+    <nav (click)="changeActiveLanguage('ru')" class="translation__ru">RU</nav>
+    <nav (click)="changeActiveLanguage('en')" class="translation__en">EN</nav>
+  </div>
+<!--  <nav class="item item6 item-translations">-->
+<!--    <div class="item-translations__ru">RU</div>-->
+<!--    <div class="item-translations__en">EN</div>-->
+<!--  </nav>-->
   <nav id="o-s0" class="item item6 item-contacts" (click)="toggleActive()">
     <div class="line-container" id="o-s1">
       <span class="line line-top" id="o-s2"></span>

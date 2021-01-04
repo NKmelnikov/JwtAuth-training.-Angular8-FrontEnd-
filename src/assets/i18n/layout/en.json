@@ -1,0 +1,33 @@
+{
+  "header": {
+    "main": "Main",
+    "products": "Products",
+    "services": "Services",
+    "brands_catalogs": "Brands and Catalogs",
+    "news": "News",
+    "about": "About us"
+  },
+  "footer": {
+    "brands": "Brands",
+    "complex_metalworking": "Complex metalworking",
+    "tool_restoration": "Tool Reconditioning",
+    "contacts": "Contacts",
+    "address": "212012, st. Chelyuskintsev, 172, Mogilev, \nRepublic of Belarus",
+    "phones": "+(375) 222 65-92-02\n +(375) 222 40-40-40",
+    "contact_us": "Contact us",
+    "for_example": "for example",
+    "correct_email_notification": "Please enter a valid email",
+    "email_is_required_notification": "Email - is required",
+    "question": "Question",
+    "send": "Send",
+    "developed_by": "Developed by: "
+  },
+  "sidebar": {
+    "main": "Main",
+    "products": "Products",
+    "services": "Services",
+    "brands_catalogs": "Brands and Catalogs",
+    "news": "News",
+    "about": "About us"
+  }
+}

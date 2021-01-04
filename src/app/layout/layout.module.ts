@@ -6,6 +6,7 @@ import {MaterialModule} from '../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {TranslocoModule} from '@ngneat/transloco';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {CommonModule} from '@angular/common';
         FormsModule,
         RouterModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslocoModule
     ]
 })
 export class LayoutModule {

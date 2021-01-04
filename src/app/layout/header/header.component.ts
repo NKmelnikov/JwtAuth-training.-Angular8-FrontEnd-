@@ -1,15 +1,28 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {Router} from '@angular/router';
+import {
+  TRANSLOCO_SCOPE,
+  TranslocoService
+} from '@ngneat/transloco';
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  providers: [
+    {
+      provide: TRANSLOCO_SCOPE,
+      useValue: 'layout'
+    }
+  ]
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private translocoService: TranslocoService
+  ) {
   }
 
   // active = false;
@@ -26,6 +39,10 @@ export class HeaderComponent implements OnInit {
   redirectTo(uri){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  changeActiveLanguage(lang) {
+    this.translocoService.setActiveLang(lang);
   }
 
 }

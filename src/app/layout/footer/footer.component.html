@@ -1,24 +1,24 @@
-<footer>
+<footer *transloco="let t">
   <section class="footer-up container">
     <div class="footer-up__item brands">
-      <h3 routerLink="/catalogs" class="title clickable">Бренды</h3>
+      <h3 routerLink="/catalogs" class="title clickable">{{ t('layout.footer.brands') }}</h3>
       <div class="brands-link-wrapper">
         <a *ngFor="let brand of brandList" class="text" [routerLink]="'/catalogs/'+ brand.slug">{{brand.name}}</a>
       </div>
     </div>
     <div class="footer-up__item services">
-      <h3 routerLink="/services" class="title clickable">Услуги</h3>
-      <a class="text" routerLink="/services/metalworking">Комплексная металлообработка</a>
-      <a class="text" routerLink="/services/recovery">Восстановление инструмента</a>
+      <h3 routerLink="/services" class="title clickable">{{ t('layout.header.services') }}</h3>
+      <a class="text" routerLink="/services/metalworking">{{ t('layout.footer.complex_metalworking') }}</a>
+      <a class="text" routerLink="/services/recovery">{{ t('layout.footer.tool_restoration') }}</a>
     </div>
     <div class="footer-up__item">
-      <h3 class="title">Контакты</h3>
+      <h3 class="title">{{ t('layout.footer.contacts') }}</h3>
       <div class="footer-up__item_info-item">
         <div class="footer-up__item_small-img">
           <img src="assets/img/footer-icon-img-01.png" alt="icon_widget_image">
         </div>
         <div class="footer-up__item_small-text text">
-          212012, ул. Челюскинцев, д. 172, г. Могилёв, <br>Республика Беларусь
+          {{ t('layout.footer.address') }}
         </div>
       </div>
       <div class="footer-up__item_info-item">
@@ -26,8 +26,7 @@
           <img src="assets/img/footer-icon-img-03.png" alt="icon_widget_image">
         </div>
         <div class="footer-up__item__small-text text">
-          + (375) 222 65-92-02 <br>
-          + (375) 222 40-40-40
+          {{ t('layout.footer.phones') }}
         </div>
       </div>
       <div class="footer-up__item_info-item">
@@ -40,7 +39,7 @@
       </div>
     </div>
     <div class="footer-up__item contact-us">
-      <h3 class="title">Напишите нам</h3>
+      <h3 class="title">{{ t('layout.footer.contact_us') }}</h3>
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input
@@ -49,21 +48,23 @@
           [formControl]="emailFormControl"
           [errorStateMatcher]="matcher"
           [(ngModel)]="email"
-          placeholder="Например, boss@site.com"
+          placeholder="{{ t('layout.footer.for_example') }}, boss@site.com"
           color="warn">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-          Пожалуйста введите корректный email адрес
+          {{ t('layout.footer.correct_email_notification') }}
         </mat-error>
         <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email - <strong>обязательное поле</strong>
+          {{ t('layout.footer.email_is_required_notification') }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <mat-label>Вопрос</mat-label>
+        <mat-label>{{ t('layout.footer.question') }}</mat-label>
         <textarea matInput [(ngModel)]="text" placeholder=""></textarea>
       </mat-form-field>
-      <button class="send-btn" mat-raised-button [disabled]="blockFormButton()" (click)="sendMessageToTelegram()" color="warn">Отправить</button>
+      <button class="send-btn" mat-raised-button [disabled]="blockFormButton()" (click)="sendMessageToTelegram()" color="warn">
+        <mat-label>{{ t('layout.footer.send') }}</mat-label>
+      </button>
     </div>
   </section>
   <section class="fronter-down-wrapper">
@@ -74,7 +75,9 @@
       </div>
       <div class="footer-down__copyright">
         <span>© Copyright Aegis.by</span>
-        <span>сайт разработан: <a target="_blank" href="https://melnikovshop.online">melnikovshop.online</a></span>
+        <span>
+          <mat-label>{{ t('layout.footer.developed_by') }}</mat-label>
+          <a target="_blank" href="https://www.linkedin.com/in/nikita-melnikov-a71a06b8/">nkmelnikov</a></span>
       </div>
       <div class="footer-down__social">
         <div class="social-network">

@@ -1,0 +1,33 @@
+{
+  "header": {
+    "main": "Главная",
+    "products": "Продукция",
+    "services": "Услуги",
+    "brands_catalogs": "Бренды и Каталоги",
+    "news": "Новости",
+    "about": "О нас"
+  },
+  "footer": {
+    "brands": "Бренды",
+    "complex_metalworking": "Комплексная металлообработка",
+    "tool_restoration": "Восстановление инструмента",
+    "contacts": "Контакты",
+    "address": "212012, ул. Челюскинцев, д. 172, г. Могилёв, \nРеспублика Беларусь",
+    "phones": "+(375) 222 65-92-02\n +(375) 222 40-40-40",
+    "contact_us": "Напишите нам",
+    "for_example": "например",
+    "correct_email_notification": "Пожалуйста введите корректный email",
+    "email_is_required_notification": "Email - обязательное поле",
+    "question": "Вопрос",
+    "send": "Отправить",
+    "developed_by": "сайт разработан: "
+  },
+  "sidebar": {
+    "main": "Main",
+    "products": "Products",
+    "services": "Services",
+    "brands_catalogs": "Brands and Catalogs",
+    "news": "News",
+    "about": "About us"
+  }
+}
