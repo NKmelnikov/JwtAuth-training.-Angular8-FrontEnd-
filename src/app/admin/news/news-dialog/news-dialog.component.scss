@@ -60,3 +60,37 @@
 ::ng-deep.fr-popup.fr-active {
   z-index: 1000000!important;
 }
+
+.mat-tab-body {
+  animation: fade-out .5s;
+  opacity: 0;
+  transition: .5s ease-in;
+}
+.mat-tab-body.mat-tab-body-active {
+  animation: fade-in .5s;
+  opacity: 1;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

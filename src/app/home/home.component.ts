@@ -24,13 +24,9 @@ export class HomeComponent implements OnInit {
 
   receiveActiveHeader($event) {
     this.active = $event;
-    // console.log('h');
-    // console.log(this.active);
   }
 
   receiveActiveSideBar($event) {
     this.active = $event;
-    // console.log('s');
-    // console.log(this.active);
   }
 }
