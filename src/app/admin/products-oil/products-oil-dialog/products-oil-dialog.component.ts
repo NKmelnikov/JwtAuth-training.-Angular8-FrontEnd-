@@ -4,7 +4,7 @@ import {ProductsOilInterface} from '../products-oil.interface';
 import {environment} from '../../../../environments/environment';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 import {SubCategoryService} from '../../../_services';
-import 'froala-editor/js/plugins.pkgd.min.js';
+// import 'froala-editor/js/plugins.pkgd.min.js';
 
 // @ts-ignore
 @Component({

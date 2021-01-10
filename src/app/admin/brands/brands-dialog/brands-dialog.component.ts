@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BrandsInterface} from '../brands.interface';
 import {environment} from '../../../../environments/environment';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
-import 'froala-editor/js/plugins.pkgd.min.js';
+// import 'froala-editor/js/plugins.pkgd.min.js';
 
 
 

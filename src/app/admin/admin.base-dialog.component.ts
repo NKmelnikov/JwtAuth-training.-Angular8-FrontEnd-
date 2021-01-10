@@ -2,7 +2,6 @@ import {Component, Directive, Inject, Injector, OnInit, Optional} from '@angular
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {UploadHelper} from '../_helpers';
 import * as _ from 'lodash';
-import * as ClassicEditor from '../_helpers/ckeditor';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -16,8 +15,6 @@ export abstract class AdminBaseDialogComponent {
   public cardImageBase64: string;
   public selectedValue: string;
   public uploadHelper: any;
-  public ckEditorConfig;
-  public Editor = ClassicEditor;
 
   protected constructor(
     protected injectorObj: Injector,

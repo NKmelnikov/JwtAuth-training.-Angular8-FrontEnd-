@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import {SelectionModel} from '@angular/cdk/collections';
 import {SubcategoryDialogComponent} from './subcategory-dialog/subcategory-dialog.component';
 import {AdminBaseComponent} from '../../admin.base-component';
-import 'froala-editor/js/plugins.pkgd.min.js';
+// import 'froala-editor/js/plugins.pkgd.min.js';
 
 
 @Component({

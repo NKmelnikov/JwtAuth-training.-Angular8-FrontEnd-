@@ -29,7 +29,6 @@ import {AboutComponent} from './home/about/about.component';
 import {ServicesComponent} from './home/services/services.component';
 import {NewsHomeComponent} from './home/news/news.component';
 import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
-import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
 import {ProductsOilCategoryListComponent} from './home/products-oil/products-oil-category-list/products-oil-category-list.component';
@@ -64,11 +63,9 @@ import { TranslocoRootModule } from './transloco/transloco-root.module';
     AboutComponent,
     NewsHomeComponent,
     ServicesComponent,
-    ProductsDrillHomeComponent,
     ProductsOilHomeComponent,
     NewsHomeComponent,
     ProductsOilHomeComponent,
-    ProductsDrillHomeComponent,
     ProductsOilItemComponent,
     ProductsOilListComponent,
     ProductsOilCategoryListComponent,
@@ -81,7 +78,7 @@ import { TranslocoRootModule } from './transloco/transloco-root.module';
     NewsItemComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {environment} from '../../../../environments/environment';
 import {AdminBaseDialogComponent} from '../../admin.base-dialog.component';
 import {ServicesMetalworkingInterface} from '../services-metalworking.interface';
-import 'froala-editor/js/plugins.pkgd.min.js';
+// import 'froala-editor/js/plugins.pkgd.min.js';
 
 
 @Component({
@@ -43,63 +43,6 @@ export class ServicesMetalworkingDialogComponent extends AdminBaseDialogComponen
   }
 
   ngOnInit(): void {
-    this.ckEditorConfig = {
-      toolbar: {
-        items: [
-          'heading',
-          '|',
-          'bold',
-          'italic',
-          'underline',
-          'strikethrough',
-          'subscript',
-          'superscript',
-          'blockQuote',
-          'bulletedList',
-          'numberedList',
-          'removeFormat',
-          '|',
-          'indent',
-          'outdent',
-          'alignment',
-          '|',
-          'link',
-          'imageUpload',
-          'insertTable',
-          'mediaEmbed',
-          'undo',
-          'redo',
-          'exportPdf',
-          'horizontalLine',
-          'highlight',
-          'fontSize'
-        ]
-      },
-      mediaEmbed: {
-        previewsInData: true
-      },
-      image: {
-        toolbar: [
-          'imageTextAlternative',
-          'imageStyle:full',
-          'imageStyle:side'
-        ]
-      },
-      table: {
-        contentToolbar: [
-          'tableColumn',
-          'tableRow',
-          'mergeTableCells',
-          'tableCellProperties',
-          'tableProperties'
-        ]
-      },
-      language: 'ru',
-      licenseKey: '',
-      ckfinder: {
-        uploadUrl: `${environment.serverURL}ck-upload`
-      }
-    };
     this.localData.description = this.localData.description || '';
   }
 

@@ -6,7 +6,6 @@ import {
   CategoryService,
   SubCategoryService,
   ProductOilService,
-  ProductDrillService
 } from '../_services';
 import {MatTableDataSource, MatSort, MatPaginator, MatTable, MatDialog} from '@angular/material';
 import {NewsInterface} from './news/news.interface';
@@ -29,7 +28,6 @@ export abstract class AdminBaseComponent {
   public catalogService: CatalogService;
   public categoryService: CategoryService;
   public productOilService: ProductOilService;
-  public productDrillService: ProductDrillService;
   public metalworkingService: MetalworkingService;
   public dialog: MatDialog;
   public changeDetectorRefs: ChangeDetectorRef;
@@ -46,7 +44,6 @@ export abstract class AdminBaseComponent {
     this.categoryService = this.injectorObj.get(CategoryService);
     this.subcategoryService = this.injectorObj.get(SubCategoryService);
     this.productOilService = this.injectorObj.get(ProductOilService);
-    this.productDrillService = this.injectorObj.get(ProductDrillService);
     this.metalworkingService = this.injectorObj.get(MetalworkingService);
     this.uploadHelper = this.injectorObj.get(UploadHelper);
     this.changeDetectorRefs = this.injectorObj.get(ChangeDetectorRef);

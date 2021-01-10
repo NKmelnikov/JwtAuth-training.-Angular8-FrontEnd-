@@ -19,7 +19,6 @@ import {CategoriesComponent} from './admin/categories/categories.component';
 import {CategoriesEditComponent} from './admin/categories/categories-edit/categories-edit.component';
 import {ProductsOilComponent} from './admin/products-oil/products-oil.component';
 import {ProductsOilHomeComponent} from './home/products-oil/products-oil.component';
-import {ProductsDrillHomeComponent} from './home/products-drill/products-drill.component';
 import {AboutComponent} from './home/about/about.component';
 import {ProductsOilItemComponent} from './home/products-oil/products-oil-item/products-oil-item.component';
 import {ProductsOilListComponent} from './home/products-oil/products-oil-list/products-oil-list.component';
@@ -75,10 +74,6 @@ const routes: Routes = [
             component: ProductsOilItemComponent,
           },
         ]
-      },
-      {
-        path: 'products/drill',
-        component: ProductsDrillHomeComponent
       },
       {
         path: 'services',
@@ -170,7 +165,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', initialNavigation: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
